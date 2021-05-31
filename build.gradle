@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group 'by.itman'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.11
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    jvmArgs = ["-Duser.timezone=UTC", "-Duser.language=en"]
+    useJUnitPlatform()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+}
