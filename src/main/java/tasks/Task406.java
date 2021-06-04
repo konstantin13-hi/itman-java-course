@@ -2,22 +2,26 @@ package tasks;
 
 public class Task406 {
     public static int findSecondMax(int[]array){
-        for(int i = 0; i<array.length;i++){
-            int minIndex = i;
-            for (int j=i+1;j<array.length;j++){
-                if(array[minIndex]>array[j]){
-                    minIndex= j;
-                }
-            }
-                    int t = array[minIndex];
-                    array[minIndex] = array[i];
-                    array[i]= t;
+        int a =0;
+         int max= Integer.MIN_VALUE;
+         for (int i = 0; i<array.length;i++){
+            if (max<array[i]){
+                max=array[i];
+                a=i;
 
             }
-        int second=array[array.length-2];
+         }
+        int max1= Integer.MIN_VALUE;
+         for (int i = 0; i<array.length;i++){
+             if(max1<array[i]&& i!=a ) {
+                 max1=array[i];
+
+         }}
 
 
-        return second;
+
+
+        return max1;
     }
 
 
