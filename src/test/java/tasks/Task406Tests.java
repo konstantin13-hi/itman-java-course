@@ -4,7 +4,7 @@ package tasks;
 public class Task406Tests {
     @Test
     public void sumPositiveValues() {
-        Assertions.assertEquals(3, Task406.findSecondMax(new int[]{3,2,4,32,32,4,5,10,10}) );
+        Assertions.assertEquals(32, Task406.findSecondMax(new int[]{3,2,4,32,32,4,5,10,10}) );
     }
 
 
