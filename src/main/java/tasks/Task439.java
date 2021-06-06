@@ -6,7 +6,7 @@ import entities.Event;
 public class Task439 {
 
     public static Event findLast(Event[] events) {
-        if (events == null) {
+        if (events.length == 0) {
             return null;
         }
           Event a = events[0];

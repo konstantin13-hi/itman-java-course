@@ -26,8 +26,8 @@ public class Task439Tests {
      @Test
      public void sumPositivealues() {
 
-       // Event[] events = new Event[]{};
-        Event[] events = null;
+
+        Event[] events = new Event[0];
         Event actual = Task439.findLast(events);
         Assertions.assertNull(actual);
 
