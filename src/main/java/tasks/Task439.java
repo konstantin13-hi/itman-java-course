@@ -1,5 +1,6 @@
 package tasks;
 public class Task439 {
+
     public static Event findLast(Event[] events){
         Event a = events[0];
         for (int i=0;i<events.length;i++){

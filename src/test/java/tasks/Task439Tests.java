@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 public class Task439Tests {
 
 
-    private String fgd;
 
     @Test
         public void sumPositiveValues() {
