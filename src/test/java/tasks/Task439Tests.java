@@ -22,4 +22,14 @@ public class Task439Tests {
             Assertions.assertSame(expectedLink, actual);
 
 
-        }}
+        }
+     @Test
+     public void sumPositivealues() {
+
+       // Event[] events = new Event[]{};
+        Event[] events = null;
+        Event actual = Task439.findLast(events);
+        Assertions.assertNull(actual);
+
+
+    }}
