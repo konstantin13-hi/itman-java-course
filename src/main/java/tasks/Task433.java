@@ -8,7 +8,7 @@ public class Task433 {
         int b1=0;
         long c=0;
         int h1=0;
-        for(int i=1;i<x;i++){
+        for(int i=1;i<x+1;i++){
             if(x%i==0){
                 a[h1]=i;
                 h1++;
@@ -16,7 +16,7 @@ public class Task433 {
             }
         }
         int h=0;
-        for(int i=1;i<y;i++){
+        for(int i=1;i<y+1;i++){
             if(y%i==0){
                 b[h]=i;
                 h++;
