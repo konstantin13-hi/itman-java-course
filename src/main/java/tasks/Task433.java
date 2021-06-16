@@ -2,8 +2,8 @@ package tasks;
 
 public class Task433 {
     public static long gcd(long x,long y){
-        long []a=new long[1000];
-        long []b=new long[1000];
+        long []a=new long[Math.toIntExact(x)];
+        long []b=new long[Math.toIntExact(y)];
         int a1=0;
         int b1=0;
         long c=0;
