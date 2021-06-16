@@ -32,11 +32,11 @@ public class Task433 {
             b3[i]=b[i];
         }
         int cg=0;
-        for (int i=a3.length-1;i>0;i--){
+        for (int i=a3.length-1;i!=-1;i--){
             if (cg>0){
                 break;
             }
-            for (int j=b3.length-1;j>0;j--){
+            for (int j=b3.length-1;j!=-1;j--){
                 if(a3[i]==b3[j]){
                     c=a3[i];
                     cg++;
