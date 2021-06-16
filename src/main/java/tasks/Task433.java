@@ -1,15 +1,20 @@
 package tasks;
 
 public class Task433 {
-    public static long gcd(long x,long y){
-        long c=0;
-        for (long i= x;i!=0;i--){
-            if (x%i==0 &&(y%i)==0){
-                c=i;
-                break;
-            }
+    public static long gcd(long x, long y) {
+
+        if (x == 0)
+            return y;
+
+        while (y != 0) {
+            if (x > y)
+                x = x - y;
+            else
+                y = y - x;
         }
 
-        return c;
+        return x;
+
+
     }
 }
