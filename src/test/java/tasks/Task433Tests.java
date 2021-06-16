@@ -22,4 +22,13 @@ public class Task433Tests {
 
 
     }
+    @Test
+    public void gcd2(){
+        long x=91351260;
+        long y=375320946;
+        long a=Task433.gcd(x,y);
+        Assertions.assertEquals(78078, a);
+
+
+    }
 }

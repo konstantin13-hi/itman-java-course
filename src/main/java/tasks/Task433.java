@@ -2,8 +2,8 @@ package tasks;
 
 public class Task433 {
     public static long gcd(long x,long y){
-        long []a=new long[Math.toIntExact(x)];
-        long []b=new long[Math.toIntExact(y)];
+        long []a=new long[1000000];
+        long []b=new long[1000000];
         int a1=0;
         int b1=0;
         long c=0;
@@ -31,10 +31,16 @@ public class Task433 {
         for (int i=0;i<b3.length;i++ ){
             b3[i]=b[i];
         }
-        for (int i=0;i<a3.length;i++){
-            for (int j=0;j<b3.length;j++){
+        int cg=0;
+        for (int i=a3.length-1;i>0;i--){
+            if (cg>0){
+                break;
+            }
+            for (int j=b3.length-1;j>0;j--){
                 if(a3[i]==b3[j]){
                     c=a3[i];
+                    cg++;
+                    break;
                 }
 
         }}
