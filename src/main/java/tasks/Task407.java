@@ -1,6 +1,15 @@
 package tasks;
 
 public class Task407 {
+    /**
+     * Sort rows of array .
+     *
+     * @cpu O(n)
+     * @ram O(n)
+     *
+     * @param matrix the first term
+     * @return sorted rows of array .
+     */
     public static void sortMatrixRowsDesc(int[][] matrix) {
         int[] a = new int[matrix.length];
         for (int i = 0; i < matrix.length; i++) {
@@ -17,14 +26,7 @@ public class Task407 {
                     int[] t2 = matrix[j];
                     matrix[j] = matrix[j - 1];
                     matrix[j - 1] = t2;
-                    //  for (int j2=0; j2 < matrix[j].length; j2++) {
-                    //       int t1 =matrix[j][j2];
-                    //      matrix[j][j2]=matrix[j-1][j2];
-                    //       matrix[j-1][j2]=t1;
-                    //  }
-
                 }
-
             }
         }
     }

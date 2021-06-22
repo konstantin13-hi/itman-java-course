@@ -3,6 +3,15 @@ package tasks;
 import entities.Event;
 
 public class Task408 {
+    /**
+     * Sort elements of array .
+     *
+     * @cpu O(n)
+     * @ram O(1)
+     *
+     * @param events the first term
+     * @return sorted elements of array .
+     */
     public static void sort(Event[] events) {
         for (int i = 0; i < events.length; i++) {
             for (int j = 1; j < events.length; j++) {
@@ -10,13 +19,11 @@ public class Task408 {
                     Event t = events[j - 1];
                     events[j - 1] = events[j];
                     events[j] = t;
-                }
-                else if (events[j - 1].year == events[j].year &&events[j - 1].month > events[j].month) {
+                } else if (events[j - 1].year == events[j].year && events[j - 1].month > events[j].month) {
                     Event t = events[j - 1];
                     events[j - 1] = events[j];
                     events[j] = t;
-                }
-                else if (events[j - 1].year == events[j].year &&events[j - 1].month == events[j].month&&events[j - 1].day > events[j].day) {
+                } else if (events[j - 1].year == events[j].year && events[j - 1].month == events[j].month && events[j - 1].day > events[j].day) {
                     Event t = events[j - 1];
                     events[j - 1] = events[j];
                     events[j] = t;
