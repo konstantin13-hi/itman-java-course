@@ -45,7 +45,7 @@ public class Task433Tests {
     @Test
     public void gcdwith1and10e16() {
         long x = 1;
-        long y = (long)1e16;
+        long y = (long) 1e16;
         long a = Task433.gcd(x, y);
         Assertions.assertEquals(1, a);
 
