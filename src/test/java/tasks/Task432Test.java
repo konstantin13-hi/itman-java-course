@@ -14,7 +14,7 @@ public class Task432Test {
     }
 
     @Test
-    public void max() {
+    public void calcPrimeNumbersmax() {
         long x1 = 999999797;
         long[] expected1 = new long[]{999999797};
         Task432.calcPrimeNumbers(x1);
@@ -23,7 +23,7 @@ public class Task432Test {
     }
 
     @Test
-    public void middle() {
+    public void calcPrimeNumbersmiddle() {
         long x1 = 899;
         long[] expected1 = new long[]{29, 31};
         Task432.calcPrimeNumbers(x1);
