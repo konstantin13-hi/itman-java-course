@@ -4,7 +4,7 @@ public class Task407 {
     /**
      * Sort rows of array .
      *
-     * @cpu O(n)
+     * @cpu O(n*m)
      * @ram O(n)
      *
      * @param matrix the first term

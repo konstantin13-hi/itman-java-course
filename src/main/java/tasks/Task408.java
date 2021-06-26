@@ -6,7 +6,7 @@ public class Task408 {
     /**
      * Sort elements of array .
      *
-     * @cpu O(n)
+     * @cpu O(n^2)
      * @ram O(1)
      *
      * @param events the first term
