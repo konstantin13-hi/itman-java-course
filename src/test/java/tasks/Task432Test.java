@@ -29,4 +29,18 @@ public class Task432Test {
         Task432.calcPrimeNumbers(x1);
         Assertions.assertArrayEquals(expected1, Task432.calcPrimeNumbers(x1));
     }
+    @Test
+    public void calcPrimeNumbersmiddlemin() {
+        long x1 = 2;
+        long[] expected1 = new long[]{2};
+        Task432.calcPrimeNumbers(x1);
+        Assertions.assertArrayEquals(expected1, Task432.calcPrimeNumbers(x1));
+    }
+    @Test
+    public void calcPrimeNumbersmiddleminwith9() {
+        long x1 = 9;
+        long[] expected1 = new long[]{3};
+        Task432.calcPrimeNumbers(x1);
+        Assertions.assertArrayEquals(expected1, Task432.calcPrimeNumbers(x1));
+    }
 }
