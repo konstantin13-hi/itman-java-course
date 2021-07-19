@@ -17,7 +17,6 @@ public class Task406 {
             if (max < array[i]) {
                 max = array[i];
                 a = i;
-
             }
         }
         int max1 = Integer.MIN_VALUE;
@@ -27,8 +26,6 @@ public class Task406 {
 
             }
         }
-
-
         return max1;
     }
 

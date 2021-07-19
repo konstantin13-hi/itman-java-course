@@ -18,7 +18,7 @@ public class Task407Tests {
     }
 
     @Test
-    public void sortMatrixRowsDeswhentworowssame() {
+    public void sortMatrixRowsDescWhenTwoRowsSame() {
         int[][] a = new int[][]{{1, 1, 1}, {1, 1, 1}, {7, 8, 9}};
         int[][] b = new int[][]{{7, 8, 9}, {1, 1, 1}, {1, 1, 1}};
 
@@ -27,7 +27,7 @@ public class Task407Tests {
     }
 
     @Test
-    public void sortMatrixRowsDeswhenthreepairs() {
+    public void sortMatrixRowsDescWhenThreePairs() {
         int[][] a = new int[][]{{1, 1, 1}, {199, 199, 199}, {7, 8, 9}, {1, 1, 1}, {199, 199, 199}, {7, 8, 9}};
         int[][] b = new int[][]{{199, 199, 199}, {199, 199, 199}, {7, 8, 9}, {7, 8, 9}, {1, 1, 1}, {1, 1, 1}};
 

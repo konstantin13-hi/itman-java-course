@@ -14,7 +14,7 @@ public class Task432Test {
     }
 
     @Test
-    public void calcPrimeNumbersmax() {
+    public void calcPrimeNumbersMax() {
         long x1 = 999999797;
         long[] expected1 = new long[]{999999797};
         Task432.calcPrimeNumbers(x1);
@@ -23,21 +23,21 @@ public class Task432Test {
     }
 
     @Test
-    public void calcPrimeNumbersmiddle() {
+    public void calcPrimeNumbersMiddle() {
         long x1 = 899;
         long[] expected1 = new long[]{29, 31};
         Task432.calcPrimeNumbers(x1);
         Assertions.assertArrayEquals(expected1, Task432.calcPrimeNumbers(x1));
     }
     @Test
-    public void calcPrimeNumbersmiddlemin() {
+    public void calcPrimeNumbersMiddleMin() {
         long x1 = 2;
         long[] expected1 = new long[]{2};
         Task432.calcPrimeNumbers(x1);
         Assertions.assertArrayEquals(expected1, Task432.calcPrimeNumbers(x1));
     }
     @Test
-    public void calcPrimeNumbersmiddleminwith9() {
+    public void calcPrimeNumbersMiddleMinWith9() {
         long x1 = 9;
         long[] expected1 = new long[]{3};
         Task432.calcPrimeNumbers(x1);
