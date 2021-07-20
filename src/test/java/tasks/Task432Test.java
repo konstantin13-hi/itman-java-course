@@ -29,6 +29,7 @@ public class Task432Test {
         Task432.calcPrimeNumbers(x1);
         Assertions.assertArrayEquals(expected1, Task432.calcPrimeNumbers(x1));
     }
+
     @Test
     public void calcPrimeNumbersMiddleMin() {
         long x1 = 2;
@@ -36,6 +37,7 @@ public class Task432Test {
         Task432.calcPrimeNumbers(x1);
         Assertions.assertArrayEquals(expected1, Task432.calcPrimeNumbers(x1));
     }
+
     @Test
     public void calcPrimeNumbersMiddleMinWith9() {
         long x1 = 9;

@@ -9,6 +9,7 @@ public class Task408 {
      * @param events the first term.
      * @cpu O(n ^ 2)
      * @ram O(1)
+     * @return
      */
     public static void sort(Event[] events) {
         for (int i = 0; i < events.length; i++) {
@@ -22,5 +23,6 @@ public class Task408 {
                 }
             }
         }
+
     }
 }
