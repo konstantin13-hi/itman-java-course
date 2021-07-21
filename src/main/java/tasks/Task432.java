@@ -13,11 +13,12 @@ public class Task432 {
         int countArrayC1Elements = 0;// variable indicates the dimension of the array с1
         int countArrayCElements = 0;//variable indicates the dimension of the array с
         long SqrtTermX = (long) Math.sqrt(x);
+        long duplicateForCycle = x;
         long[] ArrayC = new long[1000];
-        if (x >= SqrtTermX && x < 5) {
+        if (x < 5) {
             return new long[]{x};
         }
-        for (int i = 2; i < x; i++) {
+        for (int i = 2; i < duplicateForCycle; i++) {
             if (x % i == 0) {
                 countArrayC1Elements++;
                 ArrayC[countArrayCElements] = i;
