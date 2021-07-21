@@ -14,14 +14,18 @@ public class Task408Tests {
                 new Event(31, 3, 5, "rew")
         };
         Event[] expectedElement = new Event[actual.length];
-        Task408.sort(actual);
+        expectedElement[0] = actual[2];
+        expectedElement[1] = actual[1];
+        expectedElement[2] = actual[0];
+
         Event[] expected = new Event[]{
                 new Event(31, 3, 5, "rew"),
                 new Event(1994, 2, 4, "sa3"),
                 new Event(1994, 11, 12, "sae1")
         };
+
+        Task408.sort(actual);
         checkingASortedArrayElements(actual, expected);
-        createArray(actual, expectedElement);
         checkingASortedArrayLinks(actual, expectedElement);
     }
 
@@ -36,7 +40,11 @@ public class Task408Tests {
                 new Event(2031, 11, 13, "Day of City in Minsk")
         };
         Event[] expectedElement = new Event[actual.length];
-        Task408.sort(actual);
+        expectedElement[0] = actual[2];
+        expectedElement[1] = actual[3];
+        expectedElement[2] = actual[1];
+        expectedElement[3] = actual[0];
+        expectedElement[4] = actual[4];
         Event[] expected = new Event[]{
                 new Event(231, 2, 6, "Day of City in Vitebsk"),
                 new Event(314, 7, 15, "Day of City in Borisow"),
@@ -44,8 +52,9 @@ public class Task408Tests {
                 new Event(2000, 11, 12, "Day of City in Gomel"),
                 new Event(2031, 11, 13, "Day of City in Minsk")
         };
+
+        Task408.sort(actual);
         checkingASortedArrayElements(actual, expected);
-        createArray(actual, expectedElement);
         checkingASortedArrayLinks(actual, expectedElement);
 
     }
@@ -56,12 +65,6 @@ public class Task408Tests {
             Assertions.assertEquals(expected[i].month, actual[i].month);
             Assertions.assertEquals(expected[i].year, actual[i].year);
             Assertions.assertEquals(expected[i].name, actual[i].name);
-        }
-    }
-
-    public static void createArray(Event[] actual, Event[] expectedElement) {
-        for (int i = 0; i < expectedElement.length; i++) {
-            expectedElement[i] = actual[i];
         }
     }
 
