@@ -45,4 +45,12 @@ public class Task432Test {
         Task432.calcPrimeNumbers(x1);
         Assertions.assertArrayEquals(expected1, Task432.calcPrimeNumbers(x1));
     }
+
+    @Test
+    public void calcPrimeNumbersMiddleMinWith4() {
+        long x1 = 4;
+        long[] expected1 = new long[]{2};
+        Task432.calcPrimeNumbers(x1);
+        Assertions.assertArrayEquals(expected1, Task432.calcPrimeNumbers(x1));
+    }
 }

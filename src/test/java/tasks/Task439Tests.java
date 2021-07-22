@@ -21,8 +21,8 @@ public class Task439Tests {
         Event expected = events[0];
         Event actual = Task439.findLast(events);
         assert actual != null;
-        checkingASortedArrayLinks(expected, actual);
-        checkingASortedArrayElements(expectedelement, actual);
+        Assertions.assertSame(expected, actual);
+        checkingArrayElements(expectedelement, actual);
 
     }
 
@@ -40,8 +40,8 @@ public class Task439Tests {
         Event expected = events[2];
         Event actual = Task439.findLast(events);
         assert actual != null;
-        checkingASortedArrayLinks(expected, actual);
-        checkingASortedArrayElements(expectedelement, actual);
+        Assertions.assertSame(expected, actual);
+        checkingArrayElements(expectedelement, actual);
     }
 
     @Test
@@ -51,12 +51,7 @@ public class Task439Tests {
         Assertions.assertNull(actual);
     }
 
-    public static void checkingASortedArrayLinks(Event expected, Event actual) {
-        Assertions.assertSame(expected, actual);
-
-    }
-
-    public static void checkingASortedArrayElements(Event expectedelement, Event actual) {
+    public static void checkingArrayElements(Event expectedelement, Event actual) {
         Assertions.assertEquals(expectedelement.name, actual.name);
         Assertions.assertEquals(expectedelement.day, actual.day);
         Assertions.assertEquals(expectedelement.month, actual.month);
