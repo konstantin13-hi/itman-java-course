@@ -13,24 +13,28 @@ public class Task432 {
         long sqrtX = (long) Math.sqrt(x);
         long[] divisors = new long[1000];
         int nextPosition = 0;
-        int divisionsNumber = 0;
-        for (int i = 2; i <= sqrtX + sqrtX; i++) {
+        int numberPrimeCheck = 0;
+        int count = 2;
+        if (x == 2 || x == 3) {
+            divisors[0] = x;
+        }
+        for (int i = 2; i <= sqrtX; i++, count++) {
             if (x % i == 0) {
-                if (divisionsNumber == 0) {
-                    divisors[nextPosition] = i;
-                    nextPosition++;
-                    divisionsNumber++;
+                numberPrimeCheck++;
+                while (x % i == 0) {
+                    x = x / i;
                 }
-                x = x / i;
-                i--;
-            } else {
-                divisionsNumber = 0;
-            }
-            if (i >= sqrtX && nextPosition == 0) {
-                divisors[0] = x;
+                divisors[nextPosition] = i;
                 nextPosition++;
+                if (i == sqrtX && x != 1 && x != i) {
+                    divisors[nextPosition] = x;
+                    nextPosition++;
+                }
             }
-
+        }
+        if (count >= sqrtX && numberPrimeCheck == 0) {
+            divisors[0] = x;
+            nextPosition++;
         }
         long[] result = new long[nextPosition];
         System.arraycopy(divisors, 0, result, 0, result.length);
