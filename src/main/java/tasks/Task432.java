@@ -13,27 +13,17 @@ public class Task432 {
         long sqrtX = (long) Math.sqrt(x);
         long[] divisors = new long[1000];
         int nextPosition = 0;
-        int numberPrimeCheck = 0;
-        int count = 2;
-        if (x == 2 || x == 3) {
-            divisors[0] = x;
-        }
-        for (int i = 2; i <= sqrtX; i++, count++) {
+        for (int i = 2; i <= sqrtX; i++) {
             if (x % i == 0) {
-                numberPrimeCheck++;
                 while (x % i == 0) {
                     x = x / i;
                 }
                 divisors[nextPosition] = i;
                 nextPosition++;
-                if (i == sqrtX && x != 1 && x != i) {
-                    divisors[nextPosition] = x;
-                    nextPosition++;
-                }
             }
         }
-        if (count >= sqrtX && numberPrimeCheck == 0) {
-            divisors[0] = x;
+        if (x != 1) {
+            divisors[nextPosition] = x;
             nextPosition++;
         }
         long[] result = new long[nextPosition];
