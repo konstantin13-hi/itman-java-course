@@ -16,7 +16,7 @@ class EventTest {
     @Test
     public void toStringWithSecondObject() {
         Event events = new Event(1918,3,25, "The independence of the BNR");
-        String expectedelement =  "Event{year=1918, month=3, day=25, name='The independence of the BNR'";
+        String expectedelement =  "Event{year=1918, month=3, day=25, name='The independence of the BNR'}";
         Assertions.assertEquals(expectedelement,events.toString());
     }
 

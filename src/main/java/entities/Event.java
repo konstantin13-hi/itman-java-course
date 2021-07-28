@@ -13,7 +13,7 @@ public class Event {
         this.name = name;
     }
     public String toString() {
-        return "Event{year="+year+", month="+month+", day="+day+", name="+name+"}";
+        return "Event{year="+year+", month="+month+", day="+day+", name="+"'"+name+"'"+"}";
     }
 }
 
