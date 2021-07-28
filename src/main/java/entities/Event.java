@@ -14,7 +14,6 @@ public class Event {
     }
     public String toString() {
         return "Event{year="+year+", month="+month+", day="+day+", name="+name+"}";
-
     }
 }
 
