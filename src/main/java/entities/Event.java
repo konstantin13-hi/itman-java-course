@@ -19,6 +19,7 @@ public class Event {
     }
     public boolean equals(Event that){
         boolean result;
+        assert that != null;
         result= this.day == that.day &&
                 this.year == that.year &&
                 this.month == that.month &&
