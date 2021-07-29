@@ -2,6 +2,8 @@ package entities;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import tasks.Task408;
+import tasks.Task439;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,5 +21,4 @@ class EventTest {
         String expectedelement =  "Event{year=1918, month=3, day=25, name='The independence of the BNR'}";
         Assertions.assertEquals(expectedelement,events.toString());
     }
-
 }
