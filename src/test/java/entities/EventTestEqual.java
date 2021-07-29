@@ -18,5 +18,10 @@ class EventTestEqual {
         Event event = new Event(1918,3,25, "The independence of the BNR");
         Assertions.assertFalse(event.equals(null));
     }
-
+    @Test
+    public void equalsWithNameNull() {
+        Event even = new Event(2024, 2, 28, null);
+        Event event = new Event(2024, 2, 28, null);
+        Assertions.assertTrue(event.equals(even));
+    }
 }

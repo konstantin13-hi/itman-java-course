@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Objects;
+
 public class Event {
     public int year;
     public int month;
@@ -22,13 +24,14 @@ public class Event {
         if (that==null){
             return false;
         }
+        if (this.name==null&&that.name==null){
+            result=true;
+        }
 
         result= this.day == that.day &&
                 this.year == that.year &&
                 this.month == that.month &&
-                this.name.equals(that.name);
-
-
+                Objects.equals(this.name, that.name);
         return result;
     }
 
