@@ -11,8 +11,12 @@ class EventTestEqual {
         Event even = new Event(19,3,5, "The independence of the BNR");
         Event event = new Event(1918,3,25, "The independence of the BNR");
         Assertions.assertFalse(event.equals(even));
+    }
 
-
+    @Test
+    public void equalsWithNull() {
+        Event event = new Event(1918,3,25, "The independence of the BNR");
+        Assertions.assertFalse(event.equals(null));
     }
 
 }

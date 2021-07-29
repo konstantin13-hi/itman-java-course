@@ -19,11 +19,16 @@ public class Event {
     }
     public boolean equals(Event that){
         boolean result;
-        assert that != null;
+        if (that==null){
+            return false;
+        }
+
         result= this.day == that.day &&
                 this.year == that.year &&
                 this.month == that.month &&
                 this.name.equals(that.name);
+
+
         return result;
     }
 
