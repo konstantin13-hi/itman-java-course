@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Ticket {
     public int number;
-    public  String place;
+    public String place;
 
     public Ticket(int number, String place) {
         this.place = place;
