@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Ticket {
     public int number;
-    public static String place;
+    public  String place;
 
     public Ticket(int number, String place) {
-        Ticket.place = place;
+        this.place = place;
         this.number = number;
     }
     public String toString(){
@@ -18,11 +18,11 @@ public class Ticket {
         if (that == null) {
             return false;
         }
-        if (place == null ) {
+        if (place == null&& that.place==null ) {
             result = true;
         }
         result = this.number == that.number &&
-                Objects.equals(place, place);
+                Objects.equals(place, that.place);
         return result;
     }
 
