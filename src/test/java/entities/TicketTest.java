@@ -20,4 +20,12 @@ class TicketTest {
         Assertions.assertEquals(expectedelement,actual.toString());
     }
 
+    @Test
+    public void equalsDiferent() {
+        Ticket even = new Ticket(19, "TT");
+        Ticket event = new Ticket(19, "TT");
+        Assertions.assertTrue(event.equals(even));
+    }
+
+
 }

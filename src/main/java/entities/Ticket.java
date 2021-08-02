@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Ticket {
     public int number;
-    public String name;
+    public static String name;
 
     public Ticket(int number, String name) {
-        this.name = name;
+        Ticket.name = name;
         this.number = number;
     }
     public String toString(){
