@@ -4,25 +4,25 @@ import java.util.Objects;
 
 public class Ticket {
     public int number;
-    public static String name;
+    public static String place;
 
-    public Ticket(int number, String name) {
-        Ticket.name = name;
+    public Ticket(int number, String place) {
+        Ticket.place = place;
         this.number = number;
     }
     public String toString(){
-        return "Ticket{number=" + number + ", place=" + "'" + name + "'" + "}";
+        return "Ticket{number=" + number + ", place=" + "'" + place + "'" + "}";
     }
     public boolean equals(Ticket that) {
         boolean result;
         if (that == null) {
             return false;
         }
-        if (this.name == null && that.name == null) {
+        if (place == null ) {
             result = true;
         }
         result = this.number == that.number &&
-                Objects.equals(this.name, that.name);
+                Objects.equals(place, place);
         return result;
     }
 
