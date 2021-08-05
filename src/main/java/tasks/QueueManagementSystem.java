@@ -14,14 +14,13 @@ public class QueueManagementSystem {
 
 
         this.place=a;
-        my = new Ticket(currentNumber,this.place);
+
 
     }
 
     public Ticket getNextTicket() {
         currentNumber++;
-
-        return my;
+        return new Ticket(currentNumber,this.place);
     }
 
     public int getTotalTickets() {

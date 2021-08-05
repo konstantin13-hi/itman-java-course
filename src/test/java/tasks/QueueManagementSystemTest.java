@@ -12,8 +12,6 @@ class QueueManagementSystemTest {
     public void QueueManagementSystem() {
         QueueManagementSystem my = new QueueManagementSystem("WWW");
 
-
-
         Assertions.assertEquals(0,my.getTotalTickets());
 
 
@@ -25,6 +23,9 @@ class QueueManagementSystemTest {
         Ticket B = my.getNextTicket();
         Ticket B1 = my.getNextTicket();
         Ticket B2 = my.getNextTicket();
+        Assertions.assertEquals(1,B.number);
+        Assertions.assertEquals(2,B1.number);
+        Assertions.assertEquals(3,B2.number);
 
         Assertions.assertEquals(3,my.getTotalTickets());
 
