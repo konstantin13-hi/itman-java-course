@@ -26,9 +26,21 @@ class QueueManagementSystemUtilsTest {
         systems[2]= new QueueManagementSystem("Bank3");
         Ticket b6 =systems[2].getNextTicket();
         Ticket b7 =systems[2].getNextTicket();
-
-
         Assertions.assertEquals(8,QueueManagementSystemUtils.calcTotalVisits(systems));
+
+    }
+    @Test
+    public void calcAverageVisits(){
+        QueueManagementSystem[] systems = new QueueManagementSystem[2];
+        systems[0]= new QueueManagementSystem("Bank");
+        Ticket b =systems[0].getNextTicket();
+        Ticket b1 =systems[0].getNextTicket();
+        Ticket b2 =systems[0].getNextTicket();
+        systems[1]= new QueueManagementSystem("Bank2");
+        Ticket b3 =systems[1].getNextTicket();
+        Ticket b4 =systems[1].getNextTicket();
+        Ticket b5 =systems[1].getNextTicket();
+        Assertions.assertEquals(3,QueueManagementSystemUtils.calcAverageVisits(systems));
 
     }
 
