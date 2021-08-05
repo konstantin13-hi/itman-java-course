@@ -18,7 +18,20 @@ class QueueManagementSystemTest {
         Assertions.assertEquals(1,my.getTotalTickets());
         Assertions.assertEquals(2,my1.getTotalTickets());
         Assertions.assertEquals(3,my2.getTotalTickets());
+        QueueManagementSystem.number=0;
     }
+
+    @Test
+    public void getNextTicket() {
+        QueueManagementSystem my = new QueueManagementSystem("WWW");
+        Assertions.assertEquals(1,my.currentNumber);
+        Assertions.assertEquals("WWW",my.place);
+
+        QueueManagementSystem.number=0;
+    }
+
+
+
 
 
 
