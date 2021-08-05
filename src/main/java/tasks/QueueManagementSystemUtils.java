@@ -13,6 +13,9 @@ public class QueueManagementSystemUtils {
         return result;
     }
     public static double calcAverageVisits(QueueManagementSystem[] systems){
+        if (systems.length==0){
+          return 0;
+        }
         double result = (double)calcTotalVisits(systems)/systems.length;
         return result;
     }
