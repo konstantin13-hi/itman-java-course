@@ -5,10 +5,9 @@ import entities.Ticket;
 public class QueueManagementSystem {
 
 
-    public int currentNumber = 1;
+    public int currentNumber ;
     String place;
     Ticket my;
-    int count ;
 
 
     public QueueManagementSystem(String a) {
@@ -20,13 +19,13 @@ public class QueueManagementSystem {
     }
 
     public Ticket getNextTicket() {
-        count++;
+        currentNumber++;
 
         return my;
     }
 
     public int getTotalTickets() {
 
-        return count;
+        return currentNumber;
     }
 }
