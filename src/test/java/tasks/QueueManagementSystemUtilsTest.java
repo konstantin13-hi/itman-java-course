@@ -61,4 +61,44 @@ class QueueManagementSystemUtilsTest {
 
     }
 
+    @Test
+    public void calc(){
+        QueueManagementSystem[] systems = new QueueManagementSystem[3];
+        systems[0]= new QueueManagementSystem("Bank");
+        Ticket b =systems[0].getNextTicket();
+        systems[1]= new QueueManagementSystem("Bank2");
+        Ticket b3 =systems[1].getNextTicket();
+        Ticket b4 =systems[1].getNextTicket();
+        Ticket b5 =systems[1].getNextTicket();
+        Ticket b6 =systems[1].getNextTicket();
+        systems[2]= new QueueManagementSystem("Bank3");
+        Ticket b7 =systems[2].getNextTicket();
+        Ticket b8 =systems[2].getNextTicket();
+        Assertions.assertEquals(2.0,QueueManagementSystemUtils.calcMedianVisits(systems));
+
+    }
+
+    @Test
+    public void calcSecond(){
+        QueueManagementSystem[] systems = new QueueManagementSystem[4];
+        systems[0]= new QueueManagementSystem("Bank");
+        Ticket b =systems[0].getNextTicket();
+        systems[1]= new QueueManagementSystem("Bank2");
+        Ticket b3 =systems[1].getNextTicket();
+        Ticket b4 =systems[1].getNextTicket();
+        systems[2]= new QueueManagementSystem("Bank3");
+        Ticket b7 =systems[2].getNextTicket();
+        Ticket b8 =systems[2].getNextTicket();
+        Ticket b9 =systems[2].getNextTicket();
+        systems[3]= new QueueManagementSystem("Bank3");
+        Ticket b10 =systems[3].getNextTicket();
+        Ticket b11 =systems[3].getNextTicket();
+        Ticket b12 =systems[3].getNextTicket();
+        Ticket b13 =systems[3].getNextTicket();
+        Assertions.assertEquals(2.5,QueueManagementSystemUtils.calcMedianVisits(systems));
+
+    }
+
+
+
 }
