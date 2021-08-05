@@ -57,7 +57,7 @@ class QueueManagementSystemUtilsTest {
         systems[2]= new QueueManagementSystem("Bank3");
         Ticket b7 =systems[2].getNextTicket();
         Ticket b8 =systems[2].getNextTicket();
-        Assertions.assertEquals(7/3,QueueManagementSystemUtils.calcAverageVisits(systems));
+        Assertions.assertEquals(7.0/3,QueueManagementSystemUtils.calcAverageVisits(systems));
 
     }
 
