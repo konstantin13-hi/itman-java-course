@@ -7,15 +7,9 @@ public class QueueManagementSystem {
 
     public int currentNumber ;
     String place;
-    Ticket my;
-
 
     public QueueManagementSystem(String a) {
-
-
         this.place=a;
-
-
     }
 
     public Ticket getNextTicket() {
