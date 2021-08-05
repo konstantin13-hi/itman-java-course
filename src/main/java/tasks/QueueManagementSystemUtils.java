@@ -19,6 +19,9 @@ public class QueueManagementSystemUtils {
         return (double)calcTotalVisits(systems)/systems.length;
     }
     public static double calcMedianVisits(QueueManagementSystem[] systems){
+        if (systems.length==0){
+            return 0;
+        }
         double[] median =new double[systems.length];
 
         for (int i =0;i<median.length;i++){
@@ -38,7 +41,7 @@ public class QueueManagementSystemUtils {
         if (systems.length % 2 == 0) {
             result = (median[(systems.length - 1) / 2] + median[((systems.length - 1) / 2) + 1]) / 2;
         } else {
-            result = Math.round(calcTotalVisits(systems)/systems.length);
+            result = Math.round((double)calcTotalVisits(systems)/systems.length);
         }
         return result;
     }
