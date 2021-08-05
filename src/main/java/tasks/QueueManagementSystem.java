@@ -6,12 +6,14 @@ public class QueueManagementSystem {
 
 
     public int currentNumber = 1;
-    public String place;
+
     Ticket myticket;
 
-    public QueueManagementSystem(String place) {
-        this.place = place;
-        myticket = new Ticket(currentNumber, place);
+
+    public QueueManagementSystem(String a) {
+
+        myticket = new Ticket(currentNumber, "wwww");
+        myticket.place=a;
 
     }
 

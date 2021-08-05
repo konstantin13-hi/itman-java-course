@@ -21,14 +21,7 @@ class QueueManagementSystemTest {
 
     }
 
-    @Test
-    public void getNextTicket() {
-        QueueManagementSystem my = new QueueManagementSystem("WWW");
-        Assertions.assertEquals(1,my.currentNumber);
-        Assertions.assertEquals("WWW",my.place);
 
-
-    }
 
 
 
