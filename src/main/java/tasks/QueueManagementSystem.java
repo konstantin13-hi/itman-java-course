@@ -4,8 +4,9 @@ import entities.Ticket;
 
 public class QueueManagementSystem {
 
-    public String place;
+
     public int currentNumber = 1;
+    public String place;
     Ticket myticket;
 
     public QueueManagementSystem(String place) {
