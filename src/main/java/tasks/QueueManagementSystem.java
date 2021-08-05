@@ -6,23 +6,27 @@ public class QueueManagementSystem {
 
 
     public int currentNumber = 1;
-
-    Ticket myticket;
+    String place;
+    Ticket my;
+    int count ;
 
 
     public QueueManagementSystem(String a) {
 
-        myticket = new Ticket(currentNumber, "wwww");
-        myticket.place=a;
+
+        this.place=a;
+        my = new Ticket(currentNumber,this.place);
 
     }
 
     public Ticket getNextTicket() {
-        currentNumber++;
-        return myticket;
+        count++;
+
+        return my;
     }
 
     public int getTotalTickets() {
-        return getNextTicket().number;
+
+        return count;
     }
 }

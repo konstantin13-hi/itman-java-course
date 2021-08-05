@@ -11,21 +11,23 @@ class QueueManagementSystemTest {
     @Test
     public void QueueManagementSystem() {
         QueueManagementSystem my = new QueueManagementSystem("WWW");
-        QueueManagementSystem my1 = new QueueManagementSystem("WEW");
-        QueueManagementSystem my2 = new QueueManagementSystem("WWC");
 
 
-        Assertions.assertEquals(1,my.getTotalTickets());
-        Assertions.assertEquals(1,my1.getTotalTickets());
-        Assertions.assertEquals(1,my2.getTotalTickets());
+
+        Assertions.assertEquals(0,my.getTotalTickets());
+
+
 
     }
+    @Test
+    public void Queue() {
+        QueueManagementSystem my = new QueueManagementSystem("Bank");
+        Ticket B = my.getNextTicket();
+        Ticket B1 = my.getNextTicket();
+        Ticket B2 = my.getNextTicket();
+
+        Assertions.assertEquals(3,my.getTotalTickets());
 
 
 
-
-
-
-
-
-}
+}}
