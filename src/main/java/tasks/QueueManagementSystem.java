@@ -5,8 +5,11 @@ import entities.Ticket;
 public class QueueManagementSystem {
 
 
-    public int currentNumber ;
+    private int currentNumber ;
     String place;
+    public int getCurrentNumber() {
+        return currentNumber;}
+
 
     public QueueManagementSystem(String a) {
         this.place=a;
