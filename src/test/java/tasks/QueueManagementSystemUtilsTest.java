@@ -26,6 +26,7 @@ class QueueManagementSystemUtilsTest {
         systems[2]= new QueueManagementSystem("Bank3");
         Ticket b6 =systems[2].getNextTicket();
         Ticket b7 =systems[2].getNextTicket();
+
         Assertions.assertEquals(8,QueueManagementSystemUtils.calcTotalVisits(systems));
 
     }

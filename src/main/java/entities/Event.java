@@ -3,10 +3,10 @@ package entities;
 import java.util.Objects;
 
 public class Event {
-    public int year;
-    public int month;
-    public int day;
-    public String name;
+    private int year;
+    private int month;
+    private int day;
+    private String name;
 
 
     public Event(int year, int month, int day, String name) {
@@ -15,9 +15,21 @@ public class Event {
         this.month = month;
         this.name = name;
     }
+    public int getYear() {
+        return year;
+    }
+    public int getMonth() {
+        return month;
+    }
+    public int getDay() {
+        return day;
+    }
+    public String getName() {
+        return name;
+    }
 
     public String toString() {
-        return "Event{year=" + year + ", month=" + month + ", day=" + day + ", name=" + "'" + name + "'" + "}";
+        return "Event{year=" + getYear() + ", month=" + getMonth() + ", day=" + getDay() + ", name=" + "'" + getName() + "'" + "}";
     }
 
     public boolean equals(Event that) {

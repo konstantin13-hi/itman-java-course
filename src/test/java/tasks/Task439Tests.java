@@ -52,9 +52,9 @@ public class Task439Tests {
     }
 
     public static void checkingArrayElements(Event expectedelement, Event actual) {
-        Assertions.assertEquals(expectedelement.name, actual.name);
-        Assertions.assertEquals(expectedelement.day, actual.day);
-        Assertions.assertEquals(expectedelement.month, actual.month);
-        Assertions.assertEquals(expectedelement.year, actual.year);
+        Assertions.assertEquals(expectedelement.getName(), actual.getName());
+        Assertions.assertEquals(expectedelement.getDay(), actual.getDay());
+        Assertions.assertEquals(expectedelement.getMonth(), actual.getMonth());
+        Assertions.assertEquals(expectedelement.getYear(), actual.getYear());
     }
 }
