@@ -7,8 +7,6 @@ public class QueueManagementSystem {
 
     private int currentNumber ;
     String place;
-    public int getCurrentNumber() {
-        return currentNumber;}
 
 
     public QueueManagementSystem(String a) {
