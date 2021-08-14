@@ -1,34 +1,29 @@
 package collections;
 
 public class ArrayList {
-
-
     private int capacity;
 
-
-    public ArrayList(int capacity){
-        this.capacity=capacity;
-
-
+    public ArrayList(int capacity) {
+        this.capacity = capacity;
     }
 
-    int[]array;
+    int[] array;
 
-    public int getCapacity(){
+    public int getCapacity() {
         return capacity;
     }
-    public void set(int index, int element){
 
-       array= new int[getCapacity()];
-        array[index]=element;
+    public void set(int index, int element) {
+
+        array = new int[getCapacity()];
+        array[index] = element;
     }
 
-    public  int get(int index) {
+    public int get(int index) {
         return array[index];
     }
-    public int size(){
+
+    public int size() {
         return capacity;
     }
-
-
 }
