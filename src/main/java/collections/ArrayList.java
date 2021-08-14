@@ -9,13 +9,10 @@ public class ArrayList {
 
     int[] array;
 
-    public int getCapacity() {
-        return capacity;
-    }
 
     public void set(int index, int element) {
 
-        array = new int[getCapacity()];
+        array = new int[this.capacity];
         array[index] = element;
     }
 
