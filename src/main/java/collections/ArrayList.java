@@ -2,17 +2,18 @@ package collections;
 
 public class ArrayList {
     private int capacity;
-
+    int[] array;
     public ArrayList(int capacity) {
         this.capacity = capacity;
+        array = new int[this.capacity];
     }
 
-    int[] array;
+
 
 
     public void set(int index, int element) {
 
-        array = new int[this.capacity];
+
         array[index] = element;
     }
 
