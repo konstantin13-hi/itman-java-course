@@ -9,7 +9,7 @@ class ArrayListTest {
     @Test
     void size() {
         ArrayList arrayList = new ArrayList(4);
-        Assertions.assertEquals(4, arrayList.size());
+        Assertions.assertEquals(0, arrayList.size());
     }
 
     @Test

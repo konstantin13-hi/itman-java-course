@@ -2,15 +2,24 @@ package collections;
 
 public class ArrayList {
     private int capacity;
+    private int logicalsize;
     int[] array;
     public ArrayList(int capacity) {
         this.capacity = capacity;
         array = new int[this.capacity];
     }
+    public void add(int element){
+        if (logicalsize==capacity){
+            capacity=capacity*2;
+            int [] secondarray=new int[capacity];
+            if (logicalsize >= 0) System.arraycopy(array, 0, secondarray, 0, logicalsize);
+            array=secondarray;
 
+        }
+        array[logicalsize]=element;
+        logicalsize++;
 
-
-
+    }
     public void set(int index, int element) {
 
 
@@ -22,6 +31,9 @@ public class ArrayList {
     }
 
     public int size() {
-        return capacity;
+        int realsize=capacity-logicalsize;
+        return capacity-realsize;
     }
 }
+
+
