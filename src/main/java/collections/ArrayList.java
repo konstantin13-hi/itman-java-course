@@ -34,6 +34,11 @@ public class ArrayList {
         int realsize=capacity-logicalsize;
         return capacity-realsize;
     }
+    public int[] toArray(){
+        int [] newArray = new int[size()];
+        System.arraycopy(array, 0, newArray, 0, newArray.length);
+        return newArray;
+    }
 }
 
 

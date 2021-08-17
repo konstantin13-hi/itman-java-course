@@ -26,6 +26,29 @@ class ArrayListTest {
         Assertions.assertEquals(33, arrayList.get(20));
     }
 
+    @Test
+    void toArray() {
+        ArrayList arrayList = new ArrayList(10);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(1);
+        Assertions.assertArrayEquals(new int[]{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, arrayList.toArray());
+    }
+
 
 
 
