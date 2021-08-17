@@ -96,6 +96,32 @@ class ArrayListTest {
 
     }
 
+    @Test
+    public void sort(){
+        ArrayList arrayList = new ArrayList(5);
+        arrayList.add(11);
+        arrayList.add(2);
+        arrayList.add(33);
+        arrayList.add(1);
+        arrayList.add(5);
+        arrayList.sort();
+        ArrayList arrayListSecond = new ArrayList(5);
+        arrayListSecond.add(1);
+        arrayListSecond.add(2);
+        arrayListSecond.add(5);
+        arrayListSecond.add(11);
+        arrayListSecond.add(33);
+
+        checkElement(arrayList,arrayListSecond);
+    }
+
+    public static void checkElement(ArrayList arrayList, ArrayList arrayListSecond) {
+        for (int i = 0; i < arrayList.size(); i++) {
+            Assertions.assertEquals(arrayListSecond.get(i), arrayList.get(i));
+        }
+
+    }
+
 
 
 
