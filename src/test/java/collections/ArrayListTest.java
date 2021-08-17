@@ -111,8 +111,8 @@ class ArrayListTest {
         arrayListSecond.add(5);
         arrayListSecond.add(11);
         arrayListSecond.add(33);
+        arrayList.equals(arrayListSecond);
 
-        checkElement(arrayList,arrayListSecond);
     }
 
     @Test
@@ -132,16 +132,10 @@ class ArrayListTest {
         arrayListSecond.add(1);
         arrayListSecond.add(2);
         arrayListSecond.add(5);
-
-        checkElement(arrayList,arrayListSecond);
-    }
-
-    public static void checkElement(ArrayList arrayList, ArrayList arrayListSecond) {
-        for (int i = 0; i < arrayList.size(); i++) {
-            Assertions.assertEquals(arrayListSecond.get(i), arrayList.get(i));
-        }
+      arrayList.equals(arrayListSecond);
 
     }
+
 
 
 
