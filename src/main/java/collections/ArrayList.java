@@ -46,6 +46,9 @@ public class ArrayList {
     }
 
     public boolean equals(ArrayList that){
+        if (that==null){
+            return false;
+        }
         boolean result = that.size() == this.size();
         for (int i = 0;i<that.size();i++){
             if (that.get(i)!=this.get(i)){
