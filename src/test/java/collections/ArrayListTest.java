@@ -49,6 +49,19 @@ class ArrayListTest {
         Assertions.assertArrayEquals(new int[]{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, arrayList.toArray());
     }
 
+    @Test
+    public void remove(){
+        ArrayList arrayList = new ArrayList(5);
+        arrayList.add(1);
+        arrayList.add(2);
+        arrayList.add(3);
+        arrayList.add(4);
+        arrayList.add(5);
+        arrayList.remove(2);
+        Assertions.assertArrayEquals(new int[]{1,2,4,5}, arrayList.toArray());
+
+    }
+
 
 
 

@@ -34,6 +34,18 @@ public class ArrayList {
         int realsize=capacity-logicalsize;
         return capacity-realsize;
     }
+
+    public int remove(int index){
+        int remove =array[index];
+        int [] newArray = new int[array.length-1];
+        System.arraycopy(array, 0, newArray, 0, index);
+        System.arraycopy(array, index+1, newArray, index, newArray.length-index);
+        array=newArray;
+        logicalsize--;
+        return remove;
+    }
+
+
     public int[] toArray(){
         int [] newArray = new int[size()];
         System.arraycopy(array, 0, newArray, 0, newArray.length);
