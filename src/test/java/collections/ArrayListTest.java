@@ -62,6 +62,41 @@ class ArrayListTest {
 
     }
 
+    @Test
+    public void equals(){
+        ArrayList arrayList = new ArrayList(5);
+        arrayList.add(1);
+        arrayList.add(2);
+        arrayList.add(3);
+        arrayList.add(4);
+        arrayList.add(5);
+        ArrayList arrayListSeocnd = new ArrayList(5);
+        arrayListSeocnd.add(1);
+        arrayListSeocnd.add(2);
+        arrayListSeocnd.add(3);
+        arrayListSeocnd.add(4);
+        arrayListSeocnd.add(5);
+        Assertions.assertTrue( arrayList.equals(arrayListSeocnd));
+
+    }
+
+    @Test
+    public void equals2(){
+        ArrayList arrayList = new ArrayList(5);
+        arrayList.add(1);
+        arrayList.add(2);
+        arrayList.add(3);
+        arrayList.add(4);
+        arrayList.add(5);
+        ArrayList arrayListSeocnd = new ArrayList(5);
+        arrayListSeocnd.add(1);
+        arrayListSeocnd.add(2);
+        arrayListSeocnd.add(3);
+        Assertions.assertFalse( arrayList.equals(arrayListSeocnd));
+
+    }
+
+
 
 
 

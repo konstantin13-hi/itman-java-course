@@ -45,6 +45,17 @@ public class ArrayList {
         return remove;
     }
 
+    public boolean equals(ArrayList that){
+        boolean result = that.size() == this.size();
+        for (int i = 0;i<that.size();i++){
+            if (that.get(i)!=this.get(i)){
+                result=false;
+
+            }
+        }
+
+        return result;
+    }
 
     public int[] toArray(){
         int [] newArray = new int[size()];
