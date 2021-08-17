@@ -115,6 +115,27 @@ class ArrayListTest {
         checkElement(arrayList,arrayListSecond);
     }
 
+    @Test
+    public void sort2(){
+        ArrayList arrayList = new ArrayList(6);
+        arrayList.add(5);
+        arrayList.add(1);
+        arrayList.add(1);
+        arrayList.add(2);
+        arrayList.add(-3);
+        arrayList.add(1);
+        arrayList.sort();
+        ArrayList arrayListSecond = new ArrayList(6);
+        arrayListSecond.add(-3);
+        arrayListSecond.add(1);
+        arrayListSecond.add(1);
+        arrayListSecond.add(1);
+        arrayListSecond.add(2);
+        arrayListSecond.add(5);
+
+        checkElement(arrayList,arrayListSecond);
+    }
+
     public static void checkElement(ArrayList arrayList, ArrayList arrayListSecond) {
         for (int i = 0; i < arrayList.size(); i++) {
             Assertions.assertEquals(arrayListSecond.get(i), arrayList.get(i));
