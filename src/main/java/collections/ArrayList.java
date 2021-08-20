@@ -8,9 +8,13 @@ public class ArrayList {
 
 
     public ArrayList(ArrayList that){
-        logicalsize=that.logicalsize;
 
-        array= that.array;
+        logicalsize=that.logicalsize;
+        capacity= that.capacity;
+        int [] arraySecond = new int[that.capacity];
+        System.arraycopy(that.array, 0, arraySecond, 0,that.capacity );
+        array=arraySecond;
+
 
 
     }
@@ -18,8 +22,6 @@ public class ArrayList {
     public ArrayList(){
         this.capacity=16;
         array =new int[this.capacity];
-
-
 
     }
 
