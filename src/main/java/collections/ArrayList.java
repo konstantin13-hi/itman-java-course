@@ -5,6 +5,16 @@ public class ArrayList {
     private int logicalsize;
     int[] array;
 
+    public ArrayList(){
+        this.capacity=16;
+    }
+
+    public ArrayList(ArrayList that){
+        logicalsize=that.logicalsize;
+        array= that.array;
+
+    }
+
     public ArrayList(int capacity) {
         this.capacity = capacity;
         array = new int[this.capacity];
