@@ -8,16 +8,14 @@ public class ArrayList {
 
 
     public ArrayList(ArrayList that){
-        array= new int[that.logicalsize];
         logicalsize=that.logicalsize;
-        System.arraycopy(that.array, 0, array, 0, that.logicalsize);
+        array= new int[logicalsize];
+        System.arraycopy(that.array, 0, array, 0, logicalsize);
 
 
     }
 
     public ArrayList(){
-        this.capacity=16;
-
     }
 
     public ArrayList(int capacity) {
