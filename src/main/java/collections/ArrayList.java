@@ -6,10 +6,11 @@ public class ArrayList {
     int[] array;
 
     public ArrayList(){
-        capacity=16;
+        this.capacity=16;
     }
 
     public ArrayList(ArrayList that){
+        this.capacity=that.capacity;
         logicalsize=that.logicalsize;
         array= that.array;
 
