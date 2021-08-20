@@ -5,14 +5,18 @@ public class ArrayList {
     private int logicalsize;
     int[] array;
 
-    public ArrayList(){
-        this.capacity=16;
-    }
+
 
     public ArrayList(ArrayList that){
-        this.capacity=that.capacity;
+        array= new int[that.logicalsize];
         logicalsize=that.logicalsize;
-        array= that.array;
+        System.arraycopy(that.array, 0, array, 0, that.logicalsize);
+
+
+    }
+
+    public ArrayList(){
+        this.capacity=16;
 
     }
 

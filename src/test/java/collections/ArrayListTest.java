@@ -145,7 +145,7 @@ class ArrayListTest {
 
     @Test
     public void ArrayLis(){
-        ArrayList arrayList = new ArrayList(6);
+        ArrayList arrayList = new ArrayList(100);
         arrayList.add(10);
         arrayList.add(20);
         arrayList.add(30);
