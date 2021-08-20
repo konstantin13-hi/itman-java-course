@@ -146,12 +146,9 @@ class ArrayListTest {
     @Test
     public void ArrayLis(){
         ArrayList arrayList = new ArrayList(6);
-        arrayList.add(5);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(2);
-        arrayList.add(-3);
-        arrayList.add(1);
+        arrayList.add(10);
+        arrayList.add(20);
+        arrayList.add(30);
        ArrayList that = new ArrayList(arrayList);
         Assertions.assertTrue( arrayList.equals(that));
 

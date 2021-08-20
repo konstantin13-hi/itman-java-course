@@ -6,7 +6,7 @@ public class ArrayList {
     int[] array;
 
     public ArrayList(){
-        this.capacity=16;
+        capacity=16;
     }
 
     public ArrayList(ArrayList that){
