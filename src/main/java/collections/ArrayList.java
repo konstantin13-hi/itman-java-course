@@ -9,13 +9,18 @@ public class ArrayList {
 
     public ArrayList(ArrayList that){
         logicalsize=that.logicalsize;
-        array= new int[logicalsize];
-        System.arraycopy(that.array, 0, array, 0, logicalsize);
+
+        array= that.array;
 
 
     }
 
     public ArrayList(){
+        this.capacity=16;
+        array =new int[this.capacity];
+
+
+
     }
 
     public ArrayList(int capacity) {
