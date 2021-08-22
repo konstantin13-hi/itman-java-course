@@ -1,6 +1,7 @@
 package collections;
 
 public class ArrayList {
+    private static ArrayList B;
     private int capacity;
     private int logicalsize;
     int[] array;
@@ -28,6 +29,15 @@ public class ArrayList {
     public ArrayList(int capacity) {
         this.capacity = capacity;
         array = new int[this.capacity];
+    }
+    public static ArrayList of(int... elements){
+        ArrayList arrayList = new ArrayList(elements.length);
+        for (int element : elements) {
+            arrayList.add(element);
+        }
+
+
+        return  arrayList;
     }
 
     public void add(int element) {

@@ -152,8 +152,15 @@ class ArrayListTest {
        ArrayList that = new ArrayList(arrayList);
         Assertions.assertTrue( arrayList.equals(that));
 
+    }
 
-
+    @Test
+    public void of(){
+      int [] elements = new int[]{1,2,3};
+        ArrayList.of(elements);
+       for (int i = 0; i<elements.length;i++){
+           Assertions.assertEquals(elements[i], ArrayList.of(elements).get(i));
+       }
 
     }
 
