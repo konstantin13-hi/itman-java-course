@@ -28,13 +28,14 @@ public class QueueManagementSystem {
 
     public void toNextWorkDay(){
         index++;
-        getVisitsByDay();
+        arrayList.add(currentNumber);
+        currentNumber=0;
 
     }
 
    public ArrayList getVisitsByDay(){
-        arrayList.add(currentNumber);
-        currentNumber=0;
+       arrayList.add(currentNumber);
+
         return ArrayList.of(arrayList.toArray());
    }
 }
