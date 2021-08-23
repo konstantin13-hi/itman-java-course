@@ -5,11 +5,10 @@ import entities.Ticket;
 
 public class QueueManagementSystem {
 
-    static ArrayList arrayList;
+    private ArrayList arrayList;
     private int currentNumber ;
     private int index;
     String place;
-
 
 
     public QueueManagementSystem(String a) {
@@ -31,14 +30,11 @@ public class QueueManagementSystem {
         index++;
         getVisitsByDay();
 
-
-
     }
 
    public ArrayList getVisitsByDay(){
         arrayList.add(currentNumber);
         currentNumber=0;
-
-        return arrayList;
+        return ArrayList.of(arrayList.toArray());
    }
 }
