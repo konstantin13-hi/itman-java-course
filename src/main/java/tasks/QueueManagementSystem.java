@@ -8,6 +8,7 @@ public class QueueManagementSystem {
     private ArrayList arrayList;
     private int currentNumber ;
     private int index;
+    private int number;
     String place;
 
 
@@ -19,6 +20,7 @@ public class QueueManagementSystem {
 
     public Ticket getNextTicket() {
         currentNumber++;
+        number++;
         return new Ticket(currentNumber,this.place);
     }
 
@@ -28,9 +30,9 @@ public class QueueManagementSystem {
     }
 
     public void toNextWorkDay(){
-        arrayList.set(index,currentNumber);
+        arrayList.set(index,number);
         index++;
-        currentNumber=0;
+        number=0;
         arrayList.add(0);
 
 
@@ -39,6 +41,7 @@ public class QueueManagementSystem {
 
    public ArrayList getVisitsByDay(){
 
-        return ArrayList.of(arrayList.toArray());
+
+       return ArrayList.of(arrayList.toArray());
    }
 }
