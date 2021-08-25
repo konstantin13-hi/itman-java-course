@@ -20,9 +20,9 @@ public class QueueManagementSystem {
 
     public Ticket getNextTicket() {
         currentNumber++;
-        number++;
-        arrayList.set(index,number);
-        return new Ticket(currentNumber,this.place);
+
+        arrayList.set(index,currentNumber-number);
+        return new Ticket(currentNumber-number,this.place);
     }
 
     public int getTotalTickets() {
@@ -32,7 +32,7 @@ public class QueueManagementSystem {
 
     public void toNextWorkDay(){
         index++;
-        number=0;
+        number=currentNumber;
         arrayList.add(0);
 
 
