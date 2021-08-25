@@ -47,6 +47,20 @@ class QueueManagementSystemTest {
         Assertions.assertEquals(3,system.getVisitsByDay().size());
 
     }
+    @Test
+    public void getVisitsByDay1() {
+        QueueManagementSystem system = new QueueManagementSystem("Bank");
+        system.getNextTicket();
+        system.getNextTicket();
+        system.toNextWorkDay();
+        system.getNextTicket();
 
+        Assertions.assertEquals(3,system.getTotalTickets());
+        Assertions.assertEquals(2,system.getVisitsByDay().get(0));
+        Assertions.assertEquals(1,system.getVisitsByDay().get(1));
+
+
+        Assertions.assertEquals(2,system.getVisitsByDay().size());
+    }
 
 }

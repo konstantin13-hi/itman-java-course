@@ -15,12 +15,13 @@ public class QueueManagementSystem {
     public QueueManagementSystem(String a) {
         this.place=a;
         arrayList = new ArrayList();
-        arrayList.add(0);
+        arrayList.add(currentNumber);
     }
 
     public Ticket getNextTicket() {
         currentNumber++;
         number++;
+        arrayList.set(index,number);
         return new Ticket(currentNumber,this.place);
     }
 
@@ -30,17 +31,14 @@ public class QueueManagementSystem {
     }
 
     public void toNextWorkDay(){
-        arrayList.set(index,number);
         index++;
         number=0;
         arrayList.add(0);
 
 
-
     }
 
    public ArrayList getVisitsByDay(){
-
 
        return ArrayList.of(arrayList.toArray());
    }
