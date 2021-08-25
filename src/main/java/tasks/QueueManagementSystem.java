@@ -14,6 +14,7 @@ public class QueueManagementSystem {
     public QueueManagementSystem(String a) {
         this.place=a;
         arrayList = new ArrayList();
+        arrayList.add(0);
     }
 
     public Ticket getNextTicket() {
@@ -27,9 +28,10 @@ public class QueueManagementSystem {
     }
 
     public void toNextWorkDay(){
+        arrayList.set(index,currentNumber);
         index++;
-        arrayList.add(currentNumber);
         currentNumber=0;
+        arrayList.add(0);
 
 
 

@@ -55,7 +55,6 @@ public class ArrayList {
 
     public void set(int index, int element) {
 
-
         array[index] = element;
     }
 
