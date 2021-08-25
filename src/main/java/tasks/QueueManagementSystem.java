@@ -13,7 +13,7 @@ public class QueueManagementSystem {
 
     public QueueManagementSystem(String a) {
         this.place=a;
-        arrayList = new ArrayList(1);
+        arrayList = new ArrayList();
     }
 
     public Ticket getNextTicket() {
@@ -31,10 +31,11 @@ public class QueueManagementSystem {
         arrayList.add(currentNumber);
         currentNumber=0;
 
+
+
     }
 
    public ArrayList getVisitsByDay(){
-       arrayList.add(currentNumber);
 
         return ArrayList.of(arrayList.toArray());
    }

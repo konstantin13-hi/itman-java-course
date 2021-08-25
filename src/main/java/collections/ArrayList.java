@@ -44,7 +44,7 @@ public class ArrayList {
         if (logicalsize == capacity) {
             capacity = capacity * 2;
             int[] secondarray = new int[capacity];
-            if (logicalsize >= 0) System.arraycopy(array, 0, secondarray, 0, logicalsize);
+            System.arraycopy(array, 0, secondarray, 0, logicalsize);
             array = secondarray;
 
         }
