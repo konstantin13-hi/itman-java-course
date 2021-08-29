@@ -185,11 +185,7 @@ public class QueueManagementSystemUtils {
 
         Statistic[] calcStatisticByDays=new Statistic[sizeForLength(systems)];
         for (int i=0;i<systems.length;i++){
-            calcStatisticByDays[i].setAverage(getAverage(systems)[i]);
-            calcStatisticByDays[i].setCount(calcC(systems)[i]);
-            calcStatisticByDays[i].setMedian(getMedian(systems)[i]);
-            calcStatisticByDays[i].setMin(getMin(systems)[i]);
-            calcStatisticByDays[i].setMax(getMax(systems)[i]);
+            calcStatisticByDays[i]=new Statistic(getMin(systems)[i],getMax(systems)[i],calcC(systems)[i],getAverage(systems)[i],getMedian(systems)[i]);
         }
 
         return calcStatisticByDays;
