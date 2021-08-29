@@ -178,7 +178,7 @@ public class QueueManagementSystemUtils {
         return arrayDays;
     }
 
-    public Statistic[] calcStatisticByDays(QueueManagementSystem[] systems){
+    public static Statistic[] calcStatisticByDays(QueueManagementSystem[] systems){
 
         int []arrayDays = new int [sizeForLength(systems)];
 
