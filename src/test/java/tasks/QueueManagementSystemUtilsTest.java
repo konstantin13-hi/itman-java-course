@@ -151,6 +151,38 @@ class QueueManagementSystemUtilsTest {
         Assertions.assertArrayEquals(new double[]{10,25},QueueManagementSystemUtils.getMedian(systems));
     }
 
+    @Test
+    public void calcSecond31() {
+        int y =1;
+        int y1 = 2;
+        int y2 = 3;
+        QueueManagementSystem[] systems = new QueueManagementSystem[3];
+        systems[0] = new QueueManagementSystem("Bank");
+        creatTicket(systems[0],y);
+        systems[0].toNextWorkDay();
+        creatTicket(systems[0],y1);
+        systems[0].toNextWorkDay();
+        creatTicket(systems[0],y2);
+        systems[1] = new QueueManagementSystem("Bank2");
+        creatTicket(systems[1],y);
+        systems[1].toNextWorkDay();
+        creatTicket(systems[1],y1);
+        systems[1].toNextWorkDay();
+        creatTicket(systems[1],y2);
+        systems[2] = new QueueManagementSystem("Bank3");
+        creatTicket(systems[2],y);
+        systems[2].toNextWorkDay();
+        creatTicket(systems[2],y1);
+        systems[2].toNextWorkDay();
+        creatTicket(systems[2],y2);
+
+        Assertions.assertArrayEquals(new long[]{3,6,9},QueueManagementSystemUtils.calcC(systems));
+        Assertions.assertArrayEquals(new double[]{1,2,3},QueueManagementSystemUtils.getAverage(systems));
+        Assertions.assertArrayEquals(new int[]{1,2,3},QueueManagementSystemUtils.getMin(systems));
+        Assertions.assertArrayEquals(new int[]{1,2,3},QueueManagementSystemUtils.getMax(systems));
+        Assertions.assertArrayEquals(new double[]{1,2,3},QueueManagementSystemUtils.getMedian(systems));
+    }
+
     public static void creatTicket(QueueManagementSystem system,int y){
         for (int i=0;i<y;i++){
         system.getNextTicket();}

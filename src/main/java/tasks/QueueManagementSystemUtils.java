@@ -151,7 +151,7 @@ public class QueueManagementSystemUtils {
 
         }
         if (array.length % 2 == 0) {
-            result = ((double)median[(array.length - 1) / 2] + median[((array.length - 1) / 2) + 1]) / 2;
+            result = ((double)median[(array.length - 1) / 2] + (double)median[((array.length - 1) / 2) + 1]) / 2;
         } else {
             result = median[(array.length - 1) / 2];
         }
@@ -166,22 +166,25 @@ public class QueueManagementSystemUtils {
         int [] arrayForMedian;
         for (int i = 0, h=0; i < arrayDays.length; i++) {
             arrayForMedian = new int[arrayAllTickets[i]];
-            for (int j = 0; j < arrayDays.length; j++) {
+            int index=0;
+
+            for (int j = 0; j < arrayAllTickets.length; j++) {
                 if(systems[j].getVisitsByDay().size()>=arrayDays.length-h){
-                    arrayForMedian[systems[j].getVisitsByDay().size()+i-arrayDays.length]+=systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDays.length);
+                    arrayForMedian[index]=
+                            systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()
+                                    +i-arrayDays.length);
+                    index++;
                 }
             }
+
             arrayDays[i]=sortTickets(arrayForMedian);
             h++;
-
         }
+
         return arrayDays;
     }
 
     public static Statistic[] calcStatisticByDays(QueueManagementSystem[] systems){
-
-        int []arrayDays = new int [sizeForLength(systems)];
-
 
         Statistic[] calcStatisticByDays=new Statistic[sizeForLength(systems)];
         for (int i=0;i<systems.length;i++){
