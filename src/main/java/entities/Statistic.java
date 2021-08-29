@@ -37,6 +37,33 @@ public class Statistic {
     public double getMedian() {
         return median;
     }
+    public void setMin(int min) {
+        if (min >= 0) {
+            this.min = min;
+        }
+    }
+
+    public void setMax(int max) {
+        if (max >= 0) {
+            this.max = max;
+        }
+    }
+    public void setCount(long count) {
+        if (count >= 0) {
+            this.count = count;
+        }
+    }
+    public void setAverage(double average) {
+        if (average >= 0) {
+            this.average = average;
+        }
+    }
+
+    public void setMedian(double median) {
+        if (median >= 0) {
+            this.median = median;
+        }
+    }
 
     public String toString() {
         return "Statistic{min=" + min + ", max=" + max + ", count=" + count + ", average=" + average + ", median=" + median + "}";
