@@ -47,7 +47,7 @@ public class QueueManagementSystemUtils {
         return result;
     }
 
-    static long[] calcC(QueueManagementSystem[] systems) {
+   private static long[] calcC(QueueManagementSystem[] systems) {
         long []arrayDays = new long [sizeForLength(systems)];
         for (int i = 0, h=0; i < arrayDays.length; i++) {
             for (int j = 0, h1 = h; j < arrayDays.length; j++) {
@@ -72,7 +72,7 @@ public class QueueManagementSystemUtils {
         return max;
     }
 
-    static double[] getAverage(QueueManagementSystem[] systems){
+    private static double[] getAverage(QueueManagementSystem[] systems){
         long []arrayAllTickets =calcC(systems);
         int[]arrayDays = new int[sizeForLength(systems)];
         double[]array = new double[sizeForLength(systems)];
@@ -90,7 +90,7 @@ public class QueueManagementSystemUtils {
         return array;
     }
 
-    static int[] getMin(QueueManagementSystem[] systems){
+    private static int[] getMin(QueueManagementSystem[] systems){
         int[]arrayDaysMin = new int[sizeForLength(systems)];
         int min = Integer.MAX_VALUE;
         for (int i = 0, h=0; i < arrayDaysMin.length; i++) {
@@ -107,7 +107,7 @@ public class QueueManagementSystemUtils {
         return arrayDaysMin;
     }
 
-    static int[] getMax(QueueManagementSystem[] systems){
+   private static int[] getMax(QueueManagementSystem[] systems){
         int[]arrayDaysMin = new int[sizeForLength(systems)];
         int max = Integer.MIN_VALUE;
         for (int i = 0, h=0; i < arrayDaysMin.length; i++) {
@@ -160,7 +160,7 @@ public class QueueManagementSystemUtils {
         return result;
     }
 
-    static double[] getMedian(QueueManagementSystem[] systems){
+    private static double[] getMedian(QueueManagementSystem[] systems){
         int[]arrayAllTickets =getAmount(systems);
         double[]arrayDays = new double[sizeForLength(systems)];
         int [] arrayForMedian;
