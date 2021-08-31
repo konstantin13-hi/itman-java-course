@@ -47,18 +47,7 @@ public class QueueManagementSystemUtils {
         return result;
     }
 
-    private static void sortSystems(QueueManagementSystem[] systems){
-        for (int i=0;i<systems.length;i++){
-            for (int j=1;j<systems.length;j++){
-                if (systems[j-1].getVisitsByDay().size()< systems[j].getVisitsByDay().size()){
-                    QueueManagementSystem temp = systems[j-1];
-                    systems[j-1] = systems[j];
-                    systems[j]=temp;
-                }
-            }
-        }
 
-    }
 
     private static int[] calcLevel(QueueManagementSystem[] systems) {
         int []arrayDays = new int[sizeForLength(systems)];
@@ -172,7 +161,7 @@ public class QueueManagementSystemUtils {
     }
 
     public static Statistic[] calcStatisticByDays(QueueManagementSystem[] systems){
-        sortSystems(systems);
+
         Statistic[] calcStatisticByDays=new Statistic[sizeForLength(systems)];
         for (int i=0;i<sizeForLength(systems);i++){
             calcStatisticByDays[i]=new Statistic(getMin(systems)[i],getMax(systems)[i],calcC(systems)[i],getAverage(systems)[i],getMedian(systems)[i]);
