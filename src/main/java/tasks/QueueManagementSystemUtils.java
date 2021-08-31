@@ -63,18 +63,15 @@ public class QueueManagementSystemUtils {
     private static int[] calcLevel(QueueManagementSystem[] systems) {
         int []arrayDays = new int[sizeForLength(systems)];
         int []forAmount = new int[sizeForLength(systems)];
-        for (int i = 0,h=0;i<arrayDays.length;i++){
-            for (int j=0;j<systems.length;j++){
-            if(systems[j].getVisitsByDay().size()==arrayDays.length){
-                forAmount[i]+=1;
+        for (int i = 0,h=0;i<systems.length;i++){
+            h=0;
+            for (int j=arrayDays.length-1;j>=0;j--){
+                forAmount[j]+=1;
+                h++;
+            if (systems[i].getVisitsByDay().size()==h){
+               break;
             }
-                if(systems[j].getVisitsByDay().size()==arrayDays.length-h && i>=1){
-                    forAmount[i]+=1;
-                }
-
-
         }
-            h++;
         }
         return forAmount;
     }
