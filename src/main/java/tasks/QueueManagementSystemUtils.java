@@ -47,15 +47,46 @@ public class QueueManagementSystemUtils {
         return result;
     }
 
-   private static long[] calcC(QueueManagementSystem[] systems) {
-        long []arrayDays = new long [sizeForLength(systems)];
-        for (int i = 0, h=0; i < arrayDays.length; i++) {
-            for (int j = 0, h1 = h; j < arrayDays.length; j++) {
-                if(systems[j].getVisitsByDay().size()>=arrayDays.length-h){
-                    arrayDays[i]+=systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDays.length);
+    private static void sortSystems(QueueManagementSystem[] systems){
+        for (int i=0;i<systems.length;i++){
+            for (int j=1;j<systems.length;j++){
+                if (systems[j-1].getVisitsByDay().size()< systems[j].getVisitsByDay().size()){
+                    QueueManagementSystem temp = systems[j-1];
+                    systems[j-1] = systems[j];
+                    systems[j]=temp;
                 }
             }
+        }
+
+    }
+
+    private static int[] calcLevel(QueueManagementSystem[] systems) {
+        int []arrayDays = new int[sizeForLength(systems)];
+        int []forAmount = new int[sizeForLength(systems)];
+        for (int i = 0,h=0;i<arrayDays.length;i++){
+            for (int j=0;j<systems.length;j++){
+            if(systems[j].getVisitsByDay().size()==arrayDays.length){
+                forAmount[i]+=1;
+            }
+                if(systems[j].getVisitsByDay().size()==arrayDays.length-h && i>=1){
+                    forAmount[i]+=1;
+                }
+
+
+        }
             h++;
+        }
+        return forAmount;
+    }
+
+
+   private static long[] calcC(QueueManagementSystem[] systems) {
+        long []arrayDays = new long [sizeForLength(systems)];
+        for (int i = 0; i < arrayDays.length; i++) {
+            for (int j = 0; j < calcLevel(systems)[i]; j++) {
+                    arrayDays[i]+=systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDays.length);
+
+            }
         }
 
         return arrayDays;
@@ -63,45 +94,31 @@ public class QueueManagementSystemUtils {
 
     private static int sizeForLength(QueueManagementSystem[] systems){
         int max = 0;
-        for (QueueManagementSystem system : systems) {
+        for (QueueManagementSystem system : systems)
             if (max < system.getVisitsByDay().size()) {
                 max = system.getVisitsByDay().size();
             }
-
-        }
         return max;
     }
 
     private static double[] getAverage(QueueManagementSystem[] systems){
         long []arrayAllTickets =calcC(systems);
-        int[]arrayDays = new int[sizeForLength(systems)];
         double[]array = new double[sizeForLength(systems)];
-        for (int i = 0, h=0; i < arrayDays.length; i++) {
-            for (int j = 0; j < arrayDays.length; j++) {
-                if(systems[j].getVisitsByDay().size()>=arrayDays.length-h){
-                    arrayDays[i]+=1;
-                }
-            }
-            h++;
-            array[i]=(double) arrayAllTickets[i]/arrayDays[i];
+        for (int i = 0; i < arrayAllTickets.length; i++) {
+            array[i]=(double) arrayAllTickets[i]/calcLevel(systems)[i];
         }
-
-
         return array;
     }
 
     private static int[] getMin(QueueManagementSystem[] systems){
         int[]arrayDaysMin = new int[sizeForLength(systems)];
         int min = Integer.MAX_VALUE;
-        for (int i = 0, h=0; i < arrayDaysMin.length; i++) {
-            for (int j = 0; j < arrayDaysMin.length; j++) {
-                if(systems[j].getVisitsByDay().size()>=arrayDaysMin.length-h){
+        for (int i = 0 ; i < arrayDaysMin.length; i++) {
+            for (int j = 0; j < calcLevel(systems)[i]; j++) {
                     if(min>systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDaysMin.length)){
                         min=systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDaysMin.length);
                     arrayDaysMin[i]=systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDaysMin.length);}
                 }
-            }
-            h++;
             min= Integer.MAX_VALUE;
         }
         return arrayDaysMin;
@@ -110,33 +127,16 @@ public class QueueManagementSystemUtils {
    private static int[] getMax(QueueManagementSystem[] systems){
         int[]arrayDaysMin = new int[sizeForLength(systems)];
         int max = Integer.MIN_VALUE;
-        for (int i = 0, h=0; i < arrayDaysMin.length; i++) {
-            for (int j = 0; j < arrayDaysMin.length; j++) {
-                if(systems[j].getVisitsByDay().size()>=arrayDaysMin.length-h){
+        for (int i = 0; i < arrayDaysMin.length; i++) {
+            for (int j = 0; j < calcLevel(systems)[i]; j++) {
                     if(max<systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDaysMin.length)){
                         max=systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDaysMin.length);
                         arrayDaysMin[i]=systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDaysMin.length);}
                 }
-            }
-            h++;
             max= Integer.MIN_VALUE;
         }
         return arrayDaysMin;
     }
-
-    private static int[] getAmount(QueueManagementSystem[] systems){
-        int[]arrayDays = new int[sizeForLength(systems)];
-        for (int i = 0, h=0; i < arrayDays.length; i++) {
-            for (int j = 0; j < arrayDays.length; j++) {
-                if(systems[j].getVisitsByDay().size()>=arrayDays.length-h){
-                    arrayDays[i]+=1;
-                }
-            }
-            h++;
-        }
-        return arrayDays;
-    }
-
     private static double sortTickets(int[]array){
         double result;
         int [] median =array;
@@ -161,33 +161,23 @@ public class QueueManagementSystemUtils {
     }
 
     private static double[] getMedian(QueueManagementSystem[] systems){
-        int[]arrayAllTickets =getAmount(systems);
         double[]arrayDays = new double[sizeForLength(systems)];
         int [] arrayForMedian;
-        for (int i = 0, h=0; i < arrayDays.length; i++) {
-            arrayForMedian = new int[arrayAllTickets[i]];
-            int index=0;
-
-            for (int j = 0; j < arrayAllTickets.length; j++) {
-                if(systems[j].getVisitsByDay().size()>=arrayDays.length-h){
-                    arrayForMedian[index]=
-                            systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()
-                                    +i-arrayDays.length);
-                    index++;
-                }
+        for (int i = 0 ; i < arrayDays.length; i++) {
+            arrayForMedian = new int[calcLevel(systems)[i]];
+            for (int j = 0; j < calcLevel(systems)[i]; j++) {
+                    arrayForMedian[j]= systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDays.length);
             }
-
             arrayDays[i]=sortTickets(arrayForMedian);
-            h++;
         }
 
         return arrayDays;
     }
 
     public static Statistic[] calcStatisticByDays(QueueManagementSystem[] systems){
-
+        sortSystems(systems);
         Statistic[] calcStatisticByDays=new Statistic[sizeForLength(systems)];
-        for (int i=0;i<systems.length;i++){
+        for (int i=0;i<sizeForLength(systems);i++){
             calcStatisticByDays[i]=new Statistic(getMin(systems)[i],getMax(systems)[i],calcC(systems)[i],getAverage(systems)[i],getMedian(systems)[i]);
         }
 
