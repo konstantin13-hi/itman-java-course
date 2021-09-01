@@ -124,7 +124,8 @@ public class QueueManagementSystemUtils {
                         max=systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDaysMin.length);
                         arrayDaysMin[i]=systems[j].getVisitsByDay().get(systems[j].getVisitsByDay().size()+i-arrayDaysMin.length);}
 
-            max= Integer.MIN_VALUE;}}
+            }}
+            max= Integer.MIN_VALUE;
         }
         return arrayDaysMin;
     }

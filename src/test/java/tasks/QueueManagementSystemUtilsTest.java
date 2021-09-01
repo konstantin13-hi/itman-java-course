@@ -296,6 +296,42 @@ class QueueManagementSystemUtilsTest {
         Assertions.assertEquals(12, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getCount());
         Assertions.assertEquals(4, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getMedian());
     }
+
+    @Test
+    public void calcSecond3311() {
+        int y =1;
+        int y1 = 2;
+        int y2 = 3;
+
+        QueueManagementSystem[] systems = new QueueManagementSystem[2];
+        systems[0] = new QueueManagementSystem("Bank");
+        createTicket(systems[0],y);
+        systems[0].toNextWorkDay();
+        createTicket(systems[0],y1);
+        systems[0].toNextWorkDay();
+        createTicket(systems[0],y2);
+        systems[1] = new QueueManagementSystem("Bank2");
+
+        createTicket(systems[1],y);
+
+
+        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMin());
+        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMax());
+        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getAverage());
+        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getCount());
+        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMedian());
+        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMin());
+        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMax());
+        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getAverage());
+        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getCount());
+        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMedian());
+        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMin());
+        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMax());
+        Assertions.assertEquals((double) 4/2, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getAverage());
+        Assertions.assertEquals(4, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getCount());
+        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMedian());
+
+    }
     
 
 
