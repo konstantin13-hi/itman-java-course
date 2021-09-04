@@ -93,7 +93,7 @@ class MyStringTest {
         MyString a = new MyString(chars);
         char[]ch=new char[]{'t', 'e', 's', 'z'};
         MyString b = new MyString(ch);
-        Assertions.assertEquals("testesz",MyString.plus(a,b).toString());
+        Assertions.assertEquals("testtesz",MyString.plus(a,b).toString());
     }
 
 }
