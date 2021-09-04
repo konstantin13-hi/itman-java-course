@@ -53,4 +53,17 @@ public class MyString {
         return Arrays.equals(that.chars, chars);
    }
 
+    public static MyString plus(MyString a, MyString b){
+        char[] twochars = new char[a.length()+ b.length()];/// 1 2 3     4 5 6
+        for (int i=0;i<twochars.length;i++){
+            if (i<a.length()){
+            twochars[i]=a.chars[i];}
+            if (i>=a.length()){
+            twochars[i]=b.chars[i-b.length()];}
+        }
+        MyString doble = new MyString(twochars);
+
+        return doble;
+    }
+
 }
