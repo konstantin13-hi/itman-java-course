@@ -36,9 +36,9 @@ public class MyString {
            for (int i=0;i<chars.length;i++){
                if(that.chars[i] !=chars[i]){
                    if((int)that.chars[i]<(int)chars[i]){
-                           result=-1;
+                           result=1;
                    }
-                   else result=1;
+                   else result=-1;
                }
            }
        }
