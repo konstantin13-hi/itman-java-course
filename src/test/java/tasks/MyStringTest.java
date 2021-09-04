@@ -96,4 +96,13 @@ class MyStringTest {
         Assertions.assertEquals("testtesz",MyString.plus(a,b).toString());
     }
 
+    @Test
+    public void plus2(){
+        char[]chars=new char[]{'h', 'i'};
+        MyString a = new MyString(chars);
+        char[]ch=new char[]{'w', 'o', 'r', 'l','d'};
+        MyString b = new MyString(ch);
+        Assertions.assertEquals("hiworld",MyString.plus(a,b).toString());
+    }
+
 }

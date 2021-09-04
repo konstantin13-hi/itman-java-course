@@ -59,7 +59,7 @@ public class MyString {
             if (i<a.length()){
             twochars[i]=a.chars[i];}
             if (i>=a.length()){
-            twochars[i]=b.chars[i-b.length()];}
+            twochars[i]=b.chars[i-a.length()];}
         }
         MyString doble = new MyString(twochars);
 
