@@ -84,7 +84,7 @@ class MyStringTest {
         MyString a = new MyString(chars);
         char[]ch=new char[]{'t', 'e', 's', 'z'};
         MyString b = new MyString(ch);
-        Assertions.assertEquals(1,a.compareTo(b));
+        Assertions.assertEquals(-1,a.compareTo(b));
     }
 
 }
