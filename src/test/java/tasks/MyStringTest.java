@@ -78,4 +78,13 @@ class MyStringTest {
         Assertions.assertFalse(a.equals(b));
     }
 
+    @Test
+    public void toCompare(){
+        char[]chars=new char[]{'t', 'e', 's', 't' };
+        MyString a = new MyString(chars);
+        char[]ch=new char[]{'t', 'e', 's', 'z'};
+        MyString b = new MyString(ch);
+        Assertions.assertEquals(1,a.compareTo(b));
+    }
+
 }
