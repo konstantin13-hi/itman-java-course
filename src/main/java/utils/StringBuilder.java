@@ -18,8 +18,8 @@ public class StringBuilder {
 
      public   StringBuilder append(String s){
          char[] y = s.toCharArray();
-             if(this.capacity>=logicalSize+y.length){
-                 this.capacity=this.capacity*2;
+             if(this.capacity<=logicalSize+y.length){
+                 this.capacity=this.capacity+y.length;
                  logicalSize+=y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
                  char[]newChar=new char[capacity];
                 System.arraycopy(chars,0,newChar,0,logicalSize-y.length);
@@ -42,8 +42,8 @@ public class StringBuilder {
              str = "true";
         }
         char[] y = str.toCharArray();
-        if(this.capacity>=logicalSize+y.length){
-            this.capacity=this.capacity*2;
+        if(this.capacity<=logicalSize+y.length){
+            this.capacity=this.capacity+y.length;
             logicalSize+=y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
             char[]newChar=new char[capacity];
             System.arraycopy(chars,0,newChar,0,logicalSize-y.length);
@@ -61,8 +61,8 @@ public class StringBuilder {
     public StringBuilder append(int x){
         String str = Integer.toString(x);
         char[] y = str.toCharArray();
-        if(this.capacity>=logicalSize+y.length){
-            this.capacity=this.capacity*2;
+        if(this.capacity<=logicalSize+y.length){
+            this.capacity=this.capacity+y.length;
             logicalSize+=y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
             char[]newChar=new char[capacity];
             System.arraycopy(chars,0,newChar,0,logicalSize-y.length);
@@ -78,8 +78,8 @@ public class StringBuilder {
     public StringBuilder append(double x){
         String str = Double.toString(x);
         char[] y = str.toCharArray();
-        if(this.capacity>=logicalSize+y.length){
-            this.capacity=this.capacity*2;
+        if(this.capacity<=logicalSize+y.length){
+            this.capacity=this.capacity+y.length;
             logicalSize+=y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
             char[]newChar=new char[capacity];
             System.arraycopy(chars,0,newChar,0,logicalSize-y.length);
@@ -96,8 +96,8 @@ public class StringBuilder {
     public StringBuilder append(long x){
         String str = Long.toString(x);
         char[] y = str.toCharArray();
-        if(this.capacity>=logicalSize+y.length){
-            this.capacity=this.capacity*2;
+        if(this.capacity<=logicalSize+y.length){
+            this.capacity=this.capacity+y.length;
             logicalSize+=y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
             char[]newChar=new char[capacity];
             System.arraycopy(chars,0,newChar,0,logicalSize-y.length);

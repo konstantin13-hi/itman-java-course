@@ -21,4 +21,19 @@ class StringBuilderTest {
 
     }
 
+    @Test
+    public void string1  (){
+
+        StringBuilder s = new StringBuilder(1);
+
+
+        s.append("itman");
+
+        Assertions.assertEquals("itman",s.toString());
+        Assertions.assertEquals(5,s.toString().length());
+
+
+
+    }
+
 }
