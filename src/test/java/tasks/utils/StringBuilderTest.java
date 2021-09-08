@@ -38,13 +38,16 @@ class StringBuilderTest {
     @Test
     public void string15  (){
 
-        StringBuilder s = new StringBuilder();
+        StringBuilder s = new StringBuilder(2);
 
 
         s.append("itman");
+        s.append("ff");
+        s.append("lol");
 
-        Assertions.assertEquals("itman",s.toString());
-        Assertions.assertEquals(5,s.toString().length());
+        Assertions.assertEquals("itmanfflol",s.toString());
+
+
 
 
 
