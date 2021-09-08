@@ -35,5 +35,19 @@ class StringBuilderTest {
 
 
     }
+    @Test
+    public void string15  (){
+
+        StringBuilder s = new StringBuilder();
+
+
+        s.append("itman");
+
+        Assertions.assertEquals("itman",s.toString());
+        Assertions.assertEquals(5,s.toString().length());
+
+
+
+    }
 
 }

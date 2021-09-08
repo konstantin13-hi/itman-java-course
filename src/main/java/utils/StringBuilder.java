@@ -10,7 +10,7 @@ public class StringBuilder {
 
     }
     public StringBuilder(){
-        chars= new char[16];
+        chars= new char[this.capacity=16];
     }
     public int length() {
         return logicalSize;
