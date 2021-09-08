@@ -61,9 +61,8 @@ public class MyString {
             if (i>=a.length()){
             twochars[i]=b.chars[i-a.length()];}
         }
-        MyString doble = new MyString(twochars);
 
-        return doble;
+        return new MyString(twochars);
     }
 
 }

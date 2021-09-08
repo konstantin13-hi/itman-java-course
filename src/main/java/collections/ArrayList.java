@@ -71,7 +71,7 @@ public class ArrayList {
         int remove = array[index];
         int[] newArray = new int[array.length - 1];
         System.arraycopy(array, 0, newArray, 0, index);
-        System.arraycopy(array, index + 1, newArray, index, newArray.length - index);
+        System.arraycopy(array, index + 1, newArray, index, newArray.length -index );
         array = newArray;
         logicalsize--;
         return remove;
