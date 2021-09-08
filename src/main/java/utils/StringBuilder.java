@@ -4,19 +4,19 @@ public class StringBuilder {
     char[] chars ;
     private int capacity;
     private int logicalSize;
-    private StringBuilder(int capacity){
+    public StringBuilder(int capacity){
         this.capacity=capacity;
         chars = new char[this.capacity];
 
     }
-    private StringBuilder(){
+    public StringBuilder(){
         chars= new char[16];
     }
-    private int length() {
+    public int length() {
         return logicalSize;
     }
 
-     private  StringBuilder append(String s){
+     public   StringBuilder append(String s){
          char[] y = s.toCharArray();
              if(this.capacity>=logicalSize+y.length){
                  this.capacity=this.capacity*2;
@@ -34,7 +34,7 @@ public class StringBuilder {
          return this;
 
      }
-    private StringBuilder append(boolean x){
+    public StringBuilder append(boolean x){
         String str = "Hi";
         if (!x) {
              str = "false";
@@ -58,7 +58,7 @@ public class StringBuilder {
 
         return this;
     }
-    private StringBuilder append(int x){
+    public StringBuilder append(int x){
         String str = Integer.toString(x);
         char[] y = str.toCharArray();
         if(this.capacity>=logicalSize+y.length){
@@ -75,7 +75,7 @@ public class StringBuilder {
         }
         return this;
     }
-    private StringBuilder append(double x){
+    public StringBuilder append(double x){
         String str = Double.toString(x);
         char[] y = str.toCharArray();
         if(this.capacity>=logicalSize+y.length){
@@ -93,7 +93,7 @@ public class StringBuilder {
         return this;
 
     }
-    private StringBuilder append(long x){
+    public StringBuilder append(long x){
         String str = Long.toString(x);
         char[] y = str.toCharArray();
         if(this.capacity>=logicalSize+y.length){
