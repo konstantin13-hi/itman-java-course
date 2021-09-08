@@ -1,22 +1,22 @@
-package tasks.utils;
+package utils;
 
 public class StringBuilder {
     char[] chars ;
     private int capacity;
     private int logicalSize;
-    public StringBuilder(int capacity){
+    private StringBuilder(int capacity){
         this.capacity=capacity;
         chars = new char[this.capacity];
 
     }
-    public StringBuilder(){
+    private StringBuilder(){
         chars= new char[16];
     }
-    public int length() {
+    private int length() {
         return logicalSize;
     }
 
-     public StringBuilder append(String s){
+     private  StringBuilder append(String s){
          char[] y = s.toCharArray();
              if(this.capacity>=logicalSize+y.length){
                  this.capacity=this.capacity*2;
@@ -34,7 +34,7 @@ public class StringBuilder {
          return this;
 
      }
-    public StringBuilder append(boolean x){
+    private StringBuilder append(boolean x){
         String str = "Hi";
         if (!x) {
              str = "false";
@@ -58,7 +58,7 @@ public class StringBuilder {
 
         return this;
     }
-    public StringBuilder append(int x){
+    private StringBuilder append(int x){
         String str = Integer.toString(x);
         char[] y = str.toCharArray();
         if(this.capacity>=logicalSize+y.length){
@@ -75,7 +75,7 @@ public class StringBuilder {
         }
         return this;
     }
-    public StringBuilder append(double x){
+    private StringBuilder append(double x){
         String str = Double.toString(x);
         char[] y = str.toCharArray();
         if(this.capacity>=logicalSize+y.length){
@@ -93,7 +93,7 @@ public class StringBuilder {
         return this;
 
     }
-    public StringBuilder append(long x){
+    private StringBuilder append(long x){
         String str = Long.toString(x);
         char[] y = str.toCharArray();
         if(this.capacity>=logicalSize+y.length){

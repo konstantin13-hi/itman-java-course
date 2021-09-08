@@ -8,8 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class StringBuilderTest {
     @Test
     public void string(){
+        StringBuilder S =new StringBuilder();
         StringBuilder s = new StringBuilder();
-                
+
+
                 s.append(2.0);
                 s.append(" + ");
                 s.append(2);
