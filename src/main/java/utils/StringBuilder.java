@@ -19,7 +19,7 @@ public class StringBuilder {
 
      public   StringBuilder append(String s){
 
-
+if (s!=null){
          char[] y = s.toCharArray();
              if(this.capacity<=logicalSize+y.length){
                  this.capacity=this.capacity+y.length;
@@ -32,7 +32,7 @@ public class StringBuilder {
              else {
                  System.arraycopy(y,0,chars,logicalSize,y.length);
                  logicalSize+=y.length;
-             }
+             }}
 
          return this;
 
