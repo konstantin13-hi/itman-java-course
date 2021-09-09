@@ -2,6 +2,7 @@ package tasks.utils;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import utils.StringBuilder;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,12 +26,12 @@ class StringBuilderTest {
     public void string1  (){
 
         StringBuilder s = new StringBuilder(1);
+        String actual = s.append("itman").toString();
 
 
-        s.append("itman");
 
-        Assertions.assertEquals("itman",s.toString());
-        Assertions.assertEquals(5,s.toString().length());
+        Assertions.assertEquals("itman",actual);
+        Assertions.assertEquals(5,s.length());
 
 
 
@@ -46,6 +47,7 @@ class StringBuilderTest {
         s.append("lol");
 
         Assertions.assertEquals("itmanfflol",s.toString());
+
 
 
 

@@ -22,11 +22,9 @@ public class StringBuilder {
              if(this.capacity<=logicalSize+y.length){
                  this.capacity=this.capacity+y.length;
                  logicalSize+=y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
-                 char[]newChar=new char[capacity];
-                 if(chars[0]=='\u0000'){ System.arraycopy(y,0,chars,logicalSize,y.length);}
-                 if (chars[0]!='\u0000'){
+                 char[]newChar=new char[logicalSize];
                 System.arraycopy(chars,0,newChar,0,logicalSize-y.length);
-                 System.arraycopy(y,0,newChar,logicalSize-y.length-1,y.length);}
+                 System.arraycopy(y,0,newChar,logicalSize-y.length,y.length);
                  chars=newChar;
              }
              else {
@@ -48,13 +46,10 @@ public class StringBuilder {
         if(this.capacity<=logicalSize+y.length){
             this.capacity=this.capacity+y.length;
             logicalSize+=y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
-            char[]newChar=new char[capacity];
-            if(chars[0]=='\u0000'){ System.arraycopy(y,0,chars,logicalSize,y.length);}
-            if (chars[0]!='\u0000'){
+            char[]newChar=new char[logicalSize];
             System.arraycopy(chars,0,newChar,0,logicalSize-y.length);
-            System.arraycopy(y,0,newChar,logicalSize-y.length-1,y.length);}
-            chars=newChar;
-        }
+            System.arraycopy(y,0,newChar,logicalSize-y.length,y.length);
+            chars=newChar;}
         else {
             System.arraycopy(y,0,chars,logicalSize,y.length);
             logicalSize+=y.length;
@@ -69,11 +64,9 @@ public class StringBuilder {
         if(this.capacity<=logicalSize+y.length){
             this.capacity=this.capacity+y.length;
             logicalSize+=y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
-            char[]newChar=new char[capacity];
-            if(chars[0]=='\u0000'){ System.arraycopy(y,0,chars,logicalSize,y.length);}
-            if (chars[0]!='\u0000'){
+            char[]newChar=new char[logicalSize];
             System.arraycopy(chars,0,newChar,0,logicalSize-y.length);
-            System.arraycopy(y,0,newChar,logicalSize-y.length-1,y.length);}
+            System.arraycopy(y,0,newChar,logicalSize-y.length,y.length);
             chars=newChar;
         }
         else {
@@ -88,11 +81,9 @@ public class StringBuilder {
         if(this.capacity<=logicalSize+y.length){
             this.capacity=this.capacity+y.length;
             logicalSize+=y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
-            char[]newChar=new char[capacity];
-            if(chars[0]=='\u0000'){ System.arraycopy(y,0,chars,logicalSize,y.length);}
-            if (chars[0]!='\u0000'){
+            char[]newChar=new char[logicalSize];
             System.arraycopy(chars,0,newChar,0,logicalSize-y.length);
-            System.arraycopy(y,0,newChar,logicalSize-y.length-1,y.length);}
+            System.arraycopy(y,0,newChar,logicalSize-y.length,y.length);
             chars=newChar;
         }
         else {
@@ -108,11 +99,9 @@ public class StringBuilder {
         if(this.capacity<=logicalSize+y.length){
             this.capacity=this.capacity+y.length;
             logicalSize+=y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
-            char[]newChar=new char[capacity];
-            if(chars[0]=='\u0000'){ System.arraycopy(y,0,chars,logicalSize,y.length);}
-            if (chars[0]!='\u0000'){
+            char[]newChar=new char[logicalSize];
             System.arraycopy(chars,0,newChar,0,logicalSize-y.length);
-            System.arraycopy(y,0,newChar,logicalSize-y.length-1,y.length);}
+            System.arraycopy(y,0,newChar,logicalSize-y.length,y.length);
             chars=newChar;
         }
         else {
