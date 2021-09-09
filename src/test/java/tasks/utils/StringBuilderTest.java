@@ -51,6 +51,21 @@ class StringBuilderTest {
 
 
     }
+
+    @Test
+    public void string13224342 (){
+
+        StringBuilder s = new StringBuilder(1);
+        String actual = s.append(null).toString();
+
+
+
+        Assertions.assertEquals("" + null,actual);
+        Assertions.assertEquals(4,s.length());
+
+
+
+    }
     @Test
     public void string15  (){
 

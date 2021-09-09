@@ -18,9 +18,13 @@ public class StringBuilder {
     }
 
      public   StringBuilder append(String s){
-
-if (s!=null){
-         char[] y = s.toCharArray();
+         char[] y;
+         if (s != null) {
+             y = s.toCharArray();
+         } else {
+             String x = "null";
+             y = x.toCharArray();
+         }
              if(this.capacity<=logicalSize+y.length){
                  this.capacity=this.capacity+y.length;
                  logicalSize+=y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
@@ -32,7 +36,7 @@ if (s!=null){
              else {
                  System.arraycopy(y,0,chars,logicalSize,y.length);
                  logicalSize+=y.length;
-             }}
+             }
 
          return this;
 
