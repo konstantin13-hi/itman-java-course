@@ -14,11 +14,11 @@ class StringBuilderTest {
 
 
                 s.append(2.0);
-                s.append(" + ");
+                s.append("+");
                 s.append(2);
-                s.append(" = ");
+                s.append("=");
                 s.append(4);
-               Assertions.assertEquals("2.0 + 2 = 4",s.toString());
+               Assertions.assertEquals("2.0+2=4",s.toString());
 
     }
 
@@ -41,12 +41,12 @@ class StringBuilderTest {
     public void string132  (){
 
         StringBuilder s = new StringBuilder(1);
-        String actual = s.append(null).toString();
+        String actual = s.append("null").toString();
 
 
 
-        Assertions.assertEquals("",actual);
-        Assertions.assertEquals(0,s.length());
+        Assertions.assertEquals("null",actual);
+        Assertions.assertEquals(4,s.length());
 
 
 

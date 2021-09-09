@@ -18,9 +18,7 @@ public class StringBuilder {
     }
 
      public   StringBuilder append(String s){
-        if (s==null){
-            return this;
-        }
+
          char[] y = s.toCharArray();
              if(this.capacity<=logicalSize+y.length){
                  this.capacity=this.capacity+y.length;
@@ -114,9 +112,10 @@ public class StringBuilder {
         return this;
     }
     public String toString() {
-        char[]result =new char[logicalSize];
-        System.arraycopy(chars, 0, result, 0, logicalSize);
-        return new String(result);
+        char[]newCh =new char[logicalSize];
+        System.arraycopy(chars, 0, newCh, 0, newCh.length);
+
+        return new String(newCh);
 
     }
 
