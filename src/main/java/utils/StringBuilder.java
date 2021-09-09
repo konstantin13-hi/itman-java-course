@@ -18,6 +18,9 @@ public class StringBuilder {
     }
 
      public   StringBuilder append(String s){
+        if (s==null){
+            return this;
+        }
          char[] y = s.toCharArray();
              if(this.capacity<=logicalSize+y.length){
                  this.capacity=this.capacity+y.length;
