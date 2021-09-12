@@ -182,7 +182,7 @@ class ArrayListTest {
 
 
 
-        Assertions.assertEquals("[ ]", arrayList.toString());
+        Assertions.assertEquals("[]", arrayList.toString());
 
     }
 

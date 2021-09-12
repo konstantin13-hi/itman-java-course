@@ -128,7 +128,7 @@ public class ArrayList {
             stringBuilder.append("]");
         }
         else {
-            stringBuilder.append("[ ]");
+            stringBuilder.append("[]");
         }
         return stringBuilder.toString();
     }
