@@ -164,6 +164,18 @@ class ArrayListTest {
 
     }
 
+    @Test
+    public void toS(){
+        ArrayList arrayList=new ArrayList();
+      arrayList.add(1);
+      arrayList.add(3);
+      arrayList.add(99);
+
+
+       Assertions.assertEquals("1399", arrayList.toString());
+
+    }
+
 
 
 

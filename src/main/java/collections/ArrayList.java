@@ -1,5 +1,7 @@
 package collections;
 
+import utils.StringBuilder;
+
 public class ArrayList {
     private static ArrayList B;
     private int capacity;
@@ -111,6 +113,14 @@ public class ArrayList {
         int[] newArray = new int[size()];
         System.arraycopy(array, 0, newArray, 0, newArray.length);
         return newArray;
+    }
+
+    public String toString(){
+        StringBuilder stringBuilder= new StringBuilder(1);
+        for (int i=0;i<toArray().length;i++){
+            stringBuilder.append(toArray()[i]);
+        }
+        return stringBuilder.toString();
     }
 }
 
