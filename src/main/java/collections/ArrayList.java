@@ -122,7 +122,7 @@ public class ArrayList {
             for (int i = 0; i < toArray().length; i++) {
                 stringBuilder.append(toArray()[i]);
                 if (i != toArray().length - 1) {
-                    stringBuilder.append(",");
+                    stringBuilder.append(", ");
                 }
             }
             stringBuilder.append("]");
