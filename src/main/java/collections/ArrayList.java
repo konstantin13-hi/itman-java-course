@@ -117,8 +117,18 @@ public class ArrayList {
 
     public String toString(){
         StringBuilder stringBuilder= new StringBuilder(1);
-        for (int i=0;i<toArray().length;i++){
-            stringBuilder.append(toArray()[i]);
+        if (toArray().length != 0) {
+            stringBuilder.append("[");
+            for (int i = 0; i < toArray().length; i++) {
+                stringBuilder.append(toArray()[i]);
+                if (i != toArray().length - 1) {
+                    stringBuilder.append(",");
+                }
+            }
+            stringBuilder.append("]");
+        }
+        else {
+            stringBuilder.append("[ ]");
         }
         return stringBuilder.toString();
     }

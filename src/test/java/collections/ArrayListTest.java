@@ -172,7 +172,17 @@ class ArrayListTest {
       arrayList.add(99);
 
 
-       Assertions.assertEquals("1399", arrayList.toString());
+       Assertions.assertEquals("[1,3,99]", arrayList.toString());
+
+    }
+
+    @Test
+    public void toS1(){
+        ArrayList arrayList=new ArrayList();
+
+
+
+        Assertions.assertEquals("[ ]", arrayList.toString());
 
     }
 
