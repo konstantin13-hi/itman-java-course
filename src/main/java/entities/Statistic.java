@@ -18,6 +18,7 @@ public class Statistic {
         this.average = average;
         this.median = median;
     }
+
     public int getMin() {
         return min;
     }
@@ -46,7 +47,6 @@ public class Statistic {
         if (that == null) {
             return false;
         }
-
         return that.min == this.min &&
                 that.max == this.max &&
                 that.count == this.count &&

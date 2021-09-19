@@ -1,10 +1,7 @@
-package tasks.utils;
+package utils;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import utils.StringBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class StringBuilderTest {
     @Test

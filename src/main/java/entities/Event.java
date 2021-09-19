@@ -15,6 +15,7 @@ public class Event {
         this.month = month;
         this.name = name;
     }
+
     public int getYear() {
         return year;
     }
@@ -56,11 +57,9 @@ public class Event {
             number = 0;
         } else if (this.day > that.day && this.month == that.month && this.year == that.year) {
             number = 1;
-        }
-        else if ( this.month > that.month && this.year == that.year) {
+        } else if (this.month > that.month && this.year == that.year) {
             number = 1;
-        }
-        else if ( this.year > that.year) {
+        } else if (this.year > that.year) {
             number = 1;
         } else {
             number = -1;
@@ -68,8 +67,5 @@ public class Event {
 
         return number;
     }
-
-
-
 }
 

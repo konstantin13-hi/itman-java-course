@@ -13,14 +13,14 @@ class ArrayListTest {
     }
 
     @Test
-    void get() {
+    void setIndexZeroNumberOne() {
         ArrayList arrayList = new ArrayList(4);
         arrayList.set(0, 1);
         Assertions.assertEquals(1, arrayList.get(0));
     }
 
     @Test
-    void get2() {
+    void setIndexTwentyNumberThirtyThree() {
         ArrayList arrayList = new ArrayList(100);
         arrayList.set(20, 33);
         Assertions.assertEquals(33, arrayList.get(20));
@@ -29,161 +29,119 @@ class ArrayListTest {
     @Test
     void toArray() {
         ArrayList arrayList = new ArrayList(10);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(1);
-        Assertions.assertArrayEquals(new int[]{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, arrayList.toArray());
+        int[] array = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+        addElement(array, arrayList);
+        Assertions.assertArrayEquals(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, arrayList.toArray());
     }
 
     @Test
-    public void remove(){
+    public void remove() {
         ArrayList arrayList = new ArrayList(5);
-        arrayList.add(1);
-        arrayList.add(2);
-        arrayList.add(3);
-        arrayList.add(4);
-        arrayList.add(5);
+        int[] array = new int[]{1, 2, 3, 4, 5};
+        addElement(array, arrayList);
         arrayList.remove(2);
-        Assertions.assertArrayEquals(new int[]{1,2,4,5}, arrayList.toArray());
-
+        Assertions.assertArrayEquals(new int[]{1, 2, 4, 5}, arrayList.toArray());
     }
 
     @Test
-    public void equals(){
+    public void get() {
         ArrayList arrayList = new ArrayList(5);
-        arrayList.add(1);
-        arrayList.add(2);
-        arrayList.add(3);
-        arrayList.add(4);
-        arrayList.add(5);
-        ArrayList arrayListSeocnd = new ArrayList(5);
-        arrayListSeocnd.add(1);
-        arrayListSeocnd.add(2);
-        arrayListSeocnd.add(3);
-        arrayListSeocnd.add(4);
-        arrayListSeocnd.add(5);
-        Assertions.assertTrue( arrayList.equals(arrayListSeocnd));
-
+        int[] array = new int[]{100, 2111, 377, 488888, 51231};
+        addElement(array, arrayList);
+        Assertions.assertEquals(377, arrayList.get(2));
     }
 
     @Test
-    public void equals2(){
+    public void equals() {
         ArrayList arrayList = new ArrayList(5);
-        arrayList.add(1);
-        arrayList.add(2);
-        arrayList.add(3);
-        arrayList.add(4);
-        arrayList.add(5);
-        ArrayList arrayListSeocnd = new ArrayList(5);
-        arrayListSeocnd.add(1);
-        arrayListSeocnd.add(2);
-        arrayListSeocnd.add(3);
-        Assertions.assertFalse( arrayList.equals(arrayListSeocnd));
+        int[] array = new int[]{1, 2, 3, 4, 5};
+        addElement(array, arrayList);
+        ArrayList arrayListSecond = new ArrayList(5);
+        int[] arraySecond = new int[]{1, 2, 3, 4, 5};
+        addElement(arraySecond, arrayListSecond);
+        Assertions.assertTrue(arrayList.equals(arrayListSecond));
+    }
+
+    @Test
+    public void equalsIfDifferentLengths() {
+        ArrayList arrayList = new ArrayList(5);
+        int[] array = new int[]{1, 2, 3, 4, 5};
+        addElement(array, arrayList);
+        ArrayList arrayListSecond = new ArrayList(5);
+        int[] arraySecond = new int[]{1, 2, 3};
+        addElement(arraySecond, arrayListSecond);
+        Assertions.assertFalse(arrayList.equals(arrayListSecond));
 
     }
 
     @Test
-    public void sort(){
+    public void sort() {
         ArrayList arrayList = new ArrayList(20);
-        arrayList.add(11);
-        arrayList.add(2);
-        arrayList.add(33);
-        arrayList.add(1);
-        arrayList.add(5);
+        int[] array = new int[]{11, 2, 33, 1, 5};
+        addElement(array, arrayList);
         arrayList.sort();
         ArrayList arrayListSecond = new ArrayList(20);
-        arrayListSecond.add(1);
-        arrayListSecond.add(2);
-        arrayListSecond.add(5);
-        arrayListSecond.add(11);
-        arrayListSecond.add(33);
-
-        checkElement(arrayList,arrayListSecond);
+        int[] arraySecond = new int[]{1, 2, 5, 11, 33};
+        addElement(arraySecond, arrayListSecond);
+        checkElement(arrayList, arrayListSecond);
     }
 
     @Test
-    public void sort2(){
+    public void sortIfHaveNegativeNumber() {
         ArrayList arrayList = new ArrayList(6);
-        arrayList.add(5);
-        arrayList.add(1);
-        arrayList.add(1);
-        arrayList.add(2);
-        arrayList.add(-3);
-        arrayList.add(1);
+        int[] array = new int[]{5, 1, 1, 2, -3, 1};
+        addElement(array, arrayList);
         arrayList.sort();
         ArrayList arrayListSecond = new ArrayList(6);
-        arrayListSecond.add(-3);
-        arrayListSecond.add(1);
-        arrayListSecond.add(1);
-        arrayListSecond.add(1);
-        arrayListSecond.add(2);
-        arrayListSecond.add(5);
-        checkElement(arrayList,arrayListSecond);
-
+        int[] arraySecond = new int[]{-3, 1, 1, 1, 2, 5};
+        addElement(arraySecond, arrayListSecond);
+        checkElement(arrayList, arrayListSecond);
     }
 
     public static void checkElement(ArrayList arrayList, ArrayList arrayListSecond) {
         for (int i = 0; i < arrayList.size(); i++) {
             Assertions.assertEquals(arrayListSecond.get(i), arrayList.get(i));
         }
-
     }
 
     @Test
-    public void ArrayLis(){
+    public void arrayList() {
         ArrayList arrayList = new ArrayList(100);
-        arrayList.add(10);
-        arrayList.add(20);
-        arrayList.add(30);
-       ArrayList that = new ArrayList(arrayList);
-        Assertions.assertTrue( arrayList.equals(that));
+        int[] array = new int[]{10, 20, 30};
+        addElement(array, arrayList);
+        ArrayList that = new ArrayList(arrayList);
+        Assertions.assertTrue(arrayList.equals(that));
 
     }
 
     @Test
-    public void of(){
-      int [] elements = new int[]{1,2,3};
+    public void of() {
+        int[] elements = new int[]{1, 2, 3};
         ArrayList.of(elements);
-       for (int i = 0; i<elements.length;i++){
-           Assertions.assertEquals(elements[i], ArrayList.of(elements).get(i));
-       }
+        for (int i = 0; i < elements.length; i++) {
+            Assertions.assertEquals(elements[i], ArrayList.of(elements).get(i));
+        }
 
     }
 
     @Test
-    public void toS(){
-        ArrayList arrayList=new ArrayList();
-      arrayList.add(1);
-      arrayList.add(3);
-      arrayList.add(99);
-
-
-       Assertions.assertEquals("[1, 3, 99]", arrayList.toString());
-
+    public void string() {
+        ArrayList arrayList = new ArrayList();
+        int[] array = new int[]{1, 3, 99};
+        addElement(array, arrayList);
+        Assertions.assertEquals("[1, 3, 99]", arrayList.toString());
     }
 
     @Test
-    public void toS1(){
-        ArrayList arrayList=new ArrayList();
-
-
-
+    public void stringIfArrayListEmpty() {
+        ArrayList arrayList = new ArrayList();
         Assertions.assertEquals("[]", arrayList.toString());
+    }
 
+    public static void addElement(int[] x, ArrayList arrayList) {
+        for (int j : x) {
+            arrayList.add(j);
+        }
     }
 
 

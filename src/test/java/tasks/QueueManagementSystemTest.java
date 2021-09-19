@@ -54,9 +54,6 @@ class QueueManagementSystemTest {
         system.getNextTicket();
         system.toNextWorkDay();
         system.getNextTicket();
-
-
-
         Assertions.assertEquals(3,system.getTotalTickets());
         Assertions.assertEquals(2,system.getVisitsByDay().get(0));
         Assertions.assertEquals(1,system.getVisitsByDay().get(1));

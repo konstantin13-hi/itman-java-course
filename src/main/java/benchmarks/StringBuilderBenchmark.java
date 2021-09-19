@@ -1,9 +1,18 @@
 package benchmarks;
+
 import utils.StringBuilder;
 
 public class StringBuilderBenchmark {
 
-
+    /**
+     *Made a concatenation between of two string
+     *
+     * @cpu 0(n^2)
+     * @ram 0(n^2)
+     *
+     * @param n the first term
+     * @return new string
+     */
     public static String concatenateUsingOperator(int n) {
         String result = "";
         for (int i = 0; i < n; i++) {
@@ -11,10 +20,20 @@ public class StringBuilderBenchmark {
         }
         return result;
     }
-    public static String concatenateUsingStringBuilder(int n){
+
+    /**
+     * Made a concatenation between of two string
+     *
+     * @cpu 0(n^2)
+     * @ram 0(n)
+     * @param n the first term
+     * @return
+     */
+
+    public static String concatenateUsingStringBuilder(int n) {
         StringBuilder s = new StringBuilder(1);
         for (int i = 0; i < n; i++) {
-            s.append(" "+i%10);
+            s.append(" " + i % 10);
         }
         return s.toString();
     }
@@ -22,18 +41,14 @@ public class StringBuilderBenchmark {
     //3 sec 12ms
 
     public static void main(String[] args) {
-       int number = 500000;
+        int number = 500000;
 
         long time = System.currentTimeMillis();
         concatenateUsingOperator(number);
         System.out.println(System.currentTimeMillis() - time);
 
-
-
-
         long timeSecond = System.currentTimeMillis();
         concatenateUsingStringBuilder(number);
         System.out.println(System.currentTimeMillis() - timeSecond);
-
     }
 }

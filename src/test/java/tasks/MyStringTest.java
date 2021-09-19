@@ -7,102 +7,98 @@ import java.util.Arrays;
 
 class MyStringTest {
     @Test
-    public void toString1(){
-        char[]chars=new char[]{'H', 'e', 'l', 'l', 'o'};
-        MyString a = new MyString(chars);
-        Assertions.assertEquals("Hello",a.toString());
-
-
-
+    public void testToString() {
+        char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
+        MyString myString = new MyString(chars);
+        Assertions.assertEquals("Hello", myString.toString());
     }
 
     @Test
-    public void charAt(){
-        char[]chars=new char[]{'H', 'e', 'l', 'l', 'o'};
-        MyString a = new MyString(chars);
-        Assertions.assertEquals('H',a.charAt(0));
-
+    public void charAt() {
+        char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
+        MyString myString = new MyString(chars);
+        Assertions.assertEquals('H', myString.charAt(0));
     }
 
     @Test
-    public void compareTo(){
-        char[]chars=new char[]{'H', 'e', 'l', 'l', 'o'};
-        MyString a = new MyString(chars);
-        char[]ch=new char[]{'H', 'e', 'l', 'l', 'o'};
-        MyString b = new MyString(chars);
-        Assertions.assertEquals(0,a.compareTo(b));
+    public void compareTo() {
+        char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
+        MyString myString = new MyString(chars);
+        char[] charsSecond = new char[]{'H', 'e', 'l', 'l', 'o'};
+        MyString myStringSecond = new MyString(charsSecond);
+        Assertions.assertEquals(0, myString.compareTo(myStringSecond));
     }
 
     @Test
-    public void compareTo12(){
-        char[]chars=new char[]{'H', 'e', 'l', 'l', 'o'};
-        MyString a = new MyString(chars);
-        char[]ch=new char[]{'H', 'e', 'l', 'l'};
-        MyString b = new MyString(ch);
-        Assertions.assertEquals(1,a.compareTo(b));
+    public void compareToWhenFirstLengthLonger() {
+        char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
+        MyString myString = new MyString(chars);
+        char[] charsSecond = new char[]{'H', 'e', 'l', 'l'};
+        MyString myStringSecond = new MyString(charsSecond);
+        Assertions.assertEquals(1, myString.compareTo(myStringSecond));
     }
 
     @Test
-    public void compareTo1(){
-        char[]chars=new char[]{'H', 'e'};
-        MyString a = new MyString(chars);
-        char[]ch=new char[]{'H', 'e', 'l', 'l'};
-        MyString b = new MyString(ch);
-        Assertions.assertEquals(-1,a.compareTo(b));
+    public void compareToWhenSecondLengthLonger() {
+        char[] chars = new char[]{'H', 'e'};
+        MyString myString = new MyString(chars);
+        char[] charsSecond = new char[]{'H', 'e', 'l', 'l'};
+        MyString myStringSecond = new MyString(charsSecond);
+        Assertions.assertEquals(-1, myString.compareTo(myStringSecond));
     }
 
     @Test
-    public void equals(){
-        char[]chars=new char[]{'H', 'e', 'l', 'l', 'o'};
-        MyString a = new MyString(chars);
-        char[]ch=new char[]{'H', 'e', 'l', 'l'};
-        MyString b = new MyString(ch);
-        Assertions.assertFalse(a.equals(b));
+    public void equals() {
+        char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
+        MyString myString = new MyString(chars);
+        char[] charsSecond = new char[]{'H', 'e', 'l', 'l'};
+        MyString myStringSecond = new MyString(charsSecond);
+        Assertions.assertFalse(myString.equals(myStringSecond));
     }
 
     @Test
-    public void equals1(){
-        char[]chars=new char[]{'H', 'e', 'l', 'l', 'o'};
-        MyString a = new MyString(chars);
-        char[]ch=new char[]{'H', 'e', 'l', 'l', 'o'};
-        MyString b = new MyString(ch);
-        Assertions.assertTrue(a.equals(b));
+    public void equalsWhenTwoSameLengthsAndElements() {
+        char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
+        MyString myString = new MyString(chars);
+        char[] charsSecond = new char[]{'H', 'e', 'l', 'l', 'o'};
+        MyString myStringSecond = new MyString(charsSecond);
+        Assertions.assertTrue(myString.equals(myStringSecond));
     }
 
     @Test
-    public void equals132(){
-        char[]chars=new char[]{'H', 'e', 'l', 'l', 'o'};
-        MyString a = new MyString(chars);
-        char[]ch=new char[]{'H', 'e', 'l', 'l', 'D'};
-        MyString b = new MyString(ch);
-        Assertions.assertFalse(a.equals(b));
+    public void equalsWhenTwoSameLengthsButDifferentElements() {
+        char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
+        MyString myString = new MyString(chars);
+        char[] charsSecond = new char[]{'H', 'e', 'l', 'l', 'D'};
+        MyString myStringSecond = new MyString(charsSecond);
+        Assertions.assertFalse(myString.equals(myStringSecond));
     }
 
     @Test
-    public void toCompare(){
-        char[]chars=new char[]{'t', 'e', 's', 't' };
-        MyString a = new MyString(chars);
-        char[]ch=new char[]{'t', 'e', 's', 'z'};
-        MyString b = new MyString(ch);
-        Assertions.assertEquals(-1,a.compareTo(b));
+    public void toCompare() {
+        char[] chars = new char[]{'t', 'e', 's', 't'};
+        MyString myString = new MyString(chars);
+        char[] charsSecond = new char[]{'t', 'e', 's', 'z'};
+        MyString myStringSecond = new MyString(charsSecond);
+        Assertions.assertEquals(-1, myString.compareTo(myStringSecond));
     }
 
     @Test
-    public void plus(){
-        char[]chars=new char[]{'t', 'e', 's', 't' };
-        MyString a = new MyString(chars);
-        char[]ch=new char[]{'t', 'e', 's', 'z'};
-        MyString b = new MyString(ch);
-        Assertions.assertEquals("testtesz",MyString.plus(a,b).toString());
+    public void plus() {
+        char[] chars = new char[]{'t', 'e', 's', 't'};
+        MyString myString = new MyString(chars);
+        char[] charsSecond = new char[]{'t', 'e', 's', 'z'};
+        MyString myStringSecond = new MyString(charsSecond);
+        Assertions.assertEquals("testtesz", MyString.plus(myString, myStringSecond).toString());
     }
 
     @Test
-    public void plus2(){
-        char[]chars=new char[]{'h', 'i'};
-        MyString a = new MyString(chars);
-        char[]ch=new char[]{'w', 'o', 'r', 'l','d'};
-        MyString b = new MyString(ch);
-        Assertions.assertEquals("hiworld",MyString.plus(a,b).toString());
+    public void plusSecondTest() {
+        char[] chars = new char[]{'h', 'i'};
+        MyString myString = new MyString(chars);
+        char[] charsSecond = new char[]{'w', 'o', 'r', 'l', 'd'};
+        MyString myStringSecond = new MyString(charsSecond);
+        Assertions.assertEquals("hiworld", MyString.plus(myString, myStringSecond).toString());
     }
 
 }

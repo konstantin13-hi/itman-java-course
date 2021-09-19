@@ -103,7 +103,7 @@ class QueueManagementSystemUtilsTest {
     }
 
     @Test
-    public void calcSecond32() {
+    public void calcTest() {
         QueueManagementSystem[] systems = new QueueManagementSystem[4];
         systems[0] = new QueueManagementSystem("Bank");
         systems[0].getNextTicket();//4 t
@@ -124,31 +124,17 @@ class QueueManagementSystemUtilsTest {
         systems[2].toNextWorkDay();
         systems[2].getNextTicket();
         systems[3] = new QueueManagementSystem("Bank3");
-        systems[3].getNextTicket();//1
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMin());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMax());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getAverage());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getCount());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMedian());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMin());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMax());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getAverage());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getCount());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMedian());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMin());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMax());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getAverage());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getCount());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMedian());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getMin());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getMax());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getAverage());
-        Assertions.assertEquals(4, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getCount());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getMedian());
+        systems[3].getNextTicket();
+        int[]min=new int[]{1,1,1,1};
+        int[]max=new int[]{1,1,1,1};
+        double[]average=new double[]{1,1,1,1};
+        long[]count=new long[]{1,2,3,4};
+        double[]median=new double[]{1,1,1,1};
+        test(systems,min,max,average,count,median);
     }
 
     @Test
-    public void calcSecond321() {
+    public void calcTestSecond() {
         int y =10;
         int y1 = 20;
         int y2 = 30;
@@ -159,22 +145,16 @@ class QueueManagementSystemUtilsTest {
         createTicket(systems[0],y1);
         systems[1] = new QueueManagementSystem("Bank2");
         createTicket(systems[1],y2);
-
-        Assertions.assertEquals(10, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMin());
-        Assertions.assertEquals(10, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMax());
-        Assertions.assertEquals(10, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getAverage());
-        Assertions.assertEquals(10, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getCount());
-        Assertions.assertEquals(10, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMedian());
-        Assertions.assertEquals(20, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMin());
-        Assertions.assertEquals(30, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMax());
-        Assertions.assertEquals(25, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getAverage());
-        Assertions.assertEquals(50, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getCount());
-        Assertions.assertEquals(25, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMedian());
-
+        int[]min=new int[]{10,20};
+        int[]max=new int[]{10,30};
+        double[]average=new double[]{10,25};
+        long[]count=new long[]{10,50};
+        double[]median=new double[]{10,25};
+        test(systems,min,max,average,count,median);
     }
 
     @Test
-    public void calcSecond31() {
+    public void calcTestThird() {
         int y =1;
         int y1 = 2;
         int y2 = 3;
@@ -197,27 +177,16 @@ class QueueManagementSystemUtilsTest {
         createTicket(systems[2],y1);
         systems[2].toNextWorkDay();
         createTicket(systems[2],y2);
-
-
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMin());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMax());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getAverage());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getCount());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMedian());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMin());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMax());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getAverage());
-        Assertions.assertEquals(6, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getCount());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMedian());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMin());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMax());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getAverage());
-        Assertions.assertEquals(9, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getCount());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMedian());
+        int[]min=new int[]{1,2,3};
+        int[]max=new int[]{1,2,3};
+        double[]average=new double[]{1,2,3};
+        long[]count=new long[]{3,6,9};
+        double[]median=new double[]{1,2,3};
+        test(systems,min,max,average,count,median);
     }
 
     @Test
-    public void calcSecond311() {
+    public void calcTestFourth() {
         int y =1;
         int y1 = 2;
         int y2 = 3;
@@ -228,26 +197,17 @@ class QueueManagementSystemUtilsTest {
         createTicket(systems[0],y1);
         systems[0].toNextWorkDay();
         createTicket(systems[0],y2);
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMin());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMax());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getAverage());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getCount());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMedian());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMin());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMax());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getAverage());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getCount());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMedian());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMin());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMax());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getAverage());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getCount());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMedian());
+        int[]min=new int[]{1,2,3};
+        int[]max=new int[]{1,2,3};
+        double[]average=new double[]{1,2,3};
+        long[]count=new long[]{1,2,3};
+        double[]median=new double[]{1,2,3};
+        test(systems,min,max,average,count,median);
 
     }
 
     @Test
-    public void calcSecond33121() {
+    public void calcTestFifth() {
         int y =1;
         int y1 = 2;
         int y2 = 3;
@@ -273,32 +233,16 @@ class QueueManagementSystemUtilsTest {
         createTicket(systems[2],y6);
         systems[2].toNextWorkDay();
         createTicket(systems[2],y5);
-
-
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMin());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMax());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getAverage());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getCount());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMedian());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMin());
-        Assertions.assertEquals(5, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMax());
-        Assertions.assertEquals(3.5, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getAverage());
-        Assertions.assertEquals(7, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getCount());
-        Assertions.assertEquals(3.5, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMedian());
-        Assertions.assertEquals(0, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMin());
-        Assertions.assertEquals(10, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMax());
-        Assertions.assertEquals((double) 13/3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getAverage());
-        Assertions.assertEquals(13, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getCount());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMedian());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getMin());
-        Assertions.assertEquals(7, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getMax());
-        Assertions.assertEquals(4, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getAverage());
-        Assertions.assertEquals(12, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getCount());
-        Assertions.assertEquals(4, QueueManagementSystemUtils.calcStatisticByDays(systems)[3].getMedian());
+        int[]min=new int[]{1,2,0,1};
+        int[]max=new int[]{1,5,10,7};
+        double[]average=new double[]{1,3.5,(double)13/3,4};
+        long[]count=new long[]{1,7,13,12};
+        double[]median=new double[]{1,3.5,3,4};
+        test(systems,min,max,average,count,median);
     }
 
     @Test
-    public void calcSecond3311() {
+    public void calcTestSixth() {
         int y =1;
         int y1 = 2;
         int y2 = 3;
@@ -311,37 +255,30 @@ class QueueManagementSystemUtilsTest {
         systems[0].toNextWorkDay();
         createTicket(systems[0],y2);
         systems[1] = new QueueManagementSystem("Bank2");
-
         createTicket(systems[1],y);
-
-
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMin());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMax());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getAverage());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getCount());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[0].getMedian());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMin());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMax());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getAverage());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getCount());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[1].getMedian());
-        Assertions.assertEquals(1, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMin());
-        Assertions.assertEquals(3, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMax());
-        Assertions.assertEquals((double) 4/2, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getAverage());
-        Assertions.assertEquals(4, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getCount());
-        Assertions.assertEquals(2, QueueManagementSystemUtils.calcStatisticByDays(systems)[2].getMedian());
+        int[]min=new int[]{1,2,1};
+        int[]max=new int[]{1,2,3};
+        double[]average=new double[]{1,2,(double)4/2};
+        long[]count=new long[]{1,2,4};
+        double[]median=new double[]{1,2,2};
+        test(systems,min,max,average,count,median);
 
     }
-    
-
-
-
     public static void createTicket(QueueManagementSystem system,int y){
         for (int i=0;i<y;i++){
         system.getNextTicket();}
     }
 
+    public static void test(QueueManagementSystem[] systems, int[] min, int[] max, double[] average, long[] count, double[] median) {
+        for (int i = 0; i < min.length; i++) {
+            Assertions.assertEquals(min[i], QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getMin());
+            Assertions.assertEquals(max[i], QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getMax());
+            Assertions.assertEquals(average[i], QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getAverage());
+            Assertions.assertEquals(count[i], QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getCount());
+            Assertions.assertEquals(median[i], QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getMedian());
+        }
 
+    }
 
 
 }
