@@ -32,10 +32,30 @@ public class Event {
         return name;
     }
 
+    /**
+     * Create the string
+     *
+     * @cpu 0(1)
+     * @ram 0(1)
+     *
+     * @return string
+     */
+
     public String toString() {
         return "Event{year=" + getYear() + ", month=" + getMonth() + ", day=" + getDay() + ", name=" + "'" + getName() + "'" + "}";
     }
 
+    /**
+     * Make a compare between two events
+     *
+     * n=that.length
+     *
+     * @cpu 0(n)
+     * @ram 0(1)
+     *
+     * @param that the first term
+     * @return result of  compare
+     */
     public boolean equals(Event that) {
         boolean result;
         if (that == null) {
@@ -51,6 +71,18 @@ public class Event {
         return result;
     }
 
+    /**
+     * Compare two events
+     *
+     * n=that.length
+     *
+     * @cpu 0(n)
+     * @ram 0(1)
+     *
+     * @param that the first term
+     *
+     * @return number
+     */
     public int compareTo(Event that) {
         int number;
         if (this.day == that.day && this.month == that.month && this.year == that.year) {

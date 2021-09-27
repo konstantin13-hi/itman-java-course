@@ -9,7 +9,7 @@ public class QueueManagementSystem {
     private int currentNumber;
     private int index;
     private int number;
-    String place;
+    private String place;
 
     public QueueManagementSystem(String a) {
         this.place = a;
@@ -47,7 +47,7 @@ public class QueueManagementSystem {
      *Made next work day
      *
      * @cpu 0(1)
-     * @ram 0(n)
+     * @ram 0(1)
      */
     public void toNextWorkDay() {
         index++;

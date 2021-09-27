@@ -39,9 +39,30 @@ public class Statistic {
         return median;
     }
 
+    /**
+     * Create the string
+     *
+     * @cpu 0(1)
+     * @ram 0(1)
+     *
+     * @return string
+     */
     public String toString() {
         return "Statistic{min=" + min + ", max=" + max + ", count=" + count + ", average=" + average + ", median=" + median + "}";
     }
+
+    /**
+     * Make a compare between two statics
+     *
+     * n=that.length
+     *
+     * @cpu 0(n)
+     * @ram 0(1)
+     *
+     * @param that the first
+     * @return result of compare
+     */
+
 
     public boolean equals(Statistic that) {
         if (that == null) {

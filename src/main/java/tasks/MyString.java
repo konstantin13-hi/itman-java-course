@@ -3,7 +3,7 @@ package tasks;
 import java.util.Arrays;
 
 public class MyString {
-    char[] chars;
+    private char[] chars;
 
     public MyString(char[] a) {
         chars = a;
@@ -27,7 +27,7 @@ public class MyString {
      * Find a length
      *
      * @cpu 0(1)
-     * @ram 0(n)
+     * @ram 0(1)
      *
      * @return length of array
      */
@@ -52,7 +52,9 @@ public class MyString {
     /**
      * Make a lexicographically compare between two strings
      *
-     * @cpu 0(1)
+     * n=that.length
+     *
+     * @cpu 0(n)
      * @ram 0(1)
      * @param that the first term
      *
@@ -85,7 +87,9 @@ public class MyString {
     /**
      * Make a compare between two strings
      *
-     * @cpu 0(1)
+     * n=that.length
+     *
+     * @cpu 0(n)
      * @ram 0(1)
      *
      * @param that first term
@@ -110,14 +114,8 @@ public class MyString {
      */
     public static MyString plus(MyString a, MyString b) {
         char[] twoChars = new char[a.length() + b.length()];/// 1 2 3     4 5 6
-        for (int i = 0; i < twoChars.length; i++) {
-            if (i < a.length()) {
-                twoChars[i] = a.chars[i];
-            }
-            if (i >= a.length()) {
-                twoChars[i] = b.chars[i - a.length()];
-            }
-        }
+        System.arraycopy(a.chars,0,twoChars,0,a.chars.length);
+        System.arraycopy(b.chars,0,twoChars,a.chars.length,b.chars.length);
         return new MyString(twoChars);
     }
 

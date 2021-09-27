@@ -5,8 +5,18 @@ import utils.StringBuilder;
 public class ArrayList {
     private int capacity;
     private int logicalsize;
-    int[] array;
+    private int[] array;
 
+    /**
+     * Create array with special length
+     *
+     * n=that.size
+     *
+     * @cpu 0(n)
+     * @ram 0(n)
+     *
+     * @param that the first term
+     */
     public ArrayList(ArrayList that) {
         logicalsize = that.logicalsize;
         capacity = that.capacity;
@@ -15,11 +25,25 @@ public class ArrayList {
         array = arraySecond;
     }
 
+    /**
+     * Create array with length 16
+     *
+     * @cpu 0(1)
+     * @ram 0(1)
+     */
     public ArrayList() {
         this.capacity = 16;
         array = new int[this.capacity];
     }
 
+    /**
+     * Create array
+     *
+     * @cpu 0(1)
+     * @ram 0(n)
+     *
+     * @param capacity the first termin
+     */
     public ArrayList(int capacity) {
         this.capacity = capacity;
         array = new int[this.capacity];
@@ -52,7 +76,7 @@ public class ArrayList {
      * @param element the term
      */
 
-    public void add(int element) {
+    public void add(int element) { //метод add 10 в 9 раз выполняется/ в иф попадаем 30 раз и всего операций происходит 2 *10 в 9 /в среднем один вызов метода выполняется 2 раза
         if (logicalsize == capacity) {
             capacity = capacity * 2;
             int[] secondarray = new int[capacity];
@@ -98,15 +122,16 @@ public class ArrayList {
      * @return size
      */
     public int size() {
-        int realsize = capacity - logicalsize;
-        return capacity - realsize;
+        return logicalsize;
     }
 
     /**
      * Remove element
      *
+     * n=size-1
+     *
      * @cpu 0(1)
-     * @ram 0(1)
+     * @ram 0(n)                     //
      *
      * @param index the first term
      * @return new array without one element
@@ -123,9 +148,13 @@ public class ArrayList {
 
     /**
      * Make a compare between of two arraylists
-     * @param that the first term
-     * @cpu 0(1)
+     *
+     * n=that.size
+     *
+     * @cpu 0(n)
      * @ram 0(1)
+     *
+     * @param that the first term
      *
      * @return result
      */
