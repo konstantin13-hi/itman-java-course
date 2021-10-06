@@ -48,7 +48,7 @@ public class Event {
     /**
      * Make a compare between two events
      *
-     * n=that.length
+     * n=name.length
      *
      * @cpu 0(n)
      * @ram 0(1)
@@ -74,9 +74,8 @@ public class Event {
     /**
      * Compare two events
      *
-     * n=that.length
      *
-     * @cpu 0(n)
+     * @cpu 0(1)
      * @ram 0(1)
      *
      * @param that the first term

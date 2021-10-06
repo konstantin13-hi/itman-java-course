@@ -3,7 +3,6 @@ package collections;
 import utils.StringBuilder;
 
 public class ArrayList {
-    private int capacity;
     private int logicalsize;
     private int[] array;
 
@@ -19,9 +18,8 @@ public class ArrayList {
      */
     public ArrayList(ArrayList that) {
         logicalsize = that.logicalsize;
-        capacity = that.capacity;
-        int[] arraySecond = new int[that.capacity];
-        System.arraycopy(that.array, 0, arraySecond, 0, that.capacity);
+        int[] arraySecond = new int[that.logicalsize];
+        System.arraycopy(that.array, 0, arraySecond, 0, that.logicalsize);
         array = arraySecond;
     }
 
@@ -32,8 +30,7 @@ public class ArrayList {
      * @ram 0(1)
      */
     public ArrayList() {
-        this.capacity = 16;
-        array = new int[this.capacity];
+        array = new int[16];
     }
 
     /**
@@ -45,8 +42,7 @@ public class ArrayList {
      * @param capacity the first termin
      */
     public ArrayList(int capacity) {
-        this.capacity = capacity;
-        array = new int[this.capacity];
+        array = new int[capacity];
     }
 
     /**
@@ -77,8 +73,8 @@ public class ArrayList {
      */
 
     public void add(int element) { //метод add 10 в 9 раз выполняется/ в иф попадаем 30 раз и всего операций происходит 2 *10 в 9 /в среднем один вызов метода выполняется 2 раза
-        if (logicalsize == capacity) {
-            capacity = capacity * 2;
+        if (logicalsize ==array.length) {
+            int capacity = array.length * 2;
             int[] secondarray = new int[capacity];
             System.arraycopy(array, 0, secondarray, 0, logicalsize);
             array = secondarray;
@@ -128,20 +124,21 @@ public class ArrayList {
     /**
      * Remove element
      *
-     * n=size-1
+     * n=size
      *
-     * @cpu 0(1)
-     * @ram 0(n)                     //
+     * @cpu 0(n)
+     * @ram 0(1)                     //
      *
      * @param index the first term
      * @return new array without one element
      */
-    public int remove(int index) {
+    public int remove(int index) { // 1 2 3 4 5
         int remove = array[index];
-        int[] newArray = new int[array.length - 1];
-        System.arraycopy(array, 0, newArray, 0, index);
-        System.arraycopy(array, index + 1, newArray, index, newArray.length - index);
-        array = newArray;
+        for (int i = index+1; i < array.length; i++) {
+            int temp = array[i - 1];
+            array[i - 1] = array[i];
+            array[i] = temp;
+        }
         logicalsize--;
         return remove;
     }
@@ -194,6 +191,8 @@ public class ArrayList {
     /**
      * Create array of numbers
      *
+     * n=logicalsize
+     *
      * @cpu 0(n)
      * @ram 0(n)
      *
@@ -201,13 +200,15 @@ public class ArrayList {
      */
 
     public int[] toArray() {
-        int[] newArray = new int[size()];
+        int[] newArray = new int[logicalsize];
         System.arraycopy(array, 0, newArray, 0, newArray.length);
         return newArray;
     }
 
     /**
      * Create a string
+     *
+     * n=logicalsize
      *
      * @cpu 0(n^2)
      * @ram 0(n)
@@ -218,7 +219,7 @@ public class ArrayList {
         StringBuilder stringBuilder = new StringBuilder(1);
         if (toArray().length != 0) {
             stringBuilder.append("[");
-            for (int i = 0; i < toArray().length; i++) {
+            for (int i = 0; i < logicalsize; i++) { //
                 stringBuilder.append(toArray()[i]);
                 if (i != toArray().length - 1) {
                     stringBuilder.append(", ");
@@ -230,6 +231,8 @@ public class ArrayList {
         }
         return stringBuilder.toString();
     }
+
+
 }
 
 

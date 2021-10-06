@@ -6,15 +6,15 @@ import entities.Ticket;
 public class QueueManagementSystem {
 
     private ArrayList arrayList;
-    private int currentNumber;
+    private int currentNumberOfTicket;
     private int index;
-    private int number;
+    private int numberOfTicketsTheLastDays;
     private String place;
 
     public QueueManagementSystem(String a) {
         this.place = a;
         arrayList = new ArrayList();
-        arrayList.add(currentNumber);
+        arrayList.add(currentNumberOfTicket);
     }
 
     /**
@@ -26,9 +26,9 @@ public class QueueManagementSystem {
      * @return new ticket
      */
     public Ticket getNextTicket() {
-        currentNumber++;
-        arrayList.set(index, currentNumber - number);
-        return new Ticket(currentNumber - number, this.place);
+        currentNumberOfTicket++;
+        arrayList.set(index, currentNumberOfTicket - numberOfTicketsTheLastDays);
+        return new Ticket(currentNumberOfTicket - numberOfTicketsTheLastDays, this.place);
     }
 
     /**
@@ -40,7 +40,7 @@ public class QueueManagementSystem {
      * @return current number
      */
     public int getTotalTickets() {
-        return currentNumber;
+        return currentNumberOfTicket;
     }
 
     /**
@@ -51,7 +51,7 @@ public class QueueManagementSystem {
      */
     public void toNextWorkDay() {
         index++;
-        number = currentNumber;
+        numberOfTicketsTheLastDays = currentNumberOfTicket;
         arrayList.add(0);
     }
 

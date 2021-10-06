@@ -6,8 +6,7 @@ public class MyString {
     private char[] chars;
 
     public MyString(char[] a) {
-        chars = a;
-
+        this.chars = a;
     }
 
     /**

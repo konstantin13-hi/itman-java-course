@@ -100,5 +100,4 @@ class MyStringTest {
         MyString myStringSecond = new MyString(charsSecond);
         Assertions.assertEquals("hiworld", MyString.plus(myString, myStringSecond).toString());
     }
-
 }

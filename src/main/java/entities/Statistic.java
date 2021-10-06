@@ -54,9 +54,8 @@ public class Statistic {
     /**
      * Make a compare between two statics
      *
-     * n=that.length
      *
-     * @cpu 0(n)
+     * @cpu 0(1)
      * @ram 0(1)
      *
      * @param that the first

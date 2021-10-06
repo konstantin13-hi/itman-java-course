@@ -16,7 +16,7 @@ class StringBuilderTest {
     }
 
     @Test
-    public void stringTestSecond() {
+    public void stringTestAddWord() {
         StringBuilder s = new StringBuilder(1);
         String actual = s.append("itman").toString();
         Assertions.assertEquals("itman", actual);
@@ -24,7 +24,7 @@ class StringBuilderTest {
     }
 
     @Test
-    public void stringTestThird() {
+    public void stringTestAddWordNull() {
         StringBuilder s = new StringBuilder(1);
         String actual = s.append("null").toString();
         Assertions.assertEquals("null", actual);
@@ -32,7 +32,7 @@ class StringBuilderTest {
     }
 
     @Test
-    public void stringTestFourth() {
+    public void stringTestAddNull() {
         StringBuilder s = new StringBuilder(1);
         String actual = s.append(null).toString();
         Assertions.assertEquals("" + null, actual);
@@ -40,7 +40,7 @@ class StringBuilderTest {
     }
 
     @Test
-    public void stringTestFifth() {
+    public void stringTestAddThreeWords() {
         StringBuilder s = new StringBuilder(2);
         s.append("itman");
         s.append("ff");
