@@ -2,18 +2,14 @@ package utils;
 
 public class StringBuilder {
     private char[] chars;
-    private int capacity;
     private int logicalSize;
 
     public StringBuilder(int capacity) {
-        this.capacity = capacity;
-        chars = new char[this.capacity];
-
+        chars = new char[capacity];
     }
 
     public StringBuilder() {
-        this.capacity = 16;
-        chars = new char[capacity];
+        chars = new char[16];
     }
 
     /**
@@ -56,7 +52,7 @@ public class StringBuilder {
      *
      *
      * @cpu 0(1)
-     * @ram 0(n)
+     * @ram 0(1)
      *
      * @param x the first term
      * @return concatenation of two strings
@@ -126,25 +122,25 @@ public class StringBuilder {
     /**
      *Made new string
      *
+     *n=logicalSize
+     *
      * @cpu 0(n)
      * @ram 0(n)
      *
      * @return new string
      */
     public String toString() {
-        char[] newCh = new char[logicalSize];
-        System.arraycopy(chars, 0, newCh, 0, newCh.length);
-        return new String(newCh);
+
+        return new String(chars,0,logicalSize);
     }
 
     private void stringBuilder(char[] y) {
-        if (this.capacity <= logicalSize + y.length) {
-            this.capacity = Math.max(this.capacity + y.length, this.capacity * 2);
-            logicalSize += y.length;                //  1 1 1 1 1 /2 2 2 2 2 2 2
-            char[] newChar = new char[capacity];
-            System.arraycopy(chars, 0, newChar, 0, logicalSize - y.length);
-            System.arraycopy(y, 0, newChar, logicalSize - y.length, y.length);
+        if (chars.length <= logicalSize + y.length) {
+            char[] newChar = new char[((chars.length + y.length) * 2)];
+            System.arraycopy(chars, 0, newChar, 0, logicalSize );
+            System.arraycopy(y, 0, newChar, logicalSize , y.length);
             chars = newChar;
+            logicalSize +=y.length;
         } else {
             System.arraycopy(y, 0, chars, logicalSize, y.length);
             logicalSize += y.length;

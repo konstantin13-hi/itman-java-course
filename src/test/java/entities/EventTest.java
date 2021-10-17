@@ -63,4 +63,11 @@ class EventTest {
         Event event = new Event(2024, 2, 28, null);
         Assertions.assertTrue(event.equals(even));
     }
+
+    @Test
+    public void equalsWithNameNullAndDifferentDates() {
+        Event even = new Event(2020, 1, 1, null);
+        Event event = new Event(2020, 2, 2, null);
+        Assertions.assertFalse(event.equals(even));
+    }
 }

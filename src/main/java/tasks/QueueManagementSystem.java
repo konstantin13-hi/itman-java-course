@@ -11,6 +11,15 @@ public class QueueManagementSystem {
     private int numberOfTicketsTheLastDays;
     private String place;
 
+    /**
+     * Add current number of ticket in arraylist
+     *
+     * @cpu 0(1)
+     * @ram 0(1)
+     *
+     * @param a the first term
+     */
+
     public QueueManagementSystem(String a) {
         this.place = a;
         arrayList = new ArrayList();

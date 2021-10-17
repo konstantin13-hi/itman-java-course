@@ -14,16 +14,12 @@ public class Task408 {
     public static void sort(Event[] events) {
         for (int i = 0; i < events.length; i++) {
             for (int j = 1; j < events.length; j++) {
-                if ((events[j - 1].getYear() > events[j].getYear()) ||
-                        (events[j - 1].getYear() == events[j].getYear() && events[j - 1].getMonth() > events[j].getMonth()) ||
-                        (events[j - 1].getYear() == events[j].getYear() && events[j - 1].getMonth()
-                                == events[j].getMonth() && events[j - 1].getDay() > events[j].getDay())) {
+                if ((events[j-1].compareTo(events[j])==1)){
                     Event t = events[j - 1];
                     events[j - 1] = events[j];
                     events[j] = t;
                 }
             }
         }
-
     }
 }

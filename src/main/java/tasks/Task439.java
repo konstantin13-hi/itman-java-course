@@ -20,12 +20,9 @@ public class Task439 {
         }
         Event a = events[0];
         for (int i = 0; i < events.length; i++) {
-            if ((events[i].getYear() > a.getYear()) ||
-                    (events[i].getYear() == a.getYear() && events[i].getMonth() > a.getMonth()) ||
-                    (events[i].getYear() == a.getYear() && events[i].getMonth() == a.getMonth() && events[i].getDay() > a.getDay()) ||
-                    (events[i].getYear() == a.getYear() && events[i].getMonth() == a.getMonth() && events[i].getDay() == a.getDay())) {
-                a = events[i];
-            }
+           if (a.compareTo(events[i])==-1){
+               a = events[i];
+           }
         }
         return a;
     }

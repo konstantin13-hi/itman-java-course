@@ -18,8 +18,7 @@ public class MyString {
      * @return new string
      */
     public String toString() {
-        String string = new String(chars);
-        return string;
+        return new String(chars);
     }
 
     /**
