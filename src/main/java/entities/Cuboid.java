@@ -1,9 +1,9 @@
 package entities;
 
 public class Cuboid {
-    private int a;
-    private int b;
-    private int c;
+    public int a;
+    public int b;
+    public int c;
 
     /**
      *
