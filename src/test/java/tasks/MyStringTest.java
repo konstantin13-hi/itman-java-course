@@ -100,4 +100,13 @@ class MyStringTest {
         MyString myStringSecond = new MyString(charsSecond);
         Assertions.assertEquals("hiworld", MyString.plus(myString, myStringSecond).toString());
     }
+
+    @Test
+    public void plusWhenAdd() {
+        char[] chars = new char[]{'t', 'u'};
+        MyString myString = new MyString(chars);
+        char[] charsSecond = new char[]{'p', 'i', 'c', 'a'};
+        MyString myStringSecond = new MyString(charsSecond);
+        Assertions.assertEquals("tupica", myString.plus(myStringSecond).toString());
+    }
 }
