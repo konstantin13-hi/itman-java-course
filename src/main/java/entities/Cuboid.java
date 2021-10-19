@@ -1,8 +1,21 @@
 package entities;
 
 public class Cuboid {
+    public int getB() {
+        return b;
+    }
+
+    public int getA() {
+        return a;
+    }
+
     private int a;
     private int b;
+
+    public int getC() {
+        return c;
+    }
+
     private int c;
 
     /**
