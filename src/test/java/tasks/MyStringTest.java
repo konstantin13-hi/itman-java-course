@@ -109,4 +109,13 @@ class MyStringTest {
         MyString myStringSecond = new MyString(charsSecond);
         Assertions.assertEquals("tupica", myString.plus(myStringSecond).toString());
     }
+
+    @Test
+    public void repclace() {
+        char[] chars = new char[]{'p', 'i', 'c', 'p','h','p'};
+        char charsSecond = 'p';
+        char charsThird = 'L';
+        MyString myString = new MyString(chars);
+        Assertions.assertEquals("LicLhL", myString.replace(charsSecond,charsThird).toString());
+    }
 }

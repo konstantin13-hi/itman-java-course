@@ -130,4 +130,18 @@ public class MyString {
         return new MyString(twoChars);
     }
 
+    public MyString replace(char target, char replacement){
+        char a = target;
+        char b = replacement;
+        char []newChar =new char[chars.length];
+        System.arraycopy(chars,0,newChar,0,newChar.length);
+        for (int i = 0; i < chars.length; i++) {
+            if (newChar[i] == a) {
+                newChar[i] = b;
+            }
+        }
+
+        return new MyString(newChar);
+    }
+
 }
