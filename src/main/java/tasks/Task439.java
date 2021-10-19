@@ -23,7 +23,7 @@ public class Task439 {
            if (a.compareTo(events[i])==-1){
                a = events[i];
            }
-            else if (a.compareTo(events[i])==-1){
+           if (a.compareTo(events[i])==-1){
                a = events[i];
            }
         }
