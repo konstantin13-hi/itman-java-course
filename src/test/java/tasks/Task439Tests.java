@@ -45,6 +45,24 @@ public class Task439Tests {
     }
 
     @Test
+    public void findTheElement() {
+        Event[] events = new Event[]{
+               new Event(2020, 10, 25, "A"),
+               new Event(2020, 5, 20, "B"),
+               new Event(2020, 7, 15, "C"),
+               new Event(2021, 1, 1, "D"),
+               new Event(2021, 1, 1, "E")
+
+        };
+        Event expectedelement = new Event(2021, 1, 1, "E");
+        Event expected = events[4];
+        Event actual = Task439.findLast(events);
+        assert actual != null;
+        Assertions.assertSame(expected, actual);
+        checkingArrayElements(expectedelement, actual);
+    }
+
+    @Test
     public void findTheElementOfArrayWhichHaveTheBiggestDateIfArrayEmpty() {
         Event[] events = new Event[0];
         Event actual = Task439.findLast(events);
