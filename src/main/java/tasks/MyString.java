@@ -5,6 +5,14 @@ import java.util.Arrays;
 public class MyString {
     private final char[] chars;
 
+    /**
+     * Setting elements of char
+     *
+     * @cpu 0(1)
+     * @ram 0(1)
+     *
+     * @param a the first term
+     */
     public MyString(char[] a) {
         char[] b = new char[a.length];
         System.arraycopy(a, 0, b, 0, a.length);
@@ -14,7 +22,9 @@ public class MyString {
     /**
      * Create a string
      *
-     * @cpu 0(1)
+     * n=amount 0f elements in chars
+     *
+     * @cpu 0(n)
      * @ram 0(n)
      *
      * @return new string
@@ -119,28 +129,51 @@ public class MyString {
         return new MyString(twoChars);
     }
 
-    public MyString plus(MyString that){
+    /**
+     *Create new a variable containing two chars
+     *
+     * n=amount of elements chars in variable chars
+     * m=amount of elements chars in variable that
+     *
+     * @cpu 0(n+m)
+     * @ram 0(n+m)
+     *
+     * @param that the first term
+     * @return result of two chars
+     */
+    public MyString plus(MyString that) {
         char[] b = new char[that.chars.length];
         System.arraycopy(that.chars, 0, b, 0, that.chars.length);
         MyString myString;
         myString = new MyString(b);
         char[] twoChars = new char[this.length() + that.chars.length];
-        System.arraycopy(this.chars,0,twoChars,0,this.chars.length);
-        System.arraycopy(myString.chars,0,twoChars,this.chars.length,myString.chars.length);
+        System.arraycopy(this.chars, 0, twoChars, 0, this.chars.length);
+        System.arraycopy(myString.chars, 0, twoChars, this.chars.length, myString.chars.length);
         return new MyString(twoChars);
     }
 
-    public MyString replace(char target, char replacement){
+    /**
+     *Make a replacement target in chars
+     *
+     * n=amount of elements chars in variable chars
+     *
+     * @cpu 0(n)
+     * @ram 0(n)
+     *
+     * @param target the first term
+     * @param replacement the second term
+     * @return result replacement of chars
+     */
+    public MyString replace(char target, char replacement) {
         char a = target;
         char b = replacement;
-        char []newChar =new char[chars.length];
-        System.arraycopy(chars,0,newChar,0,newChar.length);
+        char[] newChar = new char[chars.length];
+        System.arraycopy(chars, 0, newChar, 0, newChar.length);
         for (int i = 0; i < chars.length; i++) {
             if (newChar[i] == a) {
                 newChar[i] = b;
             }
         }
-
         return new MyString(newChar);
     }
 

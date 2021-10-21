@@ -5,6 +5,7 @@ import tasks.QueueManagementSystem;
 
 public class QueueManagementSystemUtils {
 
+
     /**
      * Calculate total tickets
      *
@@ -73,7 +74,16 @@ public class QueueManagementSystemUtils {
         return result;
     }
 
-
+    /**
+     * n=amount of systems
+     * m=amount of most business days
+     *
+     * @cpu 0(n*m)
+     * @ram 0(n)
+     *
+     * @param systems
+     * @return
+     */
     private static int[] calcLevel(QueueManagementSystem[] systems) {
         int[] arrayDays = new int[sizeForLength(systems)];
         int[] forAmount = new int[sizeForLength(systems)];
@@ -90,7 +100,17 @@ public class QueueManagementSystemUtils {
         return forAmount;
     }
 
-
+    /**
+     *
+     * n=amount of systems
+     * m=amount of most business days
+     *
+     * @cpu 0(n*m)
+     * @ram 0(n)
+     *
+     * @param systems
+     * @return
+     */
     private static long[] calcTicketsForDifferentDays(QueueManagementSystem[] systems) {
         long[] arrayDays = new long[sizeForLength(systems)];
         for (int i = 0; i < arrayDays.length; i++) {
@@ -104,6 +124,17 @@ public class QueueManagementSystemUtils {
         return arrayDays;
     }
 
+    /**
+     *
+     * n=amount of systems
+     * m=amount of most business days
+     *
+     * @cpu 0(n*m)
+     * @ram 0(n)
+     *
+     * @param systems
+     * @return
+     */
     private static int sizeForLength(QueueManagementSystem[] systems) {
         int max = 0;
         for (QueueManagementSystem system : systems)
@@ -113,6 +144,16 @@ public class QueueManagementSystemUtils {
         return max;
     }
 
+    /**
+     * n=amount of systems
+     * m=amount of most business days
+     *
+     * @cpu 0(n*m)
+     * @ram 0(n)
+     *
+     * @param systems
+     * @return
+     */
     private static double[] getAverage(QueueManagementSystem[] systems) {
         long[] arrayAllTickets = calcTicketsForDifferentDays(systems);
         double[] array = new double[sizeForLength(systems)];
@@ -121,6 +162,13 @@ public class QueueManagementSystemUtils {
         }
         return array;
     }
+
+    /**
+     * @cpu 0 (m(n*m))
+     * @ram 0(n)
+     * @param systems
+     * @return
+     */
 
     private static int[] getMin(QueueManagementSystem[] systems) {
         int[] arrayDaysMin = new int[sizeForLength(systems)];
@@ -139,6 +187,12 @@ public class QueueManagementSystemUtils {
         return arrayDaysMin;
     }
 
+    /**
+     * @cpu 0 (m(n*m))
+     * @ram 0(n)
+     * @param systems
+     * @return
+     */
     private static int[] getMax(QueueManagementSystem[] systems) {
         int[] arrayDaysMin = new int[sizeForLength(systems)];
         int max = Integer.MIN_VALUE;
@@ -157,6 +211,13 @@ public class QueueManagementSystemUtils {
         return arrayDaysMin;
     }
 
+    /**
+     *
+     * @cpu 0(k^2)
+     * @ram 0(1)
+     * @param array
+     * @return
+     */
     private static double sortTickets(int[] array) {
         double result;
         int[] median = array;
@@ -180,6 +241,12 @@ public class QueueManagementSystemUtils {
         return result;
     }
 
+    /**
+     * @cpu 0(m*(n*m+k^2+n*m)
+     * @ram 0(n+m(n*m)+n))
+     * @param systems
+     * @return
+     */
     private static double[] getMedian(QueueManagementSystem[] systems) {
         double[] arrayDays = new double[sizeForLength(systems)];
         int[] arrayForMedian;
@@ -202,17 +269,16 @@ public class QueueManagementSystemUtils {
     /**
      * Calculate statistic days
      *
-     * @cpu 0(n)
-     * @ram 0(n)
+     * @cpu 0(n(m*(n*m+k^2+n*m)+(m(n*m)+(m(n*m))+(n*m)+(n*m))=
+     * @ram 0(n+n+(n+m(n*m)+n)+n+n+n+n)=n+mn+m^2
      *
      * @param systems the first term
      * @return array of statistics all days
      */
-
     public static Statistic[] calcStatisticByDays(QueueManagementSystem[] systems) {
-
+        int mostBusinessDays = sizeForLength(systems);
         Statistic[] calcStatisticByDays = new Statistic[sizeForLength(systems)];
-        for (int i = 0; i < sizeForLength(systems); i++) {
+        for (int i = 0; i < mostBusinessDays; i++) {
             calcStatisticByDays[i] = new Statistic(getMin(systems)[i], getMax(systems)[i], calcTicketsForDifferentDays(systems)[i], getAverage(systems)[i], getMedian(systems)[i]);
         }
 

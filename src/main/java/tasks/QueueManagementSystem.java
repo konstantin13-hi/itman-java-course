@@ -7,7 +7,6 @@ public class QueueManagementSystem {
 
     private ArrayList arrayList;
     private int currentNumberOfTicket;
-    private int index;
     private int numberOfTicketsTheLastDays;
     private String place;
 
@@ -36,7 +35,7 @@ public class QueueManagementSystem {
      */
     public Ticket getNextTicket() {
         currentNumberOfTicket++;
-        arrayList.set(index, currentNumberOfTicket - numberOfTicketsTheLastDays);
+        arrayList.set(arrayList.size()-1, currentNumberOfTicket -numberOfTicketsTheLastDays);
         return new Ticket(currentNumberOfTicket - numberOfTicketsTheLastDays, this.place);
     }
 
@@ -59,7 +58,6 @@ public class QueueManagementSystem {
      * @ram 0(1)
      */
     public void toNextWorkDay() {
-        index++;
         numberOfTicketsTheLastDays = currentNumberOfTicket;
         arrayList.add(0);
     }

@@ -61,10 +61,7 @@ public class Task408Tests {
 
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {
-            Assertions.assertEquals(expected[i].getDay(), actual[i].getDay());
-            Assertions.assertEquals(expected[i].getMonth(), actual[i].getMonth());
-            Assertions.assertEquals(expected[i].getYear(), actual[i].getYear());
-            Assertions.assertEquals(expected[i].getName(), actual[i].getName());
+            Assertions.assertTrue(actual[i].equals(expected[i]));
         }
     }
 

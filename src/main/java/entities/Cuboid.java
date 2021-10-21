@@ -1,6 +1,10 @@
 package entities;
 
 public class Cuboid {
+    private int a;
+    private int b;
+    private int c;
+
     public int getB() {
         return b;
     }
@@ -9,20 +13,19 @@ public class Cuboid {
         return a;
     }
 
-    private int a;
-    private int b;
-
     public int getC() {
         return c;
     }
 
-    private int c;
-
     /**
+     *Setting cuboid parameters
      *
-     * @param a
-     * @param b
-     * @param c
+     * @cpu 0(1)
+     * @ram 0(1)
+     *
+     * @param a the first term.
+     * @param b the second term.
+     * @param c the third term
      */
     public Cuboid(int a, int b, int c) {
         this.a = a;
@@ -31,16 +34,24 @@ public class Cuboid {
     }
 
     /**
+     *Calc surface area
      *
-     * @return
+     * @cpu 0(1)
+     * @ram 0(1)
+     *
+     * @return result of surface Area
      */
     public long calcSurfaceArea() {
         return 2 * ((long) a * b + (long) b * c + (long) a * c);
     }
 
     /**
+     *Calc volume
      *
-     * @return
+     * @cpu 0(1)
+     * @ram 0(1)
+     *
+     * @return result of the Volume
      */
     public long calcVolume() {
         return (long) a * b * c;

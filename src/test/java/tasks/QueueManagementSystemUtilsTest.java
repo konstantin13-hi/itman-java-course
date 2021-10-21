@@ -230,8 +230,8 @@ class QueueManagementSystemUtilsTest {
         test(systems, min, max, average, count, median);
     }
 
-    public static void createTicket(QueueManagementSystem system, int[] expectedDays, int x) {
-        for (int d = 0; d < x; d++) {
+    public static void createTicket(QueueManagementSystem system, int[] expectedDays, int allTicketsForOneQueue) {
+        for (int d = 0; d < allTicketsForOneQueue; d++) {
             for (int j = 0; j < expectedDays.length; j++) {
                 if (expectedDays[j] == d) {
                     system.toNextWorkDay();

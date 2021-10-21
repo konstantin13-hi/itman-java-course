@@ -102,7 +102,7 @@ class MyStringTest {
     }
 
     @Test
-    public void plusWhenAdd() {
+    public void plusWhenUseConst() {
         char[] chars = new char[]{'t', 'u'};
         MyString myString = new MyString(chars);
         char[] charsSecond = new char[]{'p', 'i', 'c', 'a'};
@@ -111,7 +111,7 @@ class MyStringTest {
     }
 
     @Test
-    public void repclace() {
+    public void replace() {
         char[] chars = new char[]{'p', 'i', 'c', 'p','h','p'};
         char charsSecond = 'p';
         char charsThird = 'L';
