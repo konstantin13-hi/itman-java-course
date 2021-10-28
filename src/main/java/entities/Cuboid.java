@@ -5,18 +5,6 @@ public class Cuboid {
     private int b;
     private int c;
 
-    public int getB() {
-        return b;
-    }
-
-    public int getA() {
-        return a;
-    }
-
-    public int getC() {
-        return c;
-    }
-
     /**
      *Setting cuboid parameters
      *
@@ -31,6 +19,18 @@ public class Cuboid {
         this.a = a;
         this.b = b;
         this.c = c;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public int getC() {
+        return c;
     }
 
     /**

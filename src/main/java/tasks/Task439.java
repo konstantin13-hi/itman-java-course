@@ -20,10 +20,7 @@ public class Task439 {
         }
         Event a = events[0];
         for (int i = 0; i < events.length; i++) {
-           if (a.compareTo(events[i])==-1){
-               a = events[i];
-           }
-           if (a.compareTo(events[i])==0){
+           if (a.compareTo(events[i])<=0){
                a = events[i];
            }
         }

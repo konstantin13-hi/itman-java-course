@@ -4,7 +4,7 @@ import utils.StringBuilder;
 
 public class ArrayList {
     private int logicalSize;
-    private int[] Elements;
+    private int[] elements;
 
     /**
      * Create array with special length
@@ -19,8 +19,8 @@ public class ArrayList {
     public ArrayList(ArrayList that) {
         logicalSize = that.logicalSize;
         int[] arraySecond = new int[that.logicalSize];
-        System.arraycopy(that.Elements, 0, arraySecond, 0, that.logicalSize);
-        Elements = arraySecond;
+        System.arraycopy(that.elements, 0, arraySecond, 0, that.logicalSize);
+        elements = arraySecond;
     }
 
     /**
@@ -30,7 +30,7 @@ public class ArrayList {
      * @ram 0(1)
      */
     public ArrayList() {
-        Elements = new int[16];
+        elements = new int[16];
     }
 
     /**
@@ -42,7 +42,7 @@ public class ArrayList {
      * @param capacity the first term
      */
     public ArrayList(int capacity) {
-        Elements = new int[capacity];
+        elements = new int[capacity];
     }
 
     /**
@@ -72,13 +72,13 @@ public class ArrayList {
      * @param element the term
      */
     public void add(int element) { //метод add 10 в 9 раз выполняется/ в иф попадаем 30 раз и всего операций происходит 2 *10 в 9 /в среднем один вызов метода выполняется 2 раза
-        if (logicalSize ==Elements.length) {
-            int capacity = Elements.length * 2;
+        if (logicalSize ==elements.length) {
+            int capacity = elements.length * 2;
             int[] secondarray = new int[capacity];
-            System.arraycopy(Elements, 0, secondarray, 0, logicalSize);
-            Elements = secondarray;
+            System.arraycopy(elements, 0, secondarray, 0, logicalSize);
+            elements = secondarray;
         }
-        Elements[logicalSize] = element;
+        elements[logicalSize] = element;
         logicalSize++;
     }
 
@@ -92,7 +92,7 @@ public class ArrayList {
      * @param element the second term
      */
     public void set(int index, int element) {
-        Elements[index] = element;
+        elements[index] = element;
     }
 
     /**
@@ -104,7 +104,7 @@ public class ArrayList {
      * @return number from arraylist
      */
     public int get(int index) {
-        return Elements[index];
+        return elements[index];
     }
 
     /**
@@ -131,9 +131,9 @@ public class ArrayList {
      * @return new array without one element
      */
     public int remove(int index) { // 1 2 3 4 5
-        int remove = Elements[index];
-        for (int i = index+1; i < Elements.length; i++) {
-            Elements[i - 1] = Elements[i];
+        int remove = elements[index];
+        for (int i = index+1; i < elements.length; i++) {
+            elements[i - 1] = elements[i];
         }
         logicalSize--;
 
@@ -173,13 +173,13 @@ public class ArrayList {
      * @ram 0(1)
      */
     public void sort() {
-        Elements = toArray();
-        for (int i = 0; i < Elements.length; i++) {
-            for (int j = 1; j < Elements.length; j++) {
-                if (Elements[j - 1] > Elements[j]) {
+        elements = toArray();
+        for (int i = 0; i < elements.length; i++) {
+            for (int j = 1; j < elements.length; j++) {
+                if (elements[j - 1] > elements[j]) {
                     int temp = toArray()[j - 1];
-                    Elements[j - 1] = Elements[j];
-                    Elements[j] = temp;
+                    elements[j - 1] = elements[j];
+                    elements[j] = temp;
                 }
             }
         }
@@ -198,7 +198,7 @@ public class ArrayList {
 
     public int[] toArray() {
         int[] newArray = new int[logicalSize];
-        System.arraycopy(Elements, 0, newArray, 0, newArray.length);
+        System.arraycopy(elements, 0, newArray, 0, newArray.length);
         return newArray;
     }
 
@@ -213,26 +213,22 @@ public class ArrayList {
      * @return new string
      */
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(1);
-        if(logicalSize!=0){
+        StringBuilder stringBuilder = new StringBuilder();
+        if (logicalSize != 0) {
             stringBuilder.append("[");
-            for (int i = 0; i<logicalSize;i++){
-                stringBuilder.append(Elements[i]);
-                if(i!=logicalSize-1){
+            for (int i = 0; i < logicalSize; i++) {
+                stringBuilder.append(elements[i]);
+                if (i != logicalSize - 1) {
                     stringBuilder.append(", ");
                 }
             }
             stringBuilder.append("]");
 
-        }
-        else {
+        } else {
             stringBuilder.append("[]");
         }
-
         return stringBuilder.toString();
     }
-
-
 }
 
 

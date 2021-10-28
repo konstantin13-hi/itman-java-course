@@ -8,8 +8,8 @@ public class MyString {
     /**
      * Setting elements of char
      *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * @cpu 0(n)
+     * @ram 0(n)
      *
      * @param a the first term
      */
@@ -144,12 +144,8 @@ public class MyString {
     public MyString plus(MyString that) {
         char[] b = new char[that.chars.length];
         System.arraycopy(that.chars, 0, b, 0, that.chars.length);
-        MyString myString;
-        myString = new MyString(b);
-        char[] twoChars = new char[this.length() + that.chars.length];
-        System.arraycopy(this.chars, 0, twoChars, 0, this.chars.length);
-        System.arraycopy(myString.chars, 0, twoChars, this.chars.length, myString.chars.length);
-        return new MyString(twoChars);
+        MyString myString = new MyString(b);
+        return MyString.plus(this, myString);
     }
 
     /**

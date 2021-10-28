@@ -1,12 +1,5 @@
 package tasks;
 
-import entities.Statistic;
-import entities.Ticket;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-import entities.Ticket;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,113 +8,94 @@ class QueueManagementSystemUtilsTest {
     @Test
     public void countQueue() {
         QueueManagementSystem[] systems = new QueueManagementSystem[3];
-        int ticketsFirst = 3;
-        int ticketSecond = 3;
-        int ticketsThird = 2;
-        int[] firstQueueDays = new int[]{};
-        int[] secondQueueDays = new int[]{};
-        int[] thirdQueueDays = new int[]{};
-        systems[0] = new QueueManagementSystem("Bank");
-        createTicket(systems[0], firstQueueDays, ticketsFirst);
-        systems[1] = new QueueManagementSystem("Bank2");
-        createTicket(systems[1], secondQueueDays, ticketSecond);
-        systems[2] = new QueueManagementSystem("Bank3");
-        createTicket(systems[2], thirdQueueDays, ticketsThird);
+        int[] firstQueueDays = new int[]{3};
+        int[] secondQueueDays = new int[]{3};
+        int[] thirdQueueDays = new int[]{2};
+        String nameForFirstQueue ="Bank" ;
+        String nameForSecondQueue ="Bank2" ;
+        String nameForThirdQueue ="Bank3" ;
+        systems[0] = createTicketBetter(nameForFirstQueue,firstQueueDays);
+        systems[1] = createTicketBetter(nameForSecondQueue,secondQueueDays);
+        systems[2] = createTicketBetter(nameForThirdQueue,thirdQueueDays);
         Assertions.assertEquals(8, QueueManagementSystemUtils.calcTotalVisits(systems));
     }
 
     @Test
     public void calcAverageVisits() {
-        int ticketsFirst = 3;
-        int ticketSecond = 3;
-        int[] firstQueueDays = new int[]{};
-        int[] secondQueueDays = new int[]{};
+        int[] firstQueueDays = new int[]{3};
+        int[] secondQueueDays = new int[]{3};
+        String nameForFirstQueue ="Bank" ;
+        String nameForSecondQueue ="Bank2" ;
         QueueManagementSystem[] systems = new QueueManagementSystem[2];
-        systems[0] = new QueueManagementSystem("Bank");
-        createTicket(systems[0], firstQueueDays, ticketsFirst);
-        systems[1] = new QueueManagementSystem("Bank2");
-        createTicket(systems[1], secondQueueDays, ticketSecond);
+        systems[0] = createTicketBetter(nameForFirstQueue,firstQueueDays);
+        systems[1] = createTicketBetter(nameForSecondQueue,secondQueueDays);
         Assertions.assertEquals(3, QueueManagementSystemUtils.calcAverageVisits(systems));
     }
 
     @Test
     public void calcAverage() {
-        int ticketsFirst = 1;
-        int ticketSecond = 4;
-        int ticketsThird = 2;
-        int[] firstQueueDays = new int[]{};
-        int[] secondQueueDays = new int[]{};
-        int[] thirdQueueDays = new int[]{};
+        int[] firstQueueDays = new int[]{1};
+        int[] secondQueueDays = new int[]{4};
+        int[] thirdQueueDays = new int[]{2};
+        String nameForFirstQueue ="Bank" ;
+        String nameForSecondQueue ="Bank2" ;
+        String nameForThirdQueue ="Bank3" ;
         QueueManagementSystem[] systems = new QueueManagementSystem[3];
-        systems[0] = new QueueManagementSystem("Bank");
-        createTicket(systems[0], firstQueueDays, ticketsFirst);
-        systems[1] = new QueueManagementSystem("Bank2");
-        createTicket(systems[1], secondQueueDays, ticketSecond);
-        systems[2] = new QueueManagementSystem("Bank3");
-        createTicket(systems[2], thirdQueueDays, ticketsThird);
+        systems[0] = createTicketBetter(nameForFirstQueue,firstQueueDays);
+        systems[1] = createTicketBetter(nameForSecondQueue,secondQueueDays);
+        systems[2] = createTicketBetter(nameForThirdQueue,thirdQueueDays);
         Assertions.assertEquals(7.0 / 3, QueueManagementSystemUtils.calcAverageVisits(systems));
     }
 
     @Test
     public void calc() {
-        int ticketsFirst = 1;
-        int ticketSecond = 4;
-        int ticketsThird = 2;
-        int[] firstQueueDays = new int[]{};
-        int[] secondQueueDays = new int[]{};
-        int[] thirdQueueDays = new int[]{};
+        int[] firstQueueDays = new int[]{1};
+        int[] secondQueueDays = new int[]{4};
+        int[] thirdQueueDays = new int[]{2};
+        String nameForFirstQueue ="Bank" ;
+        String nameForSecondQueue ="Bank2" ;
+        String nameForThirdQueue ="Bank3" ;
         QueueManagementSystem[] systems = new QueueManagementSystem[3];
-        systems[0] = new QueueManagementSystem("Bank");
-        createTicket(systems[0], firstQueueDays, ticketsFirst);
-        systems[1] = new QueueManagementSystem("Bank2");
-        createTicket(systems[1], secondQueueDays, ticketSecond);
-        systems[2] = new QueueManagementSystem("Bank3");
-        createTicket(systems[2], thirdQueueDays, ticketsThird);
+        systems[0] = createTicketBetter(nameForFirstQueue,firstQueueDays);
+        systems[1] = createTicketBetter(nameForSecondQueue,secondQueueDays);
+        systems[2] = createTicketBetter(nameForThirdQueue,thirdQueueDays);
         Assertions.assertEquals(2.0, QueueManagementSystemUtils.calcMedianVisits(systems));
 
     }
 
     @Test
     public void calcSecond() {
-        int ticketsFirst = 1;
-        int ticketSecond = 2;
-        int ticketsThird = 3;
-        int ticketsFourth = 4;
-        int[] firstQueueDays = new int[]{};
-        int[] secondQueueDays = new int[]{};
-        int[] thirdQueueDays = new int[]{};
-        int[] fourthQueueDays = new int[]{};
+        int[] firstQueueDays = new int[]{1};
+        int[] secondQueueDays = new int[]{2};
+        int[] thirdQueueDays = new int[]{3};
+        int[] fourthQueueDays = new int[]{4};
+        String nameForFirstQueue ="Bank" ;
+        String nameForSecondQueue ="Bank2" ;
+        String nameForThirdQueue ="Bank3" ;
+        String nameForFourthQueue ="Bank4" ;
         QueueManagementSystem[] systems = new QueueManagementSystem[4];
-        systems[0] = new QueueManagementSystem("Bank");
-        createTicket(systems[0], firstQueueDays, ticketsFirst);
-        systems[1] = new QueueManagementSystem("Bank2");
-        createTicket(systems[1], secondQueueDays, ticketSecond);
-        systems[2] = new QueueManagementSystem("Bank3");
-        createTicket(systems[2], thirdQueueDays, ticketsThird);
-        systems[3] = new QueueManagementSystem("Bank3");
-        createTicket(systems[3], fourthQueueDays, ticketsFourth);
+        systems[0] = createTicketBetter(nameForFirstQueue,firstQueueDays);
+        systems[1] = createTicketBetter(nameForSecondQueue,secondQueueDays);
+        systems[2] = createTicketBetter(nameForThirdQueue,thirdQueueDays);
+        systems[3] = createTicketBetter(nameForFourthQueue,fourthQueueDays);
         Assertions.assertEquals(2.5, QueueManagementSystemUtils.calcMedianVisits(systems));
     }
 
     @Test
     public void calcTest() {
-        int ticketsFirst = 4;
-        int ticketSecond = 2;
-        int ticketsThird = 3;
-        int ticketsFourth = 1;
-        int[] firstQueueDays = new int[]{1, 2, 3};
-        int[] secondQueueDays = new int[]{1};
-        int[] thirdQueueDays = new int[]{1, 2};
-        int[] fourthQueueDays = new int[]{};
+        int[] firstQueueDays = new int[]{1, 1, 1,1};
+        int[] secondQueueDays = new int[]{1,1};
+        int[] thirdQueueDays = new int[]{1,1,1};
+        int[] fourthQueueDays = new int[]{1};
+        String nameForFirstQueue ="Bank" ;
+        String nameForSecondQueue ="Bank2" ;
+        String nameForThirdQueue ="Bank3" ;
+        String nameForFourthQueue ="Bank4" ;
         QueueManagementSystem[] systems = new QueueManagementSystem[4];
-        systems[0] = new QueueManagementSystem("Bank");
-        createTicket(systems[0], firstQueueDays, ticketsFirst);
-        systems[1] = new QueueManagementSystem("Bank2");
-        createTicket(systems[1], secondQueueDays, ticketSecond);
-        systems[2] = new QueueManagementSystem("Bank3");
-        createTicket(systems[2], thirdQueueDays, ticketsThird);
-        systems[3] = new QueueManagementSystem("Bank3");
-        createTicket(systems[3], fourthQueueDays, ticketsFourth);
+        systems[0] = createTicketBetter(nameForFirstQueue,firstQueueDays);
+        systems[1] = createTicketBetter(nameForSecondQueue,secondQueueDays);
+        systems[2] = createTicketBetter(nameForThirdQueue,thirdQueueDays);
+        systems[3] = createTicketBetter(nameForFourthQueue,fourthQueueDays);
         int[] min = new int[]{1, 1, 1, 1};
         int[] max = new int[]{1, 1, 1, 1};
         double[] average = new double[]{1, 1, 1, 1};
@@ -132,15 +106,13 @@ class QueueManagementSystemUtilsTest {
 
     @Test
     public void calcTestSecond() {
-        int[] firstQueueDays = new int[]{10};
-        int[] secondQueueDays = new int[]{};
-        int x = 30;
-        int x1 = 30;
+        int[] firstQueueDays = new int[]{10, 20};
+        int[] secondQueueDays = new int[]{30};
+        String nameForFirstQueue ="Bank" ;
+        String nameForSecondQueue ="Bank2" ;
         QueueManagementSystem[] systems = new QueueManagementSystem[2];
-        systems[0] = new QueueManagementSystem("Bank");
-        createTicket(systems[0], firstQueueDays, x);
-        systems[1] = new QueueManagementSystem("Bank2");
-        createTicket(systems[1], secondQueueDays, x1);
+        systems[0] = createTicketBetter(nameForFirstQueue,firstQueueDays);
+        systems[1] = createTicketBetter(nameForSecondQueue,secondQueueDays);
         int[] min = new int[]{10, 20};
         int[] max = new int[]{10, 30};
         double[] average = new double[]{10, 25};
@@ -151,19 +123,16 @@ class QueueManagementSystemUtilsTest {
 
     @Test
     public void calcTestThird() {
-        int x = 6;
-        int x1 = 6;
-        int x2 = 6;
-        int[] firstQueueDays = new int[]{1, 3};
-        int[] secondQueueDays = new int[]{1, 3};
-        int[] thirdQueueDays = new int[]{1, 3};
+        int[] firstQueueDays = new int[]{1, 2, 3};
+        int[] secondQueueDays = new int[]{1,2,3};
+        int[] thirdQueueDays = new int[]{1,2,3};
+        String nameForFirstQueue ="Bank" ;
+        String nameForSecondQueue ="Bank2" ;
+        String nameForThirdQueue ="Bank3" ;
         QueueManagementSystem[] systems = new QueueManagementSystem[3];
-        systems[0] = new QueueManagementSystem("Bank");
-        createTicket(systems[0], firstQueueDays, x);
-        systems[1] = new QueueManagementSystem("Bank2");
-        createTicket(systems[1], secondQueueDays, x1);
-        systems[2] = new QueueManagementSystem("Bank3");
-        createTicket(systems[2], thirdQueueDays, x2);
+        systems[0] = createTicketBetter(nameForFirstQueue,firstQueueDays);
+        systems[1] = createTicketBetter(nameForSecondQueue,secondQueueDays);
+        systems[2] = createTicketBetter(nameForThirdQueue,thirdQueueDays);
         int[] min = new int[]{1, 2, 3};
         int[] max = new int[]{1, 2, 3};
         double[] average = new double[]{1, 2, 3};
@@ -174,11 +143,10 @@ class QueueManagementSystemUtilsTest {
 
     @Test
     public void calcTestFourth() {
-        int x = 6;
-        int[] firstQueueDays = new int[]{1, 3};
+        String nameForFirstQueue ="Bank" ;
+        int[] firstQueueDays = new int[]{1, 2,3};
         QueueManagementSystem[] systems = new QueueManagementSystem[1];
-        systems[0] = new QueueManagementSystem("Bank");
-        createTicket(systems[0], firstQueueDays, x);
+        systems[0] = createTicketBetter(nameForFirstQueue,firstQueueDays);
         int[] min = new int[]{1, 2, 3};
         int[] max = new int[]{1, 2, 3};
         double[] average = new double[]{1, 2, 3};
@@ -190,19 +158,16 @@ class QueueManagementSystemUtilsTest {
 
     @Test
     public void calcTestFifth() {
-        int[] firstQueueDays = new int[]{1, 3, 6};
-        int[] secondQueueDays = new int[]{0};
-        int[] thirdQueueDays = new int[]{5, 15};
-        int x = 10;
-        int x1 = 1;
-        int x2 = 22;
+        int[] firstQueueDays = new int[]{1, 2, 3,4};
+        int[] secondQueueDays = new int[]{0,1};
+        int[] thirdQueueDays = new int[]{5, 10,7};
+        String nameForFirstQueue ="Bank" ;
+        String nameForSecondQueue ="Bank2" ;
+        String nameForThirdQueue ="Bank3" ;
         QueueManagementSystem[] systems = new QueueManagementSystem[3];
-        systems[0] = new QueueManagementSystem("Bank");
-        createTicket(systems[0], firstQueueDays, x);
-        systems[1] = new QueueManagementSystem("Bank2");
-        createTicket(systems[1], secondQueueDays, x1);
-        systems[2] = new QueueManagementSystem("Bank3");
-        createTicket(systems[2], thirdQueueDays, x2);
+        systems[0] = createTicketBetter(nameForFirstQueue,firstQueueDays);
+        systems[1] = createTicketBetter(nameForSecondQueue,secondQueueDays);
+        systems[2] = createTicketBetter(nameForThirdQueue,thirdQueueDays);
         int[] min = new int[]{1, 2, 0, 1};
         int[] max = new int[]{1, 5, 10, 7};
         double[] average = new double[]{1, 3.5, (double) 13 / 3, 4};
@@ -213,15 +178,13 @@ class QueueManagementSystemUtilsTest {
 
     @Test
     public void calcTestSixth() {
-        int[] firstQueueDays = new int[]{1, 3};
-        int[] secondQueueDays = new int[]{};
-        int x = 6;
-        int x1 = 1;
+        int[] firstQueueDays = new int[]{1, 2,3};
+        int[] secondQueueDays = new int[]{1};
+        String nameForFirstQueue ="Bank" ;
+        String nameForSecondQueue ="Bank2" ;
         QueueManagementSystem[] systems = new QueueManagementSystem[2];
-        systems[0] = new QueueManagementSystem("Bank");
-        createTicket(systems[0], firstQueueDays, x);
-        systems[1] = new QueueManagementSystem("Bank2");
-        createTicket(systems[1], secondQueueDays, x1);
+        systems[0]=createTicketBetter(nameForFirstQueue,firstQueueDays);
+        systems[1]=createTicketBetter(nameForSecondQueue,secondQueueDays);
         int[] min = new int[]{1, 2, 1};
         int[] max = new int[]{1, 2, 3};
         double[] average = new double[]{1, 2, (double) 4 / 2};
@@ -230,16 +193,16 @@ class QueueManagementSystemUtilsTest {
         test(systems, min, max, average, count, median);
     }
 
-    public static void createTicket(QueueManagementSystem system, int[] expectedDays, int allTicketsForOneQueue) {
-        for (int d = 0; d < allTicketsForOneQueue; d++) {
-            for (int j = 0; j < expectedDays.length; j++) {
-                if (expectedDays[j] == d) {
-                    system.toNextWorkDay();
-                    break;
-                }
+    public static QueueManagementSystem createTicketBetter(String name, int[] days) {
+        QueueManagementSystem systems = new QueueManagementSystem(name);
+        for (int d = 0; d < days.length; d++) {
+            for (int i = 0; i < days[d]; i++) {
+                systems.getNextTicket();
             }
-            system.getNextTicket();
+            if (d != days.length - 1)
+                systems.toNextWorkDay();
         }
+        return systems;
     }
 
     public static void test(QueueManagementSystem[] systems, int[] min, int[] max, double[] average, long[] count, double[] median) {

@@ -61,14 +61,15 @@ public class Event {
         if (that == null) {
             return false;
         }
-        if (this.name == null && that.name == null) {
-            result = true;
-        }
         result = this.day == that.day &&
                 this.year == that.year &&
-                this.month == that.month &&
-                Objects.equals(this.name, that.name);
-        return result;
+                this.month == that.month;
+        boolean resultForName;
+        if (this.name != null && that.name != null) {
+            resultForName = that.name.equals(this.name);
+        } else resultForName = this.name == null && that.name == null;
+
+        return result == resultForName;
     }
 
     /**
