@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TicketTest {
+
     @Test
     public void equals() {
         Ticket even = new Ticket(19, "TT");
@@ -15,9 +16,9 @@ class TicketTest {
 
     @Test
     public void toStringWithObject() {
-        Ticket actual = new Ticket(20,  "DD");
-        String expectedelement =  "Ticket{number="+20+", place='DD'}";
-        Assertions.assertEquals(expectedelement,actual.toString());
+        Ticket actual = new Ticket(20, "DD");
+        String expectedElement = "Ticket{number=" + 20 + ", place='DD'}";
+        Assertions.assertEquals(expectedElement, actual.toString());
     }
 
     @Test
@@ -26,6 +27,4 @@ class TicketTest {
         Ticket event = new Ticket(19, "TT");
         Assertions.assertTrue(event.equals(even));
     }
-
-
 }

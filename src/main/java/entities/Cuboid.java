@@ -21,12 +21,12 @@ public class Cuboid {
         this.c = c;
     }
 
-    public int getB() {
-        return b;
-    }
-
     public int getA() {
         return a;
+    }
+
+    public int getB() {
+        return b;
     }
 
     public int getC() {

@@ -8,7 +8,6 @@ public class Event {
     private int day;
     private String name;
 
-
     public Event(int year, int month, int day, String name) {
         this.day = day;
         this.year = year;
@@ -40,7 +39,6 @@ public class Event {
      *
      * @return string
      */
-
     public String toString() {
         return "Event{year=" + getYear() + ", month=" + getMonth() + ", day=" + getDay() + ", name=" + "'" + getName() + "'" + "}";
     }
@@ -61,15 +59,9 @@ public class Event {
         if (that == null) {
             return false;
         }
-        result = this.day == that.day &&
-                this.year == that.year &&
-                this.month == that.month;
-        boolean resultForName;
-        if (this.name != null && that.name != null) {
-            resultForName = that.name.equals(this.name);
-        } else resultForName = this.name == null && that.name == null;
-
-        return result == resultForName;
+        result = this.year == that.year && this.month == that.month && that.day == this.day && that.name == null && this.name == null || this.year == that.year && this.month == that.month && that.day == this.day &&
+                that.name.equals(this.name);
+        return result;
     }
 
     /**
@@ -96,7 +88,6 @@ public class Event {
         } else {
             number = -1;
         }
-
         return number;
     }
 }

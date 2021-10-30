@@ -143,9 +143,4 @@ class ArrayListTest {
             arrayList.add(j);
         }
     }
-
-
-
-
-
 }

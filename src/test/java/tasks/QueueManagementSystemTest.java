@@ -11,11 +11,7 @@ class QueueManagementSystemTest {
     @Test
     public void QueueManagementSystem() {
         QueueManagementSystem my = new QueueManagementSystem("WWW");
-
-        Assertions.assertEquals(0,my.getTotalTickets());
-
-
-
+        Assertions.assertEquals(0, my.getTotalTickets());
     }
 
     @Test
@@ -31,22 +27,20 @@ class QueueManagementSystemTest {
     }
 
     @Test
-    public void getVisitsByDay(){
+    public void getVisitsByDay() {
         QueueManagementSystem system = new QueueManagementSystem("Bank");
         system.getNextTicket();
         system.getNextTicket();
         system.toNextWorkDay();
         system.getNextTicket();
         system.toNextWorkDay();
-
-        Assertions.assertEquals(3,system.getTotalTickets());
-        Assertions.assertEquals(2,system.getVisitsByDay().get(0));
-        Assertions.assertEquals(1,system.getVisitsByDay().get(1));
-        Assertions.assertEquals(0,system.getVisitsByDay().get(2));
-
-        Assertions.assertEquals(3,system.getVisitsByDay().size());
-
+        Assertions.assertEquals(3, system.getTotalTickets());
+        Assertions.assertEquals(2, system.getVisitsByDay().get(0));
+        Assertions.assertEquals(1, system.getVisitsByDay().get(1));
+        Assertions.assertEquals(0, system.getVisitsByDay().get(2));
+        Assertions.assertEquals(3, system.getVisitsByDay().size());
     }
+
     @Test
     public void getVisitsByDay1() {
         QueueManagementSystem system = new QueueManagementSystem("Bank");
@@ -54,12 +48,10 @@ class QueueManagementSystemTest {
         system.getNextTicket();
         system.toNextWorkDay();
         system.getNextTicket();
-        Assertions.assertEquals(3,system.getTotalTickets());
-        Assertions.assertEquals(2,system.getVisitsByDay().get(0));
-        Assertions.assertEquals(1,system.getVisitsByDay().get(1));
-
-
-        Assertions.assertEquals(2,system.getVisitsByDay().size());
+        Assertions.assertEquals(3, system.getTotalTickets());
+        Assertions.assertEquals(2, system.getVisitsByDay().get(0));
+        Assertions.assertEquals(1, system.getVisitsByDay().get(1));
+        Assertions.assertEquals(2, system.getVisitsByDay().size());
     }
 
 }

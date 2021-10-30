@@ -1,6 +1,7 @@
 package tasks;
 
 public class Task432 {
+
     /**
      * Find prime divisors in ascending .
      *

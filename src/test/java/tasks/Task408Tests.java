@@ -29,7 +29,6 @@ public class Task408Tests {
         checkingASortedArrayLinks(actual, expectedElement);
     }
 
-
     @Test
     public void sortElementsOfArrayTwoNameSame() {
         Event[] actual = new Event[]{

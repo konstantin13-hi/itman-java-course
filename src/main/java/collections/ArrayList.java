@@ -54,7 +54,6 @@ public class ArrayList {
      * @param elements the first term
      * @return new arraylist
      */
-
     public static ArrayList of(int... elements) {
         ArrayList arrayList = new ArrayList(elements.length);
         for (int element : elements) {
@@ -72,11 +71,11 @@ public class ArrayList {
      * @param element the term
      */
     public void add(int element) { //метод add 10 в 9 раз выполняется/ в иф попадаем 30 раз и всего операций происходит 2 *10 в 9 /в среднем один вызов метода выполняется 2 раза
-        if (logicalSize ==elements.length) {
+        if (logicalSize == elements.length) {
             int capacity = elements.length * 2;
-            int[] secondarray = new int[capacity];
-            System.arraycopy(elements, 0, secondarray, 0, logicalSize);
-            elements = secondarray;
+            int[] secondArray = new int[capacity];
+            System.arraycopy(elements, 0, secondArray, 0, logicalSize);
+            elements = secondArray;
         }
         elements[logicalSize] = element;
         logicalSize++;
@@ -130,9 +129,9 @@ public class ArrayList {
      * @param index the first term
      * @return new array without one element
      */
-    public int remove(int index) { // 1 2 3 4 5
+    public int remove(int index) {
         int remove = elements[index];
-        for (int i = index+1; i < elements.length; i++) {
+        for (int i = index + 1; i < elements.length; i++) {
             elements[i - 1] = elements[i];
         }
         logicalSize--;

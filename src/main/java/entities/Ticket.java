@@ -53,8 +53,6 @@ public class Ticket {
                 Objects.equals(place, that.place);
         return result;
     }
-
-
 }
 
 

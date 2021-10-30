@@ -124,8 +124,8 @@ public class MyString {
      */
     public static MyString plus(MyString a, MyString b) {
         char[] twoChars = new char[a.length() + b.length()];/// 1 2 3     4 5 6
-        System.arraycopy(a.chars,0,twoChars,0,a.chars.length);
-        System.arraycopy(b.chars,0,twoChars,a.chars.length,b.chars.length);
+        System.arraycopy(a.chars, 0, twoChars, 0, a.chars.length);
+        System.arraycopy(b.chars, 0, twoChars, a.chars.length, b.chars.length);
         return new MyString(twoChars);
     }
 
@@ -142,10 +142,7 @@ public class MyString {
      * @return result of two chars
      */
     public MyString plus(MyString that) {
-        char[] b = new char[that.chars.length];
-        System.arraycopy(that.chars, 0, b, 0, that.chars.length);
-        MyString myString = new MyString(b);
-        return MyString.plus(this, myString);
+        return MyString.plus(this, that);
     }
 
     /**
@@ -172,5 +169,4 @@ public class MyString {
         }
         return new MyString(newChar);
     }
-
 }

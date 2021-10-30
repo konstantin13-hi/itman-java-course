@@ -70,4 +70,18 @@ class EventTest {
         Event event = new Event(2020, 2, 2, null);
         Assertions.assertFalse(event.equals(even));
     }
+
+    @Test
+    public void equalsWithSameNamesButDifferentData() {
+        Event even = new Event(2021, 10, 10, "A");
+        Event event = new Event(2021, 2, 2, "B");
+        Assertions.assertFalse(event.equals(even));
+    }
+
+    @Test
+    public void equalsWithSameData() {
+        Event even = new Event(2021, 10, 10, "AA");
+        Event event = new Event(2021, 10, 10, new String("AA"));
+        Assertions.assertTrue(event.equals(even));
+    }
 }

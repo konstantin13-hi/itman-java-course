@@ -35,7 +35,7 @@ public class QueueManagementSystem {
      */
     public Ticket getNextTicket() {
         currentNumberOfTicket++;
-        arrayList.set(arrayList.size()-1, currentNumberOfTicket -numberOfTicketsTheLastDays);
+        arrayList.set(arrayList.size() - 1, currentNumberOfTicket - numberOfTicketsTheLastDays);
         return new Ticket(currentNumberOfTicket - numberOfTicketsTheLastDays, this.place);
     }
 

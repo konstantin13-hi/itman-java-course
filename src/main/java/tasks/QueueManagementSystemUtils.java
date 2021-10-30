@@ -85,7 +85,7 @@ public class QueueManagementSystemUtils {
      * @param
      * @return
      */
-    private static int[] calcLevel(ArrayList[]arrayLists) {
+    private static int[] calcLevel(ArrayList[] arrayLists) {
         int[] arrayDays = new int[sizeForLength(arrayLists)];
         for (int j = 0; j < arrayLists.length; j++) {
             for (int i = 0; i < arrayDays.length; i++) {
@@ -108,7 +108,7 @@ public class QueueManagementSystemUtils {
      *
      * @return
      */
-    private static int[] calcTicketsForDifferentDays(ArrayList[]arrayLists) {
+    private static int[] calcTicketsForDifferentDays(ArrayList[] arrayLists) {
         int[] arrayDaysWithTickets = new int[sizeForLength(arrayLists)];
         for (int j = 0; j < arrayLists.length; j++) {
             for (int i = 0; i < arrayDaysWithTickets.length; i++) {
@@ -126,7 +126,7 @@ public class QueueManagementSystemUtils {
      * m=amount of most business days
      *
      * @cpu 0(n)
-     * @ram 0(m)
+     * @ram 0(1)
      *
      * @param arrayLists
      * @return
@@ -168,7 +168,7 @@ public class QueueManagementSystemUtils {
      * @return
      */
 
-    private static int[] getMin(ArrayList[]arrayLists) {
+    private static int[] getMin(ArrayList[] arrayLists) {
         int[] arrayDaysMin = new int[sizeForLength(arrayLists)];
         for (int j = 0; j < arrayLists.length; j++) {
             for (int i = 0; i < arrayDaysMin.length; i++) {
@@ -263,7 +263,7 @@ public class QueueManagementSystemUtils {
      * Calculate statistic days
      *
      * @cpu 0(n*m+(n*m^2)=n*m^2
-     * @ram 0(n+m)
+     * @ram 0(n*m)
      *
      * @param systems the first term
      * @return array of statistics all days

@@ -29,7 +29,6 @@ public class StringBuilderBenchmark {
      * @param n the first term
      * @return
      */
-
     public static String concatenateUsingStringBuilder(int n) {
         StringBuilder s = new StringBuilder(1);
         for (int i = 0; i < n; i++) { //
@@ -39,7 +38,6 @@ public class StringBuilderBenchmark {
     }
     //35 sec 954ms concatenateUsingOperator
     //69ms
-
     public static void main(String[] args) {
         int number = 500000;
         long time = System.currentTimeMillis();

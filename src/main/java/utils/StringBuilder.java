@@ -58,7 +58,7 @@ public class StringBuilder {
      * @return concatenation of two strings
      */
     public StringBuilder append(boolean x) {
-        String str ;
+        String str;
         if (!x) {
             str = "false";
         } else {
@@ -130,8 +130,7 @@ public class StringBuilder {
      * @return new string
      */
     public String toString() {
-
-        return new String(chars,0,logicalSize);
+        return new String(chars, 0, logicalSize);
     }
 
     private void addNewElementInChar(char[] y) {
