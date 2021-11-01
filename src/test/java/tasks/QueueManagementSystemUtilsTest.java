@@ -139,8 +139,9 @@ class QueueManagementSystemUtilsTest {
             for (int i = 0; i < days[d]; i++) {
                 systems.getNextTicket();
             }
-            if (d != days.length - 1)
+            if (d != days.length - 1) {
                 systems.toNextWorkDay();
+            }
         }
         return systems;
     }
