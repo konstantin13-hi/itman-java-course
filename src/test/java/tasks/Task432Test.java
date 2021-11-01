@@ -10,7 +10,6 @@ public class Task432Test {
         long x = 360;
         long[] expected = new long[]{2, 3, 5};
         Assertions.assertArrayEquals(expected, Task432.calcPrimeNumbers(x));
-
     }
 
     @Test
@@ -18,7 +17,6 @@ public class Task432Test {
         long x = 999999797;
         long[] expected = new long[]{999999797};
         Assertions.assertArrayEquals(expected, Task432.calcPrimeNumbers(x));
-
     }
 
     @Test
@@ -54,6 +52,5 @@ public class Task432Test {
         long x = (long) 1e16;
         long[] expected = new long[]{2, 5};
         Assertions.assertArrayEquals(expected, Task432.calcPrimeNumbers(x));
-
     }
 }

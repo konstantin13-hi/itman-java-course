@@ -29,7 +29,6 @@ public class Task408Tests {
         checkingASortedArrayLinks(actual, expectedElement);
     }
 
-
     @Test
     public void sortElementsOfArrayTwoNameSame() {
         Event[] actual = new Event[]{
@@ -61,10 +60,7 @@ public class Task408Tests {
 
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {
-            Assertions.assertEquals(expected[i].day, actual[i].day);
-            Assertions.assertEquals(expected[i].month, actual[i].month);
-            Assertions.assertEquals(expected[i].year, actual[i].year);
-            Assertions.assertEquals(expected[i].name, actual[i].name);
+            Assertions.assertTrue(actual[i].equals(expected[i]));
         }
     }
 

@@ -1,6 +1,7 @@
 package tasks;
 
 public class Task406 {
+
     /**
      * Find second max element of array .
      *
@@ -28,6 +29,4 @@ public class Task406 {
         }
         return max1;
     }
-
-
 }
