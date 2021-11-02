@@ -1,8 +1,8 @@
-package tasks;
+package utils;
 
 import entities.Event;
 
-public class Task408 {
+public class ArrayUtils {
 
     /**
      * Sort elements of array .
@@ -12,7 +12,7 @@ public class Task408 {
      * @ram O(1)
      * @return
      */
-    public static void sort(Event[] events) {
+    public static void bubbleSort(Event[] events) {
         for (int i = 0; i < events.length; i++) {
             for (int j = 1; j < events.length; j++) {
                 if ((events[j - 1].compareTo(events[j]) > 0)) {

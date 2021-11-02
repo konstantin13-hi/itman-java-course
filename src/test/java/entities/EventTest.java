@@ -2,10 +2,6 @@ package entities;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import tasks.Task408;
-import tasks.Task439;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class EventTest {
 
