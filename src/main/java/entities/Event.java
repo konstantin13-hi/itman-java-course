@@ -58,8 +58,8 @@ public class Event {
         if (that == null) {
             return false;
         }
-        return (this.name == null && that.name == null || that.name.equals(this.name)) &&
-                (this.year == that.year && this.month == that.month && that.day == this.day);
+        return ( Objects.equals(this.name, that.name) &&
+                (this.year == that.year && this.month == that.month && that.day == this.day));
     }
 
     /**
