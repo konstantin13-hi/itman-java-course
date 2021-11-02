@@ -58,6 +58,16 @@ public class ArrayUtilsTests {
 
     }
 
+
+    @Test
+    public void sortElementsOfArrayInAscending() {
+        int[] elements = new int[]{0, 2, 12, -3, 55, 2, 0};
+        int[] expected = new int[]{-3, 0, 0, 2, 2, 12, 55};
+        ArrayUtils.bubbleSort(elements);
+        Assertions.assertArrayEquals(expected,elements);
+
+    }
+
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {
             Assertions.assertTrue(actual[i].equals(expected[i]));

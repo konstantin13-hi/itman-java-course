@@ -83,8 +83,8 @@ class EventTest {
 
     @Test
     public void equalsWithSame() {
-        Event even = new Event(2023, 2, 28, "AA");
-        Event event = new Event(2023, 2, 28, null);
+        Event event = new Event(2023, 2, 28, "AA");
+        Event even = new Event(2023, 2, 28, null);
         Assertions.assertFalse(event.equals(even));
     }
 
