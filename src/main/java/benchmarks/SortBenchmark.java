@@ -7,10 +7,9 @@ import java.util.Random;
 
 public class SortBenchmark {
     public static int[] randomArray(int n, int min, int max) {
-        Random random = new Random();
         int[] randomArray = new int[n];
         for (int i = 0; i < n; i++) {
-            randomArray[i] = random.nextInt() *(Math.abs(min)+Math.abs(max))+min;
+            randomArray[i] = (int) (Math.random() *(Math.abs(min)+Math.abs(max)))+min;
 
         }
         return randomArray;
@@ -30,7 +29,7 @@ public class SortBenchmark {
 
         }
         for (int i = 0; i < n; i++) {
-            int year = random.nextInt()*(Math.abs(min)+Math.abs(max))+min;
+            int year = (int) (Math.random() *(Math.abs(min)+Math.abs(max)))+min;
             int month = random.nextInt(11 + 1) + 1;
             int day = random.nextInt(30 + 1) + 1;
             String name = strings[i];
