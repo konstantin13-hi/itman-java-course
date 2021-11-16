@@ -26,10 +26,12 @@ public class SortBenchmark {
         int diff = max - min;
         String[] strings = new String[n];
         for (int i = 0; i < n; i++) {
-            int length = random.nextInt(21);
-            for (int j = 0; j <= length; j++) {
-                strings[i] += (char) (Math.random() * 26 + 97);
-            }
+            long number= random.nextLong() * 20;
+            strings[i]=Long.toString(number);
+        //    int length = random.nextInt(21);
+         ///   for (int j = 0; j <= length; j++) {
+         //       strings[i] += (char) (Math.random() * 26 + 97);
+         //   }
 
         }
         for (int i = 0; i < n; i++) {
