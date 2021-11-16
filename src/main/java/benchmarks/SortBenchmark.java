@@ -7,9 +7,12 @@ import java.util.Random;
 
 public class SortBenchmark {
     public static int[] randomArray(int n, int min, int max) {
+        int diff = max - min;
+        Random random = new Random();
         int[] randomArray = new int[n];
         for (int i = 0; i < n; i++) {
-            randomArray[i] = (int) (Math.random() *(Math.abs(min)+Math.abs(max)))+min;
+            randomArray[i] =
+                    random.nextInt(diff + 1) + min;
 
         }
         return randomArray;
@@ -20,6 +23,7 @@ public class SortBenchmark {
     public static Event[] randomEvents(int n, int min, int max) {
         Event[] events = new Event[n];
         Random random = new Random();
+        int diff = max - min;
         String[] strings = new String[n];
         for (int i = 0; i < n; i++) {
             int length = random.nextInt(21);
@@ -29,7 +33,7 @@ public class SortBenchmark {
 
         }
         for (int i = 0; i < n; i++) {
-            int year = (int) (Math.random() *(Math.abs(min)+Math.abs(max)))+min;
+            int year = random.nextInt(diff + 1) + min;
             int month = random.nextInt(11+1 + 1) + 1;
             int day = random.nextInt(30+1 + 1) + 1;
             String name = strings[i];
