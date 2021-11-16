@@ -20,4 +20,11 @@ class CountingSortTaskTest {
         Assertions.assertArrayEquals(expected, CountingSortTask.count(actual));
     }
 
+    @Test
+    public void restore() {
+        int[] actual = new int[]{0, 2, 1, 1, 0, 1};
+        int[] expected = new int[]{1, 1, 2, 3, 5};
+        Assertions.assertArrayEquals(expected, CountingSortTask.restore(actual));
+    }
+
 }
