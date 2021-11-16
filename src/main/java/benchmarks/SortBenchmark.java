@@ -34,8 +34,8 @@ public class SortBenchmark {
         }
         for (int i = 0; i < n; i++) {
             int year = random.nextInt(diff ) + min;
-            int month = random.nextInt(11+1 + 1) + 1;
-            int day = random.nextInt(30+1 + 1) + 1;
+            int month = random.nextInt(11 + 1) + 1;
+            int day = random.nextInt(30 + 1) + 1;
             String name = strings[i];
             events[i] = new Event(year, month, day, name);
 
