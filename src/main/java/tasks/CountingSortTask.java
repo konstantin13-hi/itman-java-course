@@ -44,4 +44,12 @@ public class CountingSortTask {
         return restore;
 
     }
+    public static void sort(int[] array){
+
+        int[]sort= restore(count(array));
+         for (int i=0;i<array.length;i++){
+             array[i]=sort[i];
+         }
+
+    }
 }
