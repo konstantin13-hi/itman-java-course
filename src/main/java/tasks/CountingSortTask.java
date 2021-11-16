@@ -26,7 +26,12 @@ public class CountingSortTask {
     }
 
     public static int[] restore(int[] array) {
-        int[] restore = new int[array.length - 1];
+        int max=0;
+        for (int i=0;i<array.length;i++){
+            max+=array[i];
+
+        }
+        int[] restore = new int[max];
         int length = 0;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i]; j++) {
