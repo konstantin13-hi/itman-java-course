@@ -11,8 +11,8 @@ public class CountingSortTask {
        }
        int []count =new int[max+1];
        for (int i=0;i<count.length;i++){
-           for (int j=1;j<count.length;j++){
-               if (array[j-1]==i){
+           for (int j=0;j<array.length;j++){
+               if (array[j]==i){
                    count[i]++;
                }
 
