@@ -2,6 +2,9 @@ package tasks;
 
 public class CountingSortTask {
    public static int[]  count(int[] array){
+       if(array.length==0){
+           return array;
+       }
        int max =0;
        for (int i=0;i<array.length;i++){
            if (array[i]>max){
