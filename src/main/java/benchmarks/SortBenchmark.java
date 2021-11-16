@@ -12,7 +12,7 @@ public class SortBenchmark {
         int[] randomArray = new int[n];
         for (int i = 0; i < n; i++) {
             randomArray[i] =
-                    random.nextInt(diff + 1) + min;
+                    random.nextInt(diff ) + min;
 
         }
         return randomArray;
@@ -33,7 +33,7 @@ public class SortBenchmark {
 
         }
         for (int i = 0; i < n; i++) {
-            int year = random.nextInt(diff + 1) + min;
+            int year = random.nextInt(diff ) + min;
             int month = random.nextInt(11+1 + 1) + 1;
             int day = random.nextInt(30+1 + 1) + 1;
             String name = strings[i];
