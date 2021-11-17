@@ -47,4 +47,23 @@ public class ArrayUtils {
         }
 
     }
+    public static void countingSort(int[] array) {
+        int max = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (max < array[i]) {
+                max = array[i];
+            }
+        }
+
+        int[] cnt = new int[max + 1];
+        for (int i = 0; i < array.length; i++) {
+            cnt[array[i]]++;
+        }
+
+        for (int i = 0, j = 0; i < cnt.length; i++) {
+            for (int k = cnt[i]; k > 0; k--) {
+                array[j++] = i;
+            }
+        }
+    }
 }
