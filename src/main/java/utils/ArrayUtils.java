@@ -54,16 +54,29 @@ public class ArrayUtils {
                 max = array[i];
             }
         }
+        int first =max/2;
+        int second = max -first+1;
 
-        int[] cnt = new int[max + 1];
+        int [] cnt = new int[first];
+        int [] cnt2 = new int[second];
+
         for (int i = 0; i < array.length; i++) {
             cnt[array[i]]++;
         }
+        int count=0;
 
         for (int i = 0, j = 0; i < cnt.length; i++) {
             for (int k = cnt[i]; k > 0; k--) {
                 array[j++] = i;
+                count++;
             }
+
+        }
+        for (int i = 0, j = count; i < cnt2.length; i++) {
+            for (int k = cnt2[i]; k > 0; k--) {
+                array[j++] = i;
+            }
+
         }
     }
 }
