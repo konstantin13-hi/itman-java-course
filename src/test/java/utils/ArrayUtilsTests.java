@@ -85,6 +85,15 @@ public class ArrayUtilsTests {
 
     }
 
+    @Test
+    public void countingSortThird(){
+        int[] elements = new int[]{-2146483649, -2147483648};
+        ArrayUtils.countingSort(elements);
+        int [] expected = new int[]{-2147483648,-2146483649};
+        Assertions.assertArrayEquals(expected,elements);
+
+    }
+
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {
             Assertions.assertTrue(actual[i].equals(expected[i]));

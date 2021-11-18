@@ -49,7 +49,7 @@ public class ArrayUtils {
 
     public static void countingSort(int[] array) {
         if (array.length!=0){
-        int max = 0;
+        int max = Integer.MIN_VALUE;
         int min =Integer.MAX_VALUE;
         for (int i = 0; i < array.length; i++) {
             if (max < array[i]) {
