@@ -11,6 +11,7 @@ public class CountingSortTask {
                 max = array[i];
             }
 
+
         }
         int[] count = new int[max + 1];
         for (int i = 0; i < count.length; i++) {
@@ -26,9 +27,9 @@ public class CountingSortTask {
     }
 
     public static int[] restore(int[] array) {
-        int max=0;
-        for (int i=0;i<array.length;i++){
-            max+=array[i];
+        int max = 0;
+        for (int i = 0; i < array.length; i++) {
+            max += array[i];
 
         }
         int[] restore = new int[max];
@@ -44,12 +45,13 @@ public class CountingSortTask {
         return restore;
 
     }
-    public static void sort(int[] array){
 
-        int[]sort= restore(count(array));
-         for (int i=0;i<array.length;i++){
-             array[i]=sort[i];
-         }
+    public static void sort(int[] array) {
+
+        int[] sort = restore(count(array));
+        for (int i = 0; i < array.length; i++) {
+            array[i] = sort[i];
+        }
 
     }
 }

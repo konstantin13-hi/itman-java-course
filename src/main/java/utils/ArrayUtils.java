@@ -8,9 +8,9 @@ public class ArrayUtils {
      * Sort elements of array .
      *
      * @param events the first term.
+     * @return
      * @cpu O(n ^ 2)
      * @ram O(1)
-     * @return
      */
     public static void bubbleSort(Event[] events) {
         for (int i = 0; i < events.length; i++) {
@@ -26,13 +26,12 @@ public class ArrayUtils {
 
     /**
      * Sort elements in ascending order
-     *
+     * <p>
      * n=amount of elements
      *
-     * @cpu 0(n^2)
-     * @ram 0(1)
-     *
      * @param array the first term
+     * @cpu 0(n ^ 2)
+     * @ram 0(1)
      */
 
     public static void bubbleSort(int[] array) {
@@ -47,36 +46,43 @@ public class ArrayUtils {
         }
 
     }
+
     public static void countingSort(int[] array) {
         int max = 0;
+        int min =Integer.MAX_VALUE;
         for (int i = 0; i < array.length; i++) {
             if (max < array[i]) {
                 max = array[i];
             }
+            if (min > array[i]) {
+                min = array[i];}
         }
-        int first =max/2;
-        int second = max -first+1;
+        int dif =max-min;
+        //  3 25
+        //
+        // 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
 
-        int [] cnt = new int[first];
-        int [] cnt2 = new int[second];
 
+
+        int [] cnt =new int[dif+1];
         for (int i = 0; i < array.length; i++) {
-            cnt[array[i]]++;
+            cnt[array[i]-min]++;
         }
-        int count=0;
 
         for (int i = 0, j = 0; i < cnt.length; i++) {
             for (int k = cnt[i]; k > 0; k--) {
-                array[j++] = i;
-                count++;
+                array[j++] = i+min;
             }
-
-        }
-        for (int i = 0, j = count; i < cnt2.length; i++) {
-            for (int k = cnt2[i]; k > 0; k--) {
-                array[j++] = i;
-            }
-
         }
     }
-}
+    }
+
+
+
+
+
+
+
+
+
+
