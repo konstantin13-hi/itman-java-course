@@ -78,7 +78,22 @@ public class SortBenchmark {
         long time8 = System.currentTimeMillis();
         ArrayUtils.bubbleSort(bso4);
         System.out.println(System.currentTimeMillis() - time8);
-
+        int []csp1 =randomArray(10_000, -10_000, 10_000);
+        int []csp2 =randomArray(10_000, -1_000_000_000, 1_000_000_000);
+        int []csp3 =randomArray(100_000, -10_000, 10_000);
+        int []csp4 =randomArray(100_000, -1_000_000_000, 1_000_000_000);
+        long time9 = System.currentTimeMillis();
+        ArrayUtils.countingSort(csp1);
+        System.out.println(System.currentTimeMillis() - time9);
+        long time10 = System.currentTimeMillis();
+        ArrayUtils.countingSort(csp2);
+        System.out.println(System.currentTimeMillis() - time10);
+        long time11 = System.currentTimeMillis();
+        ArrayUtils.countingSort(csp3);
+        System.out.println(System.currentTimeMillis() - time11);
+        long time12 = System.currentTimeMillis();
+        ArrayUtils.countingSort(csp4);
+        System.out.println(System.currentTimeMillis() - time12);
 
     }
 
