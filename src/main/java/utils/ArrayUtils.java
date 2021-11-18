@@ -48,6 +48,7 @@ public class ArrayUtils {
     }
 
     public static void countingSort(int[] array) {
+        if (array.length!=0){
         int max = 0;
         int min =Integer.MAX_VALUE;
         for (int i = 0; i < array.length; i++) {
@@ -74,7 +75,7 @@ public class ArrayUtils {
                 array[j++] = i+min;
             }
         }
-    }
+    }}
     }
 
 
