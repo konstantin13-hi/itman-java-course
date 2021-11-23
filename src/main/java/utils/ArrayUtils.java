@@ -100,22 +100,21 @@ public class ArrayUtils {
             // 1, 2, 5, -10, 3, 2, 1, 4
             // 1, 2, 5, -10, 3, 4
             int[] newArray = new int[sum];
-            for (int k = 0,l = 0; k < array.length; k++) {
-                if (l==newArray.length){
-                    break;
-                }
-                int count =0;
-                for (int i = 0; i < newArray.length; i++) {
-                    if (array[k] != newArray[i]) {
-
-                        count++;
+            for (int k = 0,l = 0,b=2; k < array.length; k++) {
+                if (k==0){
+               newArray[l++]=array[k];}
+                if (k>=1){
+                    int count =0;
+                    for (int i=0;i<l;i++){
+                        if (array[k]!=newArray[i]){
+                            count++;
+                        }
                     }
-                    if (count==newArray.length){
-                    newArray[l++] = array[k];
-                   }
+                    if(count==l){
+                        newArray[l++]=array[k];
+
+                    }
                 }
-
-
 
             }
             return newArray;

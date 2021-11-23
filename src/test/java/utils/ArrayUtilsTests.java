@@ -106,6 +106,13 @@ public class ArrayUtilsTests {
         Assertions.assertArrayEquals(expected,ArrayUtils.distinct(element));
     }
 
+    @Test
+    public void distinct2(){
+        int [] element = new int[]{2, 2, 1, 0, 10, 30, 15, 0, 2, 10};
+        int [] expected = new int[]{2, 1, 0, 10,30,15};
+        Assertions.assertArrayEquals(expected,ArrayUtils.distinct(element));
+    }
+
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {
             Assertions.assertTrue(actual[i].equals(expected[i]));
