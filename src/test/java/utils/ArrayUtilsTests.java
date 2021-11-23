@@ -93,6 +93,18 @@ public class ArrayUtilsTests {
         Assertions.assertArrayEquals(expected,elements);
 
     }
+    @Test
+    public void distinct(){
+        int [] element = new int[]{1, 2, 5, -10, 3, 2, 1, 4};
+        int [] expected = new int[]{1, 2, 5, -10, 3, 4};
+        Assertions.assertArrayEquals(expected,ArrayUtils.distinct(element));
+    }
+    @Test
+    public void distinct1(){
+        int [] element = new int[]{ 5, -10, 5, 1, 4,1 ,1 ,1,1,5};
+        int [] expected = new int[]{5, -10, 1, 4};
+        Assertions.assertArrayEquals(expected,ArrayUtils.distinct(element));
+    }
 
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {
