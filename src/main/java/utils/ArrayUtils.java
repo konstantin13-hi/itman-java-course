@@ -96,22 +96,21 @@ public class ArrayUtils {
                     sum++;
                 }
             }
-            // 1 0 0 0 0 0 0 0 0 0 2 2 1 1 1 0
-            // 1, 2, 5, -10, 3, 2, 1, 4
-            // 1, 2, 5, -10, 3, 4
+
             int[] newArray = new int[sum];
-            for (int k = 0,l = 0,b=2; k < array.length; k++) {
-                if (k==0){
-               newArray[l++]=array[k];}
-                if (k>=1){
-                    int count =0;
-                    for (int i=0;i<l;i++){
-                        if (array[k]!=newArray[i]){
+            for (int k = 0, l = 0, b = 2; k < array.length; k++) {
+                if (k == 0) {
+                    newArray[l++] = array[k];
+                }
+                if (k >= 1) {
+                    int count = 0;
+                    for (int i = 0; i < l; i++) {
+                        if (array[k] != newArray[i]) {
                             count++;
                         }
                     }
-                    if(count==l){
-                        newArray[l++]=array[k];
+                    if (count == l) {
+                        newArray[l++] = array[k];
 
                     }
                 }
@@ -120,6 +119,45 @@ public class ArrayUtils {
             return newArray;
         }
         return array;
+
+    }
+
+    public static int mostFrequent(int[] array) {
+        if (array.length != 0) {
+            int max = Integer.MIN_VALUE;
+            int min = Integer.MAX_VALUE;
+            for (int i = 0; i < array.length; i++) {
+                if (max < array[i]) {
+                    max = array[i];
+                }
+                if (min > array[i]) {
+                    min = array[i];
+                }
+            }
+            //
+            int dif = max - min;
+            int[] cnt = new int[dif + 1];
+            for (int i = 0; i < array.length; i++) {
+                cnt[array[i] - min]++;
+            }
+            int secondMax=Integer.MIN_VALUE;
+            int index = 0;
+            for (int i = cnt.length-1; 0 <= i; i--) {
+                if (secondMax <= cnt[i]) {
+                    secondMax = cnt[i];
+                    index = i;
+                }
+                // 1, 2, 5, -10, 3, 2, 1, 4
+                //-10 9 8 7 6 5 4 3 2 1 0 1 2 3 4 5
+                // 1  0 0 0 0 0 0 0 0 0 0 2 2 0 1 1
+
+            }
+            int result =index+min;
+           return result;
+
+
+        }
+        return array.length;
 
     }
 }

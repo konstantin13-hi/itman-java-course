@@ -113,6 +113,20 @@ public class ArrayUtilsTests {
         Assertions.assertArrayEquals(expected,ArrayUtils.distinct(element));
     }
 
+    @Test
+    public void mostFrequent(){
+        int [] element = new int[]{1, 2, 5, -10, 3, 2, 1, 4};
+        int expected = 1;
+        Assertions.assertEquals(expected,ArrayUtils.mostFrequent(element));
+    }
+    @Test
+    public void mostFrequent2(){
+        int [] element = new int[]{1 ,2 ,5, 1 ,2, 2 ,3 ,1};
+        int expected = 1;
+        Assertions.assertEquals(expected,ArrayUtils.mostFrequent(element));
+    }
+
+
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {
             Assertions.assertTrue(actual[i].equals(expected[i]));
