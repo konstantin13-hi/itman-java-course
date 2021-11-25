@@ -140,9 +140,9 @@ public class ArrayUtils {
             for (int i = 0; i < array.length; i++) {
                 cnt[array[i] - min]++;
             }
-            int secondMax=Integer.MIN_VALUE;
+            int secondMax = Integer.MIN_VALUE;
             int index = 0;
-            for (int i = cnt.length-1; 0 <= i; i--) {
+            for (int i = cnt.length - 1; 0 <= i; i--) {
                 if (secondMax <= cnt[i]) {
                     secondMax = cnt[i];
                     index = i;
@@ -152,12 +152,79 @@ public class ArrayUtils {
                 // 1  0 0 0 0 0 0 0 0 0 0 2 2 0 1 1
 
             }
-            int result =index+min;
-           return result;
+            return index + min;
 
 
         }
         return array.length;
+
+    }
+
+    public static int countEquals(int[] a, int[] b) {
+        if (a.length != 0 && b.length != 0) {
+            int max = Integer.MIN_VALUE;
+            int maxSecond = Integer.MIN_VALUE;
+            int min = Integer.MAX_VALUE;
+            int minSecond = Integer.MAX_VALUE;
+            for (int i = 0; i < a.length; i++) {
+                if (max < a[i]) {
+                    max = a[i];
+                }
+                if (min > a[i]) {
+                    min = a[i];
+                }
+            }
+            for (int i = 0; i < b.length; i++) {
+                if (maxSecond < b[i]) {
+                    maxSecond = b[i];
+                }
+                if (minSecond > b[i]) {
+                    minSecond = b[i];
+                }
+            }
+            int dif =max-min;
+            int difSecond =maxSecond-minSecond;
+            int []cnt = new int[dif+1];
+            int []cntSecond =new int[difSecond+1];
+            for (int i=0;i<a.length;i++){
+                cnt[a[i]-min]++;
+            }
+            for (int i=0;i<b.length;i++){
+                cntSecond[b[i]-minSecond]++;
+            }
+            //1 1 3 2 1
+            //4 2 1 4 1 2
+            //0 3 1
+            //0 2 2 0 2
+            // 3
+            int length;
+            if (cnt.length<cntSecond.length){
+                length=cnt.length;
+            }
+            else {
+                length=cntSecond.length;
+            }
+            int result=0;
+            for (int i=0;i<length;i++){
+                int count;
+                if (cnt[i]<cntSecond[i]){
+                   count =cnt[i];
+                }
+                else {
+                    count=cntSecond[i];
+                }
+                if (cnt[i]>0&&cntSecond[i]>0){
+
+                    result+=count;
+                }
+
+            }
+            return result;
+
+
+
+        }
+        return a.length;
 
     }
 }

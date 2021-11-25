@@ -125,6 +125,20 @@ public class ArrayUtilsTests {
         int expected = 1;
         Assertions.assertEquals(expected,ArrayUtils.mostFrequent(element));
     }
+    @Test
+    public void countEquals(){
+        int [] elements = new int[]{2, 2, 1, 0, 10, 30, 15, 0, 2, 10};
+        int [] elementsSecond = new int[]{2, 1, 0, 10,30,15};
+        int expected =6;
+        Assertions.assertEquals(expected,ArrayUtils.countEquals(elements,elementsSecond));
+    }
+    @Test
+    public void countEquals2(){
+        int [] elements = new int[]{1, 1 ,3 ,2 ,1};
+        int [] elementsSecond = new int[]{4 ,2 ,1 ,4 ,1 ,2};
+        int expected =3;
+        Assertions.assertEquals(expected,ArrayUtils.countEquals(elements,elementsSecond));
+    }
 
 
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
