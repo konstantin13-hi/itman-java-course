@@ -133,6 +133,14 @@ public class ArrayUtilsTests {
         Assertions.assertEquals(expected,ArrayUtils.countEquals(elements,elementsSecond));
     }
     @Test
+    public void countEquals3(){
+        int [] elements = new int[]{-1000000};
+        int [] elementsSecond = new int[]{1000000};
+        int expected =0;
+        Assertions.assertEquals(expected,ArrayUtils.countEquals(elements,elementsSecond));
+    }
+
+    @Test
     public void countEquals2(){
         int [] elements = new int[]{1, 1 ,3 ,2 ,1};
         int [] elementsSecond = new int[]{4 ,2 ,1 ,4 ,1 ,2};

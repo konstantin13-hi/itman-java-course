@@ -192,31 +192,29 @@ public class ArrayUtils {
             for (int i=0;i<b.length;i++){
                 cntSecond[b[i]-minSecond]++;
             }
-            //1 1 3 2 1
+            //1, 2, 5, -10, 3, 2, 1, 4
             //4 2 1 4 1 2
-            //0 3 1
+            // 1  0 0 0 0 0 0 0 0 0 0 2 2 0 1 1
             //0 2 2 0 2
-            // 3
-            int length;
-            if (cnt.length<cntSecond.length){
-                length=cnt.length;
-            }
-            else {
-                length=cntSecond.length;
-            }
+            // 5
             int result=0;
-            for (int i=0;i<length;i++){
-                int count;
-                if (cnt[i]<cntSecond[i]){
-                   count =cnt[i];
-                }
-                else {
-                    count=cntSecond[i];
-                }
-                if (cnt[i]>0&&cntSecond[i]>0){
 
-                    result+=count;
-                }
+
+            for (int i=0;i<cnt.length;i++){
+                int elementFromA =i+min;
+                for (int j=0;j<cntSecond.length;j++){
+                    int elementFromB =j+minSecond;
+                    if (elementFromA==elementFromB){
+                        if (cnt[i]<cntSecond[j]){
+                                result+=cnt[i];
+                        }
+                        else {result+=cntSecond[j];
+                        }
+                    }
+
+
+            }
+
 
             }
             return result;
