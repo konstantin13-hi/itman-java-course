@@ -148,6 +148,14 @@ public class ArrayUtilsTests {
         Assertions.assertEquals(expected,ArrayUtils.countEquals(elements,elementsSecond));
     }
 
+    @Test
+    public void countEquals4(){
+        int [] elements = new int[]{2147483647, 2146483648, 2147483647};
+        int [] elementsSecond = new int[]{-2147483648, 1,2147483647};
+        int expected =1;
+        Assertions.assertEquals(expected,ArrayUtils.countEquals(elements,elementsSecond));
+    }
+
 
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {

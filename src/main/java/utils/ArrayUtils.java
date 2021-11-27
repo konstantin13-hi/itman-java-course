@@ -182,53 +182,37 @@ public class ArrayUtils {
                     minSecond = b[i];
                 }
             }
-            int dif =max-min;
-            int difSecond =maxSecond-minSecond;
-            int []cnt = new int[dif+1];
-            int []cntSecond =new int[difSecond+1];
-            for (int i=0;i<a.length;i++){
-                cnt[a[i]-min]++;
-            }
-            for (int i=0;i<b.length;i++){
-                cntSecond[b[i]-minSecond]++;
-            }
-            //1, 2, 5, -10, 3, 2, 1, 4
-            //4 2 1 4 1 2
-            // 1  0 0 0 0 0 0 0 0 0 0 2 2 0 1 1
-            //0 2 2 0 2
-            // 5
-            int result=0;
 
+            int dif = max - min;
+            int result = 0;
 
+            int[] cnt = new int[dif + 1];
+            int[] cntSecond = new int[dif + 1];
+            for (int i = 0; i < a.length; i++) {
+                cnt[(a[i] - min)]++;
+            }
+            for (int i = 0; i < b.length; i++) {
+                if (b[i] >= min && b[i] <= max) {
+                    cntSecond[(b[i] - min)]++;
+                }
+            }
             for (int i=0;i<cnt.length;i++){
-                int elementFromA =i+min;
-                for (int j=0;j<cntSecond.length;j++){
-                    int elementFromB =j+minSecond;
-                    if (elementFromA==elementFromB){
-                        if (cnt[i]<cntSecond[j]){
-                                result+=cnt[i];
-                        }
-                        else {result+=cntSecond[j];
-                        }
-                    }
-
-
-            }
-
-
+                if (cnt[i]>cntSecond[i]){
+                    result+=cntSecond[i];
+                }
+                else {
+                    result+=cnt[i];
+                }
             }
             return result;
-
-
-
         }
         return a.length;
 
+
     }
+
+
 }
-
-
-
 
 
 
