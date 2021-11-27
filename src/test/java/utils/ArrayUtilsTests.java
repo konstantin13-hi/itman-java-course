@@ -156,6 +156,34 @@ public class ArrayUtilsTests {
         Assertions.assertEquals(expected,ArrayUtils.countEquals(elements,elementsSecond));
     }
 
+    @Test
+    public void countingSortEvents(){
+        Event[] actual = new Event[]{
+                new Event(10, 0, 0, "Day of City in Gomel"),
+                new Event(9, 0, 0, "Day of City in Minsk"),
+                new Event(7, 0, 0, "Day of City in Vitebsk"),
+                new Event(8, 0, 0, "Day of City in Borisow"),
+                new Event(11, 0, 0, "Day of City in Minsk")
+        };
+        Event[] expectedElement = new Event[actual.length];
+        expectedElement[0] = actual[2];
+        expectedElement[1] = actual[3];
+        expectedElement[2] = actual[1];
+        expectedElement[3] = actual[0];
+        expectedElement[4] = actual[4];
+        Event[] expected = new Event[]{
+                new Event(7, 0, 0, "Day of City in Vitebsk"),
+                new Event(8, 0, 0, "Day of City in Borisow"),
+                new Event(9, 0, 0, "Day of City in Minsk"),
+                new Event(10, 0, 0, "Day of City in Gomel"),
+                new Event(11, 0, 0, "Day of City in Minsk")
+        };
+
+        ArrayUtils.countingSort(actual);
+        checkingASortedArrayElements(actual, expected);
+        checkingASortedArrayLinks(actual, expectedElement);
+    }
+
 
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {

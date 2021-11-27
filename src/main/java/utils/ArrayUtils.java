@@ -1,6 +1,7 @@
 package utils;
 
 import entities.Event;
+import collections.ArrayList;
 
 public class ArrayUtils {
 
@@ -196,18 +197,57 @@ public class ArrayUtils {
                     cntSecond[(b[i] - min)]++;
                 }
             }
-            for (int i=0;i<cnt.length;i++){
-                if (cnt[i]>cntSecond[i]){
-                    result+=cntSecond[i];
-                }
-                else {
-                    result+=cnt[i];
+            for (int i = 0; i < cnt.length; i++) {
+                if (cnt[i] > cntSecond[i]) {
+                    result += cntSecond[i];
+                } else {
+                    result += cnt[i];
                 }
             }
             return result;
         }
         return a.length;
 
+
+    }
+
+    public static void countingSort(Event[] events) {
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < events.length; i++) {
+            int days = (events[i].getYear()  + events[i].getMonth() * 31 + events[i].getDay());
+            if (max < days) {
+                max = days;
+            }
+            if (min > days) {
+                min = days;
+            }
+        }
+        int dif = max - min;
+        ArrayList[] arrayLists = new ArrayList[dif + 1];
+        for (int i=0;i<arrayLists.length;i++){
+            arrayLists[i]=new ArrayList();
+        }
+        for (int i = 0; i < events.length; i++) {
+            int days = (events[i].getYear()  + events[i].getMonth() * 31 + events[i].getDay());
+            arrayLists[days - min].add(i);
+
+        }
+        Event []events1 =new Event[events.length];
+        for (int i=0;i<events.length;i++){
+            events1[i]=events[i];
+
+        }
+
+
+        for (int i = 0, index = 0; i < arrayLists.length; i++) {
+            int length = arrayLists[i].size();
+            for (int j = 0; j < length; j++) {
+                events[index]= events1[arrayLists[i].get(j)];
+                index++;
+
+            }
+        }
 
     }
 
