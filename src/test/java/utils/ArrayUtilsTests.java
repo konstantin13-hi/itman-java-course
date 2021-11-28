@@ -184,6 +184,34 @@ public class ArrayUtilsTests {
         checkingASortedArrayLinks(actual, expectedElement);
     }
 
+    @Test
+    public void countingSortEvents2(){
+        Event[] actual = new Event[]{
+               new Event(2020, 10, 25, "A"),
+               new Event(2020, 5, 20, "B"),
+              new  Event(2020, 7, 15, "C"),
+               new Event(2021, 1, 1, "D"),
+               new Event(2020, 7, 15, "E")
+        };
+        Event[] expectedElement = new Event[actual.length];
+        expectedElement[0] = actual[1];
+        expectedElement[1] = actual[2];
+        expectedElement[2] = actual[4];
+        expectedElement[3] = actual[0];
+        expectedElement[4] = actual[3];
+        Event[] expected = new Event[]{
+                new Event(2020, 5, 20, "B"),
+                new Event(2020, 7, 15, "C"),
+                new Event(2020, 7, 15, "E"),
+                new Event(2020, 10, 25, "A"),
+                new Event(2021, 1, 1, "D")
+        };
+
+        ArrayUtils.countingSort(actual);
+        checkingASortedArrayElements(actual, expected);
+        checkingASortedArrayLinks(actual, expectedElement);
+    }
+
 
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {
