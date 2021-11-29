@@ -99,16 +99,16 @@ public class SortBenchmark {
         Event[] cso3= randomEvents(100_000, 2000, 2021);
         Event[] cso4= randomEvents(100_000, -1_000_000, 1_000_000);
         long time13 = System.currentTimeMillis();
-        ArrayUtils.countingSort(csp1);
+        ArrayUtils.countingSort(cso1);
         System.out.println(System.currentTimeMillis() - time13);
         long time14 = System.currentTimeMillis();
-        ArrayUtils.countingSort(csp2);
+        ArrayUtils.countingSort(cso2);
         System.out.println(System.currentTimeMillis() - time14);
         long time15 = System.currentTimeMillis();
-        ArrayUtils.countingSort(csp3);
+        ArrayUtils.countingSort(cso3);
         System.out.println(System.currentTimeMillis() - time15);
         long time16 = System.currentTimeMillis();
-        ArrayUtils.countingSort(csp4);
+        ArrayUtils.countingSort(cso4);
         System.out.println(System.currentTimeMillis() - time16);
     }
 
