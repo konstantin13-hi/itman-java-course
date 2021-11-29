@@ -215,7 +215,7 @@ public class ArrayUtils {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < events.length; i++) {
-            int days = (events[i].getYear()*365  + events[i].getMonth() * 31 + events[i].getDay());
+            int days = (events[i].getYear()*372+ events[i].getMonth() * 31 + events[i].getDay());
             if (max < days) {
                 max = days;
             }
@@ -224,13 +224,13 @@ public class ArrayUtils {
             }
         }
         int dif = max - min;
-        ArrayList[] arrayLists = new ArrayList[dif + 1];
+        ArrayList[] arrayLists = new ArrayList[dif+1];
         for (int i=0;i<arrayLists.length;i++){
             arrayLists[i]=new ArrayList();
         }
         for (int i = 0; i < events.length; i++) {
-            int days = (events[i].getYear()*365  + events[i].getMonth() * 31 + events[i].getDay());
-            arrayLists[days - min].add(i);
+            int days = (events[i].getYear() *372 + events[i].getMonth() * 31 + events[i].getDay());
+            arrayLists[days-min].add(i);
 
         }
         Event []events1 =new Event[events.length];
