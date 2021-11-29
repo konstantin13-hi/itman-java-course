@@ -94,7 +94,22 @@ public class SortBenchmark {
         long time12 = System.currentTimeMillis();
         ArrayUtils.countingSort(csp4);
         System.out.println(System.currentTimeMillis() - time12);
-
+        Event[] cso1 =randomEvents(10_000, 2000, 2021);
+        Event[] cso2= randomEvents(10_000, -1_000_000, 1_000_000);
+        Event[] cso3= randomEvents(100_000, 2000, 2021);
+        Event[] cso4= randomEvents(100_000, -1_000_000, 1_000_000);
+        long time13 = System.currentTimeMillis();
+        ArrayUtils.countingSort(csp1);
+        System.out.println(System.currentTimeMillis() - time13);
+        long time14 = System.currentTimeMillis();
+        ArrayUtils.countingSort(csp2);
+        System.out.println(System.currentTimeMillis() - time14);
+        long time15 = System.currentTimeMillis();
+        ArrayUtils.countingSort(csp3);
+        System.out.println(System.currentTimeMillis() - time15);
+        long time16 = System.currentTimeMillis();
+        ArrayUtils.countingSort(csp4);
+        System.out.println(System.currentTimeMillis() - time16);
     }
 
 }
