@@ -37,6 +37,13 @@ public class Task497 {
         return twoArrays;
 
     }
-    return a;}
+        int [] result;
+        if (a.length==0){
+            result=b;
+        }
+        else {
+            result = a;
+        }
+    return result;}
 }
 
