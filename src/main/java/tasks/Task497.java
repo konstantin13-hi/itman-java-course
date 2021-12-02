@@ -4,12 +4,9 @@ public class Task497 {
     public static int[] merge(int[] a, int[] b) {
         if (a.length!=0 && b.length!=0){
         int[] twoArrays = new int[a.length + b.length];
-        int  length;
-        if (a.length > b.length) {
-            length = a.length;
-        } else {
-            length = b.length;
-        }
+
+        // 1 2 3  4  5  6  7
+        // 8 9 10 11 12 13 14
         // 1 2 3 4 5 6 7 8 9 10
         // 3,4,5,6,7,8
             // 1 2 3 3 4 4 5 5 6 6 7 7
@@ -26,12 +23,15 @@ public class Task497 {
 
            }
            else  {
-               if (a.length<b.length){
-                   twoArrays[j]=b[k++];
+               if (i==a.length||k==b.length){
+             if (i==a.length){
+                 twoArrays[j] = b[k++];
+             }
+             else {
+                 twoArrays[j] = a[i++];
+             }
                }
-               else {
-                   twoArrays[j]=a[i++];
-               }
+
            }
         }
         return twoArrays;

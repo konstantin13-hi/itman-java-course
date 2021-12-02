@@ -22,5 +22,12 @@ class Task497Test {
         Assertions.assertArrayEquals(expected,Task497.merge(first,second));
 
     }
+    @Test
+    public void merge3() {
+        int[] first = new int[]{1};
+        int[] second = new int[]{2};
+        int [] expected = new int[]{1,2};
+        Assertions.assertArrayEquals(expected,Task497.merge(first,second));
 
+    }
 }
