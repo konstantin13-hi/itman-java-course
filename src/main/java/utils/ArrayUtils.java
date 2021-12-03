@@ -215,7 +215,7 @@ public class ArrayUtils {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < events.length; i++) {
-            int days = (events[i].getYear()*372+ events[i].getMonth() * 31 + events[i].getDay());
+            int days = (events[i].getYear() * 372 + events[i].getMonth() * 31 + events[i].getDay());
             if (max < days) {
                 max = days;
             }
@@ -224,18 +224,18 @@ public class ArrayUtils {
             }
         }
         int dif = max - min;
-        ArrayList[] arrayLists = new ArrayList[dif+1];
-        for (int i=0;i<arrayLists.length;i++){
-            arrayLists[i]=new ArrayList();
+        ArrayList[] arrayLists = new ArrayList[dif + 1];
+        for (int i = 0; i < arrayLists.length; i++) {
+            arrayLists[i] = new ArrayList();
         }
         for (int i = 0; i < events.length; i++) {
-            int days = (events[i].getYear() *372 + events[i].getMonth() * 31 + events[i].getDay());
-            arrayLists[days-min].add(i);
+            int days = (events[i].getYear() * 372 + events[i].getMonth() * 31 + events[i].getDay());
+            arrayLists[days - min].add(i);
 
         }
-        Event []events1 =new Event[events.length];
-        for (int i=0;i<events.length;i++){
-            events1[i]=events[i];
+        Event[] events1 = new Event[events.length];
+        for (int i = 0; i < events.length; i++) {
+            events1[i] = events[i];
 
         }
 
@@ -243,16 +243,55 @@ public class ArrayUtils {
         for (int i = 0, index = 0; i < arrayLists.length; i++) {
             int length = arrayLists[i].size();
             for (int j = 0; j < length; j++) {
-                events[index]= events1[arrayLists[i].get(j)];
+                events[index] = events1[arrayLists[i].get(j)];
                 index++;
 
             }
         }
 
     }
+    // a = [100, 2, 4, 5, -7]
+    // aFrom = 1
+    // aTo = 4
+    // b = [-7, 2, 3]
+    // bFrom = 1
+    // bTo = 3
+    // r = [1, 1, 1, 1, 1, 1, 1, 1]
+    // rFrom = 2
+
+    //  результат:
+    // r = [1, 1, 2, 2, 3, 4, 5, 1]
+    public static void merge(int[] a, int aFrom, int aTo, int[] b, int bFrom, int bTo, int[] r, int rFrom) {
+        int limit = rFrom + aTo - aFrom + bTo - bFrom;
+        for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
+            if (j != aTo && k != bTo) {
+                if (a[j] == b[k]) {
+                    r[rFrom++] = a[j++];
+                    r[rFrom++] = b[k++];
+
+                } else if (a[j] > b[k]) {
+                    r[rFrom++] = b[k++];
+                } else {
+                    r[rFrom++] = a[j++];
+                }
+            }
+            else {
+                    if (j != aTo) {
+                        r[rFrom++] = a[j++];
+                    } else if (k != bTo) {
+                        r[rFrom++] = b[k++];
+                    }
+                }
+            }
 
 
-}
+        }
+
+
+    }
+
+
+
 
 
 

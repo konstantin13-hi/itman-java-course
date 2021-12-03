@@ -211,6 +211,22 @@ public class ArrayUtilsTests {
         checkingASortedArrayElements(actual, expected);
         checkingASortedArrayLinks(actual, expectedElement);
     }
+    @Test
+    public void merge(){
+       int[] a =new int[]{100, 2, 4, 5, -7};
+       int aFrom = 1;
+       int aTo = 4;
+       int[] b =new int[]{-7, 2, 3};
+       int bFrom = 1;
+       int bTo = 3;
+       int[] r = new int[]{1, 1, 1, 1, 1, 1, 1, 1};
+       int rFrom = 2;
+        ArrayUtils.merge(a,aFrom,aTo,b,bFrom,bTo,r,rFrom);
+       int [] expected = new int[] {1, 1, 2, 2, 3, 4, 5, 1};
+       Assertions.assertArrayEquals(expected,r);
+
+    }
+
 
 
     public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
