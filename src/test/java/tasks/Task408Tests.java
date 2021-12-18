@@ -1,11 +1,11 @@
-package utils;
+package tasks;
 
 import entities.Event;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import tasks.Task408;
 
-public class ArrayUtilsTests {
+public class Task408Tests {
 
     @Test
     public void sortElementsOfArray() {
@@ -25,7 +25,7 @@ public class ArrayUtilsTests {
                 new Event(1994, 11, 12, "sae1")
         };
 
-        Task408.bubbleSort(actual);
+        Task408.sort(actual);
         checkingASortedArrayElements(actual, expected);
         checkingASortedArrayLinks(actual, expectedElement);
     }
@@ -53,7 +53,7 @@ public class ArrayUtilsTests {
                 new Event(2031, 11, 13, "Day of City in Minsk")
         };
 
-        Task408.bubbleSort(actual);
+        Task408.sort(actual);
         checkingASortedArrayElements(actual, expected);
         checkingASortedArrayLinks(actual, expectedElement);
 
