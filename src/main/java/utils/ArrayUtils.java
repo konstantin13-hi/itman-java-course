@@ -1,9 +1,9 @@
-package tasks;
+package utils;
 
 import entities.Event;
 import collections.ArrayList;
 
-public class Task408 {
+public class ArrayUtils {
 
     /**
      * Sort elements of array .
@@ -13,7 +13,7 @@ public class Task408 {
      * @cpu O(n ^ 2)
      * @ram O(1)
      */
-    public static void sort(Event[] events) {
+    public static void bubbleSort(Event[] events) {
         for (int i = 0; i < events.length; i++) {
             for (int j = 1; j < events.length; j++) {
                 if ((events[j - 1].compareTo(events[j]) > 0)) {
@@ -323,9 +323,9 @@ public class Task408 {
         for (int i = 2, k = 1,h=a.length+k; k < a.length; i=i*2, k = k * 2,h=h+k) {
             for (int j = k, l = 0; l < h / i; j += k * 2, l++) {
                 if (j  < a.length && j + k < a.length) {
-                    Task408.merge(a, j - k, j, a, j, j + k, array, j - k);
+                    ArrayUtils.merge(a, j - k, j, a, j, j + k, array, j - k);
                 } else if (j  < a.length && j + k > a.length) {
-                    Task408.merge(a, j - k, j, a, j, array.length , array, j - k);
+                    ArrayUtils.merge(a, j - k, j, a, j, array.length , array, j - k);
                 } else {
                     System.arraycopy(a, j-k, array, j-k, (a.length-j)+k);
 
