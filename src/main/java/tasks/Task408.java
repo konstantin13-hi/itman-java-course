@@ -1,9 +1,9 @@
-package utils;
+package tasks;
 
 import entities.Event;
 import collections.ArrayList;
 
-public class ArrayUtils {
+public class Task408 {
 
     /**
      * Sort elements of array .
@@ -323,9 +323,9 @@ public class ArrayUtils {
         for (int i = 2, k = 1,h=a.length+k; k < a.length; i=i*2, k = k * 2,h=h+k) {
             for (int j = k, l = 0; l < h / i; j += k * 2, l++) {
                 if (j  < a.length && j + k < a.length) {
-                    ArrayUtils.merge(a, j - k, j, a, j, j + k, array, j - k);
+                    Task408.merge(a, j - k, j, a, j, j + k, array, j - k);
                 } else if (j  < a.length && j + k > a.length) {
-                    ArrayUtils.merge(a, j - k, j, a, j, array.length , array, j - k);
+                    Task408.merge(a, j - k, j, a, j, array.length , array, j - k);
                 } else {
                     System.arraycopy(a, j-k, array, j-k, (a.length-j)+k);
 

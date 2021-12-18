@@ -3,8 +3,7 @@ package utils;
 import entities.Event;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
+import tasks.Task408;
 
 public class ArrayUtilsTests {
 
@@ -26,7 +25,7 @@ public class ArrayUtilsTests {
                 new Event(1994, 11, 12, "sae1")
         };
 
-        ArrayUtils.bubbleSort(actual);
+        Task408.bubbleSort(actual);
         checkingASortedArrayElements(actual, expected);
         checkingASortedArrayLinks(actual, expectedElement);
     }
@@ -54,7 +53,7 @@ public class ArrayUtilsTests {
                 new Event(2031, 11, 13, "Day of City in Minsk")
         };
 
-        ArrayUtils.bubbleSort(actual);
+        Task408.bubbleSort(actual);
         checkingASortedArrayElements(actual, expected);
         checkingASortedArrayLinks(actual, expectedElement);
 
@@ -65,7 +64,7 @@ public class ArrayUtilsTests {
     public void sortElementsOfArrayInAscending() {
         int[] elements = new int[]{0, 2, 12, -3, 55, 2, 0};
         int[] expected = new int[]{-3, 0, 0, 2, 2, 12, 55};
-        ArrayUtils.bubbleSort(elements);
+        Task408.bubbleSort(elements);
         Assertions.assertArrayEquals(expected,elements);
 
     }
@@ -73,7 +72,7 @@ public class ArrayUtilsTests {
     @Test
     public void countingSort(){
         int[] elements = new int[]{0, 3, 12, 3, 55, 2, 0};
-        ArrayUtils.countingSort(elements);
+        Task408.countingSort(elements);
         int [] expected = new int[]{0, 0, 2, 3, 3, 12, 55};
         Assertions.assertArrayEquals(expected,elements);
 
@@ -81,7 +80,7 @@ public class ArrayUtilsTests {
     @Test
     public void countingSortSecond(){
         int[] elements = new int[]{2147483647, 2146483648};
-        ArrayUtils.countingSort(elements);
+        Task408.countingSort(elements);
         int [] expected = new int[]{2146483648,2147483647};
         Assertions.assertArrayEquals(expected,elements);
 
@@ -90,7 +89,7 @@ public class ArrayUtilsTests {
     @Test
     public void countingSortThird(){
         int[] elements = new int[]{-2146483649, -2147483648};
-        ArrayUtils.countingSort(elements);
+        Task408.countingSort(elements);
         int [] expected = new int[]{-2147483648,-2146483649};
         Assertions.assertArrayEquals(expected,elements);
 
@@ -99,47 +98,47 @@ public class ArrayUtilsTests {
     public void distinct(){
         int [] element = new int[]{1, 2, 5, -10, 3, 2, 1, 4};
         int [] expected = new int[]{1, 2, 5, -10, 3, 4};
-        Assertions.assertArrayEquals(expected,ArrayUtils.distinct(element));
+        Assertions.assertArrayEquals(expected, Task408.distinct(element));
     }
     @Test
     public void distinct1(){
         int [] element = new int[]{ 5, -10, 5, 1, 4,1 ,1 ,1,1,5};
         int [] expected = new int[]{5, -10, 1, 4};
-        Assertions.assertArrayEquals(expected,ArrayUtils.distinct(element));
+        Assertions.assertArrayEquals(expected, Task408.distinct(element));
     }
 
     @Test
     public void distinct2(){
         int [] element = new int[]{2, 2, 1, 0, 10, 30, 15, 0, 2, 10};
         int [] expected = new int[]{2, 1, 0, 10,30,15};
-        Assertions.assertArrayEquals(expected,ArrayUtils.distinct(element));
+        Assertions.assertArrayEquals(expected, Task408.distinct(element));
     }
 
     @Test
     public void mostFrequent(){
         int [] element = new int[]{1, 2, 5, -10, 3, 2, 1, 4};
         int expected = 1;
-        Assertions.assertEquals(expected,ArrayUtils.mostFrequent(element));
+        Assertions.assertEquals(expected, Task408.mostFrequent(element));
     }
     @Test
     public void mostFrequent2(){
         int [] element = new int[]{1 ,2 ,5, 1 ,2, 2 ,3 ,1};
         int expected = 1;
-        Assertions.assertEquals(expected,ArrayUtils.mostFrequent(element));
+        Assertions.assertEquals(expected, Task408.mostFrequent(element));
     }
     @Test
     public void countEquals(){
         int [] elements = new int[]{2, 2, 1, 0, 10, 30, 15, 0, 2, 10};
         int [] elementsSecond = new int[]{2, 1, 0, 10,30,15};
         int expected =6;
-        Assertions.assertEquals(expected,ArrayUtils.countEquals(elements,elementsSecond));
+        Assertions.assertEquals(expected, Task408.countEquals(elements,elementsSecond));
     }
     @Test
     public void countEquals3(){
         int [] elements = new int[]{-1000000};
         int [] elementsSecond = new int[]{1000000};
         int expected =0;
-        Assertions.assertEquals(expected,ArrayUtils.countEquals(elements,elementsSecond));
+        Assertions.assertEquals(expected, Task408.countEquals(elements,elementsSecond));
     }
 
     @Test
@@ -147,7 +146,7 @@ public class ArrayUtilsTests {
         int [] elements = new int[]{1, 1 ,3 ,2 ,1};
         int [] elementsSecond = new int[]{4 ,2 ,1 ,4 ,1 ,2};
         int expected =3;
-        Assertions.assertEquals(expected,ArrayUtils.countEquals(elements,elementsSecond));
+        Assertions.assertEquals(expected, Task408.countEquals(elements,elementsSecond));
     }
 
     @Test
@@ -155,7 +154,7 @@ public class ArrayUtilsTests {
         int [] elements = new int[]{2147483647, 2146483648, 2147483647};
         int [] elementsSecond = new int[]{-2147483648, 1,2147483647};
         int expected =1;
-        Assertions.assertEquals(expected,ArrayUtils.countEquals(elements,elementsSecond));
+        Assertions.assertEquals(expected, Task408.countEquals(elements,elementsSecond));
     }
 
     @Test
@@ -181,7 +180,7 @@ public class ArrayUtilsTests {
                 new Event(11, 0, 0, "Day of City in Minsk")
         };
 
-        ArrayUtils.countingSort(actual);
+        Task408.countingSort(actual);
         checkingASortedArrayElements(actual, expected);
         checkingASortedArrayLinks(actual, expectedElement);
     }
@@ -209,7 +208,7 @@ public class ArrayUtilsTests {
                 new Event(2021, 1, 1, "D")
         };
 
-        ArrayUtils.countingSort(actual);
+        Task408.countingSort(actual);
         checkingASortedArrayElements(actual, expected);
         checkingASortedArrayLinks(actual, expectedElement);
     }
@@ -223,7 +222,7 @@ public class ArrayUtilsTests {
        int bTo = 3;
        int[] r = new int[]{1, 1, 1, 1, 1, 1, 1, 1};
        int rFrom = 2;
-        ArrayUtils.merge(a,aFrom,aTo,b,bFrom,bTo,r,rFrom);
+        Task408.merge(a,aFrom,aTo,b,bFrom,bTo,r,rFrom);
        int [] expected = new int[] {1, 1, 2, 2, 3, 4, 5, 1};
        Assertions.assertArrayEquals(expected,r);
 
@@ -231,7 +230,7 @@ public class ArrayUtilsTests {
     @Test
     public void mergeSort(){
         int [] a = new int[]{4 ,1, 3, 3, 1, 3, 4, 5 ,1};
-        ArrayUtils.mergeSort(a);
+        Task408.mergeSort(a);
         int []expected = new int []{1,1,1,3,3,3,4,4,5};
         Assertions.assertArrayEquals(expected,a);
 
@@ -240,7 +239,7 @@ public class ArrayUtilsTests {
     @Test
     public void mergeSort2(){
         int [] a = new int[]{4 ,1, 3, 3, 1, 3, 4, 5 ,1,1};
-        ArrayUtils.mergeSort(a);
+        Task408.mergeSort(a);
         int []expected = new int []{1,1,1,1,3,3,3,4,4,5};
         Assertions.assertArrayEquals(expected,a);
 
