@@ -4,6 +4,8 @@ import entities.Event;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 public class ArrayUtilsTests {
 
     @Test
@@ -224,6 +226,23 @@ public class ArrayUtilsTests {
         ArrayUtils.merge(a,aFrom,aTo,b,bFrom,bTo,r,rFrom);
        int [] expected = new int[] {1, 1, 2, 2, 3, 4, 5, 1};
        Assertions.assertArrayEquals(expected,r);
+
+    }
+    @Test
+    public void mergeSort(){
+        int [] a = new int[]{4 ,1, 3, 3, 1, 3, 4, 5 ,1};
+        ArrayUtils.mergeSort(a);
+        int []expected = new int []{1,1,1,3,3,3,4,4,5};
+        Assertions.assertArrayEquals(expected,a);
+
+    }
+
+    @Test
+    public void mergeSort2(){
+        int [] a = new int[]{4 ,1, 3, 3, 1, 3, 4, 5 ,1,1};
+        ArrayUtils.mergeSort(a);
+        int []expected = new int []{1,1,1,1,3,3,3,4,4,5};
+        Assertions.assertArrayEquals(expected,a);
 
     }
 

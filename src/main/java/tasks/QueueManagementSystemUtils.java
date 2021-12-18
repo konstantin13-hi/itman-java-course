@@ -8,7 +8,7 @@ public class QueueManagementSystemUtils {
 
 
     /**
-     * Calculate total tickets
+     * Calculate total ticketsww
      *
      * @param systems the first term
      * @return result total tickets

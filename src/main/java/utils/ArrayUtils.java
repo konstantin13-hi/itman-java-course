@@ -48,6 +48,10 @@ public class ArrayUtils {
 
     }
 
+    /**
+     * @param array
+     */
+
     public static void countingSort(int[] array) {
         if (array.length != 0) {
             int max = Integer.MIN_VALUE;
@@ -74,6 +78,10 @@ public class ArrayUtils {
         }
     }
 
+    /**
+     * @param array
+     * @return
+     */
     public static int[] distinct(int[] array) {
         if (array.length != 0) {
             int max = Integer.MIN_VALUE;
@@ -123,6 +131,11 @@ public class ArrayUtils {
 
     }
 
+    /**
+     * @param array
+     * @return
+     */
+
     public static int mostFrequent(int[] array) {
         if (array.length != 0) {
             int max = Integer.MIN_VALUE;
@@ -160,6 +173,9 @@ public class ArrayUtils {
         return array.length;
 
     }
+    /*
+
+     */
 
     public static int countEquals(int[] a, int[] b) {
         if (a.length != 0 && b.length != 0) {
@@ -210,6 +226,7 @@ public class ArrayUtils {
 
 
     }
+
 
     public static void countingSort(Event[] events) {
         int min = Integer.MAX_VALUE;
@@ -264,7 +281,7 @@ public class ArrayUtils {
     public static void merge(int[] a, int aFrom, int aTo, int[] b, int bFrom, int bTo, int[] r, int rFrom) {
         int limit = rFrom + aTo - aFrom + bTo - bFrom;
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
-            if (j != aTo && k != bTo) {
+            if (j < aTo && k < bTo) {
                 if (a[j] == b[k]) {
                     r[rFrom++] = a[j++];
                     r[rFrom++] = b[k++];
@@ -274,21 +291,60 @@ public class ArrayUtils {
                 } else {
                     r[rFrom++] = a[j++];
                 }
-            }
-            else {
-                    if (j != aTo) {
-                        r[rFrom++] = a[j++];
-                    } else if (k != bTo) {
-                        r[rFrom++] = b[k++];
-                    }
+            } else {
+                if (j < aTo) {
+                    r[rFrom++] = a[j++];
+                } else if (k < bTo) {
+                    r[rFrom++] = b[k++];
                 }
             }
-
-
         }
 
 
     }
+
+
+    // 0 1 2 3 4 5 6 7 8
+    // 4 1 3 3 1 3 4 5 1   (1) 1 3 5 7 9
+    // 14  33 13  45 1     (2) 1 5 9
+    // 1334 1345 1         (3) 1 7
+    //  1133445 1          (4) 1
+    // 11133445
+    //
+
+    // 0 1 2 3 4 5
+    // 1 2 4 2 5 6  1
+    //
+
+
+    public static void mergeSort(int[] a) {
+        int[] array = new int[a.length];
+
+        for (int i = 2, k = 1,h=a.length+k; k < a.length; i=i*2, k = k * 2,h=h+k) {
+            for (int j = k, l = 0; l < h / i; j += k * 2, l++) {
+                if (j  < a.length && j + k < a.length) {
+                    ArrayUtils.merge(a, j - k, j, a, j, j + k, array, j - k);
+                } else if (j  < a.length && j + k > a.length) {
+                    ArrayUtils.merge(a, j - k, j, a, j, array.length , array, j - k);
+                } else {
+                    System.arraycopy(a, j-k, array, j-k, (a.length-j)+k);
+
+                }
+
+
+            }
+            System.arraycopy(array, 0, a, 0, a.length);
+
+
+        }
+
+        //  System.arraycopy(array, 0, a, 0, a.length);
+
+
+    }
+
+
+}
 
 
 
