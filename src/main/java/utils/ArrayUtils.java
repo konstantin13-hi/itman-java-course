@@ -321,14 +321,14 @@ public class ArrayUtils {
         int[] array = new int[a.length];
         double length= a.length;
 
-        for (int i = 2, k = 1,h=a.length+k, e=0; e <=Math.sqrt(length); i=i*2, k = k * 2,h=h+k,e++) {
-            for (int j = k, l = 0; l < h / i; j += k * 2, l++) {
+        for (long i = 2, k = 1,h=a.length+k, e=0; e <=Math.sqrt(length); i=i*2, k = k * 2,h=h+k,e++) {
+            for (int j = (int) k, l = 0; l < h / i; j += k * 2, l++) {
                 if (j  < a.length && j + k < a.length) {
-                    ArrayUtils.merge(a, j - k, j, a, j, j + k, array, j - k);
+                    ArrayUtils.merge(a, (int)(j - k), j, a, j, (int)(j + k), array, (int)(j - k));
                 } else if (j  < a.length && j + k > a.length) {
-                    ArrayUtils.merge(a, j - k, j, a, j, array.length , array, j - k);
+                    ArrayUtils.merge(a, (int)(j - k), j, a, j, array.length , array, (int)(j - k));
                 } else {
-                    System.arraycopy(a, j-k, array, j-k, (a.length-j)+k);
+                    System.arraycopy(a, (int )(j-k), array, (int)(j-k), (int)((a.length-j)+k));
 
                 }
 

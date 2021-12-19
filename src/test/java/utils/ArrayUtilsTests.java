@@ -4,6 +4,8 @@ import entities.Event;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 public class ArrayUtilsTests {
 
     @Test
@@ -243,6 +245,7 @@ public class ArrayUtilsTests {
         Assertions.assertArrayEquals(expected,a);
 
     }
+
 
 
 
