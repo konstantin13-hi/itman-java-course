@@ -319,8 +319,9 @@ public class ArrayUtils {
 
     public static void mergeSort(int[] a) {
         int[] array = new int[a.length];
+        double length= a.length;
 
-        for (int i = 2, k = 1,h=a.length+k, e=0; e < a.length; i=i*2, k = k * 2,h=h+k,e++) {
+        for (int i = 2, k = 1,h=a.length+k, e=0; e <=Math.sqrt(length); i=i*2, k = k * 2,h=h+k,e++) {
             for (int j = k, l = 0; l < h / i; j += k * 2, l++) {
                 if (j  < a.length && j + k < a.length) {
                     ArrayUtils.merge(a, j - k, j, a, j, j + k, array, j - k);
