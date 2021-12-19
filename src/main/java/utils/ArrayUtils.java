@@ -321,7 +321,7 @@ public class ArrayUtils {
         int[] array = new int[a.length];
         double length= a.length;
 
-        for (long i = 2, k = 1,h=a.length+k, e=0; e <=Math.sqrt(length); i=i*2, k = k * 2,h=h+k,e++) {
+        for (int i = 2, k = 1,h=a.length+k, e=0; e <a.length; i=i*2, k = k * 2,h=h+k,e++) {
             for (int j = (int) k, l = 0; l < h / i; j += k * 2, l++) {
                 if (j  < a.length && j + k < a.length) {
                     ArrayUtils.merge(a, (int)(j - k), j, a, j, (int)(j + k), array, (int)(j - k));
