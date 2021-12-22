@@ -245,6 +245,22 @@ public class ArrayUtilsTests {
         Assertions.assertArrayEquals(expected,a);
 
     }
+    @Test
+    public void mergeSort3(){
+        int [] a = new int[1000000];
+        for (int i =0;i<a.length;i++){
+            a[i]=1000000-i-1;
+        }
+        int [] b = new int[1000000];
+        for (int i =0;i<a.length;i++){
+            b[i]=i;
+        }
+
+        ArrayUtils.mergeSort(a);
+        Assertions.assertArrayEquals(b,a);
+
+    }
+
 
 
 

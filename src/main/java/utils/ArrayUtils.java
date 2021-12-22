@@ -279,24 +279,42 @@ public class ArrayUtils {
     //  результат:
     // r = [1, 1, 2, 2, 3, 4, 5, 1]
     public static void merge(int[] a, int aFrom, int aTo, int[] b, int bFrom, int bTo, int[] r, int rFrom) {
-        int limit = rFrom + aTo - aFrom + bTo - bFrom;
+        int limit =  aTo - aFrom + bTo - bFrom;
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
-            if (j < aTo && k < bTo) {
-                if (a[j] == b[k]) {
-                    r[rFrom++] = a[j++];
+            if (aTo - aFrom == bTo - bFrom) {
+                if (j < aTo && k < bTo) {
+                    if (a[j] == b[k]) {
+                        r[rFrom++] = a[j++];
+                        r[rFrom++] = b[k++];
+                        i++;
+                    } else if (a[j] > b[k]) {
+                        r[rFrom++] = b[k++];
+                    } else {
+                        r[rFrom++] = a[j++];
+                    }
+                } else if (j == aTo && k < bTo) {
                     r[rFrom++] = b[k++];
-
-                } else if (a[j] > b[k]) {
-                    r[rFrom++] = b[k++];
-                } else {
+                } else if (j < aTo && k == bTo) {
                     r[rFrom++] = a[j++];
                 }
             } else {
-                if (j < aTo) {
+                if (j < aTo && k < bTo && a[j] == b[k] ) {
                     r[rFrom++] = a[j++];
-                } else if (k < bTo) {
+                    r[rFrom++] = b[k++];
+                    i++;
+                } else if (j < aTo && k < bTo && a[j] != b[k]) {
+                    if (a[j] > b[k]) {
+                        r[rFrom++] = b[k++];
+                    } else {
+                        r[rFrom++] = a[j++];
+                    }
+
+                } else if (j < aTo && k == bTo) {
+                    r[rFrom++] = a[j++];
+                } else if (j == aTo && k < bTo) {
                     r[rFrom++] = b[k++];
                 }
+
             }
         }
 
@@ -319,16 +337,14 @@ public class ArrayUtils {
 
     public static void mergeSort(int[] a) {
         int[] array = new int[a.length];
-        double length= a.length;
-
-        for (int i = 2, k = 1,h=a.length+k, e=0; e <a.length; i=i*2, k = k * 2,h=h+k,e++) {
-            for (int j = (int) k, l = 0; l < h / i; j += k * 2, l++) {
-                if (j  < a.length && j + k < a.length) {
-                    ArrayUtils.merge(a, (int)(j - k), j, a, j, (int)(j + k), array, (int)(j - k));
-                } else if (j  < a.length && j + k > a.length) {
-                    ArrayUtils.merge(a, (int)(j - k), j, a, j, array.length , array, (int)(j - k));
+        for (int k = 1; k < a.length; k = k * 2) {
+            for (int j = k; j - k < a.length; j += k * 2) {
+                if (j < a.length && j + k <= a.length) {
+                    ArrayUtils.merge(a, (j - k), j, a, j, (j + k), array, (j - k));
+                } else if (j < a.length && j + k > a.length) {
+                    ArrayUtils.merge(a, (j - k), j, a, j, array.length, array, (j - k));
                 } else {
-                    System.arraycopy(a, (int )(j-k), array, (int)(j-k), (int)((a.length-j)+k));
+                    System.arraycopy(a, (j - k), array, (j - k),  k-(j-a.length));
 
                 }
 
