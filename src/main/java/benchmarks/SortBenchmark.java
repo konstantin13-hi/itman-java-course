@@ -110,6 +110,41 @@ public class SortBenchmark {
         long time16 = System.currentTimeMillis();
         ArrayUtils.countingSort(cso4);
         System.out.println(System.currentTimeMillis() - time16);
+        int[] msp1 = randomArray(10_000, -10_000, 10_000);
+        int[] msp2 = randomArray(10_000, -1_000_000_000, 1_000_000_000);
+        int[] msp3 = randomArray(100_000, -10_000, 10_000);
+        int[] msp4 = randomArray(100_000, -1_000_000_000, 1_000_000_000);
+        Event[] mso1 =randomEvents(10_000, 2000, 2021);
+        Event[] mso2= randomEvents(10_000, -1_000_000, 1_000_000);
+        Event[]  mso3= randomEvents(100_000, 2000, 2021);
+        Event[] mso4=  randomEvents(100_000, -1_000_000, 1_000_000);
+        long time17 = System.currentTimeMillis();
+        ArrayUtils.mergeSort(msp1);
+        System.out.println(System.currentTimeMillis() - time17);
+        long time18 = System.currentTimeMillis();
+        ArrayUtils.mergeSort(msp2);
+        System.out.println(System.currentTimeMillis() - time18);
+        long time19 = System.currentTimeMillis();
+        ArrayUtils.mergeSort(msp3);
+        System.out.println(System.currentTimeMillis() - time19);
+        long time20 = System.currentTimeMillis();
+        ArrayUtils.mergeSort(msp4);
+        System.out.println(System.currentTimeMillis() - time20);
+
+        long time21 = System.currentTimeMillis();
+        ArrayUtils.mergeSort(mso1);
+        System.out.println(System.currentTimeMillis() - time21);
+        long time22 = System.currentTimeMillis();
+        ArrayUtils.mergeSort(mso2);
+        System.out.println(System.currentTimeMillis() - time22);
+        long time23 = System.currentTimeMillis();
+        ArrayUtils.mergeSort(mso3);
+        System.out.println(System.currentTimeMillis() - time23);
+        long time24 = System.currentTimeMillis();
+        ArrayUtils.mergeSort(mso4);
+        System.out.println(System.currentTimeMillis() - time24);
+
+
     }
 
 }
