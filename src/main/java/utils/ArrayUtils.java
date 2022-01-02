@@ -355,13 +355,80 @@ public class ArrayUtils {
 
         }
 
-        //  System.arraycopy(array, 0, a, 0, a.length);
+
+
+    }
+    public static void mergeSort(Event[] events){
+        Event[] t = new Event[events.length];
+        for (int size = 1; size < events.length; size *= 2) {
+            System.arraycopy(events, 0, t, 0, events.length);
+            for (int l = 0; l + size < events.length; l += 2 * size) {
+                int m = l + size;
+                int r = m + size;
+                if (r > events.length) {
+                    r = events.length;
+                }
+                int i = l;
+                int j = m;
+                int k = l;
+                while (i < m && j < r) {
+                    events[k++] = t[i].compareTo(t[j])!=1 ? t[i++] : t[j++];
+                }
+                while (i < m) {
+                    events[k++] = t[i++];
+                }
+                while (j < r) {
+                    events[k++] = t[j++];
+                }
+            }
+        }
+    }
+
+    public static void merge(Event[] a, int aFrom, int aTo, Event[] b, int bFrom, int bTo, Event[] r, int rFrom){
+        int limit =  aTo - aFrom + bTo - bFrom;
+        for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
+            if (aTo - aFrom == bTo - bFrom) {
+                if (j < aTo && k < bTo) {
+                    if (a[j].compareTo( b[k])==0) {
+                        r[rFrom++] = a[j++];
+                        r[rFrom++] = b[k++];
+                        i++;
+                    } else if (a[j].compareTo( b[k])==1) {
+                        r[rFrom++] = b[k++];
+                    } else {
+                        r[rFrom++] = a[j++];
+                    }
+                } else if (j == aTo && k < bTo) {
+                    r[rFrom++] = b[k++];
+                } else if (j < aTo && k == bTo) {
+                    r[rFrom++] = a[j++];
+                }
+            } else {
+                if (j < aTo && k < bTo && a[j] == b[k] ) {
+                    r[rFrom++] = a[j++];
+                    r[rFrom++] = b[k++];
+                    i++;
+                } else if (j < aTo && k < bTo && a[j] != b[k]) {
+                    if (a[j].compareTo( b[k])==1) {
+                        r[rFrom++] = b[k++];
+                    } else {
+                        r[rFrom++] = a[j++];
+                    }
+
+                } else if (j < aTo && k == bTo) {
+                    r[rFrom++] = a[j++];
+                } else if (j == aTo && k < bTo) {
+                    r[rFrom++] = b[k++];
+                }
+
+            }
+        }
 
 
     }
 
-
 }
+
 
 
 
