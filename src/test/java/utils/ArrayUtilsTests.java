@@ -245,6 +245,15 @@ public class ArrayUtilsTests {
         Assertions.assertArrayEquals(expected,a);
 
     }
+
+    @Test
+    public void mergeSort6(){
+        int [] a = new int[]{2, 2, 1, 0, 10, 30, 15};
+        ArrayUtils.mergeSort(a,0,7);
+        int []expected = new int []{0,1,2,2,10,15,30};
+        Assertions.assertArrayEquals(expected,a);
+
+    }
     @Test
     public void mergeSort3(){
         int [] a = new int[1000000];
@@ -312,7 +321,7 @@ public class ArrayUtilsTests {
                 new Event(11, 0, 0, "Day of City in Minsk")
         };
 
-        ArrayUtils.mergeSort(actual,1,2);
+        ArrayUtils.mergeSort(actual,1,3);
         checkingASortedArrayElements(actual, expected);
         checkingASortedArrayLinks(actual, expectedElement);
     }

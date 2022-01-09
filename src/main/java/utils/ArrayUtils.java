@@ -428,9 +428,9 @@ public class ArrayUtils {
     }
   public static   void mergeSort(int[] array, int fromIndex, int toIndex){
           int[] t = new int[array.length];
-          for (int size = 1; size <= toIndex-fromIndex; size *= 2) {
+          for (int size = 1; size < toIndex-fromIndex; size *= 2) {
               System.arraycopy(array, 0, t, 0, array.length);
-              for (int l = fromIndex; l + size <= toIndex; l += 2 * size) {
+              for (int l = fromIndex; l + size < toIndex; l += 2 * size) {
                   int m = l + size;
                   int r = m + size;
                   if (r > toIndex) {
@@ -439,13 +439,13 @@ public class ArrayUtils {
                   int i = l;
                   int j = m;
                   int k = l;
-                  while (i < m && j <= r) {
+                  while (i < m && j < r) {
                       array[k++] = t[i] <= t[j] ? t[i++] : t[j++];
                   }
                   while (i < m) {
                       array[k++] = t[i++];
                   }
-                  while (j <= r) {
+                  while (j < r) {
                       array[k++] = t[j++];
                   }
               }
@@ -456,9 +456,9 @@ public class ArrayUtils {
 
     public static   void mergeSort(Event[] array, int fromIndex, int toIndex){
         Event[] t = new Event[array.length];
-        for (int size = 1; size <= toIndex-fromIndex; size *= 2) {
+        for (int size = 1; size < toIndex-fromIndex; size *= 2) {
             System.arraycopy(array, 0, t, 0, array.length);
-            for (int l = fromIndex; l + size <= toIndex; l += 2 * size) {
+            for (int l = fromIndex; l + size < toIndex; l += 2 * size) {
                 int m = l + size;
                 int r = m + size;
                 if (r > toIndex) {
@@ -467,13 +467,13 @@ public class ArrayUtils {
                 int i = l;
                 int j = m;
                 int k = l;
-                while (i < m && j <= r) {
+                while (i < m && j < r) {
                     array[k++] = t[i].compareTo(t[j])<=0 ? t[i++] : t[j++];
                 }
                 while (i < m) {
                     array[k++] = t[i++];
                 }
-                while (j <= r) {
+                while (j < r) {
                     array[k++] = t[j++];
                 }
             }
