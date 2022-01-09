@@ -1,5 +1,6 @@
 package collections;
 
+import utils.ArrayUtils;
 import utils.StringBuilder;
 
 public class ArrayList {
@@ -173,15 +174,7 @@ public class ArrayList {
      */
     public void sort() {
         elements = toArray();
-        for (int i = 0; i < elements.length; i++) {
-            for (int j = 1; j < elements.length; j++) {
-                if (elements[j - 1] > elements[j]) {
-                    int temp = toArray()[j - 1];
-                    elements[j - 1] = elements[j];
-                    elements[j] = temp;
-                }
-            }
-        }
+        ArrayUtils.mergeSort(elements);
     }
 
     /**
