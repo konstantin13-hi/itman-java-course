@@ -3,6 +3,7 @@ package tasks;
 import collections.ArrayList;
 import entities.Statistic;
 import tasks.QueueManagementSystem;
+import utils.ArrayUtils;
 
 public class QueueManagementSystemUtils {
 
@@ -218,15 +219,7 @@ public class QueueManagementSystemUtils {
     private static double sortTickets(int[] array) {
         double result;
         int[] median = array;
-        for (int i = 0; i < median.length; i++) {
-            for (int j = 1; j < median.length; j++) {
-                if (median[j - 1] > median[j]) {
-                    int temp = median[j - 1];
-                    median[j - 1] = median[j];
-                    median[j] = temp;
-                }
-            }
-        }
+        ArrayUtils.mergeSort(median);
         if (array.length % 2 == 0) {
             result = ((double) median[(array.length - 1) / 2] + (double) median[((array.length - 1) / 2) + 1]) / 2;
         } else {
