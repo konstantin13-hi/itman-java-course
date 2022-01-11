@@ -14,21 +14,25 @@ public class Task510 {
         int count = 0;
         int element = t[array.length - 1];
         int secondCount = 0;
+        int finalCount=0;
         for (int i = array.length - 1; 0 < i; i--) {
 
-            if (array[i] == element) {
+            if (t[i] == element) {
                 count++;
                 result=t[i];
             } else if (t[i] != element) {
-               if (secondCount >= count) {
-               result = t[i];}
-                secondCount=count;
-               count=1;
+                element=t[i];
+               if (finalCount<= count) {
+                   finalCount=count;
+               result = t[i+1];}
+                count=1;
+
+
             }
 
 
         }
-        if (secondCount >= count) {
+        if (finalCount <= count) {
             result = t[0];
         }
 
