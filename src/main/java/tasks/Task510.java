@@ -9,33 +9,37 @@ public class Task510 {
         }
         int []t =new int[array.length];
         System.arraycopy(array,0,t,0,array.length);
-        int result = 0;
         ArrayUtils.mergeSort(t);
-        int count = 0;
-        int element = t[array.length - 1];
-        int secondCount = 0;
-        int finalCount=0;
-        for (int i = array.length - 1; 0 < i; i--) {
-
-            if (t[i] == element) {
+        int element =t[array.length-1];
+        int count=0;
+        int result =element;
+        int resultCount = 0;
+        // 1, 2, 5, 1, 2 ,2 ,3, 1
+        // 1 1 1 2 2 2 3 5
+        for (int i =t.length-1;0<= i;i--){
+            if (t[i]==element){
                 count++;
-                result=t[i];
-            } else if (t[i] != element) {
+            }
+            else {
                 element=t[i];
-               if (finalCount<= count) {
-                   finalCount=count;
-               result = t[i+1];}
+
+
+
+                result= count>=resultCount? t[i+1]:result;
+                resultCount= Math.max(count, resultCount);
                 count=1;
-
-
             }
 
 
+
+
+
         }
-        if (finalCount <= count) {
-            result = t[0];
+        if (count>=resultCount){
+            result=t[0];
         }
 
         return result;
     }
+
 }

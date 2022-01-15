@@ -34,5 +34,12 @@ class Task510Test {
         Assertions.assertEquals(expected,Task510.mostFrequent(array));
     }
 
+    @Test
+    void mostFrequent4() {
+        int []array =new int [] {2147483647, 2146483648, 2147483647};
+        int  expected = 2147483647;
+        Assertions.assertEquals(expected,Task510.mostFrequent(array));
+    }
+
 
 }
