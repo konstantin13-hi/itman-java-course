@@ -49,7 +49,11 @@ public class ArrayUtils {
     }
 
     /**
-     * @param array
+     * Sort elements with method counting sort
+     *
+     * @param array with sorted elements
+     * @cpu 0(n + m)
+     * @ram 0(m)
      */
 
     public static void countingSort(int[] array) {
@@ -79,8 +83,12 @@ public class ArrayUtils {
     }
 
     /**
-     * @param array
-     * @return
+     * Find only unique elements in array
+     *
+     * @param array the first term
+     * @return array containing only unique elements
+     * @cpu 0(n + k)
+     * @ram 0(k)
      */
     public static int[] distinct(int[] array) {
         if (array.length != 0) {
@@ -132,10 +140,13 @@ public class ArrayUtils {
     }
 
     /**
-     * @param array
-     * @return
+     * Find the number that occurs the most times
+     *
+     * @param array the first term
+     * @return the number that occurs the most times
+     * @cpu 0(n + k)
+     * @ram 0(k)
      */
-
     public static int mostFrequent(int[] array) {
         if (array.length != 0) {
             int max = Integer.MIN_VALUE;
@@ -148,7 +159,6 @@ public class ArrayUtils {
                     min = array[i];
                 }
             }
-            //
             int dif = max - min;
             int[] cnt = new int[dif + 1];
             for (int i = 0; i < array.length; i++) {
@@ -161,10 +171,6 @@ public class ArrayUtils {
                     secondMax = cnt[i];
                     index = i;
                 }
-                // 1, 2, 5, -10, 3, 2, 1, 4
-                //-10 9 8 7 6 5 4 3 2 1 0 1 2 3 4 5
-                // 1  0 0 0 0 0 0 0 0 0 0 2 2 0 1 1
-
             }
             return index + min;
 
@@ -173,10 +179,16 @@ public class ArrayUtils {
         return array.length;
 
     }
-    /*
 
+    /**
+     * Find the number of elements that are contained simultaneously in two arrays
+     *
+     * @param a the first term
+     * @param b the second term
+     * @return the number of elements that are contained simultaneously in two arrays
+     * @cpu 0(a + b + k)
+     * @ram 0(k)
      */
-
     public static int countEquals(int[] a, int[] b) {
         if (a.length != 0 && b.length != 0) {
             int max = Integer.MIN_VALUE;
@@ -199,10 +211,8 @@ public class ArrayUtils {
                     minSecond = b[i];
                 }
             }
-
             int dif = max - min;
             int result = 0;
-
             int[] cnt = new int[dif + 1];
             int[] cntSecond = new int[dif + 1];
             for (int i = 0; i < a.length; i++) {
@@ -227,7 +237,13 @@ public class ArrayUtils {
 
     }
 
-
+    /**
+     * Make a counting sourt
+     *
+     * @param events the first term
+     * @cpu (n + k)
+     * @ram 0(k)
+     */
     public static void countingSort(Event[] events) {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
@@ -248,15 +264,12 @@ public class ArrayUtils {
         for (int i = 0; i < events.length; i++) {
             int days = (events[i].getYear() * 372 + events[i].getMonth() * 31 + events[i].getDay());
             arrayLists[days - min].add(i);
-
         }
         Event[] events1 = new Event[events.length];
         for (int i = 0; i < events.length; i++) {
             events1[i] = events[i];
 
         }
-
-
         for (int i = 0, index = 0; i < arrayLists.length; i++) {
             int length = arrayLists[i].size();
             for (int j = 0; j < length; j++) {
@@ -267,19 +280,23 @@ public class ArrayUtils {
         }
 
     }
-    // a = [100, 2, 4, 5, -7]
-    // aFrom = 1
-    // aTo = 4
-    // b = [-7, 2, 3]
-    // bFrom = 1
-    // bTo = 3
-    // r = [1, 1, 1, 1, 1, 1, 1, 1]
-    // rFrom = 2
 
-    //  результат:
-    // r = [1, 1, 2, 2, 3, 4, 5, 1]
+    /**
+     * Make merge
+     *
+     * @param a     the 1 term
+     * @param aFrom the 2 term
+     * @param aTo   the 3 term
+     * @param b     the 4 term
+     * @param bFrom the 5 term
+     * @param bTo   the 6 term
+     * @param r     the 7 term
+     * @param rFrom the 8 term
+     * @cpu 0(n)
+     * @ram 0(1)
+     */
     public static void merge(int[] a, int aFrom, int aTo, int[] b, int bFrom, int bTo, int[] r, int rFrom) {
-        int limit =  aTo - aFrom + bTo - bFrom;
+        int limit = aTo - aFrom + bTo - bFrom;
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
             if (aTo - aFrom == bTo - bFrom) {
                 if (j < aTo && k < bTo) {
@@ -298,7 +315,7 @@ public class ArrayUtils {
                     r[rFrom++] = a[j++];
                 }
             } else {
-                if (j < aTo && k < bTo && a[j] == b[k] ) {
+                if (j < aTo && k < bTo && a[j] == b[k]) {
                     r[rFrom++] = a[j++];
                     r[rFrom++] = b[k++];
                     i++;
@@ -321,20 +338,13 @@ public class ArrayUtils {
 
     }
 
-
-    // 0 1 2 3 4 5 6 7 8
-    // 4 1 3 3 1 3 4 5 1   (1) 1 3 5 7 9
-    // 14  33 13  45 1     (2) 1 5 9
-    // 1334 1345 1         (3) 1 7
-    //  1133445 1          (4) 1
-    // 11133445
-    //
-
-    // 0 1 2 3 4 5
-    // 1 2 4 2 5 6  1
-    //
-
-
+    /**
+     * Make merge
+     *
+     * @param a the first term
+     * @cpu 0(nlogn)
+     * @ram 0(n)
+     */
     public static void mergeSort(int[] a) {
         int[] array = new int[a.length];
         for (int k = 1; k < a.length; k = k * 2) {
@@ -344,7 +354,7 @@ public class ArrayUtils {
                 } else if (j < a.length && j + k > a.length) {
                     ArrayUtils.merge(a, (j - k), j, a, j, array.length, array, (j - k));
                 } else {
-                    System.arraycopy(a, (j - k), array, (j - k),  k-(j-a.length));
+                    System.arraycopy(a, (j - k), array, (j - k), k - (j - a.length));
 
                 }
 
@@ -356,9 +366,17 @@ public class ArrayUtils {
         }
 
 
-
     }
-    public static void mergeSort(Event[] events){
+
+    /**
+     * Make merge
+     *
+     * @cpu 0(nlogn)
+     * @ram 0(n)
+     *
+     * @param events the first term
+     */
+    public static void mergeSort(Event[] events) {
         Event[] t = new Event[events.length];
         for (int size = 1; size < events.length; size *= 2) {
             System.arraycopy(events, 0, t, 0, events.length);
@@ -372,7 +390,7 @@ public class ArrayUtils {
                 int j = m;
                 int k = l;
                 while (i < m && j < r) {
-                    events[k++] = t[i].compareTo(t[j])!=1 ? t[i++] : t[j++];
+                    events[k++] = t[i].compareTo(t[j]) != 1 ? t[i++] : t[j++];
                 }
                 while (i < m) {
                     events[k++] = t[i++];
@@ -384,16 +402,30 @@ public class ArrayUtils {
         }
     }
 
-    public static void merge(Event[] a, int aFrom, int aTo, Event[] b, int bFrom, int bTo, Event[] r, int rFrom){
-        int limit =  aTo - aFrom + bTo - bFrom;
+    /**
+     * Create merge
+     *
+     * @param a the 1 term
+     * @param aFrom the 2 term
+     * @param aTo the 3 term
+     * @param b the 4 term
+     * @param bFrom the 5  term
+     * @param bTo the 6 term
+     * @param r the 7 term
+     * @param rFrom the 8 therm
+     * @cpu 0(n)
+     * @ram 0(1)
+     */
+    public static void merge(Event[] a, int aFrom, int aTo, Event[] b, int bFrom, int bTo, Event[] r, int rFrom) {
+        int limit = aTo - aFrom + bTo - bFrom;
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
             if (aTo - aFrom == bTo - bFrom) {
                 if (j < aTo && k < bTo) {
-                    if (a[j].compareTo( b[k])==0) {
+                    if (a[j].compareTo(b[k]) == 0) {
                         r[rFrom++] = a[j++];
                         r[rFrom++] = b[k++];
                         i++;
-                    } else if (a[j].compareTo( b[k])==1) {
+                    } else if (a[j].compareTo(b[k]) == 1) {
                         r[rFrom++] = b[k++];
                     } else {
                         r[rFrom++] = a[j++];
@@ -404,12 +436,12 @@ public class ArrayUtils {
                     r[rFrom++] = a[j++];
                 }
             } else {
-                if (j < aTo && k < bTo && a[j] == b[k] ) {
+                if (j < aTo && k < bTo && a[j] == b[k]) {
                     r[rFrom++] = a[j++];
                     r[rFrom++] = b[k++];
                     i++;
                 } else if (j < aTo && k < bTo && a[j] != b[k]) {
-                    if (a[j].compareTo( b[k])==1) {
+                    if (a[j].compareTo(b[k]) == 1) {
                         r[rFrom++] = b[k++];
                     } else {
                         r[rFrom++] = a[j++];
@@ -426,37 +458,19 @@ public class ArrayUtils {
 
 
     }
-  public static   void mergeSort(int[] array, int fromIndex, int toIndex){
-          int[] t = new int[array.length];
-          for (int size = 1; size < toIndex-fromIndex; size *= 2) {
-              System.arraycopy(array, 0, t, 0, array.length);
-              for (int l = fromIndex; l + size < toIndex; l += 2 * size) {
-                  int m = l + size;
-                  int r = m + size;
-                  if (r > toIndex) {
-                      r = toIndex;
-                  }
-                  int i = l;
-                  int j = m;
-                  int k = l;
-                  while (i < m && j < r) {
-                      array[k++] = t[i] <= t[j] ? t[i++] : t[j++];
-                  }
-                  while (i < m) {
-                      array[k++] = t[i++];
-                  }
-                  while (j < r) {
-                      array[k++] = t[j++];
-                  }
-              }
-          }
-      }
-      //10 9 7 8 11
-      //
 
-    public static   void mergeSort(Event[] array, int fromIndex, int toIndex){
-        Event[] t = new Event[array.length];
-        for (int size = 1; size < toIndex-fromIndex; size *= 2) {
+    /**
+     * Make merge sort
+     *
+     * @param array     the first term
+     * @param fromIndex the second term
+     * @param toIndex   the third term
+     * @cpu 0(nlogn)
+     * @ram 0(n)
+     */
+    public static void mergeSort(int[] array, int fromIndex, int toIndex) {
+        int[] t = new int[array.length];
+        for (int size = 1; size < toIndex - fromIndex; size *= 2) {
             System.arraycopy(array, 0, t, 0, array.length);
             for (int l = fromIndex; l + size < toIndex; l += 2 * size) {
                 int m = l + size;
@@ -468,7 +482,7 @@ public class ArrayUtils {
                 int j = m;
                 int k = l;
                 while (i < m && j < r) {
-                    array[k++] = t[i].compareTo(t[j])<=0 ? t[i++] : t[j++];
+                    array[k++] = t[i] <= t[j] ? t[i++] : t[j++];
                 }
                 while (i < m) {
                     array[k++] = t[i++];
@@ -479,7 +493,42 @@ public class ArrayUtils {
             }
         }
     }
-  }
+
+    /**
+     * Make merge sort
+     *
+     * @param array     the first term
+     * @param fromIndex the second term
+     * @param toIndex   the third term
+     * @cpu 0(nlogn)
+     * @ram n
+     */
+    public static void mergeSort(Event[] array, int fromIndex, int toIndex) {
+        Event[] t = new Event[array.length];
+        for (int size = 1; size < toIndex - fromIndex; size *= 2) {
+            System.arraycopy(array, 0, t, 0, array.length);
+            for (int l = fromIndex; l + size < toIndex; l += 2 * size) {
+                int m = l + size;
+                int r = m + size;
+                if (r > toIndex) {
+                    r = toIndex;
+                }
+                int i = l;
+                int j = m;
+                int k = l;
+                while (i < m && j < r) {
+                    array[k++] = t[i].compareTo(t[j]) <= 0 ? t[i++] : t[j++];
+                }
+                while (i < m) {
+                    array[k++] = t[i++];
+                }
+                while (j < r) {
+                    array[k++] = t[j++];
+                }
+            }
+        }
+    }
+}
 
 
 

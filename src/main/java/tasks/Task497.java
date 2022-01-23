@@ -1,15 +1,21 @@
 package tasks;
 
 public class Task497 {
+
+    /**
+     * Merge two sorted arrays
+     *
+     * @cpu n+m
+     * @ram n+m
+     *
+     * @param a the first term
+     * @param b the second term
+     *
+     * @return sorted array containing elements from two sorted arrays
+     */
     public static int[] merge(int[] a, int[] b) {
         if (a.length != 0 && b.length != 0) {
             int[] twoArrays = new int[a.length + b.length];
-
-            // 1 2 3  4  5  6  7
-            // 8 9 10 11 12 13 14
-            // 1 2 3 4 5 6 7 8 9 10
-            // 3,4,5,6,7,8
-            // 1 2 3 3 4 4 5 5 6 6 7 7
             for (int i = 0, j = 0, k = 0; j < twoArrays.length; j++) {
                 if (i < a.length && k < b.length) {
                     if (a[i] == b[k]) {

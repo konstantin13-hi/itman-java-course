@@ -6,13 +6,25 @@ import utils.ArrayUtils;
 import java.util.Random;
 
 public class SortBenchmark {
+    /**
+     * Create array with random elements and length
+     *
+     * @cpu n
+     * @ram n
+     *
+     * @param n the first term
+     * @param min the second term
+     * @param max the third term
+     *
+     * @retur narray with random elements and length
+     */
     public static int[] randomArray(int n, int min, int max) {
         int diff = max - min;
         Random random = new Random();
         int[] randomArray = new int[n];
         for (int i = 0; i < n; i++) {
             randomArray[i] =
-                    random.nextInt(diff ) + min;
+                    random.nextInt(diff) + min;
 
         }
         return randomArray;
@@ -20,22 +32,28 @@ public class SortBenchmark {
 
     }
 
+    /**
+     * Create array with random elements and length
+     *
+     * @cpu n
+     * @ram n
+     *
+     * @param n the first
+     * @param min the second term
+     * @param max the third term
+     * @return array with random elements and length
+     */
     public static Event[] randomEvents(int n, int min, int max) {
         Event[] events = new Event[n];
         Random random = new Random();
         int diff = max - min;
         String[] strings = new String[n];
         for (int i = 0; i < n; i++) {
-            long number= random.nextLong() * 20;
-            strings[i]=Long.toString(number);
-        //    int length = random.nextInt(21);
-         ///   for (int j = 0; j <= length; j++) {
-         //       strings[i] += (char) (Math.random() * 26 + 97);
-         //   }
-
+            long number = (long) (Math.random() * 9_223_372_036_854_775_800L);
+            strings[i] = Long.toString(number);
         }
         for (int i = 0; i < n; i++) {
-            int year = random.nextInt(diff ) + min;
+            int year = random.nextInt(diff) + min;
             int month = random.nextInt(11 + 1) + 1;
             int day = random.nextInt(30 + 1) + 1;
             String name = strings[i];
@@ -45,6 +63,30 @@ public class SortBenchmark {
         return events;
     }
 
+    // bsp1: 96ms
+    // bsp2: 97ms
+    // bsp3: 16317ms
+    // bsp4: 16421ms
+    // bso1: 770ms
+    // bso2: 961ms
+    // bso3: 94340ms
+    // bso4: 108736ms
+    // csp1: 3ms
+    // csp2: OutOfMemory
+    // csp3: 5ms
+    // csp4: OutOfMemory
+    // cso1: 15ms
+    // cso2: OutOfMemory
+    // cso3: 23ms
+    // cso4: OutOfMemory
+    // msp1: 4ms
+    // msp2: 4ms
+    // msp3: 50s
+    // msp4: 72ms
+    // mso1: 12ms
+    // mso2: 14ms
+    // mso3: 42ms
+    // mso4: 94ms
     public static void main(String[] args) {
         int[] bsp1 = randomArray(10_000, -10_000, 10_000);
         int[] bsp2 = randomArray(10_000, -1_000_000_000, 1_000_000_000);
@@ -54,6 +96,22 @@ public class SortBenchmark {
         Event[] bso2 = randomEvents(10_000, -1_000_000, 1_000_000);
         Event[] bso3 = randomEvents(100_000, 2000, 2021);
         Event[] bso4 = randomEvents(100_000, -1_000_000, 1_000_000);
+        int[] csp1 = randomArray(10_000, -10_000, 10_000);
+        int[] csp2 = randomArray(10_000, -1_000_000_000, 1_000_000_000);
+        int[] csp3 = randomArray(100_000, -10_000, 10_000);
+        int[] csp4 = randomArray(100_000, -1_000_000_000, 1_000_000_000);
+        Event[] cso1 = randomEvents(10_000, 2000, 2021);
+        Event[] cso2 = randomEvents(10_000, -1_000_000, 1_000_000);
+        Event[] cso3 = randomEvents(100_000, 2000, 2021);
+        Event[] cso4 = randomEvents(100_000, -1_000_000, 1_000_000);
+        int[] msp1 = randomArray(10_000, -10_000, 10_000);
+        int[] msp2 = randomArray(10_000, -1_000_000_000, 1_000_000_000);
+        int[] msp3 = randomArray(100_000, -10_000, 10_000);
+        int[] msp4 = randomArray(100_000, -1_000_000_000, 1_000_000_000);
+        Event[] mso1 = randomEvents(10_000, 2000, 2021);
+        Event[] mso2 = randomEvents(10_000, -1_000_000, 1_000_000);
+        Event[] mso3 = randomEvents(100_000, 2000, 2021);
+        Event[] mso4 = randomEvents(100_000, -1_000_000, 1_000_000);
         long time = System.currentTimeMillis();
         ArrayUtils.bubbleSort(bsp1);
         System.out.println(System.currentTimeMillis() - time);
@@ -78,10 +136,6 @@ public class SortBenchmark {
         long time8 = System.currentTimeMillis();
         ArrayUtils.bubbleSort(bso4);
         System.out.println(System.currentTimeMillis() - time8);
-        int []csp1 =randomArray(10_000, -10_000, 10_000);
-        int []csp2 =randomArray(10_000, -1_000_000_000, 1_000_000_000);
-        int []csp3 =randomArray(100_000, -10_000, 10_000);
-        int []csp4 =randomArray(100_000, -1_000_000_000, 1_000_000_000);
         long time9 = System.currentTimeMillis();
         ArrayUtils.countingSort(csp1);
         System.out.println(System.currentTimeMillis() - time9);
@@ -94,10 +148,6 @@ public class SortBenchmark {
         long time12 = System.currentTimeMillis();
         ArrayUtils.countingSort(csp4);
         System.out.println(System.currentTimeMillis() - time12);
-        Event[] cso1 =randomEvents(10_000, 2000, 2021);
-        Event[] cso2= randomEvents(10_000, -1_000_000, 1_000_000);
-        Event[] cso3= randomEvents(100_000, 2000, 2021);
-        Event[] cso4= randomEvents(100_000, -1_000_000, 1_000_000);
         long time13 = System.currentTimeMillis();
         ArrayUtils.countingSort(cso1);
         System.out.println(System.currentTimeMillis() - time13);
@@ -110,14 +160,6 @@ public class SortBenchmark {
         long time16 = System.currentTimeMillis();
         ArrayUtils.countingSort(cso4);
         System.out.println(System.currentTimeMillis() - time16);
-        int[] msp1 = randomArray(10_000, -10_000, 10_000);
-        int[] msp2 = randomArray(10_000, -1_000_000_000, 1_000_000_000);
-        int[] msp3 = randomArray(100_000, -10_000, 10_000);
-        int[] msp4 = randomArray(100_000, -1_000_000_000, 1_000_000_000);
-        Event[] mso1 =randomEvents(10_000, 2000, 2021);
-        Event[] mso2= randomEvents(10_000, -1_000_000, 1_000_000);
-        Event[]  mso3= randomEvents(100_000, 2000, 2021);
-        Event[] mso4=  randomEvents(100_000, -1_000_000, 1_000_000);
         long time17 = System.currentTimeMillis();
         ArrayUtils.mergeSort(msp1);
         System.out.println(System.currentTimeMillis() - time17);
@@ -130,7 +172,6 @@ public class SortBenchmark {
         long time20 = System.currentTimeMillis();
         ArrayUtils.mergeSort(msp4);
         System.out.println(System.currentTimeMillis() - time20);
-
         long time21 = System.currentTimeMillis();
         ArrayUtils.mergeSort(mso1);
         System.out.println(System.currentTimeMillis() - time21);
@@ -143,8 +184,6 @@ public class SortBenchmark {
         long time24 = System.currentTimeMillis();
         ArrayUtils.mergeSort(mso4);
         System.out.println(System.currentTimeMillis() - time24);
-
-
     }
 
 }
