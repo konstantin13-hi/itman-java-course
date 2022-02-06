@@ -25,7 +25,6 @@ public class ArrayUtilsTests {
                 new Event(1994, 2, 4, "sa3"),
                 new Event(1994, 11, 12, "sae1")
         };
-
         ArrayUtils.bubbleSort(actual);
         checkingASortedArrayElements(actual, expected);
         checkingASortedArrayLinks(actual, expectedElement);
@@ -53,7 +52,6 @@ public class ArrayUtilsTests {
                 new Event(2000, 11, 12, "Day of City in Gomel"),
                 new Event(2031, 11, 13, "Day of City in Minsk")
         };
-
         ArrayUtils.bubbleSort(actual);
         checkingASortedArrayElements(actual, expected);
         checkingASortedArrayLinks(actual, expectedElement);
@@ -80,7 +78,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void countingSortSecond() {
+    public void countingSortWhenBigNumbersPositive() {
         int[] elements = new int[]{2147483647, 2146483648};
         ArrayUtils.countingSort(elements);
         int[] expected = new int[]{2146483648, 2147483647};
@@ -89,7 +87,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void countingSortThird() {
+    public void countingSortWhenBigNumbersNegative() {
         int[] elements = new int[]{-2146483649, -2147483648};
         ArrayUtils.countingSort(elements);
         int[] expected = new int[]{-2147483648, -2146483649};
@@ -120,7 +118,15 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void countEquals3() {
+    public void countEqualsWhenInFirstArrayOneElement() {
+        int[] elements = new int[]{5};
+        int[] elementsSecond = new int[]{-10, 0, 0, 0, 0, 0, 1, 0, 0, 1, 2, 3, 4, 5};
+        int expected = 1;
+        Assertions.assertEquals(expected, ArrayUtils.countEquals(elements, elementsSecond));
+    }
+
+    @Test
+    public void countEqualsWhenArraysDoNotContainTheSameElements() {
         int[] elements = new int[]{-1000000};
         int[] elementsSecond = new int[]{1000000};
         int expected = 0;
@@ -128,15 +134,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void countEquals2() {
-        int[] elements = new int[]{1, 1, 3, 2, 1};
-        int[] elementsSecond = new int[]{4, 2, 1, 4, 1, 2};
-        int expected = 3;
-        Assertions.assertEquals(expected, ArrayUtils.countEquals(elements, elementsSecond));
-    }
-
-    @Test
-    public void countEquals4() {
+    public void countEqualsWhenBigNumbersNegativeAndPositive() {
         int[] elements = new int[]{2147483647, 2146483648, 2147483647};
         int[] elementsSecond = new int[]{-2147483648, 1, 2147483647};
         int expected = 1;
@@ -165,7 +163,6 @@ public class ArrayUtilsTests {
                 new Event(2020, 10, 25, "A"),
                 new Event(2021, 1, 1, "D")
         };
-
         ArrayUtils.countingSort(actual);
         checkingASortedArrayElements(actual, expected);
         checkingASortedArrayLinks(actual, expectedElement);
@@ -184,7 +181,6 @@ public class ArrayUtilsTests {
         ArrayUtils.merge(a, aFrom, aTo, b, bFrom, bTo, r, rFrom);
         int[] expected = new int[]{1, 1, 2, 2, 3, 4, 5, 1};
         Assertions.assertArrayEquals(expected, r);
-
     }
 
     @Test
@@ -193,20 +189,26 @@ public class ArrayUtilsTests {
         ArrayUtils.mergeSort(a);
         int[] expected = new int[]{1, 1, 1, 3, 3, 3, 4, 4, 5};
         Assertions.assertArrayEquals(expected, a);
-
     }
 
     @Test
-    public void mergeSort6() {
+    public void mergeSortUsingIndexesFromZeroToTheEnd() {
         int[] a = new int[]{2, 2, 1, 0, 10, 30, 15};
         ArrayUtils.mergeSort(a, 0, 7);
         int[] expected = new int[]{0, 1, 2, 2, 10, 15, 30};
         Assertions.assertArrayEquals(expected, a);
-
     }
 
     @Test
-    public void mergeSort3() {
+    public void mergeSortWhenSortAPieceInTheMiddleOfAnArray() {
+        int[] a = new int[]{2, 2, 1, 0, 40, 30, 15};
+        ArrayUtils.mergeSort(a, 4, 6);
+        int[] expected = new int[]{2, 2, 1, 0, 30, 40, 15};
+        Assertions.assertArrayEquals(expected, a);
+    }
+
+    @Test
+    public void mergeSortSpeedTest() {
         int[] a = new int[1000000];
         for (int i = 0; i < a.length; i++) {
             a[i] = 1000000 - i - 1;
@@ -215,14 +217,13 @@ public class ArrayUtilsTests {
         for (int i = 0; i < a.length; i++) {
             b[i] = i;
         }
-
         ArrayUtils.mergeSort(a);
         Assertions.assertArrayEquals(b, a);
 
     }
 
     @Test
-    public void mergeSort4() {
+    public void mergeSortWithObjects() {
         Event[] actual = new Event[]{
                 new Event(10, 0, 0, "Day of City in Gomel"),
                 new Event(9, 0, 0, "Day of City in Minsk"),
@@ -250,7 +251,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void mergeSort5() {
+    public void mergeSortWhenSortAPieceInTheMiddleOfAnArrayObjects() {
         Event[] actual = new Event[]{
                 new Event(10, 0, 0, "Day of City in Gomel"),
                 new Event(9, 0, 0, "Day of City in Minsk"),

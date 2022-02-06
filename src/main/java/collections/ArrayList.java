@@ -169,12 +169,11 @@ public class ArrayList {
     /**
      * Make a sort of array
      *
-     * @cpu 0(n^2)
+     * @cpu 0(nlog(n))
      * @ram 0(1)
      */
     public void sort() {
-        elements = toArray();
-        ArrayUtils.mergeSort(elements);
+        ArrayUtils.mergeSort(elements,0,logicalSize);
     }
 
     /**

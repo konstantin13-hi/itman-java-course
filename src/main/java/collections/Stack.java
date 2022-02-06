@@ -8,8 +8,8 @@ public class Stack {
     /**
      * Create arraylist
      *
-     * @cpu
-     * @ram
+     * @cpu 0(1)
+     * @ram O(1)
      *
      */
     public Stack() {

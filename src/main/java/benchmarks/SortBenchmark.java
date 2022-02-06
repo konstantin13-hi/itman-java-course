@@ -9,8 +9,8 @@ public class SortBenchmark {
     /**
      * Create array with random elements and length
      *
-     * @cpu n
-     * @ram n
+     * @cpu O(n)
+     * @ram O(n)
      *
      * @param n the first term
      * @param min the second term
@@ -35,8 +35,8 @@ public class SortBenchmark {
     /**
      * Create array with random elements and length
      *
-     * @cpu n
-     * @ram n
+     * @cpu O(n)
+     * @ram O(n)
      *
      * @param n the first
      * @param min the second term
@@ -47,18 +47,13 @@ public class SortBenchmark {
         Event[] events = new Event[n];
         Random random = new Random();
         int diff = max - min;
-        String[] strings = new String[n];
         for (int i = 0; i < n; i++) {
             long number = (long) (Math.random() * 9_223_372_036_854_775_800L);
-            strings[i] = Long.toString(number);
-        }
-        for (int i = 0; i < n; i++) {
+            String name = Long.toString(number);
             int year = random.nextInt(diff) + min;
             int month = random.nextInt(11 + 1) + 1;
             int day = random.nextInt(30 + 1) + 1;
-            String name = strings[i];
             events[i] = new Event(year, month, day, name);
-
         }
         return events;
     }

@@ -55,14 +55,9 @@ public class Event {
      * @return result of  compare
      */
     public boolean equals(Event that) {
-        if (that == null) {
+        if ((that == null)||(that.name == null && this.name != null) ) {
             return false;
         }
-        if (that.name == null && this.name != null) {
-            return false;
-
-        }
-
         return (( this.name == null && that.name == null || (that.name.equals(this.name))) &&
                 (this.year == that.year && this.month == that.month && that.day == this.day));
     }

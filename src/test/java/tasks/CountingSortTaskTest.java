@@ -6,17 +6,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CountingSortTaskTest {
+
     @Test
     public void count() {
         int[] actual = new int[]{1, 5, 3, 1, 2};
         int[] expected = new int[]{0, 2, 1, 1, 0, 1};
-        Assertions.assertArrayEquals(expected, CountingSortTask.count(actual));
-    }
-
-    @Test
-    public void countSecond() {
-        int[] actual = new int[]{1, 5, 3, 1, 2, 0};
-        int[] expected = new int[]{1, 2, 1, 1, 0, 1};
         Assertions.assertArrayEquals(expected, CountingSortTask.count(actual));
     }
 
@@ -28,18 +22,12 @@ class CountingSortTaskTest {
     }
 
     @Test
-    public void restoreSecond() {
-        int[] actual = new int[]{1, 2, 1, 1, 0, 1};
-        int[] expected = new int[]{0, 1, 1, 2,3, 5};
-        Assertions.assertArrayEquals(expected, CountingSortTask.restore(actual));
-    }
-
-    @Test
     public void sort() {
         int[] actual = new int[]{1, 5, 3, 1, 2};
         CountingSortTask.sort(actual);
         int[] expected = new int[]{1, 1, 2, 3, 5};
         Assertions.assertArrayEquals(expected, actual);
     }
+
 
 }

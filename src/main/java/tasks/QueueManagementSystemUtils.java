@@ -42,7 +42,7 @@ public class QueueManagementSystemUtils {
     /**
      * Calculate median tickets
      *
-     * @cpu 0(n^2)
+     * @cpu 0(nlog(n))
      * @ram 0(n)
      *
      * @param systems the first term
@@ -52,24 +52,14 @@ public class QueueManagementSystemUtils {
         if (systems.length == 0) {
             return 0;
         }
-        double[] median = new double[systems.length];
-
+        int[] median = new int[systems.length];
         for (int i = 0; i < median.length; i++) {
             median[i] = systems[i].getTotalTickets();
         }
-        for (int i = 0; i < median.length; i++) {
-            for (int j = 1; j < median.length; j++) {
-                if (median[j - 1] > median[j]) {
-                    double temp = median[j - 1];
-                    median[j - 1] = median[j];
-                    median[j] = temp;
-                }
-            }
-
-        }
+        ArrayUtils.mergeSort(median);
         double result;
         if (systems.length % 2 == 0) {
-            result = (median[(systems.length - 1) / 2] + median[((systems.length - 1) / 2) + 1]) / 2;
+            result = ((double) median[(systems.length - 1) / 2] + median[((systems.length - 1) / 2) + 1]) / 2;
         } else {
             result = Math.round((double) calcTotalVisits(systems) / systems.length);
         }
@@ -211,8 +201,8 @@ public class QueueManagementSystemUtils {
 
     /**
      *
-     * @cpu 0(n^2)
-     * @ram 0(1)
+     * @cpu 0(nlog(n))
+     * @ram 0(n)
      * @param array
      * @return
      */

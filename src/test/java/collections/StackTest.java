@@ -9,7 +9,7 @@ class StackTest {
 
     @Test
     public void push() {
-        int a =3;
+        int a = 3;
         Stack stack = new Stack();
         stack.push(a);
         stack.push(a);
@@ -17,11 +17,7 @@ class StackTest {
         stack.push(a);
         stack.push(a);
         stack.push(a);
-
-        Assertions.assertArrayEquals(new int[]{3,3,3,3,3,3},stack.toArray());
-
-
-
+        Assertions.assertArrayEquals(new int[]{3, 3, 3, 3, 3, 3}, stack.toArray());
     }
 
     @Test
@@ -33,10 +29,8 @@ class StackTest {
         stack.push(5);
         stack.push(6);
         stack.push(7);
-        Assertions.assertEquals(7,stack.peek());
-        Assertions.assertArrayEquals(new int[]{1,3,2,5,6,7},stack.toArray());
-
-
+        Assertions.assertEquals(7, stack.peek());
+        Assertions.assertArrayEquals(new int[]{1, 3, 2, 5, 6, 7}, stack.toArray());
     }
 
     @Test
@@ -48,8 +42,8 @@ class StackTest {
         stack.push(5);
         stack.push(6);
         stack.push(7);
-        Assertions.assertEquals(7,stack.pop());
-        Assertions.assertArrayEquals(new int[]{1,3,2,5,6},stack.toArray());
+        Assertions.assertEquals(7, stack.pop());
+        Assertions.assertArrayEquals(new int[]{1, 3, 2, 5, 6}, stack.toArray());
     }
 
     @Test
@@ -61,7 +55,7 @@ class StackTest {
         stack.push(5);
         stack.push(6);
         stack.push(7);
-        Assertions.assertEquals(6,stack.size());
+        Assertions.assertEquals(6, stack.size());
     }
 
     @Test

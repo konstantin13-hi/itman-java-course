@@ -6,12 +6,13 @@ public class Task514 {
 
     /**
      * Solve how many books are left
+     * n=amount of books
      *
+     * @cpu O(n+m)
+     * @ram 0(n)
      * @param books the first term
      * @param queue the second term
-     * @return result how many books are left
-     * @cpu n+m
-     * @ram 0(1)
+     * @return id of the last book
      */
     public static int solve(int[] books, int[] queue) {
         Stack stack = new Stack();
@@ -24,10 +25,8 @@ public class Task514 {
             } else {
                 stack.push(queue[i]);
             }
-
         }
-
-        return stack.size();
+        return stack.peek();
     }
 
 
