@@ -353,15 +353,19 @@ public class ArrayUtils {
      * @param fromIndex the index of the first array, indicating the start of the sort
      * @param toIndex the index of the first array indicating the end of the sort
      */
+    //11, 2, 33, 1, 5
+    // (11 2) (33 1) )5
+    // (11 2 33 1) (5)
+    // (11 2 33 1 5)
     public static void mergeSort(int[] array, int fromIndex, int toIndex) {
         int[] t = new int[array.length];
         int length = toIndex - fromIndex;
         for (int k = 1; k < length; k = k * 2) {
             for (int j = fromIndex;  j < toIndex; j += k * 2) {
-                if (j+k < array.length && j+k*2 <= array.length) {
+                if (j+k < toIndex && j+k*2 <= toIndex) {
                     ArrayUtils.merge(array, j , j+k, array, j+k, j + k*2, t, j);
-                } else if (j+k < array.length && j+k*2 > array.length) {
-                    ArrayUtils.merge(array,j, j+k, array, j+k, array.length, t, j);
+                } else if (j+k < toIndex && j+k*2 > toIndex) {
+                    ArrayUtils.merge(array,j, j+k, array, j+k, toIndex, t, j);
                 } else {
                     System.arraycopy(array, j, t, j, k);
                 }
@@ -384,10 +388,10 @@ public class ArrayUtils {
         int length = toIndex - fromIndex;
         for (int k = 1; k < length; k = k * 2) {
             for (int j = fromIndex; j < toIndex; j += k * 2) {
-                if (j + k < array.length && j + k * 2 <= array.length) {
+                if (j + k < toIndex && j + k * 2 <= toIndex) {
                     ArrayUtils.merge(array, j, j + k, array, j + k, j + k * 2, t, j);
-                } else if (j + k < array.length && j + k * 2 > array.length) {
-                    ArrayUtils.merge(array, j, j + k, array, j + k, array.length, t, j);
+                } else if (j + k < toIndex && j + k * 2 >  toIndex) {
+                    ArrayUtils.merge(array, j, j + k, array, j + k,  toIndex, t, j);
                 } else {
                     System.arraycopy(array, j, t, j, k);
                 }

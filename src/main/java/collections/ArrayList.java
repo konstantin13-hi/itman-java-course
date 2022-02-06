@@ -125,7 +125,7 @@ public class ArrayList {
      * n=size
      *
      * @cpu 0(n)
-     * @ram 0(1)                     //
+     * @ram 0(1)
      *
      * @param index the first term
      * @return new array without one element
