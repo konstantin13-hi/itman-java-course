@@ -16,11 +16,11 @@ public class SortBenchmark {
      * @param min the second term
      * @param max the third term
      *
-     * @retur narray with random elements and length
+     * @retur array with random elements and length
      */
     public static int[] randomArray(int n, int min, int max) {
         int diff = max - min;
-        Random random = new Random();
+        Random random = new Random(1);
         int[] randomArray = new int[n];
         for (int i = 0; i < n; i++) {
             randomArray[i] =
@@ -45,10 +45,10 @@ public class SortBenchmark {
      */
     public static Event[] randomEvents(int n, int min, int max) {
         Event[] events = new Event[n];
-        Random random = new Random();
+        Random random = new Random(1);
         int diff = max - min;
         for (int i = 0; i < n; i++) {
-            long number = (long) (Math.random() * 9_223_372_036_854_775_800L);
+            long number =  random.nextLong();
             String name = Long.toString(number);
             int year = random.nextInt(diff) + min;
             int month = random.nextInt(11 + 1) + 1;

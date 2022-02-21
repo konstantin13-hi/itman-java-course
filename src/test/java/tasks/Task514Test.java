@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class Task514Test {
 
     @Test
-    public void solve() {
+    public void solveShouldSolveHowManyBooksAreLeftWhenArraysNotIsEmpty() {
         int[] books = new int[]{1, 2, 3};
         int[] queue = new int[]{-1, 5, 4, -1, -1};
         Task514.solve(books, queue);

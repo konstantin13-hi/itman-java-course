@@ -55,7 +55,7 @@ public class Event {
      * @return result of  compare
      */
     public boolean equals(Event that) {
-        if ((that == null)||(that.name == null && this.name != null) ) {
+        if (that == null || that.name == null && this.name != null) {
             return false;
         }
         return (( this.name == null && that.name == null || (that.name.equals(this.name))) &&

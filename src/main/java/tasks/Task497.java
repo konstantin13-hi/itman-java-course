@@ -5,8 +5,8 @@ public class Task497 {
     /**
      * Merge two sorted arrays
      *
-     * @cpu n+m
-     * @ram n+m
+     * @cpu O(n+m)
+     * @ram O(n+m)
      *
      * @param a the first term
      * @param b the second term
@@ -14,40 +14,29 @@ public class Task497 {
      * @return sorted array containing elements from two sorted arrays
      */
     public static int[] merge(int[] a, int[] b) {
-        if (a.length != 0 && b.length != 0) {
-            int[] twoArrays = new int[a.length + b.length];
-            for (int i = 0, j = 0, k = 0; j < twoArrays.length; j++) {
-                if (i < a.length && k < b.length) {
-                    if (a[i] == b[k]) {
-                        twoArrays[j++] = a[i++];
-                        twoArrays[j] = b[k++];
-                    } else if (a[i] < b[k]) {
-                        twoArrays[j] = a[i++];
-                    } else {
-                        twoArrays[j] = b[k++];
-                    }
-
+        int[] twoArrays = new int[a.length + b.length];
+        for (int i = 0, j = 0, k = 0; j < twoArrays.length; j++) {
+            if (i < a.length && k < b.length) {
+                if (a[i] == b[k]) {
+                    twoArrays[j++] = a[i++];
+                    twoArrays[j] = b[k++];
+                } else if (a[i] < b[k]) {
+                    twoArrays[j] = a[i++];
                 } else {
-                    if (i == a.length || k == b.length) {
-                        if (i == a.length) {
-                            twoArrays[j] = b[k++];
-                        } else {
-                            twoArrays[j] = a[i++];
-                        }
-                    }
-
+                    twoArrays[j] = b[k++];
                 }
-            }
-            return twoArrays;
+            } else {
+                if (i == a.length || k == b.length) {
+                    if (i == a.length) {
+                        twoArrays[j] = b[k++];
+                    } else {
+                        twoArrays[j] = a[i++];
+                    }
+                }
 
+            }
         }
-        int[] result;
-        if (a.length == 0) {
-            result = b;
-        } else {
-            result = a;
-        }
-        return result;
+        return twoArrays;
     }
 }
 

@@ -170,7 +170,7 @@ public class ArrayList {
      * Make a sort of array
      *
      * @cpu 0(nlog(n))
-     * @ram 0(1)
+     * @ram 0(n)
      */
     public void sort() {
         ArrayUtils.mergeSort(elements,0,logicalSize);

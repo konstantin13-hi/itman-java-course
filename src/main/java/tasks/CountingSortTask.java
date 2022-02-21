@@ -8,7 +8,7 @@ public class CountingSortTask {
      * m=the maximum element
      * n=amount of elements
      *
-     * @cpu O(m*n)
+     * @cpu O(n)
      * @ram O(m)
      *
      * @param array
@@ -25,13 +25,10 @@ public class CountingSortTask {
             }
         }
         int[] count = new int[max + 1];
-        for (int i = 0; i < count.length; i++) {
-            for (int j = 0; j < array.length; j++) {
-                if (array[j] == i) {
-                    count[i]++;
-                }
-            }
+        for (int j = 0; j < array.length; j++) {
+            count[array[j]]++;
         }
+
         return count;
     }
 
@@ -39,22 +36,22 @@ public class CountingSortTask {
      *Fetches elements in sorted order
      *
      * n=amount of the elements
-     * m= the greatest number of element
-     * k=amount of elements that occur at least once
+     * k=sum of elements
      *
-     * @cpu O(n*m)
+     * @cpu O(n+k)
      * @ram О(k)
      *
      * @param array the first term
      *
      * @return sorted array
      */
+    // 0 1 0 0 6 0 0 0 10
     public static int[] restore(int[] array) {
-        int max = 0;
+        int sum = 0;
         for (int i = 0; i < array.length; i++) {
-            max += array[i];
+            sum += array[i];
         }
-        int[] restore = new int[max];
+        int[] restore = new int[sum];
         int length = 0;
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i]; j++) {
@@ -68,14 +65,17 @@ public class CountingSortTask {
 
     /**
      * Sorting elements of array
+     * m=the maximum element
+     * n=amount of elements
      *
-     * @cpu O(n)
-     * @ram 0(m)
+     * @cpu O(n+m)
+     * @ram 0(n+m)
      *
      * @param array the first term
      */
     public static void sort(int[] array) {
-        int[] sort = restore(count(array));
+        int[] restore = count(array);
+        int[] sort = restore(restore);
         for (int i = 0; i < array.length; i++) {
             array[i] = sort[i];
         }

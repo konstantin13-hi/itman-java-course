@@ -9,7 +9,7 @@ import java.util.Random;
 public class ArrayUtilsTests {
 
     @Test
-    public void sortElementsOfArray() {
+    public void sortShouldUseBubbleSortWhenArrayIsNotEmpty() {
         Event[] actual = new Event[]{
                 new Event(1994, 11, 12, "sae1"),
                 new Event(1994, 2, 4, "sa3"),
@@ -31,7 +31,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void sortElementsOfArrayTwoNameSame() {
+    public void sortShouldUseBubbleSortWhenArrayTwoNameSame() {
         Event[] actual = new Event[]{
                 new Event(2000, 11, 12, "Day of City in Gomel"),
                 new Event(1424, 9, 8, "Day of City in Minsk"),
@@ -60,7 +60,7 @@ public class ArrayUtilsTests {
 
 
     @Test
-    public void sortElementsOfArrayInAscending() {
+    public void sortShouldUseBubbleSortWhenElementsOfArrayInAscending() {
         int[] elements = new int[]{0, 2, 12, -3, 55, 2, 0};
         int[] expected = new int[]{-3, 0, 0, 2, 2, 12, 55};
         ArrayUtils.bubbleSort(elements);
@@ -69,7 +69,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void countingSort() {
+    public void countingSortShouldCountingSortWhenArrayIsNotEmpty() {
         int[] elements = new int[]{0, 3, 12, 3, 55, 2, 0};
         ArrayUtils.countingSort(elements);
         int[] expected = new int[]{0, 0, 2, 3, 3, 12, 55};
@@ -78,7 +78,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void countingSortWhenBigNumbersPositive() {
+    public void countingSortShouldCountingSortWhenBigNumbersPositive() {
         int[] elements = new int[]{2147483647, 2146483648};
         ArrayUtils.countingSort(elements);
         int[] expected = new int[]{2146483648, 2147483647};
@@ -87,7 +87,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void countingSortWhenBigNumbersNegative() {
+    public void countingSortShouldCountingSortWhenBigNumbersNegative() {
         int[] elements = new int[]{-2146483649, -2147483648};
         ArrayUtils.countingSort(elements);
         int[] expected = new int[]{-2147483648, -2146483649};
@@ -96,21 +96,21 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void distinct() {
+    public void distinctShouldFindOlyUniqueElementsInArrayWhenArrayIsNotEmpty() {
         int[] element = new int[]{1, 2, 5, -10, 3, 2, 1, 4};
         int[] expected = new int[]{1, 2, 5, -10, 3, 4};
         Assertions.assertArrayEquals(expected, ArrayUtils.distinct(element));
     }
 
     @Test
-    public void mostFrequent() {
+    public void mostFrequentShouldFindTheNumberThatOccursTheMostTimesWhenArrayIsNotEmpty() {
         int[] element = new int[]{1, 2, 5, -10, 3, 2, 1, 4};
         int expected = 1;
         Assertions.assertEquals(expected, ArrayUtils.mostFrequent(element));
     }
 
     @Test
-    public void countEquals() {
+    public void countEqualsShouldFindTheNumberOfElementsThatAreContainedSimultaneouslyInTwoArraysWhenArraysAreNotEmpty() {
         int[] elements = new int[]{2, 2, 1, 0, 10, 30, 15, 0, 2, 10};
         int[] elementsSecond = new int[]{2, 1, 0, 10, 30, 15};
         int expected = 6;
@@ -118,7 +118,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void countEqualsWhenInFirstArrayOneElement() {
+    public void countEqualsShouldFindTheNumberOfElementsThatAreContainedSimultaneouslyInTwoArraysWhenInFirstArrayOneElement() {
         int[] elements = new int[]{5};
         int[] elementsSecond = new int[]{-10, 0, 0, 0, 0, 0, 1, 0, 0, 1, 2, 3, 4, 5};
         int expected = 1;
@@ -126,7 +126,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void countEqualsWhenArraysDoNotContainTheSameElements() {
+    public void countEqualsShouldFindTheNumberOfElementsThatAreContainedSimultaneouslyInTwoArraysWhenArraysDoNotContainTheSameElements() {
         int[] elements = new int[]{-1000000};
         int[] elementsSecond = new int[]{1000000};
         int expected = 0;
@@ -134,7 +134,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void countEqualsWhenBigNumbersNegativeAndPositive() {
+    public void countEqualsShouldFindTheNumberOfElementsThatAreContainedSimultaneouslyInTwoArraysWhenBigNumbersNegativeAndPositive() {
         int[] elements = new int[]{2147483647, 2146483648, 2147483647};
         int[] elementsSecond = new int[]{-2147483648, 1, 2147483647};
         int expected = 1;
@@ -142,7 +142,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void countingSortEvents() {
+    public void countingSortEventsShouldCountingSortEventsWhenArrayIsNotEmpty() {
         Event[] actual = new Event[]{
                 new Event(2020, 10, 25, "A"),
                 new Event(2020, 5, 20, "B"),
@@ -169,7 +169,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void merge() {
+    public void mergeShouldMergeWhenArraysAreNotEmpty() {
         int[] a = new int[]{100, 2, 4, 5, -7};
         int aFrom = 1;
         int aTo = 4;
@@ -184,7 +184,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void mergeSort() {
+    public void mergeSortShouldMergeSortWhenArrayIsNotEmpty() {
         int[] a = new int[]{4, 1, 3, 3, 1, 3, 4, 5, 1};
         ArrayUtils.mergeSort(a);
         int[] expected = new int[]{1, 1, 1, 3, 3, 3, 4, 4, 5};
@@ -192,7 +192,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void mergeSortUsingIndexesFromZeroToTheEnd() {
+    public void mergeSortShouldMergeSortWhenUsingIndexesFromZeroToTheEnd() {
         int[] a = new int[]{2, 2, 1, 0, 10, 30, 15};
         ArrayUtils.mergeSort(a, 0, 7);
         int[] expected = new int[]{0, 1, 2, 2, 10, 15, 30};
@@ -200,7 +200,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void mergeSortWhenSortAPieceInTheMiddleOfAnArray() {
+    public void mergeSorShouldMergeSortWhenSortAPieceInTheMiddleOfAnArray() {
         int[] a = new int[]{2, 2, 1, 0, 40, 30, 15};
         ArrayUtils.mergeSort(a, 4, 6);
         int[] expected = new int[]{2, 2, 1, 0, 30, 40, 15};
@@ -223,7 +223,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void mergeSortWithObjects() {
+    public void mergeSortWithObjectshouldMergeSortWhenArrayIsNotEmpty() {
         Event[] actual = new Event[]{
                 new Event(10, 0, 0, "Day of City in Gomel"),
                 new Event(9, 0, 0, "Day of City in Minsk"),
@@ -251,7 +251,7 @@ public class ArrayUtilsTests {
     }
 
     @Test
-    public void mergeSortWhenSortAPieceInTheMiddleOfAnArrayObjects() {
+    public void mergeSortShouldMergeSortWhenArrayIsNotEmptySortAPieceInTheMiddleOfAnArrayObjects() {
         Event[] actual = new Event[]{
                 new Event(10, 0, 0, "Day of City in Gomel"),
                 new Event(9, 0, 0, "Day of City in Minsk"),

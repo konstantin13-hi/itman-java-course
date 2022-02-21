@@ -219,8 +219,8 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     * @cpu 0(m*n^2)
-     * @ram 0(m)
+     * @cpu 0(m*nlog(n))
+     * @ram 0(m+n)
      * @param
      * @return
      */
@@ -245,7 +245,10 @@ public class QueueManagementSystemUtils {
     /**
      * Calculate statistic days
      *
-     * @cpu 0(n*m+(n*m^2)=n*m^2
+     * n=amount of systems
+     * m=amount of most business days
+     *
+     * @cpu 0(n*m+(m*nlog(n))=m*n*log(n)
      * @ram 0(n*m)
      *
      * @param systems the first term

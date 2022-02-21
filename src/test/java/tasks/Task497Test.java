@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Task497Test {
     @Test
-    public void merge() {
+    public void mergeShouldMergeTwoSortedArraysWhenTheSecondArrayIsLargeThanTheFirst() {
         int[] first = new int[]{1, 2, 3};
         int[] second = new int[]{3, 4, 5, 6, 7, 8};
         int[] expected = new int[]{1, 2, 3, 3, 4, 5, 6, 7, 8};
@@ -16,7 +16,7 @@ class Task497Test {
     }
 
     @Test
-    public void mergeW() {
+    public void mergeShouldMergeTwoSortedArraysWhenTheFirstArrayIsLargeThanTheSecond() {
         int[] first = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         int[] second = new int[]{3, 4, 5, 6, 7, 8};
         int[] expected = new int[]{1, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 10};
@@ -25,7 +25,7 @@ class Task497Test {
     }
 
     @Test
-    public void mergeWithOnlyOneElementInTwoArrays() {
+    public void mergeShouldMergeTwoSortedArraysWhenOnlyOneElementInTwoArrays() {
         int[] first = new int[]{1};
         int[] second = new int[]{2};
         int[] expected = new int[]{1, 2};

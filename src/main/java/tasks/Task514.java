@@ -7,9 +7,10 @@ public class Task514 {
     /**
      * Solve how many books are left
      * n=amount of books
-     *
+     * m=queue.length
      * @cpu O(n+m)
-     * @ram 0(n)
+     * @ram 0(n+m)
+     *
      * @param books the first term
      * @param queue the second term
      * @return id of the last book

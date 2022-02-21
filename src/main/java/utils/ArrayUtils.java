@@ -93,57 +93,40 @@ public class ArrayUtils {
      *
      * n=amount of elements in array
      * m=difference between the maximum minimum element in array
-     * l=the number of elements that are not repeated
      *
-     * @cpu O(n*l+m)
-     * @ram O(m+l)
+     * @cpu O(n)
+     * @ram O(m+n)
      * @param array the first term
      *
      * @return array containing only unique elements
      */
     public static int[] distinct(int[] array) {
-        if (array.length != 0) {
-            int max = Integer.MIN_VALUE;
-            int min = Integer.MAX_VALUE;
-            for (int i = 0; i < array.length; i++) {
-                if (max < array[i]) {
-                    max = array[i];
-                }
-                if (min > array[i]) {
-                    min = array[i];
-                }
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        ArrayList arrayList = new ArrayList();
+        for (int i = 0; i < array.length; i++) {
+            if (max < array[i]) {
+                max = array[i];
             }
-            int dif = max - min;
-            int[] cnt = new int[dif + 1];
-            for (int i = 0; i < array.length; i++) {
-                cnt[array[i] - min]++;
+            if (min > array[i]) {
+                min = array[i];
             }
-            int sum = 0;
-            for (int i = 0; i < cnt.length; i++) {
-                if (cnt[i] >= 1) {
-                    sum++;
-                }
-            }
-            int[] newArray = new int[sum];
-            for (int k = 0, l = 0; k < array.length; k++) {
-                if (k == 0) {
-                    newArray[l++] = array[k];
-                }
-                if (k >= 1) {
-                    int count = 0;
-                    for (int i = 0; i < l; i++) {
-                        if (array[k] != newArray[i]) {
-                            count++;
-                        }
-                    }
-                    if (count == l) {
-                        newArray[l++] = array[k];
-                    }
-                }
-            }
-            return newArray;
         }
-        return array;
+        // 1 2 3 1 0 0 5 -10 5 1
+        // 1 2 3 0 5-10
+        // -10 0 1 2 3 5
+        // 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  16
+        // 0 0 0 0 0 0 0 0 0 0  0   0  0  0  0  0
+        // 1 0 0 0 0 0 0 0 0 2  3   1  1  0  1  0
+        int dif = max - min;
+        int[] cnt = new int[dif + 1];
+        for (int i = 0; i < array.length; i++) {
+            if (cnt[array[i] - min] < 1) {
+                arrayList.add(array[i]);
+            }
+            cnt[array[i] - min]++;
+        }
+        return arrayList.toArray();
     }
 
     /**
@@ -159,35 +142,32 @@ public class ArrayUtils {
      * @return the number that occurs the most times
      */
     public static int mostFrequent(int[] array) {
-        if (array.length != 0) {
-            int max = Integer.MIN_VALUE;
-            int min = Integer.MAX_VALUE;
-            for (int i = 0; i < array.length; i++) {
-                if (max < array[i]) {
-                    max = array[i];
-                }
-                if (min > array[i]) {
-                    min = array[i];
-                }
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < array.length; i++) {
+            if (max < array[i]) {
+                max = array[i];
             }
-            int dif = max - min;
-            int[] cnt = new int[dif + 1];
-            for (int i = 0; i < array.length; i++) {
-                cnt[array[i] - min]++;
+            if (min > array[i]) {
+                min = array[i];
             }
-            int secondMax = Integer.MIN_VALUE;
-            int index = 0;
-            for (int i = cnt.length - 1; 0 <= i; i--) {
-                if (secondMax <= cnt[i]) {
-                    secondMax = cnt[i];
-                    index = i;
-                }
-            }
-            return index + min;
-
-
         }
-        return array.length;
+        int dif = max - min;
+        int[] cnt = new int[dif + 1];
+        for (int i = 0; i < array.length; i++) {
+            cnt[array[i] - min]++;
+        }
+        int secondMax = Integer.MIN_VALUE;
+        int index = 0;
+        for (int i = cnt.length - 1; 0 <= i; i--) {
+            if (secondMax <= cnt[i]) {
+                secondMax = cnt[i];
+                index = i;
+            }
+        }
+        return index + min;
+
+
     }
 
     /**
@@ -205,49 +185,36 @@ public class ArrayUtils {
      * @return the number of elements that are contained simultaneously in two arrays
      */
     public static int countEquals(int[] a, int[] b) {
-        if (a.length != 0 && b.length != 0) {
-            int max = Integer.MIN_VALUE;
-            int maxSecond = Integer.MIN_VALUE;
-            int min = Integer.MAX_VALUE;
-            int minSecond = Integer.MAX_VALUE;
-            for (int i = 0; i < a.length; i++) {
-                if (max < a[i]) {
-                    max = a[i];
-                }
-                if (min > a[i]) {
-                    min = a[i];
-                }
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < a.length; i++) {
+            if (max < a[i]) {
+                max = a[i];
             }
-            for (int i = 0; i < b.length; i++) {
-                if (maxSecond < b[i]) {
-                    maxSecond = b[i];
-                }
-                if (minSecond > b[i]) {
-                    minSecond = b[i];
-                }
+            if (min > a[i]) {
+                min = a[i];
             }
-            int dif = max - min;
-            int result = 0;
-            int[] cnt = new int[dif + 1];
-            int[] cntSecond = new int[dif + 1];
-            for (int i = 0; i < a.length; i++) {
-                cnt[(a[i] - min)]++;
-            }
-            for (int i = 0; i < b.length; i++) {
-                if (b[i] >= min && b[i] <= max) {
-                    cntSecond[(b[i] - min)]++;
-                }
-            }
-            for (int i = 0; i < cnt.length; i++) {
-                if (cnt[i] > cntSecond[i]) {
-                    result += cntSecond[i];
-                } else {
-                    result += cnt[i];
-                }
-            }
-            return result;
         }
-        return a.length;
+        int dif = max - min;
+        int result = 0;
+        int[] cnt = new int[dif + 1];
+        for (int i = 0; i < a.length; i++) {
+            cnt[(a[i] - min)]++;
+        }
+        //1 1 3 2 1
+        //4 2 1 4 1 2
+        // 0 0 0
+        // 2 2 0
+        // 3 1 1
+        for (int i = 0; i < b.length; i++) {
+            if (b[i] >= min && b[i] <= max) {
+                cnt[(b[i] - min)]--;
+                if (cnt[(b[i] - min)] >= 0) {
+                    result++;
+                }
+            }
+        }
+        return result;
     }
 
     /**
@@ -257,7 +224,7 @@ public class ArrayUtils {
      * m=difference between the maximum minimum element in array
      * k= the largest repetition of events with the same index
      * 
-     * @cpu O(n+m*k)=(n+m)
+     * @cpu O(n+m)
      * @ram O(n+m)
      *
      * @param events the first term
@@ -330,19 +297,7 @@ public class ArrayUtils {
      * @param a the first term
      */
     public static void mergeSort(int[] a) {
-        int[] array = new int[a.length];
-        for (int k = 1; k < a.length; k = k * 2) {
-            for (int j = k; j - k < a.length; j += k * 2) {
-                if (j < a.length && j + k <= a.length) {
-                    ArrayUtils.merge(a, (j - k), j, a, j, (j + k), array, (j - k));
-                } else if (j < a.length && j + k > a.length) {
-                    ArrayUtils.merge(a, (j - k), j, a, j, array.length, array, (j - k));
-                } else {
-                    System.arraycopy(a, (j - k), array, (j - k), k - (j - a.length));
-                }
-            }
-            System.arraycopy(array, 0, a, 0, a.length);
-        }
+       ArrayUtils.mergeSort(a,0,a.length);
     }
 
     /**
@@ -353,10 +308,6 @@ public class ArrayUtils {
      * @param fromIndex the index of the first array, indicating the start of the sort
      * @param toIndex the index of the first array indicating the end of the sort
      */
-    //11, 2, 33, 1, 5
-    // (11 2) (33 1) )5
-    // (11 2 33 1) (5)
-    // (11 2 33 1 5)
     public static void mergeSort(int[] array, int fromIndex, int toIndex) {
         int[] t = new int[array.length];
         int length = toIndex - fromIndex;
@@ -367,7 +318,7 @@ public class ArrayUtils {
                 } else if (j+k < toIndex && j+k*2 > toIndex) {
                     ArrayUtils.merge(array,j, j+k, array, j+k, toIndex, t, j);
                 } else {
-                    System.arraycopy(array, j, t, j, k);
+                    System.arraycopy(array, j, t, j, array.length-j);
                 }
             }
             System.arraycopy(t, fromIndex, array, fromIndex, length);
@@ -377,6 +328,7 @@ public class ArrayUtils {
 
     /**
      * Make merge sort
+     * n=index differences between start and end
      * @cpu O(nlog(n))
      * @ram O(n)
      * @param array the first array variable
@@ -393,7 +345,7 @@ public class ArrayUtils {
                 } else if (j + k < toIndex && j + k * 2 >  toIndex) {
                     ArrayUtils.merge(array, j, j + k, array, j + k,  toIndex, t, j);
                 } else {
-                    System.arraycopy(array, j, t, j, k);
+                    System.arraycopy(array, j, t, j, array.length-j);
                 }
             }
             System.arraycopy(t, fromIndex, array, fromIndex, length);
@@ -401,7 +353,7 @@ public class ArrayUtils {
     }
 
     /**
-     * Make merge
+     * Make merge sort
      *
      * @cpu O(nlog(n))
      * @ram O(n)
@@ -409,23 +361,13 @@ public class ArrayUtils {
      * @param events the first term
      */
     public static void mergeSort(Event[] events) {
-        Event[] array = new Event[events.length];
-        for (int k = 1; k < events.length; k = k * 2) {
-            for (int j = k; j - k < events.length; j += k * 2) {
-                if (j < events.length && j + k <= events.length) {
-                    ArrayUtils.merge(events, (j - k), j, events, j, (j + k), array, (j - k));
-                } else if (j < events.length && j + k > events.length) {
-                    ArrayUtils.merge(events, (j - k), j, events, j, events.length, array, (j - k));
-                } else {
-                    System.arraycopy(events, (j - k), array, (j - k), k - (j - events.length));
-                }
-            }
-            System.arraycopy(array, 0, events, 0, events.length);
-        }
+       ArrayUtils.mergeSort(events,0,events.length);
     }
 
     /**
-     * Create merge
+     * Make merge
+     *
+     * n=sum of index differences between start and end
      *
      * @cpu O(n)
      * @ram O(1)

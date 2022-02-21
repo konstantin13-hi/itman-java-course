@@ -6,11 +6,11 @@ public class Task510 {
 
     /**
      * Finds the minimum element that occurs more often
-     *
+     * n=array length
      * @param array the first term
      * @return result containing minimum element that occurs more often
-     * @cpu nlog(n)
-     * @ram n
+     * @cpu O(nlog(n))
+     * @ram O(n)
      */
     public static int mostFrequent(int[] array) {
         if (array.length == 0) {
