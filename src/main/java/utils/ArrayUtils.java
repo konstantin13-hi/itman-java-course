@@ -112,12 +112,7 @@ public class ArrayUtils {
                 min = array[i];
             }
         }
-        // 1 2 3 1 0 0 5 -10 5 1
-        // 1 2 3 0 5-10
-        // -10 0 1 2 3 5
-        // 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  16
-        // 0 0 0 0 0 0 0 0 0 0  0   0  0  0  0  0
-        // 1 0 0 0 0 0 0 0 0 2  3   1  1  0  1  0
+
         int dif = max - min;
         int[] cnt = new int[dif + 1];
         for (int i = 0; i < array.length; i++) {
@@ -201,11 +196,7 @@ public class ArrayUtils {
         for (int i = 0; i < a.length; i++) {
             cnt[(a[i] - min)]++;
         }
-        //1 1 3 2 1
-        //4 2 1 4 1 2
-        // 0 0 0
-        // 2 2 0
-        // 3 1 1
+
         for (int i = 0; i < b.length; i++) {
             if (b[i] >= min && b[i] <= max) {
                 cnt[(b[i] - min)]--;
@@ -262,7 +253,8 @@ public class ArrayUtils {
     }
 
     /**
-     * Create merge
+     *
+     * Merge two arrays with sorted elements
      *
      * @cpu O(n)
      * @ram O(1)
@@ -291,7 +283,10 @@ public class ArrayUtils {
     }
 
     /**
-     * Make merge
+     * Make merge sort
+     *
+     * n=amount of elements in the array
+     *
      * @cpu O(nlog(n))
      * @ram O(n)
      * @param a the first term
@@ -302,6 +297,9 @@ public class ArrayUtils {
 
     /**
      * Make merge sort
+     *
+     * n=sum of index differences between start and end
+     *
      * @cpu O(nlog(n))
      * @ram O(n)
      * @param array the first array variable
@@ -354,6 +352,8 @@ public class ArrayUtils {
 
     /**
      * Make merge sort
+     *
+     * n=amount of elements in the array
      *
      * @cpu O(nlog(n))
      * @ram O(n)
