@@ -253,10 +253,12 @@ public class ArrayUtils {
     }
 
     /**
-     *
      * Merge two arrays with sorted elements
      *
-     * @cpu O(n)
+     * n=differences between start and end index of the first array
+     * m=differences between start and end index of the second array
+     *
+     * @cpu O(n+m)
      * @ram O(1)
      *
      * @param a the first array variable
@@ -365,11 +367,12 @@ public class ArrayUtils {
     }
 
     /**
-     * Make merge
+     * Merge two arrays with sorted elements
      *
-     * n=sum of index differences between start and end
+     * n=differences between start and end index of the first array
+     * m=differences between start and end index of the second array
      *
-     * @cpu O(n)
+     * @cpu O(n+m)
      * @ram O(1)
      *
      * @param a the first array variable
