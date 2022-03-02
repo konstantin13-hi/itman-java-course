@@ -3,12 +3,13 @@ package tasks;
 import collections.ArrayList;
 import entities.Statistic;
 import tasks.QueueManagementSystem;
+import utils.ArrayUtils;
 
 public class QueueManagementSystemUtils {
 
 
     /**
-     * Calculate total tickets
+     * Calculate total ticketsww
      *
      * @param systems the first term
      * @return result total tickets
@@ -41,7 +42,7 @@ public class QueueManagementSystemUtils {
     /**
      * Calculate median tickets
      *
-     * @cpu 0(n^2)
+     * @cpu 0(nlog(n))
      * @ram 0(n)
      *
      * @param systems the first term
@@ -51,24 +52,14 @@ public class QueueManagementSystemUtils {
         if (systems.length == 0) {
             return 0;
         }
-        double[] median = new double[systems.length];
-
+        int[] median = new int[systems.length];
         for (int i = 0; i < median.length; i++) {
             median[i] = systems[i].getTotalTickets();
         }
-        for (int i = 0; i < median.length; i++) {
-            for (int j = 1; j < median.length; j++) {
-                if (median[j - 1] > median[j]) {
-                    double temp = median[j - 1];
-                    median[j - 1] = median[j];
-                    median[j] = temp;
-                }
-            }
-
-        }
+        ArrayUtils.mergeSort(median);
         double result;
         if (systems.length % 2 == 0) {
-            result = (median[(systems.length - 1) / 2] + median[((systems.length - 1) / 2) + 1]) / 2;
+            result = ((double) median[(systems.length - 1) / 2] + median[((systems.length - 1) / 2) + 1]) / 2;
         } else {
             result = Math.round((double) calcTotalVisits(systems) / systems.length);
         }
@@ -210,23 +201,15 @@ public class QueueManagementSystemUtils {
 
     /**
      *
-     * @cpu 0(n^2)
-     * @ram 0(1)
+     * @cpu 0(nlog(n))
+     * @ram 0(n)
      * @param array
      * @return
      */
     private static double sortTickets(int[] array) {
         double result;
         int[] median = array;
-        for (int i = 0; i < median.length; i++) {
-            for (int j = 1; j < median.length; j++) {
-                if (median[j - 1] > median[j]) {
-                    int temp = median[j - 1];
-                    median[j - 1] = median[j];
-                    median[j] = temp;
-                }
-            }
-        }
+        ArrayUtils.mergeSort(median);
         if (array.length % 2 == 0) {
             result = ((double) median[(array.length - 1) / 2] + (double) median[((array.length - 1) / 2) + 1]) / 2;
         } else {
@@ -236,8 +219,8 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     * @cpu 0(m*n^2)
-     * @ram 0(m)
+     * @cpu 0(m*nlog(n))
+     * @ram 0(m+n)
      * @param
      * @return
      */
@@ -262,7 +245,10 @@ public class QueueManagementSystemUtils {
     /**
      * Calculate statistic days
      *
-     * @cpu 0(n*m+(n*m^2)=n*m^2
+     * n=amount of systems
+     * m=amount of most business days
+     *
+     * @cpu 0(n*m+(m*nlog(n))=m*n*log(n)
      * @ram 0(n*m)
      *
      * @param systems the first term

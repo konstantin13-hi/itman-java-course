@@ -2,10 +2,6 @@ package entities;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import tasks.Task408;
-import tasks.Task439;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class EventTest {
 
@@ -84,4 +80,13 @@ class EventTest {
         Event event = new Event(2021, 10, 10, new String("AA"));
         Assertions.assertTrue(event.equals(even));
     }
+
+    @Test
+    public void equalsWithSame() {
+        Event event = new Event(2023, 2, 28, "AA");
+        Event even = new Event(2023, 2, 28, null);
+        Assertions.assertFalse(event.equals(even));
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package collections;
 
+import utils.ArrayUtils;
 import utils.StringBuilder;
 
 public class ArrayList {
@@ -124,7 +125,7 @@ public class ArrayList {
      * n=size
      *
      * @cpu 0(n)
-     * @ram 0(1)                     //
+     * @ram 0(1)
      *
      * @param index the first term
      * @return new array without one element
@@ -168,20 +169,11 @@ public class ArrayList {
     /**
      * Make a sort of array
      *
-     * @cpu 0(n^2)
-     * @ram 0(1)
+     * @cpu 0(nlog(n))
+     * @ram 0(n)
      */
     public void sort() {
-        elements = toArray();
-        for (int i = 0; i < elements.length; i++) {
-            for (int j = 1; j < elements.length; j++) {
-                if (elements[j - 1] > elements[j]) {
-                    int temp = toArray()[j - 1];
-                    elements[j - 1] = elements[j];
-                    elements[j] = temp;
-                }
-            }
-        }
+        ArrayUtils.mergeSort(elements,0,logicalSize);
     }
 
     /**
