@@ -34,6 +34,6 @@ public class ExampleController {
     }
     @DeleteMapping("/second")
     public String indexDelete() {
-        return "I'm patch mapping";
+        return "I'm delete mapping";
     }
 }
