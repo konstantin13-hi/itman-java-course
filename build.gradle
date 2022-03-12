@@ -19,4 +19,5 @@ test {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
 }
