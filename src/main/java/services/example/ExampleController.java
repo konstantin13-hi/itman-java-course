@@ -36,4 +36,18 @@ public class ExampleController {
     public String indexDelete() {
         return "I'm delete mapping";
     }
+    @PostMapping("/extract/{pathVariable}/{second}")
+    public String extract(@PathVariable String pathVariable,
+                          @PathVariable(name = "second") int secondVariable,
+                          @RequestParam String required,
+                          @RequestParam(required = false) String optional,
+                          @RequestParam(name = "default", defaultValue = "-1") int defaultValue,
+                          @RequestBody String body) {
+        return "pathVariable = " + pathVariable + "\n"
+                + "second = " + secondVariable + "\n"
+                + "required = " + required + "\n"
+                + "optional = " + optional + "\n"
+                + "default = " + defaultValue + "\n"
+                + "body = " + body + "\n";
+    }
 }
