@@ -36,6 +36,37 @@ class ExampleControllerTest {
                 ));
     }
 
+
+    @Test
+    public void shouldExecutedWith200WhenPassOnlyRequired() throws Exception {
+        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .post("/extract/two/2?required=r&missing=world")
+                .content("only required");
+        this.mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("" +
+                        "pathVariable = two\n" +
+                        "second = 2\n" +
+                        "required = r\n" +
+                        "optional = null\n" +
+                        "default = -1\n" +
+                        "body = only required\n"
+                ));
+    }
+
+    @Test
+    public void shouldExecutedWith200WhenPassMissingRequired() throws Exception {
+        final MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .post("/extract/three/3?missing=world")
+                .content("missing required");
+        this.mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().is(400))
+                .andExpect(MockMvcResultMatchers.content().string(""
+
+
+                ));
+    }
+
     @Test
     void index() {
     }
