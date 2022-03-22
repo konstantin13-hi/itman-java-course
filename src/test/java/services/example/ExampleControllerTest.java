@@ -68,30 +68,75 @@ class ExampleControllerTest {
     }
 
     @Test
-    void index() {
+    void index() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .post("/")
+                .content("I'm your first web-service");
+        this.mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().is(405))
+                .andExpect(MockMvcResultMatchers.content().string(""
+                ));
     }
 
     @Test
-    void indexSecond() {
+    void indexSecond() throws Exception  {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .post("/second")
+                .content("I'm the second binding");
+        this.mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("I'm post mapping"
+                ));
     }
 
-    @Test
-    void indexPost() {
-    }
 
     @Test
-    void indexPut() {
+    void indexPost() throws Exception{
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .post("/second")
+                .content("I'm post mapping");
+        this.mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("I'm post mapping"
+                ));
     }
 
-    @Test
-    void indexPatch() {
-    }
 
     @Test
-    void indexDelete() {
+    void indexPut() throws Exception{
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .post("/second")
+                .content("I'm put mapping");
+        this.mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("I'm post mapping"
+                ));
     }
 
+
     @Test
-    void extract() {
+    void indexPatch() throws Exception{
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .post("/second")
+                .content("I'm patch mapping");
+        this.mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("I'm post mapping"
+                ));
     }
+
+
+    @Test
+    void indexDelete() throws Exception{
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .post("/second")
+                .content("I'm delete mapping");
+        this.mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("I'm post mapping"
+                ));
+    }
+
+
+
 }
