@@ -105,11 +105,11 @@ class ExampleControllerTest {
     @Test
     void indexPut() throws Exception{
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .post("/second")
-                .content("I'm put mapping");
+                .put("/second")
+                ;
         this.mockMvc.perform(request)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().string("I'm post mapping"
+                .andExpect(MockMvcResultMatchers.content().string("I'm put mapping"
                 ));
     }
 
@@ -136,6 +136,36 @@ class ExampleControllerTest {
                 .andExpect(MockMvcResultMatchers.content().string("I'm post mapping"
                 ));
     }
+
+    @Test
+    void indexApi() throws Exception{
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .get("/api/range?from=1&to=5")
+                .content("all params");
+        this.mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("1"+"\n"+
+                        "2"+"\n"+
+                        "3"+"\n"+
+                        "4"+"\n"
+                ));
+    }
+
+
+    @Test
+    void indexApiSecond() throws Exception{
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .get("/api/range/1/5")
+                .content("all params");
+        this.mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("1"+"\n"+
+                        "2"+"\n"+
+                        "3"+"\n"+
+                        "4"+"\n"
+                ));
+    }
+
 
 
 
