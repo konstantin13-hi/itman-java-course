@@ -6,7 +6,6 @@ import tasks.QueueManagementSystem;
 import entities.Ticket;
 import utils.StringBuilder;
 
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class QueueController {
