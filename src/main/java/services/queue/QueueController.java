@@ -9,7 +9,9 @@ import utils.StringBuilder;
 
 @RestController
 public class QueueController {
-   private QueueManagementSystem queueManagementSystem;
+   private QueueManagementSystem queueManagementSystem= new QueueManagementSystem("bank");
+
+
 
     @GetMapping("/api/queue/nextTicket")
 
