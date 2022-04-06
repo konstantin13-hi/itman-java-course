@@ -14,7 +14,7 @@ public class QueueController {
        queueManagementSystem = new QueueManagementSystem(a);
    }
     public QueueController(){
-        queueManagementSystem = new QueueManagementSystem("bank");
+        queueManagementSystem = new QueueManagementSystem("'bank'");
     }
 
 
