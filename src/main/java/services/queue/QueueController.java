@@ -35,7 +35,8 @@ public class QueueController {
 
     @PostMapping("/api/queue/toNextWorkDay")
     public void indexNextWorkDay() {
-        queueManagementSystem.toNextWorkDay();
+
+       queueManagementSystem.toNextWorkDay();
     }
 
     @GetMapping("/api/queue/getVisitsByDays")

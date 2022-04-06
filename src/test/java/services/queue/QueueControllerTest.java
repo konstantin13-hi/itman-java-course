@@ -25,21 +25,80 @@ class QueueControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void indexApiSecond() throws Exception{
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+    void indexNextTicket() throws Exception{
+        MockHttpServletRequestBuilder requestNextTicket = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
                 .content("all params");
-        this.mockMvc.perform(request)
+        this.mockMvc.perform(requestNextTicket)
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.content().string("Ticket{number="+1+", place=bank}"
                 ));
-        MockHttpServletRequestBuilder requestSecond = MockMvcRequestBuilders
+        MockHttpServletRequestBuilder requestSecondNextTicket = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
                 .content("all params");
-        this.mockMvc.perform(request)
+        this.mockMvc.perform(requestSecondNextTicket)
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.content().string("Ticket{number="+2+", place=bank}"
                 ));
+
+        MockHttpServletRequestBuilder requestTotalTickets = MockMvcRequestBuilders
+                .get("/api/queue/totalTickets")
+                .content("all params");
+        this.mockMvc.perform(requestTotalTickets)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("2"
+                ));
+
+
+        MockHttpServletRequestBuilder requestNextWorkDay = MockMvcRequestBuilders
+                .post("/api/queue/toNextWorkDay")
+                .content("all params");
+        this.mockMvc.perform(requestNextWorkDay)
+                .andExpect(MockMvcResultMatchers.status().is(200));
+
+        MockHttpServletRequestBuilder requestNextTicketSecondDay = MockMvcRequestBuilders
+                .get("/api/queue/nextTicket")
+                .content("all params");
+        this.mockMvc.perform(requestNextTicketSecondDay)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("Ticket{number="+1+", place=bank}"
+                ));
+
+
+        MockHttpServletRequestBuilder requestSecondNextTicketSecondDay = MockMvcRequestBuilders
+                .get("/api/queue/nextTicket")
+                .content("all params");
+        this.mockMvc.perform(requestSecondNextTicketSecondDay)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("Ticket{number="+2+", place=bank}"
+                ));
+
+        MockHttpServletRequestBuilder requestThirdNextTicketSecondDay = MockMvcRequestBuilders
+                .get("/api/queue/nextTicket")
+                .content("all params");
+        this.mockMvc.perform(requestThirdNextTicketSecondDay)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("Ticket{number="+3+", place=bank}"
+                ));
+
+
+        MockHttpServletRequestBuilder requestGetVisitsByDays = MockMvcRequestBuilders
+                .get("/api/queue/getVisitsByDays")
+                .content("all params");
+        this.mockMvc.perform(requestGetVisitsByDays)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().string("[2, 3]"
+                ));
+
+
+
+
+
+
+
     }
+
+
+
 
 }
