@@ -9,17 +9,21 @@ import utils.StringBuilder;
 
 @RestController
 public class QueueController {
-   private QueueManagementSystem queueManagementSystem= new QueueManagementSystem("bank");
+   private QueueManagementSystem queueManagementSystem;
+   public QueueController (String a){
+       queueManagementSystem = new QueueManagementSystem(a);
+   }
+    public QueueController(){
+        queueManagementSystem = new QueueManagementSystem("bank");
+    }
 
 
 
     @GetMapping("/api/queue/nextTicket")
 
     public String indexNextTicket() {
-        int number=queueManagementSystem.getNextTicket().getNumber();
-        String place =queueManagementSystem.toString();
-
-        return "Ticket{number="+number+", place="+place+"}";
+       Ticket ticket=queueManagementSystem.getNextTicket();
+        return "Ticket{number="+ticket.getNumber()+", place="+ticket.getPlace()+"}";
     }
 
     @GetMapping("/api/queue/totalTickets")
