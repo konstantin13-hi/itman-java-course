@@ -31,14 +31,14 @@ class QueueControllerTest {
                 .contentType("application/json");
         this.mockMvc.perform(requestNextTicket)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().json("{\"number\":1,\"place\":\"'bank'\"}"
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":1,\"place\":\"bank\"}"
                 ));
         MockHttpServletRequestBuilder requestSecondNextTicket = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
                 .contentType("application/json");
         this.mockMvc.perform(requestSecondNextTicket)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().json("{\"number\":2,\"place\":\"'bank'\"}"
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":2,\"place\":\"bank\"}"
                 ));
 
         MockHttpServletRequestBuilder requestTotalTickets = MockMvcRequestBuilders
@@ -61,7 +61,7 @@ class QueueControllerTest {
                 .contentType("application/json");
         this.mockMvc.perform(requestNextTicketSecondDay)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().json("{\"number\":1,\"place\":\"'bank'\"}"
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":1,\"place\":\"bank\"}"
                 ));
 
 
@@ -70,7 +70,7 @@ class QueueControllerTest {
                 .contentType("application/json");
         this.mockMvc.perform(requestSecondNextTicketSecondDay)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().json("{\"number\":2,\"place\":\"'bank'\"}"
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":2,\"place\":\"bank\"}"
                 ));
 
         MockHttpServletRequestBuilder requestThirdNextTicketSecondDay = MockMvcRequestBuilders
@@ -78,7 +78,7 @@ class QueueControllerTest {
                 .contentType("application/json");
         this.mockMvc.perform(requestThirdNextTicketSecondDay)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().json("{\"number\":3,\"place\":\"'bank'\"}"
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":3,\"place\":\"bank\"}"
                 ));
 
 

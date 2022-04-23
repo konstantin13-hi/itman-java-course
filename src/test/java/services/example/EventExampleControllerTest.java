@@ -32,7 +32,8 @@ class EventExampleControllerTest {
 
         this.mockMvc.perform(request)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().json("{\"day\":14,\"year\":2022,\"month\":4,\"name\":\"Json\"}"));
+                .andExpect(MockMvcResultMatchers.content().json(
+                        "{\"day\":14,\"year\":2022,\"month\":4,\"name\":\"Json\"}"));
 
 
     }
