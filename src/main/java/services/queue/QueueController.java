@@ -15,15 +15,16 @@ public class QueueController {
    }
     public QueueController(){
         queueManagementSystem = new QueueManagementSystem("'bank'");
+
     }
 
 
 
     @GetMapping("/api/queue/nextTicket")
 
-    public String indexNextTicket() {
+    public Ticket indexNextTicket() {
        Ticket ticket=queueManagementSystem.getNextTicket();
-        return "Ticket{number="+ticket.getNumber()+", place="+ticket.getPlace()+"}";
+        return ticket;
     }
 
     @GetMapping("/api/queue/totalTickets")

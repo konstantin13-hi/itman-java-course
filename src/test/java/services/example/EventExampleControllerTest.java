@@ -28,11 +28,31 @@ class EventExampleControllerTest {
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .get("/api/event")
-                .contentType("application/json")
-                .content("{\"day\":14,\"year\":2022,\"month\":4,\"name\":\"Json\"}");
+                .contentType("application/json");
+
         this.mockMvc.perform(request)
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.content().json("{\"day\":14,\"year\":2022,\"month\":4,\"name\":\"Json\"}"));
+
+
+    }
+
+    @Test
+    void postB() throws Exception {
+        MockHttpServletRequestBuilder requestPost = MockMvcRequestBuilders
+                .post("/api/event")
+                .contentType("application/json")
+                .content("{\"day\":14,\"year\":2022,\"month\":4,\"name\":null}");
+        this.mockMvc.perform(requestPost)
+                .andExpect(MockMvcResultMatchers.status().is(200));
+
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .get("/api/event")
+                .contentType("application/json");
+        this.mockMvc.perform(request)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().json("{\"day\":14,\"year\":2022,\"month\":4,\"name\":null}"));
 
 
     }

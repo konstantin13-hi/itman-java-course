@@ -28,17 +28,17 @@ class QueueControllerTest {
     void indexNextTicket() throws Exception{
         MockHttpServletRequestBuilder requestNextTicket = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
-                .content("all params");
+                .contentType("application/json");
         this.mockMvc.perform(requestNextTicket)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().string("Ticket{number="+1+", place='bank'}"
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":1,\"place\":\"'bank'\"}"
                 ));
         MockHttpServletRequestBuilder requestSecondNextTicket = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
-                .content("all params");
+                .contentType("application/json");
         this.mockMvc.perform(requestSecondNextTicket)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().string("Ticket{number="+2+", place='bank'}"
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":2,\"place\":\"'bank'\"}"
                 ));
 
         MockHttpServletRequestBuilder requestTotalTickets = MockMvcRequestBuilders
@@ -58,36 +58,36 @@ class QueueControllerTest {
 
         MockHttpServletRequestBuilder requestNextTicketSecondDay = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
-                .content("all params");
+                .contentType("application/json");
         this.mockMvc.perform(requestNextTicketSecondDay)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().string("Ticket{number="+1+", place='bank'}"
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":1,\"place\":\"'bank'\"}"
                 ));
 
 
         MockHttpServletRequestBuilder requestSecondNextTicketSecondDay = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
-                .content("all params");
+                .contentType("application/json");
         this.mockMvc.perform(requestSecondNextTicketSecondDay)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().string("Ticket{number="+2+", place='bank'}"
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":2,\"place\":\"'bank'\"}"
                 ));
 
         MockHttpServletRequestBuilder requestThirdNextTicketSecondDay = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
-                .content("all params");
+                .contentType("application/json");
         this.mockMvc.perform(requestThirdNextTicketSecondDay)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().string("Ticket{number="+3+", place='bank'}"
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":3,\"place\":\"'bank'\"}"
                 ));
 
 
         MockHttpServletRequestBuilder requestGetVisitsByDays = MockMvcRequestBuilders
                 .get("/api/queue/getVisitsByDays")
-                .content("all params");
+                .contentType("application/json");
         this.mockMvc.perform(requestGetVisitsByDays)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().string("[2, 3]"
+                .andExpect(MockMvcResultMatchers.content().json("[2, 3]"
                 ));
 
 
