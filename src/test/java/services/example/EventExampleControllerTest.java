@@ -17,7 +17,7 @@ class EventExampleControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void postA() throws Exception {
+    void shouldExecutedWith200AndReturnNumbersWhenUseGetAndPostRequests() throws Exception {
         MockHttpServletRequestBuilder requestPost = MockMvcRequestBuilders
                 .post("/api/event")
                 .contentType("application/json")
@@ -39,7 +39,7 @@ class EventExampleControllerTest {
     }
 
     @Test
-    void postB() throws Exception {
+    void shouldExecutedWith200AndReturnNumbersWhenUseGetAndPostRequestsWhereContentHaveNull() throws Exception {
         MockHttpServletRequestBuilder requestPost = MockMvcRequestBuilders
                 .post("/api/event")
                 .contentType("application/json")

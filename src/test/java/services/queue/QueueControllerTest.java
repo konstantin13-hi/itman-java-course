@@ -8,6 +8,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,13 +20,13 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-
 class QueueControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    void indexNextTicket() throws Exception{
+    void queueWorkScriptShouldMakeRequestsOfNextTicketTotalTicketsNextWorkDayGetVisitsByDaysWhenUseAllTypesOfRequestAtOnce()
+            throws Exception {
         MockHttpServletRequestBuilder requestNextTicket = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
                 .contentType("application/json");
@@ -49,7 +50,6 @@ class QueueControllerTest {
                 .andExpect(MockMvcResultMatchers.content().string("2"
                 ));
 
-
         MockHttpServletRequestBuilder requestNextWorkDay = MockMvcRequestBuilders
                 .post("/api/queue/toNextWorkDay")
                 .content("all params");
@@ -63,7 +63,6 @@ class QueueControllerTest {
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.content().json("{\"number\":1,\"place\":\"bank\"}"
                 ));
-
 
         MockHttpServletRequestBuilder requestSecondNextTicketSecondDay = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
@@ -81,7 +80,6 @@ class QueueControllerTest {
                 .andExpect(MockMvcResultMatchers.content().json("{\"number\":3,\"place\":\"bank\"}"
                 ));
 
-
         MockHttpServletRequestBuilder requestGetVisitsByDays = MockMvcRequestBuilders
                 .get("/api/queue/getVisitsByDays")
                 .contentType("application/json");
@@ -89,16 +87,5 @@ class QueueControllerTest {
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.content().json("[2, 3]"
                 ));
-
-
-
-
-
-
-
     }
-
-
-
-
 }

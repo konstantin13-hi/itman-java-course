@@ -55,20 +55,18 @@ class ExampleControllerTest {
     }
 
     @Test
-    public void shouldExecutedWith200WhenPassMissingRequired() throws Exception {
+    public void shouldExecutedWith400WhenPassMissingRequired() throws Exception {
         final MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post("/extract/three/3?missing=world")
                 .content("missing required");
         this.mockMvc.perform(request)
                 .andExpect(MockMvcResultMatchers.status().is(400))
                 .andExpect(MockMvcResultMatchers.content().string(""
-
-
                 ));
     }
 
     @Test
-    void index() throws Exception {
+    void shouldExecutedWith405WhenUsePostRequest() throws Exception {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post("/")
                 .content("I'm your first web-service");
@@ -79,19 +77,7 @@ class ExampleControllerTest {
     }
 
     @Test
-    void indexSecond() throws Exception  {
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .post("/second")
-                .content("I'm the second binding");
-        this.mockMvc.perform(request)
-                .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().string("I'm post mapping"
-                ));
-    }
-
-
-    @Test
-    void indexPost() throws Exception{
+    void shouldExecutedWith200WhenUsePostReques() throws Exception{
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .post("/second")
                 .content("I'm post mapping");
@@ -103,10 +89,10 @@ class ExampleControllerTest {
 
 
     @Test
-    void indexPut() throws Exception{
+    void shouldExecutedWith200WhenUsePutRequest() throws Exception{
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .put("/second")
-                ;
+                .content("I'm put mapping");
         this.mockMvc.perform(request)
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.content().string("I'm put mapping"
@@ -115,30 +101,30 @@ class ExampleControllerTest {
 
 
     @Test
-    void indexPatch() throws Exception{
+    void shouldExecutedWith200WhenUsePatchRequest() throws Exception{
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .post("/second")
+                .patch("/second")
                 .content("I'm patch mapping");
         this.mockMvc.perform(request)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().string("I'm post mapping"
+                .andExpect(MockMvcResultMatchers.content().string("I'm patch mapping"
                 ));
     }
 
 
     @Test
-    void indexDelete() throws Exception{
+    void shouldExecutedWith200WhenUseDeleteRequest() throws Exception{
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .post("/second")
+                .delete("/second")
                 .content("I'm delete mapping");
         this.mockMvc.perform(request)
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect(MockMvcResultMatchers.content().string("I'm post mapping"
+                .andExpect(MockMvcResultMatchers.content().string("I'm delete mapping"
                 ));
     }
 
     @Test
-    void indexApi() throws Exception{
+    void houldExecutedWith200AndReturnNumbersWhenUseGetRequestAndPathIncludes1And5() throws Exception{
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .get("/api/range?from=1&to=5")
                 .content("all params");
@@ -153,7 +139,7 @@ class ExampleControllerTest {
 
 
     @Test
-    void indexApiSecond() throws Exception{
+    void shouldExecutedWith200AndReturnNumbersWhenUseGetRequestAndQueryIncludes1AND5() throws Exception{
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .get("/api/range/1/5")
                 .content("all params");

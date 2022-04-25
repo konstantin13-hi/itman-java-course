@@ -15,8 +15,7 @@ public class Event {
         this.name = name;
     }
 
-    public Event(){
-
+    public Event() {
     }
 
     public int getYear() {
