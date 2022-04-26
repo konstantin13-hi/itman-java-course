@@ -18,7 +18,7 @@ public class EventExampleController {
      */
 
     @PostMapping("/api/event")
-    public void postA(@RequestBody Event a) { // JSON из тела сообщения десереализуется в объект и ссылка на объект положиться в переменную a.
+    public void postA(@RequestBody Event a) {
         event = a;
     }
 

@@ -12,17 +12,6 @@ public class QueueController {
     private QueueManagementSystem queueManagementSystem;
 
     /**
-     * Creates a queue for the bank named a
-     *
-     * @param a the first term
-     * @cpu 0(1)
-     * @ram 0(1)
-     */
-    public QueueController(String a) {
-        queueManagementSystem = new QueueManagementSystem(a);
-    }
-
-    /**
      *Creates a queue for the bank named "bank"
      *
      * @cpu 0(1)
@@ -82,21 +71,7 @@ public class QueueController {
 
     @GetMapping("/api/queue/getVisitsByDays")
     public String indexGetVisitsByDays() {
-        int logicalSize = queueManagementSystem.getVisitsByDay().size();
-        ArrayList arraylist = queueManagementSystem.getVisitsByDay();
-        StringBuilder stringBuilder = new StringBuilder();
-        if (logicalSize != 0) {
-            stringBuilder.append("[");
-            for (int i = 0; i < logicalSize; i++) {
-                stringBuilder.append(arraylist.get(i));
-                if (i != logicalSize - 1) {
-                    stringBuilder.append(", ");
-                }
-            }
-            stringBuilder.append("]");
-        } else {
-            stringBuilder.append("[]");
-        }
-        return stringBuilder.toString();
+        ArrayList arrayList =queueManagementSystem.getVisitsByDay();
+        return arrayList.toString();
     }
 }

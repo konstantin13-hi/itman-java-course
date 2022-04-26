@@ -94,8 +94,10 @@ public class ExampleController {
     /**
      * Returns data from URI and request body
      *
+     * n=amount of received data
+     *
      * @cpu 0(1)
-     * @ram 0(1)
+     * @ram 0(n)
      *
      * @param pathVariable contains some string
      * @param secondVariable contains some number
@@ -134,11 +136,7 @@ public class ExampleController {
     @GetMapping("/api/range")
     public String indexApi(@RequestParam(name = "from") int firstVariable,
                            @RequestParam(name = "to") int secondVariable) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = firstVariable; i < secondVariable; i++) {
-            stringBuilder.append(i).append("\n");
-        }
-        return stringBuilder.toString();
+        return stringBuilder(firstVariable,secondVariable);
     }
 
     /**
@@ -155,8 +153,12 @@ public class ExampleController {
     @GetMapping("/api/range/{FROM}/{TO}")
     public String indexApiSecond(@PathVariable(name = "FROM") int firstVariable,
                                  @PathVariable(name = "TO") int secondVariable) {
+        return stringBuilder(firstVariable,secondVariable);
+    }
+
+    public static String stringBuilder(int firstParam,int secondParam){
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = firstVariable; i < secondVariable; i++) {
+        for (int i = firstParam; i < secondParam; i++) {
             stringBuilder.append(i).append("\n");
         }
         return stringBuilder.toString();
