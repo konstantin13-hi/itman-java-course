@@ -96,8 +96,8 @@ public class ExampleController {
      *
      * n=amount of received data
      *
-     * @cpu 0(1)
-     * @ram 0(n)
+     * @cpu 0(n)
+     * @ram 0(1)
      *
      * @param pathVariable contains some string
      * @param secondVariable contains some number
@@ -156,7 +156,7 @@ public class ExampleController {
         return stringBuilder(firstVariable,secondVariable);
     }
 
-    public static String stringBuilder(int firstParam,int secondParam){
+    public String stringBuilder(int firstParam,int secondParam){
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = firstParam; i < secondParam; i++) {
             stringBuilder.append(i).append("\n");
