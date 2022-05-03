@@ -94,10 +94,13 @@ public class ExampleController {
     /**
      * Returns data from URI and request body
      *
-     * n=amount of received data
+     * n=amount of letters in string pathVariable
+     * m= amount of letters in string required
+     * k=amount of letters in string optional
+     * l=amount of letters in string body
      *
-     * @cpu 0(n)
-     * @ram 0(1)
+     * @cpu 0(n+m+k+l)
+     * @ram 0(n+m+k+l)
      *
      * @param pathVariable contains some string
      * @param secondVariable contains some number
