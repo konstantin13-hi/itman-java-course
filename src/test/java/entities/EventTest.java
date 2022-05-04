@@ -8,7 +8,7 @@ class EventTest {
     @Test
     public void toStringWithObject() {
         Event events = new Event(3,2031, 11, 13, "Day of City in Minsk");
-        String expectedElement = "Event{id=5"+3+"year=" + 2031 + ", month=" + 11 + ", day=" + 13 + ", name='Day of City in Minsk'}";
+        String expectedElement = "Event{id="+3+", year=" + 2031 + ", month=" + 11 + ", day=" + 13 + ", name='Day of City in Minsk'}";
         Assertions.assertEquals(expectedElement, events.toString());
     }
 
