@@ -15,7 +15,7 @@ public class Event {
         this.month = month;
         this.name = name;
     }
-    Event(int id, int year, int month, int day, String name){
+    public Event(int id, int year, int month, int day, String name){
         this.id=id;
         this.day = day;
         this.year = year;
