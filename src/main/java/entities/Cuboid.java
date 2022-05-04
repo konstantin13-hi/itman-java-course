@@ -1,9 +1,9 @@
 package entities;
 
 public class Cuboid {
-    private int a;
-    private int b;
-    private int c;
+    private int edgeA;
+    private int edgeB;
+    private int edgeC;
 
     /**
      *Setting cuboid parameters
@@ -16,21 +16,21 @@ public class Cuboid {
      * @param c the third term
      */
     public Cuboid(int a, int b, int c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+        this.edgeA = a;
+        this.edgeB = b;
+        this.edgeC = c;
     }
 
-    public int getA() {
-        return a;
+    public int getEdgeA() {
+        return edgeA;
     }
 
-    public int getB() {
-        return b;
+    public int getEdgeB() {
+        return edgeB;
     }
 
-    public int getC() {
-        return c;
+    public int getEdgeC() {
+        return edgeC;
     }
 
     /**
@@ -42,7 +42,7 @@ public class Cuboid {
      * @return result of surface Area
      */
     public long calcSurfaceArea() {
-        return 2 * ((long) a * b + (long) b * c + (long) a * c);
+        return 2 * ((long) edgeA * edgeB + (long) edgeB * edgeC + (long) edgeA * edgeC);
     }
 
     /**
@@ -54,7 +54,7 @@ public class Cuboid {
      * @return result of the Volume
      */
     public long calcVolume() {
-        return (long) a * b * c;
+        return (long) edgeA * edgeB * edgeC;
     }
 
 }

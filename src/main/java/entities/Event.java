@@ -15,6 +15,9 @@ public class Event {
         this.name = name;
     }
 
+    public Event() {
+    }
+
     public int getYear() {
         return year;
     }
@@ -34,8 +37,10 @@ public class Event {
     /**
      * Create the string
      *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * n=amount of letters in string getName
+     *
+     * @cpu 0(n)
+     * @ram 0(n)
      *
      * @return string
      */
