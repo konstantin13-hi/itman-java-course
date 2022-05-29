@@ -124,7 +124,7 @@ class ExampleControllerTest {
     }
 
     @Test
-    void houldExecutedWith200AndReturnNumbersWhenUseGetRequestAndPathIncludes1And5() throws Exception{
+    void ShouldExecutedWith200AndReturnNumbersWhenUseGetRequestAndPathIncludes1And5() throws Exception{
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
                 .get("/api/range?from=1&to=5")
                 .content("all params");
