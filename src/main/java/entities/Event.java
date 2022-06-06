@@ -6,9 +6,17 @@ public class Event {
     private int year;
     private int month;
     private int day;
+    private int id;
     private String name;
 
     public Event(int year, int month, int day, String name) {
+        this.day = day;
+        this.year = year;
+        this.month = month;
+        this.name = name;
+    }
+    public Event(int id, int year, int month, int day, String name){
+        this.id=id;
         this.day = day;
         this.year = year;
         this.month = month;
@@ -34,6 +42,10 @@ public class Event {
         return name;
     }
 
+    public int getId() {
+        return id;
+    }
+
     /**
      * Create the string
      *
@@ -45,7 +57,7 @@ public class Event {
      * @return string
      */
     public String toString() {
-        return "Event{year=" + getYear() + ", month=" + getMonth() + ", day=" + getDay() + ", name=" + "'" + getName() + "'" + "}";
+        return "Event{id="+getId()+", year=" + getYear() + ", month=" + getMonth() + ", day=" + getDay() + ", name=" + "'" + getName() + "'" + "}";
     }
 
     /**
@@ -64,7 +76,7 @@ public class Event {
             return false;
         }
         return (( this.name == null && that.name == null || (that.name.equals(this.name))) &&
-                (this.year == that.year && this.month == that.month && that.day == this.day));
+                (this.year == that.year && this.month == that.month && that.day == this.day && this.id==that.id));
     }
 
     /**
