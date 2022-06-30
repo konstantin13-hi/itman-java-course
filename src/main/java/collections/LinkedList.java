@@ -27,13 +27,13 @@ public class LinkedList {
 
     public void addLast(int element) {
         Node node = new Node(element, null);
+        if(head==null){
+            head = new Node(element, null);
+        }
         while (head.getNext() != null) {
             head = head.getNext();
         }
         head.setNext(node);
-        if(head.getNext() == null){
-            head = new Node(element, head);
-        }
     }
 
     public int getLast() {

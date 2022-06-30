@@ -69,5 +69,13 @@ class LinkedListTest {
         Assertions.assertEquals(31,linkedList.getLast());
     }
 
+    @Test
+    void addLaывst(){
+        LinkedList linkedList = new LinkedList();
+        linkedList.addLast(10);
+
+        Assertions.assertEquals(10,linkedList.getLast());
+    }
+
 
 }
