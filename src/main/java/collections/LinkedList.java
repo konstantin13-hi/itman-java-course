@@ -24,4 +24,19 @@ public class LinkedList {
         return result;
     }
 
+   public  String toString(){
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append('[');
+      while (head!=null){
+          stringBuilder.append(head.getElement());
+
+          head=head.getNext();
+          if (head!=null){
+              stringBuilder.append(", ");
+          }
+      }
+      stringBuilder.append(']');
+      return stringBuilder.toString();
+   }
+
 }

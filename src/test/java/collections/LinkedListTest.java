@@ -18,4 +18,15 @@ class LinkedListTest {
         Assertions.assertEquals(13,linkedList.getFirst());
     }
 
+    @Test
+    void String(){
+            LinkedList linkedList =new LinkedList();
+            linkedList.addFirst(10);
+            linkedList.addFirst(13);
+            linkedList.addFirst(3);
+            Assertions.assertEquals("[3, 13, 10]",linkedList.toString());
+
+        }
+
+
 }
