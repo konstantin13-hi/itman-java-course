@@ -31,6 +31,9 @@ public class LinkedList {
             head = head.getNext();
         }
         head.setNext(node);
+        if(head.getNext() == null){
+            head = new Node(element, head);
+        }
     }
 
     public int getLast() {
