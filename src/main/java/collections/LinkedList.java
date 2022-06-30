@@ -11,14 +11,14 @@ public class LinkedList {
 
 
 
-    void addFirst(int element){
+    public void addFirst(int element){
         head= new Node(element,head);
 
     }
-    int getFirst(){
+   public  int getFirst(){
       return   head.getElement();
     }
-    int removeFirst(){
+   public  int removeFirst(){
         int result = head.getElement();
        head= head.getNext();
         return result;
