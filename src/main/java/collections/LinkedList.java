@@ -10,6 +10,12 @@ public class LinkedList {
     public LinkedList() {
         this.head = null;
     }
+   public LinkedList(LinkedList that){
+        this.head=that.head;
+        this.prev=that.head;
+
+
+    }
 
 
     public void addFirst(int element) {
