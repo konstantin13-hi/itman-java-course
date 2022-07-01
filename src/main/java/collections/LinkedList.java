@@ -11,8 +11,10 @@ public class LinkedList {
         this.head = null;
     }
    public LinkedList(LinkedList that){
-        this.head=that.head;
-        this.prev=that.head;
+        Node first = new Node(that.head.getElement(), that.head.getNext(),that.head.getPrev());
+        Node last = new Node(that.prev.getElement(), that.prev.getNext(),that.prev.getPrev());
+        this.head=first;
+        this.prev=last;
 
 
     }
