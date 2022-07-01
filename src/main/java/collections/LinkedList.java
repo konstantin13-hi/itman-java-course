@@ -5,8 +5,9 @@ import entities.Node;
 public class LinkedList {
     private Node head;
 
+
     public LinkedList() {
-        head = null;
+        this.head = null;
     }
 
 
@@ -26,17 +27,22 @@ public class LinkedList {
     }
 
     public void addLast(int element) {
-        Node node = new Node(element, null);
-        if(head==null){
+        Node current = head;
+        Node previous = null;
+        if (current == null) {
             head = new Node(element, null);
+        } else {
+            while (current.getNext()!=null){
+               current= current.getNext();
+            }
+            Node newNode = new Node(element,current.getNext() );
+            current.setNext(newNode);
+          //  head=newNode;
         }
-        while (head.getNext() != null) {
-            head = head.getNext();
-        }
-        head.setNext(node);
+
     }
 
-    public int getLast() {
+    public  int getLast() {
         while (head.getNext() != null) {
             head = head.getNext();
         }
