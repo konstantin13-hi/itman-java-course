@@ -51,19 +51,23 @@ public class LinkedList {
 
     public int removeLast() {
         int result = 0;
-        if (head.getNext() == null) {
-            result = head.getElement();
-            head = null;
-        } else {
-            while (head.getNext() != null) {
-                if (head.getNext().getNext() == null) {
-                    result = head.getNext().getElement();
-                    head.setNext(null);
-                } else {
-                    head = head.getNext();
-                }
+        Node current=head;
+        Node previous=null;
+            while (current.getNext() != null) {
+                previous=current;
+                current=current.getNext();
+         //       if (head.getNext().getNext() == null) {
+         //           result = head.getNext().getElement();
+          //          head.setNext(null);
+         //       } else {
+         //           head = head.getNext();
+        //        }
             }
-        }
+            result=current.getElement();
+            if(previous!=null){
+            previous.setNext(null);}
+
+
         return result;
 
     }

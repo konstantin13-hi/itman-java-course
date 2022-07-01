@@ -44,6 +44,18 @@ class LinkedListTest {
         linkedList.addFirst(3);
         Assertions.assertEquals(10,linkedList.removeLast());
     }
+
+    @Test
+    void dele3t2e(){
+        LinkedList linkedList = new LinkedList();
+        linkedList.addFirst(10);
+        linkedList.addFirst(13);
+        linkedList.addFirst(3);
+        Assertions.assertEquals(10,linkedList.removeLast());
+        Assertions.assertEquals(13,linkedList.removeLast());
+        Assertions.assertEquals(3,linkedList.removeLast());
+    }
+
     @Test
     void getLast(){
         LinkedList linkedList = new LinkedList();
