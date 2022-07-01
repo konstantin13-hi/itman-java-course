@@ -7,9 +7,12 @@ public class Task551 {
 
     public static Node buildLinkedList(){
 
-        Node nodeFirst =new Node(37,null);
-        Node nodeSecond =new Node(99,nodeFirst);
+        Node nodeThird=new Node(37,null);
+        Node nodeSecond =new Node(99,nodeThird);
+        Node node = new Node(12,nodeSecond);
+        nodeThird.setPrev(nodeSecond);
+        nodeSecond.setPrev(node);
 
-        return new Node(12,nodeSecond);
+        return node;
     }
 }
