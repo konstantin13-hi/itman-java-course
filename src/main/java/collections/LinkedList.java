@@ -4,6 +4,7 @@ import entities.Node;
 
 public class LinkedList {
     private Node head;
+    private Node prev;
 
 
     public LinkedList() {
@@ -12,7 +13,7 @@ public class LinkedList {
 
 
     public void addFirst(int element) {
-        head = new Node(element, head);
+        head = new Node(element, head,prev);
 
     }
 
@@ -27,17 +28,17 @@ public class LinkedList {
     }
 
     public void addLast(int element) {
-        Node current = head;
-        Node previous = null;
-        if (current == null) {
-            head = new Node(element, null);
+      Node current = head;
+       Node previous = null;
+       if (current == null) {
+           head = new Node(element, null,null);
         } else {
-            while (current.getNext()!=null){
+         while (current.getNext()!=null){
                current= current.getNext();
             }
-            Node newNode = new Node(element,current.getNext() );
-            current.setNext(newNode);
-          //  head=newNode;
+           Node newNode = new Node(element,current.getNext(),current );
+           current.setNext(newNode);
+
         }
 
     }
