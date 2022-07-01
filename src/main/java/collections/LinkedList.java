@@ -13,8 +13,14 @@ public class LinkedList {
 
 
     public void addFirst(int element) {
-        head = new Node(element, head,prev);
-
+        if (head == null) {
+            head = new Node(element, null, null);
+            prev=head;
+        } else {
+            Node node = new Node(element, head, null);
+            head.setPrev(node);
+            head = node;
+        }
     }
 
     public int getFirst() {
@@ -28,45 +34,31 @@ public class LinkedList {
     }
 
     public void addLast(int element) {
-      Node current = head;
-       Node previous = null;
-       if (current == null) {
-           head = new Node(element, null,null);
+        Node current =prev;
+        if (prev == null) {
+            prev = new Node(element, null, null);
+            head=prev;
         } else {
-         while (current.getNext()!=null){
-               current= current.getNext();
-            }
-           Node newNode = new Node(element,current.getNext(),current );
-           current.setNext(newNode);
+
+            Node newNode = new Node(element, prev.getNext(), current);
+            prev.setNext(newNode);
+            prev=current.getNext();
 
         }
 
     }
 
     public  int getLast() {
-        while (head.getNext() != null) {
-            head = head.getNext();
-        }
-        return head.getElement();
+        return prev.getElement();
     }
 
     public int removeLast() {
         int result = 0;
-        Node current=head;
-        Node previous=null;
-            while (current.getNext() != null) {
-                previous=current;
-                current=current.getNext();
-         //       if (head.getNext().getNext() == null) {
-         //           result = head.getNext().getElement();
-          //          head.setNext(null);
-         //       } else {
-         //           head = head.getNext();
-        //        }
-            }
-            result=current.getElement();
-            if(previous!=null){
-            previous.setNext(null);}
+        result=prev.getElement();
+       Node node= prev.getPrev();
+       if (node!=null){
+       node.setNext(null);
+           prev=node;}
 
 
         return result;
