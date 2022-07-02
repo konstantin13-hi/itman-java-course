@@ -103,6 +103,20 @@ class LinkedListTest {
         Assertions.assertEquals("[10, 9, 8, 7, 6, 5, 4]",linkedList.toString());
    }
 
+   @Test
+    void LinkeddList(){
+       LinkedList linkedList = new LinkedList();
+       linkedList.addLast(10);
+       linkedList.addLast(9);
+       linkedList.addLast(8);
+       LinkedList linkedList1 = new LinkedList(linkedList);
+       linkedList.removeLast();
+       linkedList.removeLast();
+       linkedList.removeLast();
+       Assertions.assertEquals("[10, 9, 8]",linkedList1.toString());
+
+   }
+
 
 
 }

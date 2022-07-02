@@ -11,10 +11,22 @@ public class LinkedList {
         this.head = null;
     }
    public LinkedList(LinkedList that){
-        Node first = new Node(that.head.getElement(), that.head.getNext(),that.head.getPrev());
-        Node last = new Node(that.prev.getElement(), that.prev.getNext(),that.prev.getPrev());
-        this.head=first;
-        this.prev=last;
+        if (that.head!=null){
+            int element = that.head.getElement();
+            Node node ;
+            head=new Node(element, null,null);
+            prev=head;
+            that.head= that.head.getNext();
+
+            while (that.head!=null){
+                element=that.head.getElement();
+               node = new Node(element,null,prev);
+               prev.setNext(node);
+               prev=node;
+                that.head= that.head.getNext();
+
+            }
+        }
 
 
     }
