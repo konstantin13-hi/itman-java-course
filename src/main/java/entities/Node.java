@@ -1,6 +1,10 @@
 package entities;
 
 public class Node {
+    public void setElement(int element) {
+        this.element = element;
+    }
+
     private int element;
     private Node next;
     private Node prev;

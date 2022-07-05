@@ -116,6 +116,97 @@ class LinkedListTest {
        Assertions.assertEquals("[10, 9, 8]",linkedList1.toString());
 
    }
+   @Test
+    void bool(){
+       LinkedList linkedList = new LinkedList();
+       linkedList.addLast(10);
+       linkedList.addLast(9);
+       linkedList.addLast(8);
+       LinkedList linkedListSecond = new LinkedList();
+       linkedListSecond.addFirst(11);
+       linkedListSecond.addFirst(1);
+       linkedListSecond.addFirst(51);
+       Assertions.assertFalse(linkedList.equals(linkedListSecond));
+   }
+    @Test
+    void boolsda(){
+        LinkedList linkedList = new LinkedList();
+        linkedList.addLast(10);
+        linkedList.addLast(9);
+        linkedList.addLast(8);
+        LinkedList linkedListSecond = new LinkedList();
+        linkedListSecond.addFirst(8);
+        linkedListSecond.addFirst(9);
+        linkedListSecond.addFirst(10);
+        Assertions.assertTrue(linkedList.equals(linkedListSecond));
+    }
+
+    @Test
+    void boolsdaDSF(){
+        LinkedList linkedList = new LinkedList();
+        linkedList.addLast(10);
+        linkedList.addLast(9);
+        linkedList.addLast(8);
+        LinkedList linkedListSecond = new LinkedList();
+        linkedListSecond.addFirst(8);
+        linkedListSecond.addFirst(9);
+
+        Assertions.assertFalse(linkedList.equals(linkedListSecond));
+    }
+
+    @Test
+    void Array() {
+        LinkedList linkedList = new LinkedList();
+        linkedList.addLast(10);
+        linkedList.addLast(9);
+        linkedList.addLast(8);
+        Assertions.assertArrayEquals(new int[]{10, 9, 8}, linkedList.toArray());
+        Assertions.assertEquals(10, linkedList.removeFirst());
+        Assertions.assertEquals(8, linkedList.removeLast());
+    }
+
+    @Test
+    void seSt() {
+        LinkedList linkedList = new LinkedList();
+        linkedList.addFirst(10);
+        linkedList.addFirst(9);
+        linkedList.addFirst(8);
+        linkedList.set(1, 2);
+        Assertions.assertArrayEquals(new int[]{8, 2, 10}, linkedList.toArray());
+        linkedList.set(0, 5);
+        Assertions.assertArrayEquals(new int[]{5, 2, 10}, linkedList.toArray());
+        linkedList.set(2, 4);
+        Assertions.assertArrayEquals(new int[]{5, 2, 4}, linkedList.toArray());
+    }
+
+    @Test
+    void get(){
+        LinkedList linkedList = new LinkedList();
+        linkedList.addFirst(10);
+        linkedList.addFirst(9);
+        linkedList.addFirst(8);
+       Assertions.assertEquals(9,linkedList.get(1));
+
+
+
+    }
+    @Test
+    void remove(){
+        LinkedList linkedList = new LinkedList();
+        linkedList.addFirst(10);
+        linkedList.addFirst(9);
+        linkedList.addFirst(8);
+      //  linkedList.remove(1);
+        Assertions.assertEquals(9, linkedList.remove(1));
+        Assertions.assertArrayEquals(new int []{8,10},linkedList.toArray());
+        Assertions.assertEquals(10, linkedList.remove(1));
+        Assertions.assertArrayEquals(new int []{8},linkedList.toArray());
+        Assertions.assertEquals(8, linkedList.remove(0));
+
+
+
+    }
+
 
 
 
