@@ -128,7 +128,7 @@ public class LinkedList {
         return linkedList;
     }
 
-    boolean equals(LinkedList that) {
+  public  boolean equals(LinkedList that) {
         // вопрос про нулл this . вызов будет нул поинт
         if (that == null) {
             return false;
