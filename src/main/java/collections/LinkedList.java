@@ -120,7 +120,7 @@ public class LinkedList {
         return arrayList.toArray();
     }
 
-    public LinkedList of(int... elements) {
+    public static LinkedList of(int... elements) {
         LinkedList linkedList = new LinkedList();
         for (int element : elements) {
             linkedList.addFirst(element);
