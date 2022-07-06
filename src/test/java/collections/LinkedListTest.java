@@ -155,6 +155,19 @@ class LinkedListTest {
     }
 
     @Test
+    void boolsdaczDSF(){
+        LinkedList linkedList = new LinkedList();
+        linkedList.addLast(10);
+        linkedList.addLast(9);
+        linkedList.addLast(8);
+        LinkedList linkedListSecond = new LinkedList();
+        linkedListSecond.addLast(8);
+        linkedListSecond.addLast(9);
+
+        Assertions.assertFalse(linkedList.equals(linkedListSecond));
+    }
+
+    @Test
     void Array() {
         LinkedList linkedList = new LinkedList();
         linkedList.addLast(10);

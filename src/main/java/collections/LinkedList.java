@@ -135,14 +135,22 @@ public class LinkedList {
         if (that == null) {
             return false;
         }
-        boolean result = that.size() == this.size();
-        int[] first = this.toArray();
-        int[] second = that.toArray();
-        for (int i = 0; i < second.length; i++) {
-            if (first[i] != second[i]) {
-                result = false;
+        boolean result=true;
+        Node currentThis=this.head;
+        Node currentThat=that.head;
+        while (currentThat!=null){
 
+           if(currentThat.getElement()!=currentThis.getElement()){
+                result=false;
+                break;
             }
+            currentThis=currentThis.getNext();
+            currentThat=currentThat.getNext();
+            if((currentThat==null && currentThis!=null)||(currentThat!=null && currentThis==null)){
+                result=false;
+                break;
+            }
+
         }
         return result;
     }
