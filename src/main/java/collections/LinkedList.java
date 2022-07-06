@@ -57,7 +57,7 @@ public class LinkedList {
     public void addLast(int element) {
         if (prev == null) {
             prev = new Node(element, null, null);
-            head=prev;
+            head = prev;
         } else {
 
             Node newNode = new Node(element, null, prev);
@@ -74,15 +74,14 @@ public class LinkedList {
 
     public int removeLast() {
         int result = 0;
-        Node current= prev;
+        Node current = prev;
         result = current.getElement();
-        if (prev.getPrev()!= null) {
+        if (prev.getPrev() != null) {
             current.getPrev().setNext(null);
-            prev=current.getPrev();
-        }
-        else {
-            prev=null;
-            head=null;
+            prev = current.getPrev();
+        } else {
+            prev = null;
+            head = null;
         }
 
 
@@ -94,17 +93,16 @@ public class LinkedList {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append('[');
-        Node current=head;
-        while (current!= null) {
+        Node current = head;
+        while (current != null) {
             stringBuilder.append(current.getElement());
             // head = head.getNext();
-          //  current = current.getNext();
+            //  current = current.getNext();
             if (current.getNext() != null) {
                 stringBuilder.append(", ");
                 current = current.getNext();
-            }
-            else {
-              //  stringBuilder.append(current.getElement());
+            } else {
+                //  stringBuilder.append(current.getElement());
                 current = current.getNext();
             }
 
@@ -132,7 +130,7 @@ public class LinkedList {
         return linkedList;
     }
 
-  public  boolean equals(LinkedList that) {
+    public boolean equals(LinkedList that) {
         // вопрос про нулл this . вызов будет нул поинт
         if (that == null) {
             return false;
@@ -149,41 +147,58 @@ public class LinkedList {
         return result;
     }
 
-  public void set(int index, int element) {
-        Node current =head;
-        int c =0;
-        while (current!=null && c!=index){
-            current=current.getNext();
+    public void set(int index, int element) {
+        Node current = head;
+        int c = 0;
+        while (current != null && c != index) {
+            current = current.getNext();
             c++;
         }
         current.setElement(element);
     }
-    public int get(int index){
-        Node current =head;
-        int c =0;
-        while (current!=null && c!=index){
-            current=current.getNext();
+
+    public int get(int index) {
+        Node current = head;
+        int c = 0;
+        while (current != null && c != index) {
+            current = current.getNext();
             c++;
         }
         return current.getElement();
     }
 
-    public int remove(int index){
-        Node current =head;
-        int c =0;
-        while (current!=null && c!=index){
-            current=current.getNext();
+    public int remove(int index) {
+        Node current = head;
+        int c = 0;
+        while (current != null && c != index) {
+            current = current.getNext();
             c++;
         }
-        int result =current.getElement();
-        Node temp =current;
-        if (current.getNext()==null && current.getPrev()==null){
-            head=null;
-        }
-        if (current.getNext()!=null){
-        current.getNext().setPrev(temp.getPrev());}
-        if (temp.getPrev()!=null){
-            temp.getPrev().setNext(temp.getNext());
+        int result = current.getElement();
+      //  Node temp = current;
+        if (current.getPrev() == null && current.getNext() == null) {
+            head = null;
+            prev = null;
+        } else {
+            if (current.getNext()!=null && current.getPrev()!=null){
+                current.getNext().setPrev(current.getPrev());
+                current.getPrev().setNext(current.getNext());
+                current.setNext(null);
+                current.setPrev(null);
+
+            }
+            else if (current.getNext()==null && current.getPrev()!=null){
+                current.getPrev().setNext(null);
+                prev=current.getPrev();
+                current.setPrev(null);
+            }
+            else {
+                current.getNext().setPrev(null);
+                head=current.getNext();
+                current.setNext(null);
+            }
+
+
         }
 
 

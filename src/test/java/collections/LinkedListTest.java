@@ -216,4 +216,15 @@ class LinkedListTest {
         linkedList.removeLast();
         Assertions.assertArrayEquals(new int []{},linkedList.toArray());
     }
+    @Test
+    void removesfsda() {
+        LinkedList linkedList = new LinkedList();
+       linkedList.addLast(10);
+       linkedList.addLast(20);
+       linkedList.addLast(30);
+       //linkedList.remove(0);
+       Assertions.assertEquals(10,linkedList.remove(0));
+
+        Assertions.assertArrayEquals(new int []{20,30},linkedList.toArray());
+    }
 }
