@@ -125,7 +125,7 @@ public class LinkedList {
     public static LinkedList of(int... elements) {
         LinkedList linkedList = new LinkedList();
         for (int element : elements) {
-            linkedList.addFirst(element);
+            linkedList.addLast(element);
         }
         return linkedList;
     }
