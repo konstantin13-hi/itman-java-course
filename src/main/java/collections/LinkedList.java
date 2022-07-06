@@ -146,7 +146,6 @@ public class LinkedList {
     }
 
   public void set(int index, int element) {
-
         Node current =head;
         int c =0;
         while (current!=null && c!=index){
@@ -174,6 +173,9 @@ public class LinkedList {
         }
         int result =current.getElement();
         Node temp =current;
+        if (current.getNext()==null && current.getPrev()==null){
+            head=null;
+        }
         if (current.getNext()!=null){
         current.getNext().setPrev(temp.getPrev());}
         if (temp.getPrev()!=null){

@@ -202,12 +202,14 @@ class LinkedListTest {
         Assertions.assertEquals(10, linkedList.remove(1));
         Assertions.assertArrayEquals(new int []{8},linkedList.toArray());
         Assertions.assertEquals(8, linkedList.remove(0));
-
-
-
     }
 
-
-
-
+    @Test
+    void removesda() {
+        LinkedList linkedList = new LinkedList();
+        linkedList.addLast(10);
+        Assertions.assertArrayEquals(new int[]{10}, linkedList.toArray());
+        linkedList.remove(0);
+        Assertions.assertArrayEquals(new int[]{}, linkedList.toArray());
+    }
 }
