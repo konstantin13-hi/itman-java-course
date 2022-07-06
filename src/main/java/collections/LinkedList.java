@@ -74,11 +74,15 @@ public class LinkedList {
 
     public int removeLast() {
         int result = 0;
-        result = prev.getElement();
-        Node node = prev.getPrev();
-        if (node != null) {
-            node.setNext(null);
-            prev = node;
+        Node current= prev;
+        result = current.getElement();
+        if (prev.getPrev()!= null) {
+            current.getPrev().setNext(null);
+            prev=current.getPrev();
+        }
+        else {
+            prev=null;
+            head=null;
         }
 
 

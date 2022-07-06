@@ -207,9 +207,13 @@ class LinkedListTest {
     @Test
     void removesda() {
         LinkedList linkedList = new LinkedList();
-        linkedList.addLast(10);
-        Assertions.assertArrayEquals(new int[]{10}, linkedList.toArray());
-        linkedList.remove(0);
-        Assertions.assertArrayEquals(new int[]{}, linkedList.toArray());
+        for(int i=8;i<=10;i++) {
+            linkedList.addLast(i);
+        }
+        Assertions.assertArrayEquals(new int []{8,9,10},linkedList.toArray());
+        linkedList.removeLast();
+        linkedList.removeLast();
+        linkedList.removeLast();
+        Assertions.assertArrayEquals(new int []{},linkedList.toArray());
     }
 }
