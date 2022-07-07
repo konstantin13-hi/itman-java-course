@@ -1,6 +1,7 @@
 package collections;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 
@@ -33,16 +34,18 @@ class ArrayListTest {
         addElement(array, arrayList);
         Assertions.assertArrayEquals(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, arrayList.toArray());
     }
+    @Nested
+    public class Remove {
 
-    @Test
-    public void remove() {
-        ArrayList arrayList = new ArrayList(5);
-        int[] array = new int[]{1, 2, 3, 4, 5};
-        addElement(array, arrayList);
-        arrayList.remove(2);
-        Assertions.assertArrayEquals(new int[]{1, 2, 4, 5}, arrayList.toArray());
+        @Test
+        public void remove() {
+            ArrayList arrayList = new ArrayList(5);
+            int[] array = new int[]{1, 2, 3, 4, 5};
+            addElement(array, arrayList);
+            arrayList.remove(2);
+            Assertions.assertArrayEquals(new int[]{1, 2, 4, 5}, arrayList.toArray());
+        }
     }
-
     @Test
     public void get() {
         ArrayList arrayList = new ArrayList(5);
@@ -50,54 +53,58 @@ class ArrayListTest {
         addElement(array, arrayList);
         Assertions.assertEquals(377, arrayList.get(2));
     }
+    @Nested
+    public class equal {
 
-    @Test
-    public void equals() {
-        ArrayList arrayList = new ArrayList(5);
-        int[] array = new int[]{1, 2, 3, 4, 5};
-        addElement(array, arrayList);
-        ArrayList arrayListSecond = new ArrayList(5);
-        int[] arraySecond = new int[]{1, 2, 3, 4, 5};
-        addElement(arraySecond, arrayListSecond);
-        Assertions.assertTrue(arrayList.equals(arrayListSecond));
+        @Test
+        public void equals() {
+            ArrayList arrayList = new ArrayList(5);
+            int[] array = new int[]{1, 2, 3, 4, 5};
+            addElement(array, arrayList);
+            ArrayList arrayListSecond = new ArrayList(5);
+            int[] arraySecond = new int[]{1, 2, 3, 4, 5};
+            addElement(arraySecond, arrayListSecond);
+            Assertions.assertTrue(arrayList.equals(arrayListSecond));
+        }
+
+        @Test
+        public void equalsIfDifferentLengths() {
+            ArrayList arrayList = new ArrayList(5);
+            int[] array = new int[]{1, 2, 3, 4, 5};
+            addElement(array, arrayList);
+            ArrayList arrayListSecond = new ArrayList(5);
+            int[] arraySecond = new int[]{1, 2, 3};
+            addElement(arraySecond, arrayListSecond);
+            Assertions.assertFalse(arrayList.equals(arrayListSecond));
+
+        }
     }
+    @Nested
+    public class sort {
+        @Test
+        public void sort() {
+            ArrayList arrayList = new ArrayList(20);
+            int[] array = new int[]{11, 2, 33, 1, 5};
+            addElement(array, arrayList);
+            arrayList.sort();
+            ArrayList arrayListSecond = new ArrayList(20);
+            int[] arraySecond = new int[]{1, 2, 5, 11, 33};
+            addElement(arraySecond, arrayListSecond);
+            checkElement(arrayList, arrayListSecond);
+        }
 
-    @Test
-    public void equalsIfDifferentLengths() {
-        ArrayList arrayList = new ArrayList(5);
-        int[] array = new int[]{1, 2, 3, 4, 5};
-        addElement(array, arrayList);
-        ArrayList arrayListSecond = new ArrayList(5);
-        int[] arraySecond = new int[]{1, 2, 3};
-        addElement(arraySecond, arrayListSecond);
-        Assertions.assertFalse(arrayList.equals(arrayListSecond));
-
+        @Test
+        public void sortIfHaveNegativeNumber() {
+            ArrayList arrayList = new ArrayList(6);
+            int[] array = new int[]{5, 1, 1, 2, -3, 1};
+            addElement(array, arrayList);
+            arrayList.sort();
+            ArrayList arrayListSecond = new ArrayList(6);
+            int[] arraySecond = new int[]{-3, 1, 1, 1, 2, 5};
+            addElement(arraySecond, arrayListSecond);
+            checkElement(arrayList, arrayListSecond);
+        }
     }
-
-    @Test
-    public void sort() {
-        ArrayList arrayList = new ArrayList(20);
-        int[] array = new int[]{11, 2, 33, 1, 5};
-        addElement(array, arrayList);
-        arrayList.sort();
-        ArrayList arrayListSecond = new ArrayList(20);
-        int[] arraySecond = new int[]{1, 2, 5, 11, 33};
-        addElement(arraySecond, arrayListSecond);
-        checkElement(arrayList, arrayListSecond);
-    }
-
-    @Test
-    public void sortIfHaveNegativeNumber() {
-        ArrayList arrayList = new ArrayList(6);
-        int[] array = new int[]{5, 1, 1, 2, -3, 1};
-        addElement(array, arrayList);
-        arrayList.sort();
-        ArrayList arrayListSecond = new ArrayList(6);
-        int[] arraySecond = new int[]{-3, 1, 1, 1, 2, 5};
-        addElement(arraySecond, arrayListSecond);
-        checkElement(arrayList, arrayListSecond);
-    }
-
     public static void checkElement(ArrayList arrayList, ArrayList arrayListSecond) {
         for (int i = 0; i < arrayList.size(); i++) {
             Assertions.assertEquals(arrayListSecond.get(i), arrayList.get(i));
