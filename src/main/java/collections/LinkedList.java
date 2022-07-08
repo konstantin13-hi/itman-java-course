@@ -1,14 +1,16 @@
 package collections;
 
 
-
-
 public class LinkedList {
     private Node head;
     private Node prev;
+    private int logicalSize;
 
 
     public static class Node {
+        public Node() {
+        }
+
         public void setElement(int element) {
             this.element = element;
         }
@@ -59,6 +61,7 @@ public class LinkedList {
             head = new Node(element, null, null);
             prev = head;
             that.head = that.head.getNext();
+            logicalSize++;
 
             while (that.head != null) {
                 element = that.head.getElement();
@@ -66,6 +69,7 @@ public class LinkedList {
                 prev.setNext(node);
                 prev = node;
                 that.head = that.head.getNext();
+                logicalSize++;
 
             }
         }
@@ -83,6 +87,7 @@ public class LinkedList {
             head.setPrev(node);
             head = node;
         }
+        logicalSize++;
     }
 
     public int getFirst() {
@@ -92,6 +97,7 @@ public class LinkedList {
     public int removeFirst() {
         int result = head.getElement();
         head = head.getNext();
+        logicalSize--;
         return result;
     }
 
@@ -104,8 +110,8 @@ public class LinkedList {
             Node newNode = new Node(element, null, prev);
             prev.setNext(newNode);
             prev = prev.getNext();
-
         }
+        logicalSize++;
 
     }
 
@@ -124,6 +130,7 @@ public class LinkedList {
             prev = null;
             head = null;
         }
+        logicalSize--;
 
 
         return result;
@@ -176,19 +183,19 @@ public class LinkedList {
         if (that == null) {
             return false;
         }
-        boolean result=true;
-        Node currentThis=this.head;
-        Node currentThat=that.head;
-        while (currentThat!=null){
+        boolean result = true;
+        Node currentThis = this.head;
+        Node currentThat = that.head;
+        while (currentThat != null) {
 
-           if(currentThat.getElement()!=currentThis.getElement()){
-                result=false;
+            if (currentThat.getElement() != currentThis.getElement()) {
+                result = false;
                 break;
             }
-            currentThis=currentThis.getNext();
-            currentThat=currentThat.getNext();
-            if((currentThat==null && currentThis!=null)||(currentThat!=null && currentThis==null)){
-                result=false;
+            currentThis = currentThis.getNext();
+            currentThat = currentThat.getNext();
+            if ((currentThat == null && currentThis != null) || (currentThat != null && currentThis == null)) {
+                result = false;
                 break;
             }
 
@@ -224,38 +231,31 @@ public class LinkedList {
             c++;
         }
         int result = current.getElement();
-      //  Node temp = current;
         if (current.getPrev() == null && current.getNext() == null) {
             head = null;
             prev = null;
         } else {
-            if (current.getNext()!=null && current.getPrev()!=null){
+            if (current.getNext() != null && current.getPrev() != null) {
                 current.getNext().setPrev(current.getPrev());
                 current.getPrev().setNext(current.getNext());
                 current.setNext(null);
                 current.setPrev(null);
-
-            }
-            else if (current.getNext()==null && current.getPrev()!=null){
+            } else if (current.getNext() == null && current.getPrev() != null) {
                 current.getPrev().setNext(null);
-                prev=current.getPrev();
+                prev = current.getPrev();
                 current.setPrev(null);
-            }
-            else {
+            } else {
                 current.getNext().setPrev(null);
-                head=current.getNext();
+                head = current.getNext();
                 current.setNext(null);
             }
-
-
         }
-
-
+        logicalSize--;
         return result;
     }
 
     public int size() {
-        return toArray().length;
+        return logicalSize;
     }
 
 }
