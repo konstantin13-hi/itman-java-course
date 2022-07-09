@@ -74,4 +74,14 @@ public class QueueController {
         ArrayList arrayList =queueManagementSystem.getVisitsByDay();
         return arrayList.toString();
     }
+
+    @GetMapping("/api/queue/getCurrentQueue")
+    public Ticket[] getCurrentQueue(){
+        return queueManagementSystem.getCurrentQueue();
+    }
+
+    @PostMapping("/api/queue/callNext")
+    public void callNext(){
+        queueManagementSystem.callNext();
+    }
 }
