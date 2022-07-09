@@ -244,7 +244,6 @@ public class QueueManagementSystem {
      * @ram 0(1)
      */
     public Ticket getNextTicket() {
-
         currentNumberOfTicket++;
         Ticket ticket = new Ticket(currentNumberOfTicket - numberOfTicketsTheLastDays, this.place);
         queue.offer(ticket);
