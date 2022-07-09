@@ -27,6 +27,8 @@ class QueueControllerTest {
     @Test
     void queueWorkScriptShouldMakeRequestsOfNextTicketTotalTicketsNextWorkDayGetVisitsByDaysWhenUseAllTypesOfRequestAtOnce()
             throws Exception {
+
+
         MockHttpServletRequestBuilder requestNextTicket = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
                 .contentType("application/json");
@@ -87,10 +89,46 @@ class QueueControllerTest {
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.content().json("[2, 3]"
                 ));
+
+        MockHttpServletRequestBuilder requestNextWorkDaySecond = MockMvcRequestBuilders
+                .post("/api/queue/toNextWorkDay")
+                .content("all params");
+        this.mockMvc.perform(requestNextWorkDaySecond)
+                .andExpect(MockMvcResultMatchers.status().is(200));
+
+        MockHttpServletRequestBuilder requestNextTicket5 = MockMvcRequestBuilders
+                .get("/api/queue/nextTicket")
+                .contentType("application/json");
+        this.mockMvc.perform(requestNextTicket)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":1,\"place\":\"bank\"}"
+                ));
+        MockHttpServletRequestBuilder requestSecondNextTicket6 = MockMvcRequestBuilders
+                .get("/api/queue/nextTicket")
+                .contentType("application/json");
+        this.mockMvc.perform(requestSecondNextTicket)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":2,\"place\":\"bank\"}"
+                ));
+
+        MockHttpServletRequestBuilder callNext = MockMvcRequestBuilders
+                .post("/api/queue/callNext")
+                .content("all params");
+        this.mockMvc.perform(callNext)
+                .andExpect(MockMvcResultMatchers.status().is(200));
+
+        MockHttpServletRequestBuilder getCurrentQueue = MockMvcRequestBuilders
+                .get("/api/queue/getCurrentQueue")
+                .contentType("application/json");
+        this.mockMvc.perform(getCurrentQueue)
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().json("[{\"number\":2,\"place\":\"bank\"}]"
+                ));
+
     }
 
 
-    @Test
+  /*  @Test
     void DDADA() throws Exception {
         MockHttpServletRequestBuilder requestNextTicket = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
@@ -121,5 +159,13 @@ class QueueControllerTest {
                 .andExpect(MockMvcResultMatchers.content().json("[{\"number\":2,\"place\":\"bank\"}]"
                 ));
 
-    }
+        MockHttpServletRequestBuilder requestNextWorkDay = MockMvcRequestBuilders
+                .post("/api/queue/toNextWorkDay")
+                .content("all params");
+        this.mockMvc.perform(requestNextWorkDay)
+                .andExpect(MockMvcResultMatchers.status().is(200));
+
+    }*\
+
+   */
 }

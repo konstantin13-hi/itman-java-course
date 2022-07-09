@@ -1,7 +1,6 @@
 package tasks;
 
 import collections.ArrayList;
-import collections.LinkedList;
 import entities.Ticket;
 
 public class QueueManagementSystem {
