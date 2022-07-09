@@ -8,6 +8,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class QueueManagementSystemTest {
+
+    @Test
+    public void getCurrentQueue(){
+        QueueManagementSystem  system = new QueueManagementSystem("Bank");
+
+       Ticket a= system.getNextTicket();
+        Ticket b= system.getNextTicket();
+       Ticket[] tickets= system.getCurrentQueue();
+       Assertions.assertEquals(a,tickets[0]);
+       Assertions.assertEquals(b,tickets[1]);
+       system.callNext();
+       Assertions.assertEquals(1,system.getCurrentQueue().length);
+
+
+    }
+
+
     @Test
     public void QueueManagementSystem() {
         QueueManagementSystem my = new QueueManagementSystem("WWW");
