@@ -81,7 +81,7 @@ public class QueueController {
     }
 
     @PostMapping("/api/queue/callNext")
-    public void callNext(){
-        queueManagementSystem.callNext();
+    public Ticket callNext(){
+       return queueManagementSystem.callNext();
     }
 }

@@ -2,6 +2,7 @@ package services.queue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -20,6 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class QueueControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -128,7 +130,7 @@ class QueueControllerTest {
     }
 
 
-  /*  @Test
+    @Test
     void DDADA() throws Exception {
         MockHttpServletRequestBuilder requestNextTicket = MockMvcRequestBuilders
                 .get("/api/queue/nextTicket")
@@ -146,10 +148,11 @@ class QueueControllerTest {
                 ));
 
         MockHttpServletRequestBuilder callNext = MockMvcRequestBuilders
-                .post("/api/queue/callNext")
-                .content("all params");
+                .post("/api/queue/callNext");
         this.mockMvc.perform(callNext)
-                .andExpect(MockMvcResultMatchers.status().is(200));
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(MockMvcResultMatchers.content().json("{\"number\":1,\"place\":\"bank\"}"
+                ));
 
         MockHttpServletRequestBuilder getCurrentQueue = MockMvcRequestBuilders
                 .get("/api/queue/getCurrentQueue")
@@ -165,7 +168,7 @@ class QueueControllerTest {
         this.mockMvc.perform(requestNextWorkDay)
                 .andExpect(MockMvcResultMatchers.status().is(200));
 
-    }*\
+    }
 
-   */
+
 }
