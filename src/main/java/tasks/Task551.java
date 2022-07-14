@@ -13,7 +13,7 @@ public class Task551 {
         private Node prev;
 
 
-        public Node(int element, Node next,Node prev) {
+        public Node(int element, Node next, Node prev) {
             this.element = element;
             this.next = next;
             this.prev = prev;
@@ -42,14 +42,20 @@ public class Task551 {
 
     }
 
-
-    public static Node buildLinkedList(){
-        Node nodeThird= new Node(37, null, null);
-       Node nodeSecond = new Node(99, nodeThird, null);
-       Node node = new Node(12, nodeSecond, null);
+    /**
+     * Returns list with elements 12, 99, 37
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @return node
+     */
+    public static Node buildLinkedList() {
+        Node nodeThird = new Node(37, null, null);
+        Node nodeSecond = new Node(99, nodeThird, null);
+        Node node = new Node(12, nodeSecond, null);
         nodeThird.setPrev(nodeSecond);
         nodeSecond.setPrev(node);
-
         return node;
     }
 }

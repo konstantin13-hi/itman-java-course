@@ -33,11 +33,11 @@ public class ListBenchmark {
     public static void main(String[] args) {
         int length = 10_000_000;
         // 1 sec 401 ms
-        ArrayList arrayListWithCapacity =createArrayListWithCapacity(length);
+        ArrayList arrayListWithCapacity = createArrayListWithCapacity(length);
         //2 sec 427 ms
-        ArrayList arrayList =createArrayList(length);
+        ArrayList arrayList = createArrayList(length);
         // 1 sec 220 ms
-        LinkedList linkedList =createLinkedList(length);
+        LinkedList linkedList = createLinkedList(length);
 
     }
 }

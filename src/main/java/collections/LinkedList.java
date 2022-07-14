@@ -7,19 +7,18 @@ public class LinkedList {
     private int logicalSize;
 
 
-    public static class Node {
-        public Node() {
-        }
+    private static class Node {
+        private int element;
+        private Node next;
+        private Node prev;
 
         public void setElement(int element) {
             this.element = element;
         }
 
-        private int element;
-        private Node next;
-        private Node prev;
 
-
+        public Node() {
+        }
         public Node(int element, Node next, Node prev) {
             this.element = element;
             this.next = next;
@@ -54,6 +53,16 @@ public class LinkedList {
 
     }
 
+    /**
+     * Create an arraylist
+     *
+     * n=logicalSize of that list
+     *
+     * @cpu 0(n)
+     * @ram 0(n)
+     *
+     * @param that the first term
+     */
     public LinkedList(LinkedList that) {
         if (that.head != null) {
             int element = that.head.getElement();
@@ -77,7 +86,14 @@ public class LinkedList {
 
     }
 
-
+    /**
+     * Add element in the front of list
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @param element the first term
+     */
     public void addFirst(int element) {
         if (this.head == null) {
             this.head = new Node(element, null, null);
@@ -90,10 +106,27 @@ public class LinkedList {
         logicalSize++;
     }
 
+    /**
+     * Return first element
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @return element
+     */
+
     public int getFirst() {
         return head.getElement();
     }
 
+    /**
+     * Return first element and delete him from list
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @return first element
+     */
     public int removeFirst() {
         int result = head.getElement();
         head = head.getNext();
@@ -101,6 +134,14 @@ public class LinkedList {
         return result;
     }
 
+    /**
+     * Add element in the back of list
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @param element the first term
+     */
     public void addLast(int element) {
         if (prev == null) {
             prev = new Node(element, null, null);
@@ -115,9 +156,27 @@ public class LinkedList {
 
     }
 
+    /**
+     * Return last element from list
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @return last element
+     */
+
     public int getLast() {
         return prev.getElement();
     }
+
+    /**
+     * Return last element and delete him from list
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @return last element
+     */
 
     public int removeLast() {
         int result = 0;
@@ -137,29 +196,42 @@ public class LinkedList {
 
     }
 
-
+    /**
+     * Create a string
+     *
+     * n=logicalSize
+     *
+     * @cpu 0(n)
+     * @ram 0(n)
+     *
+     * @return new string
+     */
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append('[');
         Node current = head;
         while (current != null) {
             stringBuilder.append(current.getElement());
-            // head = head.getNext();
-            //  current = current.getNext();
             if (current.getNext() != null) {
                 stringBuilder.append(", ");
                 current = current.getNext();
             } else {
-                //  stringBuilder.append(current.getElement());
                 current = current.getNext();
             }
-
-
         }
         stringBuilder.append(']');
         return stringBuilder.toString();
     }
 
+    /**
+     * Return array containing elements
+     *
+     * n=logicalSize;
+     * @cpu O(n)
+     * @ram O(n)
+     *
+     * @return array
+     */
     public int[] toArray() {
         ArrayList arrayList = new ArrayList();
         Node current = head;
@@ -170,6 +242,17 @@ public class LinkedList {
         return arrayList.toArray();
     }
 
+    /**
+     * Create a list
+     *
+     * n=number of elements
+     *
+     * @cpu 0(n)
+     * @ram 0(n)
+     *
+     * @param elements the first term
+     * @return new arraylist
+     */
     public static LinkedList of(int... elements) {
         LinkedList linkedList = new LinkedList();
         for (int element : elements) {
@@ -178,6 +261,18 @@ public class LinkedList {
         return linkedList;
     }
 
+    /**
+     * Make a compare between of two lists
+     *
+     * n=that.size
+     *
+     * @cpu 0(n)
+     * @ram 0(1)
+     *
+     * @param that the first term
+     *
+     * @return result
+     */
     public boolean equals(LinkedList that) {
         // вопрос про нулл this . вызов будет нул поинт
         if (that == null) {
@@ -203,6 +298,17 @@ public class LinkedList {
         return result;
     }
 
+    /**
+     * Set element
+     *
+     * n=index
+     *
+     * @cpu 0(n)
+     * @ram 0(1)
+     *
+     * @param index the first term
+     * @param element the second term
+     */
     public void set(int index, int element) {
         Node current = head;
         int c = 0;
@@ -213,6 +319,17 @@ public class LinkedList {
         current.setElement(element);
     }
 
+    /**
+     * Get index
+     *
+     * n=index
+     *
+     * @cpu 0(n)
+     * @ram 0(1)
+     *
+     * @param index the first term
+     * @return number from arraylist
+     */
     public int get(int index) {
         Node current = head;
         int c = 0;
@@ -223,6 +340,15 @@ public class LinkedList {
         return current.getElement();
     }
 
+    /**
+     * Remove element
+     *
+     * @cpu 0(1)
+     * @ram 0(1)
+     *
+     * @param index the first term
+     * @return deleted element from list
+     */
     public int remove(int index) {
         Node current = head;
         int c = 0;
@@ -254,6 +380,14 @@ public class LinkedList {
         return result;
     }
 
+    /**
+     * Return size
+     *
+     * @cpu 0(1)
+     * @ram 0(1)
+     *
+     * @return size
+     */
     public int size() {
         return logicalSize;
     }
