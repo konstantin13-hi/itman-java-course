@@ -74,4 +74,34 @@ public class QueueController {
         ArrayList arrayList =queueManagementSystem.getVisitsByDay();
         return arrayList.toString();
     }
+
+    /**
+     * Returns array containing tickets current queue
+     *
+     * n=number of elements in current queue
+     *
+     * @cpu O(n)
+     * @ram O(n)
+     *
+     * @return array containing tickets current queue
+     */
+
+    @GetMapping("/api/queue/getCurrentQueue")
+    public Ticket[] getCurrentQueue() {
+        return queueManagementSystem.getCurrentQueue();
+    }
+
+    /**
+     * Returns ticket from head
+     *
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @return ticket from head
+     */
+    @PostMapping("/api/queue/callNext")
+    public Ticket callNext() {
+        return queueManagementSystem.callNext();
+    }
 }
