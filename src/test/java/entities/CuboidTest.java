@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class CuboidTest {
 
     @Nested
-    public class Volume {
+    public class CalcVolume {
 
         @Test
-        public void calcVolumeShouldCalcVolumeWhenAllSidesAreSame() {
+        public void shouldCalcVolumeWhenAllSidesAreSame() {
             int a = 3;
             int b = 3;
             int c = 3;
@@ -22,9 +22,9 @@ class CuboidTest {
     }
 
     @Nested
-    public class SurfaceArea {
+    public class CalcSurfaceArea {
         @Test
-        public void calcSurfaceAreaShouldCalcSurfaceAreaWhenAllSidesAreSame() {
+        public void shouldCalcSurfaceAreaWhenAllSidesAreSame() {
             int a = 3;
             int b = 3;
             int c = 3;

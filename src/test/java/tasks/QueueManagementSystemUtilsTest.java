@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 
 class QueueManagementSystemUtilsTest {
     @Nested
-    public class CountQueue {
+    public class CalcTotalVisits {
 
 
         @Test
-        public void countQueue() {
+        public void shouldCountTotalVisitsWhenSystemIsNoEmpty() {
             QueueManagementSystem[] systems = new QueueManagementSystem[3];
             systems[0] = createTicketBetter("Bank", new int[]{3});
             systems[1] = createTicketBetter("Bank2", new int[]{3});
@@ -22,7 +22,7 @@ class QueueManagementSystemUtilsTest {
     @Nested
     public class CalcAverageVisits {
         @Test
-        public void calcAverageVisits() {
+        public void shouldCalcAverageVisitsWhenSystemIsNotEmpty() {
             QueueManagementSystem[] systems = new QueueManagementSystem[2];
             systems[0] = createTicketBetter("Bank", new int[]{3});
             systems[1] = createTicketBetter("Bank2", new int[]{3});
@@ -30,7 +30,7 @@ class QueueManagementSystemUtilsTest {
         }
 
         @Test
-        public void calcAverage() {
+        public void shouldCalcAverageVisitsWhenDifferentVisits() {
             QueueManagementSystem[] systems = new QueueManagementSystem[3];
             systems[0] = createTicketBetter("Bank", new int[]{1});
             systems[1] = createTicketBetter("Bank2", new int[]{4});
@@ -42,7 +42,7 @@ class QueueManagementSystemUtilsTest {
     @Nested
     public class CalcMedianVisits {
         @Test
-        public void calcMedianVisitsShouldCalcMedianVisitsWhenSystemsIsNotEmpty() {
+        public void shouldCalcMedianVisitsWhenSystemsIsNotEmpty() {
             QueueManagementSystem[] systems = new QueueManagementSystem[3];
             systems[0] = createTicketBetter("Bank", new int[]{1});
             systems[1] = createTicketBetter("Bank2", new int[]{4});
@@ -52,7 +52,7 @@ class QueueManagementSystemUtilsTest {
         }
 
         @Test
-        public void calcMedianVisitsShouldCalcMedianVisitsWhenAllBanksHaveZeroTickets() {
+        public void shouldCalcMedianVisitsWhenAllBanksHaveZeroTickets() {
             QueueManagementSystem[] systems = new QueueManagementSystem[4];
             systems[0] = createTicketBetter("Bank", new int[]{0});
             systems[1] = createTicketBetter("Bank2", new int[]{0});
@@ -63,9 +63,9 @@ class QueueManagementSystemUtilsTest {
     }
 
     @Nested
-    public class StatisticByDays {
+    public class CalcStatisticByDays {
         @Test
-        public void statisticByDaysShouldStatisticByDaysWhenAllBanksGaveEveryDayOneTicket() {
+        public void shouldStatisticByDaysWhenAllBanksGaveEveryDayOneTicket() {
             QueueManagementSystem[] systems = new QueueManagementSystem[4];
             systems[0] = createTicketBetter("Bank", new int[]{1, 1, 1, 1});
             systems[1] = createTicketBetter("Bank2", new int[]{1, 1});
@@ -80,7 +80,7 @@ class QueueManagementSystemUtilsTest {
         }
 
         @Test
-        public void statisticByDaysShouldStatisticByDaysWhenBanksWorkedDifferentAmountDays() {
+        public void shouldStatisticByDaysWhenBanksWorkedDifferentAmountDays() {
             QueueManagementSystem[] systems = new QueueManagementSystem[2];
             systems[0] = createTicketBetter("Bank", new int[]{10, 20});
             systems[1] = createTicketBetter("Bank2", new int[]{30});
@@ -93,7 +93,7 @@ class QueueManagementSystemUtilsTest {
         }
 
         @Test
-        public void statisticByDaysShouldStatisticByDaysWhenBanksWorkedSameDaysAndGaveSameAmountTickets() {
+        public void shouldStatisticByDaysWhenBanksWorkedSameDaysAndGaveSameAmountTickets() {
             QueueManagementSystem[] systems = new QueueManagementSystem[3];
             systems[0] = createTicketBetter("Bank", new int[]{1, 2, 3});
             systems[1] = createTicketBetter("Bank2", new int[]{1, 2, 3});
@@ -107,7 +107,7 @@ class QueueManagementSystemUtilsTest {
         }
 
         @Test
-        public void statisticByDaysShouldStatisticByDaysWhenWorkedOneBank() {
+        public void shouldStatisticByDaysWhenWorkedOneBank() {
             QueueManagementSystem[] systems = new QueueManagementSystem[1];
             systems[0] = createTicketBetter("Bank", new int[]{1, 2, 3});
             int[] min = new int[]{1, 2, 3};
@@ -120,7 +120,7 @@ class QueueManagementSystemUtilsTest {
         }
 
         @Test
-        public void statisticByDaysShouldStatisticByDaysWhenOneBankDidNotGiveTicketInFirstDay() {
+        public void shouldStatisticByDaysWhenOneBankDidNotGiveTicketInFirstDay() {
             QueueManagementSystem[] systems = new QueueManagementSystem[3];
             systems[0] = createTicketBetter("Bank", new int[]{1, 2, 3, 4});
             systems[1] = createTicketBetter("Bank2", new int[]{0, 1});

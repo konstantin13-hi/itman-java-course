@@ -14,7 +14,7 @@ class QueueManagementSystemTest {
     public class GetCurrentQueue {
 
         @Test
-        public void getCurrentQueueShouldGetCurrentQueueWhenCalledOne() {
+        public void shouldGetCurrentQueueWhenCalledOne() {
             QueueManagementSystem system = new QueueManagementSystem("Bank");
             Ticket a = system.getNextTicket();
             Ticket b = system.getNextTicket();
@@ -31,13 +31,13 @@ class QueueManagementSystemTest {
     public class GetTotalTickets {
 
         @Test
-        public void getTotalTicketsShouldGetTotalTicketsWhenQueueIsEmpty() {
+        public void shouldGetTotalTicketsWhenQueueIsEmpty() {
             QueueManagementSystem my = new QueueManagementSystem("WWW");
             Assertions.assertEquals(0, my.getTotalTickets());
         }
 
         @Test
-        public void getTotalTicketsShouldGetTotalTicketsWhenQueueIsNotEmpty() {
+        public void shouldGetTotalTicketsWhenQueueIsNotEmpty() {
             QueueManagementSystem my = new QueueManagementSystem("Bank");
             Ticket B = my.getNextTicket();
             Ticket B1 = my.getNextTicket();
@@ -53,7 +53,7 @@ class QueueManagementSystemTest {
     public class GetVisitsByDay {
 
         @Test
-        public void getVisitsByDayShouldGetVisitsByDayWhenQueueHasThreeWorkDays() {
+        public void shouldGetVisitsByDayWhenQueueHasThreeWorkDays() {
             QueueManagementSystem system = new QueueManagementSystem("Bank");
             system.getNextTicket();
             system.getNextTicket();
@@ -68,7 +68,7 @@ class QueueManagementSystemTest {
         }
 
         @Test
-        public void getVisitsByDayShouldGetVisitsByDayWhenQueueHasTwoWorkDays() {
+        public void shouldGetVisitsByDayWhenQueueHasTwoWorkDays() {
             QueueManagementSystem system = new QueueManagementSystem("Bank");
             system.getNextTicket();
             system.getNextTicket();

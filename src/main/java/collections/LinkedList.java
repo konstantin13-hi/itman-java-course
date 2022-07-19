@@ -64,26 +64,11 @@ public class LinkedList {
      * @param that the first term
      */
     public LinkedList(LinkedList that) {
-        if (that.head != null) {
-            int element = that.head.getElement();
-            Node node;
-            head = new Node(element, null, null);
-            prev = head;
-            that.head = that.head.getNext();
-            logicalSize++;
-
-            while (that.head != null) {
-                element = that.head.getElement();
-                node = new Node(element, null, prev);
-                prev.setNext(node);
-                prev = node;
-                that.head = that.head.getNext();
-                logicalSize++;
-
-            }
+        Node current = that.head;
+        while (current != null) {
+            addLast(current.getElement());
+            current = current.getNext();
         }
-
-
     }
 
     /**
@@ -274,28 +259,16 @@ public class LinkedList {
      * @return result
      */
     public boolean equals(LinkedList that) {
-        // вопрос про нулл this . вызов будет нул поинт
-        if (that == null) {
-            return false;
-        }
-        boolean result = true;
         Node currentThis = this.head;
         Node currentThat = that.head;
         while (currentThat != null) {
-
             if (currentThat.getElement() != currentThis.getElement()) {
-                result = false;
-                break;
+               return false;
             }
             currentThis = currentThis.getNext();
             currentThat = currentThat.getNext();
-            if ((currentThat == null && currentThis != null) || (currentThat != null && currentThis == null)) {
-                result = false;
-                break;
-            }
-
         }
-        return result;
+        return this.size()==that.size();
     }
 
     /**
@@ -310,13 +283,7 @@ public class LinkedList {
      * @param element the second term
      */
     public void set(int index, int element) {
-        Node current = head;
-        int c = 0;
-        while (current != null && c != index) {
-            current = current.getNext();
-            c++;
-        }
-        current.setElement(element);
+        findNode(index).setElement(element);
     }
 
     /**
@@ -331,50 +298,48 @@ public class LinkedList {
      * @return number from arraylist
      */
     public int get(int index) {
+        return findNode(index).element;
+    }
+
+    private Node findNode(int index) {
         Node current = head;
         int c = 0;
         while (current != null && c != index) {
             current = current.getNext();
             c++;
         }
-        return current.getElement();
+        return current;
     }
+
+
 
     /**
      * Remove element
      *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * @cpu O(n)
+     * @ram O(1)
      *
      * @param index the first term
      * @return deleted element from list
      */
     public int remove(int index) {
-        Node current = head;
-        int c = 0;
-        while (current != null && c != index) {
-            current = current.getNext();
-            c++;
+        int result ;
+        if (logicalSize==1) {
+            result=head.element;
+            removeFirst();
         }
-        int result = current.getElement();
-        if (current.getPrev() == null && current.getNext() == null) {
-            head = null;
-            prev = null;
+        else if (index==0) {
+            result=getFirst();
+            removeFirst();
+        } else if (index+1==logicalSize) {
+            result=getLast();
+            removeLast();
+
         } else {
-            if (current.getNext() != null && current.getPrev() != null) {
-                current.getNext().setPrev(current.getPrev());
-                current.getPrev().setNext(current.getNext());
-                current.setNext(null);
-                current.setPrev(null);
-            } else if (current.getNext() == null && current.getPrev() != null) {
-                current.getPrev().setNext(null);
-                prev = current.getPrev();
-                current.setPrev(null);
-            } else {
-                current.getNext().setPrev(null);
-                head = current.getNext();
-                current.setNext(null);
-            }
+            Node current = findNode(index);
+            result=current.element;
+            current.getNext().setPrev(current.getPrev());
+            current.getPrev().setNext(current.getNext());
         }
         logicalSize--;
         return result;

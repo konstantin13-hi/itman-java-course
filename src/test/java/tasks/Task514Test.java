@@ -12,7 +12,7 @@ class Task514Test {
     public class Solve {
 
         @Test
-        public void solveShouldSolveHowManyBooksAreLeftWhenArraysNotIsEmpty() {
+        public void shouldSolveHowManyBooksAreLeftWhenArraysNotIsEmpty() {
             int[] books = new int[]{1, 2, 3};
             int[] queue = new int[]{-1, 5, 4, -1, -1};
             Task514.solve(books, queue);

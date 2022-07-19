@@ -10,7 +10,7 @@ class StackTest {
     @Nested
     public class Push {
         @Test
-        public void pushShouldAddElementsWhenStackIsEmpty() {
+        public void shouldAddElementsWhenStackIsEmpty() {
             int a = 3;
             Stack stack = new Stack();
             stack.push(a);
@@ -26,7 +26,7 @@ class StackTest {
     @Nested
     public class Peak {
         @Test
-        public void peekShouldGetFirstElementWhenStackIsNotEmpty() {
+        public void shouldGetFirstElementWhenStackIsNotEmpty() {
             Stack stack = new Stack();
             stack.push(1);
             stack.push(3);
@@ -44,7 +44,7 @@ class StackTest {
     public class Pop {
 
         @Test
-        public void popShouldRemoveFirstElementWhenStackIsNotEmpty() {
+        public void shouldRemoveFirstElementWhenStackIsNotEmpty() {
             Stack stack = new Stack();
             stack.push(1);
             stack.push(3);
@@ -60,7 +60,7 @@ class StackTest {
     @Nested
     public class Size {
         @Test
-        public void sizeShouldReturnSizeWhenStackIsNotEmpty() {
+        public void shouldReturnSizeWhenStackIsNotEmpty() {
             Stack stack = new Stack();
             stack.push(1);
             stack.push(3);
@@ -72,7 +72,7 @@ class StackTest {
         }
 
         @Test
-        public void sizeShouldReturnSizeWhenStackIsEmpty() {
+        public void shouldReturnSizeWhenStackIsEmpty() {
             Stack stack = new Stack();
             Assertions.assertEquals(0, stack.size());
         }
@@ -81,14 +81,14 @@ class StackTest {
     @Nested
     public class IsEmpty {
         @Test
-        public void isEmptyShouldReturnTrueWhenStackIsEmpty() {
+        public void shouldReturnTrueWhenStackIsEmpty() {
             Stack stack = new Stack();
             Assertions.assertTrue(stack.isEmpty());
 
         }
 
         @Test
-        public void isEmptyShouldReturnFalseWhenStackIsNotEmpty() {
+        public void shouldReturnFalseWhenStackIsNotEmpty() {
             Stack stack = new Stack();
             stack.push(523);
             Assertions.assertFalse(stack.isEmpty());

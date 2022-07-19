@@ -10,10 +10,10 @@ public class Task407Tests {
 
     @Nested
 
-    public class Sort {
+    public class SortMatrixRowsDesc {
 
         @Test
-        public void sortShouldSortMatrixRowsDescWhenMatrixIsNotEmpty() {
+        public void shouldSortMatrixRowsDescWhenMatrixIsNotEmpty() {
             int[][] a = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
             int[][] b = new int[][]{{7, 8, 9}, {4, 5, 6}, {1, 2, 3}};//
             Task407.sortMatrixRowsDesc(a);
@@ -21,7 +21,7 @@ public class Task407Tests {
         }
 
         @Test
-        public void sortShouldSortMatrixRowsDescWhenTwoRowsSame() {
+        public void shouldSortMatrixRowsDescWhenTwoRowsSame() {
             int[][] a = new int[][]{{1, 1, 1}, {1, 1, 1}, {7, 8, 9}};
             int[][] b = new int[][]{{7, 8, 9}, {1, 1, 1}, {1, 1, 1}};
             Task407.sortMatrixRowsDesc(a);
@@ -29,7 +29,7 @@ public class Task407Tests {
         }
 
         @Test
-        public void sortShouldSortMatrixRowsDescWhenThreePairs() {
+        public void shouldSortMatrixRowsDescWhenThreePairs() {
             int[][] a = new int[][]{{1, 1, 1}, {199, 199, 199}, {7, 8, 9}, {1, 1, 1}, {199, 199, 199}, {7, 8, 9}};
             int[][] b = new int[][]{{199, 199, 199}, {199, 199, 199}, {7, 8, 9}, {7, 8, 9}, {1, 1, 1}, {1, 1, 1}};
             Task407.sortMatrixRowsDesc(a);

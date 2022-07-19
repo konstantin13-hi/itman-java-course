@@ -14,7 +14,7 @@ class ArrayListCalendarTest {
     @Nested
     public class AddEvent {
         @Test
-        void addEventShouldAddEventWhenArrayListIsEmpty() {
+        void shouldAddEventWhenArrayListIsEmpty() {
             ArrayListCalendar arrayListCalendar = new ArrayListCalendar();
             Event[] events = new Event[]{new Event(1, 1, 1, "d"),
                     new Event(1, 1, 1, "d"),
@@ -31,7 +31,7 @@ class ArrayListCalendarTest {
     public class DeleteEvent {
 
         @Test
-        void deleteEventShouldDeleteEventWhenIndexIs2() {
+        void shouldDeleteEventWhenIndexIs2() {
             ArrayListCalendar arrayListCalendar = new ArrayListCalendar();
             Event[] events = new Event[]{
                     new Event(1, 11, 1, 1, "MINSK"),
@@ -59,10 +59,10 @@ class ArrayListCalendarTest {
 
 
     @Nested
-    public class Year {
+    public class ReturnEventsYear {
 
         @Test
-        void yearShouldReturnEventsWithDesiredYearWhenCalendarIsNotEmpty() {
+        void shouldReturnEventsWithDesiredYearWhenCalendarIsNotEmpty() {
             ArrayListCalendar arrayListCalendar = new ArrayListCalendar();
             addEvents(arrayListCalendar, createEvent());
             Assertions.assertEquals("[Event{id=21, year=2101, month=1, day=1, name='dXD'}, Event{id=23, year=2101, month=9, day=11, name='dDDS'}]", Arrays.toString(arrayListCalendar.returnEventsYear(2101)));
@@ -70,9 +70,9 @@ class ArrayListCalendarTest {
     }
 
     @Nested
-    public class YearMonth {
+    public class ReturnEventsYearAndMonth {
         @Test
-        void yearMonthShouldReturnEventsWithDesiredYearAndMothWhenCalendarIsNotEmpty() {
+        void shouldReturnEventsWithDesiredYearAndMothWhenCalendarIsNotEmpty() {
             ArrayListCalendar arrayListCalendar = new ArrayListCalendar();
             addEvents(arrayListCalendar, createEvent());
             Assertions.assertEquals("[Event{id=5, year=2011, month=7, day=8, name='dDX'}]", Arrays.toString(arrayListCalendar.returnEventsYearAndMonth(2011, 7)));
@@ -81,9 +81,9 @@ class ArrayListCalendarTest {
     }
 
     @Nested
-    public class YearMonthDay {
+    public class ReturnEventsYearAndMonthDay {
         @Test
-        void yearMonthDayShouldReturnEventsWithDesiredYearMonthDayWhenCalendarIsNotEmpty() {
+        void shouldReturnEventsWithDesiredYearMonthDayWhenCalendarIsNotEmpty() {
             ArrayListCalendar arrayListCalendar = new ArrayListCalendar();
             addEvents(arrayListCalendar, createEvent());
             Assertions.assertEquals("[Event{id=10, year=2013, month=1, day=1, name='DAE'}]", Arrays.toString(arrayListCalendar.returnEventsYearAndMonthDay(2013, 1, 1)));
@@ -100,7 +100,7 @@ class ArrayListCalendarTest {
         }
 
         @Test
-        void mergeSortShouldMergeSortWhenArrayIsNotEmpty() {
+        void shouldMergeSortWhenArrayIsNotEmpty() {
             Event[] events = new Event[]{
                     new Event(1, 2001, 12, 26, "play"),
                     new Event(2, 2001, 11, 23, "Dinner"),

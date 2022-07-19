@@ -10,7 +10,7 @@ public class QueueManagementSystem {
     private String place;
     private Queue queue;
 
-    public static class Queue {
+    private static class Queue {
         LinkedList linkedList = new LinkedList();
 
         public Queue() {
@@ -42,7 +42,7 @@ public class QueueManagementSystem {
 
     }
 
-    public static class LinkedList {
+    private static class LinkedList {
         private Node head;
         private Node prev;
         private int logicalSize;
@@ -179,7 +179,7 @@ public class QueueManagementSystem {
 
     }
 
-    public static class Node {
+    private static class Node {
         public Node() {
         }
 

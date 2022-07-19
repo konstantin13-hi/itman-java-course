@@ -20,7 +20,7 @@ class CalendarControllerTest {
         private MockMvc mockMvc;
 
         @Test
-        public void calendarWorkScriptShouldMakeRequestsWhenUseAllTypesOfRequestAtOnce()
+        public void shouldMakeRequestsWhenUseAllTypesOfRequestAtOnce()
                 throws Exception {
             MockHttpServletRequestBuilder requestAddEvent = MockMvcRequestBuilders
                     .post("/calendar/addEvent")

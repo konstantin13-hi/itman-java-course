@@ -11,7 +11,7 @@ class StatisticTest {
     @Nested
     public class ToString {
         @Test
-        public void toStringShouldReturnsStringWhenObjectIsNotEmpty() {
+        public void shouldReturnsStringWhenObjectIsNotEmpty() {
             Statistic statistic = new Statistic(1, 2, 3, 4, 5);
             Assertions.assertEquals("Statistic{min=" + 1 + ", max=" + 2 + ", count=" + 3 + ", average=" + 4.0 + ", median=" + 5.0 + "}", statistic.toString());
         }
@@ -21,14 +21,14 @@ class StatisticTest {
     @Nested
     public class Equals {
         @Test
-        void equalsShouldEqualsWhenTwoObjectsAreSame() {
+        void shouldEqualsWhenTwoObjectsAreSame() {
             Statistic statistic = new Statistic(1, 2, 3, 4, 5);
             Statistic statisticSecond = new Statistic(1, 2, 3, 4, 5);
             Assertions.assertTrue(statistic.equals(statisticSecond));
         }
 
         @Test
-        void equalsShouldEqualsWhenTwoObjectsAreDifferent() {
+        void shouldEqualsWhenTwoObjectsAreDifferent() {
             Statistic statistic = new Statistic(1, 4, 3, 4, 5);
             Statistic statisticSecond = new Statistic(1, 21, 3, 4, 5);
             Assertions.assertFalse(statistic.equals(statisticSecond));

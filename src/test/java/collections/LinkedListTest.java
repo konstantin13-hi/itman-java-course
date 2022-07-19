@@ -8,7 +8,7 @@ class LinkedListTest {
     @Nested
     public class AddFirst {
         @Test
-        void addFirstShouldAddElementWhenListIsEmpty() {
+        void shouldAddElementWhenListIsEmpty() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(10);
             linkedList.addFirst(13);
@@ -20,9 +20,9 @@ class LinkedListTest {
     }
 
     @Nested
-    public class ReturnString {
+    public class ToString {
         @Test
-        void stringShouldReturnStringWhenListIsNotEmpty() {
+        void shouldReturnStringWhenListIsNotEmpty() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(10);
             linkedList.addFirst(13);
@@ -32,13 +32,13 @@ class LinkedListTest {
         }
 
         @Test
-        void stringShouldReturnStringWhenListIsEmpty() {
+        void shouldReturnStringWhenListIsEmpty() {
             LinkedList linkedList = new LinkedList();
             Assertions.assertEquals("[]", linkedList.toString());
         }
 
         @Test
-        void stringShouldReturnStringWhenListHasOneElement() {
+        void shouldReturnStringWhenListHasOneElement() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(13);
             Assertions.assertEquals("[13]", linkedList.toString());
@@ -46,16 +46,16 @@ class LinkedListTest {
     }
 
     @Nested
-    public class Delete {
+    public class RemoveLast {
         @Test
-        void deleteShouldDeleteElementWhenListHasOneElement() {
+        void shouldDeleteElementWhenListHasOneElement() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(3);
             Assertions.assertEquals(3, linkedList.removeLast());
         }
 
         @Test
-        void deleteShouldDeleteFirstAndLastElementsWhenListIsNotEmpty() {
+        void shouldDeleteFirstAndLastElementsWhenListIsNotEmpty() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(10);
             linkedList.addFirst(13);
@@ -64,7 +64,7 @@ class LinkedListTest {
         }
 
         @Test
-        void deleteShouldDeleteAllElementsWhenListIsNotEmpty() {
+        void shouldDeleteAllElementsWhenListIsNotEmpty() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(10);
             linkedList.addFirst(13);
@@ -78,7 +78,7 @@ class LinkedListTest {
     @Nested
     public class GetLast {
         @Test
-        void getLastShouldGetLastElementWhenListHasSeveralElements() {
+        void shouldGetLastElementWhenListHasSeveralElements() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(555);
             linkedList.addFirst(621);
@@ -89,7 +89,7 @@ class LinkedListTest {
         }
 
         @Test
-        void getLastShouldGetLastElementWhenListHasOneElement() {
+        void shouldGetLastElementWhenListHasOneElement() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(555);
             Assertions.assertEquals(555, linkedList.getLast());
@@ -99,7 +99,7 @@ class LinkedListTest {
     @Nested
     public class AddLast {
         @Test
-        void addLastShouldAddLastWhenListIsEmpty() {
+        void shouldAddLastWhenListIsEmpty() {
             LinkedList linkedList = new LinkedList();
             linkedList.addLast(10);
             linkedList.addLast(9);
@@ -113,10 +113,10 @@ class LinkedListTest {
     }
 
     @Nested
-    public class MakeCopy {
+    public class CreateLinkedList {
 
         @Test
-        void LinkedListShouldCreateSecondListWhenFirstIsNotEmpty() {
+        void shouldCreateSecondListWhenFirstIsNotEmpty() {
             LinkedList linkedList = new LinkedList();
             linkedList.addLast(10);
             linkedList.addLast(9);
@@ -130,9 +130,9 @@ class LinkedListTest {
     }
 
     @Nested
-    public class Bool {
+    public class Equals {
         @Test
-        void boolShouldReturnTrueWhenTwoListsAreDifferent() {
+        void shouldReturnTrueWhenTwoListsAreDifferent() {
             LinkedList linkedList = new LinkedList();
             linkedList.addLast(10);
             linkedList.addLast(9);
@@ -145,7 +145,7 @@ class LinkedListTest {
         }
 
         @Test
-        void boolShouldReturnTrueWhenListsHaveSameElements() {
+        void shouldReturnTrueWhenListsHaveSameElements() {
             LinkedList linkedList = new LinkedList();
             linkedList.addLast(10);
             linkedList.addLast(9);
@@ -158,7 +158,7 @@ class LinkedListTest {
         }
 
         @Test
-        void boolShouldReturnFalseWhenFirstElementsAreSameInListsWithDifferentLength() {
+        void shouldReturnFalseWhenFirstElementsAreSameInListsWithDifferentLength() {
             LinkedList linkedList = new LinkedList();
             linkedList.addLast(10);
             linkedList.addLast(9);
@@ -172,9 +172,9 @@ class LinkedListTest {
     }
 
     @Nested
-    public class ReturnArray {
+    public class ToArray {
         @Test
-        void arrayShouldReturnArrayWhenListIsNotEmpty() {
+        void shouldReturnArrayWhenListIsNotEmpty() {
             LinkedList linkedList = new LinkedList();
             linkedList.addLast(10);
             linkedList.addLast(9);
@@ -189,7 +189,7 @@ class LinkedListTest {
     public class Set {
 
         @Test
-        void setShouldSetElementInAllIndexInListWhenListHasThreeElements() {
+        void shouldSetElementInAllIndexInListWhenListHasThreeElements() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(10);
             linkedList.addFirst(9);
@@ -206,7 +206,7 @@ class LinkedListTest {
     @Nested
     public class Get {
         @Test
-        void getShouldGetMiddleElementWhenListHasMoreWhenTwoElements() {
+        void shouldGetMiddleElementWhenListHasMoreWhenTwoElements() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(10);
             linkedList.addFirst(9);
@@ -215,7 +215,7 @@ class LinkedListTest {
         }
 
         @Test
-        void getShouldGetFirstElementWhenListHasMoreWhenTwoElements() {
+        void shouldGetFirstElementWhenListHasMoreWhenTwoElements() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(10);
             linkedList.addFirst(9);
@@ -225,7 +225,7 @@ class LinkedListTest {
         }
 
         @Test
-        void getShouldGetLastElementWhenListHasMoreWhenTwoElements() {
+        void shouldGetLastElementWhenListHasMoreWhenTwoElements() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(10);
             linkedList.addFirst(9);
@@ -234,7 +234,7 @@ class LinkedListTest {
         }
 
         @Test
-        void getShouldGetFirstElementWhenListHasOneElement() {
+        void shouldGetFirstElementWhenListHasOneElement() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(10);
             Assertions.assertEquals(10, linkedList.get(0));
@@ -246,7 +246,7 @@ class LinkedListTest {
     @Nested
     public class Remove {
         @Test
-        void removeShouldRemoveAllElementWhenListHasThreeElements() {
+        void shouldRemoveAllElementWhenListHasThreeElements() {
             LinkedList linkedList = new LinkedList();
             linkedList.addFirst(10);
             linkedList.addFirst(9);

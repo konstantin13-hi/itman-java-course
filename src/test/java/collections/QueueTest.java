@@ -9,7 +9,7 @@ class QueueTest {
     @Nested
     public class Offer {
         @Test
-        void offerShouldAddElementsWhenQueueIsEmpty() {
+        void shouldAddElementsWhenQueueIsEmpty() {
             Queue queue = new Queue();
             queue.offer(1);
             queue.offer(53);
@@ -21,7 +21,7 @@ class QueueTest {
     @Nested
     public class Pick {
         @Test
-        void pickShouldGetFirstElementFromQueueWhenQueueIsNotEmpty() {
+        void shouldGetFirstElementFromQueueWhenQueueIsNotEmpty() {
             Queue queue = new Queue();
             queue.offer(5);
             queue.offer(7);
@@ -33,7 +33,7 @@ class QueueTest {
     @Nested
     public class Poll {
         @Test
-        void pollShouldRemoveFirstElementWhenQueueIsNotEmpty() {
+        void shouldRemoveFirstElementWhenQueueIsNotEmpty() {
             Queue queue = new Queue();
             queue.offer(5);
             queue.offer(7);
@@ -46,7 +46,7 @@ class QueueTest {
     @Nested
     public class Size {
         @Test
-        void sizeShouldReturnSizeWhenQueueIsNotEmpty() {
+        void shouldReturnSizeWhenQueueIsNotEmpty() {
             Queue queue = new Queue();
             queue.offer(5);
             queue.offer(7);
@@ -58,7 +58,7 @@ class QueueTest {
         }
 
         @Test
-        void sizeShouldReturnSizeWhenQueueIsEmpty() {
+        void shouldReturnSizeWhenQueueIsEmpty() {
             Queue queue = new Queue();
             Assertions.assertEquals(0, queue.size());
         }
@@ -67,7 +67,7 @@ class QueueTest {
     @Nested
     public class IsEmpty {
         @Test
-        void isEmptyShouldReturnFalseWhenQueueIsNotEmpty() {
+        void shouldReturnFalseWhenQueueIsNotEmpty() {
             Queue queue = new Queue();
             queue.offer(5);
             queue.offer(7);
@@ -75,7 +75,7 @@ class QueueTest {
         }
 
         @Test
-        void isEmptyShouldReturnTrueWhenQueueIsEmpty() {
+        void shouldReturnTrueWhenQueueIsEmpty() {
             Queue queue = new Queue();
             Assertions.assertTrue(queue.isEmpty());
 
@@ -83,9 +83,9 @@ class QueueTest {
     }
 
     @Nested
-    public class Array {
+    public class ToArray {
         @Test
-        void arrayShouldReturnArrayWhenQueueIsNotEmpty() {
+        void shouldReturnArrayWhenQueueIsNotEmpty() {
             Queue queue = new Queue();
             queue.offer(5);
             queue.offer(7);
@@ -93,9 +93,8 @@ class QueueTest {
         }
 
         @Test
-        void arrayShouldReturnArrayWhenQueueIsEmpty() {
+        void shouldReturnArrayWhenQueueIsEmpty() {
             Queue queue = new Queue();
-
             Assertions.assertArrayEquals(new int[]{}, queue.toArray());
         }
     }

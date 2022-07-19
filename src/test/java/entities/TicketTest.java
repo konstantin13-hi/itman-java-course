@@ -8,17 +8,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TicketTest {
     @Nested
-    public class Equal {
+    public class Equals {
 
         @Test
-        public void equalsShouldEqualsWhenObjectsAreDifferent() {
+        public void shouldEqualsWhenObjectsAreDifferent() {
             Ticket even = new Ticket(19, "TT");
             Ticket event = new Ticket(18, "II");
             Assertions.assertFalse(event.equals(even));
         }
 
         @Test
-        public void equalsShouldEqualsWhenObjectsAreSame() {
+        public void shouldEqualsWhenObjectsAreSame() {
             Ticket even = new Ticket(19, "TT");
             Ticket event = new Ticket(19, "TT");
             Assertions.assertTrue(event.equals(even));
@@ -28,7 +28,7 @@ class TicketTest {
     @Nested
     public class ToString {
         @Test
-        public void toStringShouldReturnsStringWhenObjectIsNotEmpty() {
+        public void shouldReturnsStringWhenObjectIsNotEmpty() {
             Ticket actual = new Ticket(20, "DD");
             String expectedElement = "Ticket{number=" + 20 + ", place='DD'}";
             Assertions.assertEquals(expectedElement, actual.toString());

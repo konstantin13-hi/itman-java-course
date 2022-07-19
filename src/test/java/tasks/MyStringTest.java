@@ -10,14 +10,14 @@ class MyStringTest {
     @Nested
     public class ToString {
         @Test
-        public void toStringShouldReturnsStringWhenArrayCharsIsNotEmpty() {
+        public void shouldReturnsStringWhenArrayCharsIsNotEmpty() {
             char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
             MyString myString = new MyString(chars);
             Assertions.assertEquals("Hello", myString.toString());
         }
 
         @Test
-        public void toStringShouldReturnsStringWhenArrayCharsIsEmpty() {
+        public void shouldReturnsStringWhenArrayCharsIsEmpty() {
             char[] chars = new char[]{};
             MyString myString = new MyString(chars);
             Assertions.assertEquals("", myString.toString());
@@ -27,21 +27,21 @@ class MyStringTest {
     @Nested
     public class ChartAt {
         @Test
-        public void charAtShouldReturnCharWhenIndexZero() {
+        public void shouldReturnCharWhenIndexZero() {
             char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
             MyString myString = new MyString(chars);
             Assertions.assertEquals('H', myString.charAt(0));
         }
 
         @Test
-        public void charAtShouldReturnCharWhenIndexPositionOfLastLetter() {
+        public void shouldReturnCharWhenIndexPositionOfLastLetter() {
             char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
             MyString myString = new MyString(chars);
             Assertions.assertEquals('o', myString.charAt(4));
         }
 
         @Test
-        public void charAtShouldReturnCharWhenIndexPositionIs2() {
+        public void shouldReturnCharWhenIndexPositionIs2() {
             char[] chars = new char[]{'H', 'e', 'p', 'l', 'o'};
             MyString myString = new MyString(chars);
             Assertions.assertEquals('p', myString.charAt(2));
@@ -52,7 +52,7 @@ class MyStringTest {
     public class CompareTo {
 
         @Test
-        public void compareToShouldCompareWhenTwoCharArrayAreSame() {
+        public void shouldCompareWhenTwoCharArrayAreSame() {
             char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
             MyString myString = new MyString(chars);
             char[] charsSecond = new char[]{'H', 'e', 'l', 'l', 'o'};
@@ -61,7 +61,7 @@ class MyStringTest {
         }
 
         @Test
-        public void compareToShouldCompareWhenFirstCharArrayLengthLonger() {
+        public void shouldCompareWhenFirstCharArrayLengthLonger() {
             char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
             MyString myString = new MyString(chars);
             char[] charsSecond = new char[]{'H', 'e', 'l', 'l'};
@@ -70,7 +70,7 @@ class MyStringTest {
         }
 
         @Test
-        public void compareToShouldCompareWhenSecondCharArrayLengthLonger() {
+        public void shouldCompareWhenSecondCharArrayLengthLonger() {
             char[] chars = new char[]{'H', 'e'};
             MyString myString = new MyString(chars);
             char[] charsSecond = new char[]{'H', 'e', 'l', 'l'};
@@ -79,7 +79,7 @@ class MyStringTest {
         }
 
         @Test
-        public void compareToShouldCompareWhenTwoCharArrayAreSameLength() {
+        public void shouldCompareWhenTwoCharArrayAreSameLength() {
             char[] chars = new char[]{'H', 'e', 'l', 'r', 'o'};
             MyString myString = new MyString(chars);
             char[] charsSecond = new char[]{'H', 'e', 'l', 'l', 'o'};
@@ -92,7 +92,7 @@ class MyStringTest {
     public class Equals {
 
         @Test
-        public void equals() {
+        public void shouldEqualWhenDifferentLengths() {
             char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
             MyString myString = new MyString(chars);
             char[] charsSecond = new char[]{'H', 'e', 'l', 'l'};
@@ -101,7 +101,7 @@ class MyStringTest {
         }
 
         @Test
-        public void equalsWhenTwoSameLengthsAndElements() {
+        public void shouldEqualWhenTwoSameLengthsAndElements() {
             char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
             MyString myString = new MyString(chars);
             char[] charsSecond = new char[]{'H', 'e', 'l', 'l', 'o'};
@@ -110,7 +110,7 @@ class MyStringTest {
         }
 
         @Test
-        public void equalsWhenTwoSameLengthsButDifferentElements() {
+        public void shouldEqualWhenTwoSameLengthsButDifferentElements() {
             char[] chars = new char[]{'H', 'e', 'l', 'l', 'o'};
             MyString myString = new MyString(chars);
             char[] charsSecond = new char[]{'H', 'e', 'l', 'l', 'D'};
@@ -123,7 +123,7 @@ class MyStringTest {
     public class Plus {
 
         @Test
-        public void plusShouldPlusTwoArrayCharsWhenArrayAreSame() {
+        public void shouldPlusTwoArrayCharsWhenArrayAreSame() {
             char[] chars = new char[]{'t', 'e', 's', 't'};
             MyString myString = new MyString(chars);
             char[] charsSecond = new char[]{'t', 'e', 's', 'z'};
@@ -132,7 +132,7 @@ class MyStringTest {
         }
 
         @Test
-        public void plusShouldPlusTwoArrayCharsWhenArrayAreDifferent() {
+        public void shouldPlusTwoArrayCharsWhenArrayAreDifferent() {
             char[] chars = new char[]{'h', 'i'};
             MyString myString = new MyString(chars);
             char[] charsSecond = new char[]{'w', 'o', 'r', 'l', 'd'};
@@ -145,7 +145,7 @@ class MyStringTest {
     @Nested
     public class Replace {
         @Test
-        public void replaceShouldReplaceWhenArrayHasSeveralSameChars() {
+        public void shouldReplaceWhenArrayHasSeveralSameChars() {
             char[] chars = new char[]{'p', 'i', 'c', 'p', 'h', 'p'};
             char charsSecond = 'p';
             char charsThird = 'L';

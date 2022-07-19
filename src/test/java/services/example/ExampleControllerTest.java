@@ -18,7 +18,7 @@ class ExampleControllerTest {
 
 
     @Nested
-    public class Script {
+    public class Post {
         @Autowired
         private MockMvc mockMvc;
 
@@ -90,71 +90,95 @@ class ExampleControllerTest {
                     ));
         }
 
+        @Nested
+        public class Put {
+            @Autowired
+            private MockMvc mockMvc;
 
-        @Test
-        void shouldExecutedWith200WhenUsePutRequest() throws Exception {
-            MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                    .put("/second")
-                    .content("I'm put mapping");
-            this.mockMvc.perform(request)
-                    .andExpect(MockMvcResultMatchers.status().is(200))
-                    .andExpect(MockMvcResultMatchers.content().string("I'm put mapping"
-                    ));
+
+            @Test
+            void shouldExecutedWith200WhenUsePutRequest() throws Exception {
+                MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                        .put("/second")
+                        .content("I'm put mapping");
+                this.mockMvc.perform(request)
+                        .andExpect(MockMvcResultMatchers.status().is(200))
+                        .andExpect(MockMvcResultMatchers.content().string("I'm put mapping"
+                        ));
+            }
+
         }
 
+        @Nested
+        public class Patch {
+            @Autowired
+            private MockMvc mockMvc;
 
-        @Test
-        void shouldExecutedWith200WhenUsePatchRequest() throws Exception {
-            MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                    .patch("/second")
-                    .content("I'm patch mapping");
-            this.mockMvc.perform(request)
-                    .andExpect(MockMvcResultMatchers.status().is(200))
-                    .andExpect(MockMvcResultMatchers.content().string("I'm patch mapping"
-                    ));
+            @Test
+            void shouldExecutedWith200WhenUsePatchRequest() throws Exception {
+                MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                        .patch("/second")
+                        .content("I'm patch mapping");
+                this.mockMvc.perform(request)
+                        .andExpect(MockMvcResultMatchers.status().is(200))
+                        .andExpect(MockMvcResultMatchers.content().string("I'm patch mapping"
+                        ));
+            }
+
         }
 
+        @Nested
+        public class Delete {
+            @Autowired
+            private MockMvc mockMvc;
 
-        @Test
-        void shouldExecutedWith200WhenUseDeleteRequest() throws Exception {
-            MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                    .delete("/second")
-                    .content("I'm delete mapping");
-            this.mockMvc.perform(request)
-                    .andExpect(MockMvcResultMatchers.status().is(200))
-                    .andExpect(MockMvcResultMatchers.content().string("I'm delete mapping"
-                    ));
+            @Test
+            void shouldExecutedWith200WhenUseDeleteRequest() throws Exception {
+                MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                        .delete("/second")
+                        .content("I'm delete mapping");
+                this.mockMvc.perform(request)
+                        .andExpect(MockMvcResultMatchers.status().is(200))
+                        .andExpect(MockMvcResultMatchers.content().string("I'm delete mapping"
+                        ));
+            }
         }
 
-        @Test
-        void ShouldExecutedWith200AndReturnNumbersWhenUseGetRequestAndPathIncludes1And5() throws Exception {
-            MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                    .get("/api/range?from=1&to=5")
-                    .content("all params");
-            this.mockMvc.perform(request)
-                    .andExpect(MockMvcResultMatchers.status().is(200))
-                    .andExpect(MockMvcResultMatchers.content().string("1" + "\n" +
-                            "2" + "\n" +
-                            "3" + "\n" +
-                            "4" + "\n"
-                    ));
+        @Nested
+        public class Get {
+            @Autowired
+            private MockMvc mockMvc;
+
+            @Test
+            void ShouldExecutedWith200AndReturnNumbersWhenUseGetRequestAndPathIncludes1And5() throws Exception {
+                MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                        .get("/api/range?from=1&to=5")
+                        .content("all params");
+                this.mockMvc.perform(request)
+                        .andExpect(MockMvcResultMatchers.status().is(200))
+                        .andExpect(MockMvcResultMatchers.content().string("1" + "\n" +
+                                "2" + "\n" +
+                                "3" + "\n" +
+                                "4" + "\n"
+                        ));
+            }
+
+
+            @Test
+            void shouldExecutedWith200AndReturnNumbersWhenUseGetRequestAndQueryIncludes1AND5() throws Exception {
+                MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                        .get("/api/range/1/5")
+                        .content("all params");
+                this.mockMvc.perform(request)
+                        .andExpect(MockMvcResultMatchers.status().is(200))
+                        .andExpect(MockMvcResultMatchers.content().string("1" + "\n" +
+                                "2" + "\n" +
+                                "3" + "\n" +
+                                "4" + "\n"
+                        ));
+            }
+
+
         }
-
-
-        @Test
-        void shouldExecutedWith200AndReturnNumbersWhenUseGetRequestAndQueryIncludes1AND5() throws Exception {
-            MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                    .get("/api/range/1/5")
-                    .content("all params");
-            this.mockMvc.perform(request)
-                    .andExpect(MockMvcResultMatchers.status().is(200))
-                    .andExpect(MockMvcResultMatchers.content().string("1" + "\n" +
-                            "2" + "\n" +
-                            "3" + "\n" +
-                            "4" + "\n"
-                    ));
-        }
-
-
     }
 }

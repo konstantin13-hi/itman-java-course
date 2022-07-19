@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 
 public class Task439Tests {
     @Nested
-    public class FindBiggestDate {
+    public class FindLast {
 
         @Test
-        public void findShouldFindElementWithBiggestDateWhenArrayIsNotEmpty() {
+        public void shouldFindElementWithBiggestDateWhenArrayIsNotEmpty() {
             Event[] events = new Event[]{
                     new Event(1994, 11, 12, "sae1"),
                     new Event(1994, 2, 4, "sa3"),
@@ -27,7 +27,7 @@ public class Task439Tests {
         }
 
         @Test
-        public void findShouldFindElementWithBiggestDateWhenTwoNameSame() {
+        public void shouldFindElementWithBiggestDateWhenTwoNameSame() {
             Event[] events = new Event[]{
                     new Event(2000, 11, 12, "Day of City in Gomel"),
                     new Event(1424, 9, 8, "Day of City in Minsk"),
@@ -45,7 +45,7 @@ public class Task439Tests {
         }
 
         @Test
-        public void findShouldFindElementWithBiggestDateWhenArrayHasFiveEvents() {
+        public void shouldFindElementWithBiggestDateWhenArrayHasFiveEvents() {
             Event[] events = new Event[]{
                     new Event(2020, 10, 25, "A"),
                     new Event(2020, 5, 20, "B"),
@@ -61,14 +61,15 @@ public class Task439Tests {
             Assertions.assertSame(expected, actual);
             checkingArrayElements(expectedElement, actual);
         }
+
+        @Test
+        public void shouldFindElementWithBiggestDateWhenArrayEmpty() {
+            Event[] events = new Event[0];
+            Event actual = Task439.findLast(events);
+            Assertions.assertNull(actual);
+        }
     }
 
-    @Test
-    public void findTheElementOfArrayWhichHaveTheBiggestDateIfArrayEmpty() {
-        Event[] events = new Event[0];
-        Event actual = Task439.findLast(events);
-        Assertions.assertNull(actual);
-    }
 
     public static void checkingArrayElements(Event expectedElement, Event actual) {
         Assertions.assertEquals(0, expectedElement.compareTo(actual));

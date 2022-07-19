@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class Task497Test {
 
     @Nested
-    public class MergeSort {
+    public class Merge {
         @Test
-        public void mergeShouldMergeTwoSortedArraysWhenTheSecondArrayIsLargeThanTheFirst() {
+        public void shouldMergeTwoSortedArraysWhenTheSecondArrayIsLargeThanTheFirst() {
             int[] first = new int[]{1, 2, 3};
             int[] second = new int[]{3, 4, 5, 6, 7, 8};
             int[] expected = new int[]{1, 2, 3, 3, 4, 5, 6, 7, 8};
@@ -20,7 +20,7 @@ class Task497Test {
         }
 
         @Test
-        public void mergeShouldMergeTwoSortedArraysWhenTheFirstArrayIsLargeThanTheSecond() {
+        public void shouldMergeTwoSortedArraysWhenTheFirstArrayIsLargeThanTheSecond() {
             int[] first = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
             int[] second = new int[]{3, 4, 5, 6, 7, 8};
             int[] expected = new int[]{1, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 10};
@@ -29,7 +29,7 @@ class Task497Test {
         }
 
         @Test
-        public void mergeShouldMergeTwoSortedArraysWhenOnlyOneElementInTwoArrays() {
+        public void shouldMergeTwoSortedArraysWhenOnlyOneElementInTwoArrays() {
             int[] first = new int[]{1};
             int[] second = new int[]{2};
             int[] expected = new int[]{1, 2};

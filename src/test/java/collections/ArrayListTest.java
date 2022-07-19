@@ -11,13 +11,13 @@ class ArrayListTest {
     public class Size {
 
         @Test
-        void sizeShouldReturnSizeWhenArrayListIsEmpty() {
+        void shouldReturnSizeWhenArrayListIsEmpty() {
             ArrayList arrayList = new ArrayList(4);
             Assertions.assertEquals(0, arrayList.size());
         }
 
         @Test
-        void sizeShouldReturnSizeWhenArrayListIsNotEmpty() {
+        void shouldReturnSizeWhenArrayListIsNotEmpty() {
             ArrayList arrayList = new ArrayList(4);
             arrayList.add(55);
             Assertions.assertEquals(1, arrayList.size());
@@ -28,14 +28,14 @@ class ArrayListTest {
     public class Set {
 
         @Test
-        void setShouldSetElementWhenIndexZeroNumberOne() {
+        void shouldSetElementWhenIndexZeroNumberOne() {
             ArrayList arrayList = new ArrayList(4);
             arrayList.set(0, 1);
             Assertions.assertEquals(1, arrayList.get(0));
         }
 
         @Test
-        void setShouldSetElementWhenIndexTwentyNumberThirtyThree() {
+        void shouldSetElementWhenIndexTwentyNumberThirtyThree() {
             ArrayList arrayList = new ArrayList(100);
             arrayList.set(20, 33);
             Assertions.assertEquals(33, arrayList.get(20));
@@ -43,10 +43,10 @@ class ArrayListTest {
     }
 
     @Nested
-    public class Array {
+    public class ToArray {
 
         @Test
-        void toArrayShouldReturnArrayWhenArrayListIsNotEmpty() {
+        void shouldReturnArrayWhenArrayListIsNotEmpty() {
             ArrayList arrayList = new ArrayList(10);
             int[] array = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
             addElement(array, arrayList);
@@ -57,7 +57,7 @@ class ArrayListTest {
     @Nested
     public class Remove {
         @Test
-        public void removeShouldRemoveElementWhenArrayListIsNotEmpty() {
+        public void shouldRemoveElementWhenArrayListIsNotEmpty() {
             ArrayList arrayList = new ArrayList(5);
             int[] array = new int[]{1, 2, 3, 4, 5};
             addElement(array, arrayList);
@@ -69,7 +69,7 @@ class ArrayListTest {
     @Nested
     public class Get {
         @Test
-        public void getShouldGetElementWhenArrayListIsNotEmpty() {
+        public void shouldGetElementWhenArrayListIsNotEmpty() {
             ArrayList arrayList = new ArrayList(5);
             int[] array = new int[]{100, 2111, 377, 488888, 51231};
             addElement(array, arrayList);
@@ -78,10 +78,10 @@ class ArrayListTest {
     }
 
     @Nested
-    public class Equal {
+    public class Equals {
 
         @Test
-        public void equalsShouldReturnTrueWhenArrayListsAreSame() {
+        public void shouldReturnTrueWhenArrayListsAreSame() {
             ArrayList arrayList = new ArrayList(5);
             int[] array = new int[]{1, 2, 3, 4, 5};
             addElement(array, arrayList);
@@ -92,7 +92,7 @@ class ArrayListTest {
         }
 
         @Test
-        public void equalsShouldReturnTrueWhenDifferentLengths() {
+        public void shouldReturnTrueWhenDifferentLengths() {
             ArrayList arrayList = new ArrayList(5);
             int[] array = new int[]{1, 2, 3, 4, 5};
             addElement(array, arrayList);
@@ -105,9 +105,9 @@ class ArrayListTest {
     }
 
     @Nested
-    public class sort {
+    public class Sort {
         @Test
-        public void sortShouldSortElementWhenHaveNotNegativeNumber() {
+        public void shouldSortElementWhenHaveNotNegativeNumber() {
             ArrayList arrayList = new ArrayList(20);
             int[] array = new int[]{11, 2, 33, 1, 5};
             addElement(array, arrayList);
@@ -119,7 +119,7 @@ class ArrayListTest {
         }
 
         @Test
-        public void sortShouldSortElementWhenHaveNegativeNumber() {
+        public void shouldSortElementWhenHaveNegativeNumber() {
             ArrayList arrayList = new ArrayList(6);
             int[] array = new int[]{5, 1, 1, 2, -3, 1};
             addElement(array, arrayList);
@@ -134,7 +134,7 @@ class ArrayListTest {
     @Nested
     public class CreateArrayList {
         @Test
-        public void arrayListShouldCopyElementFromFirsArrayListWhenFirstIsEmpty() {
+        public void shouldCopyElementsFromFirsArrayListWhenSecondtIsEmpty() {
             ArrayList arrayList = new ArrayList(100);
             int[] array = new int[]{10, 20, 30};
             addElement(array, arrayList);
@@ -147,7 +147,7 @@ class ArrayListTest {
     public class Of {
 
         @Test
-        public void ofShouldAddElementsWhenArrayListIsEmpty() {
+        public void shouldAddElementsWhenArrayListIsEmpty() {
             int[] elements = new int[]{1, 2, 3};
             ArrayList.of(elements);
             for (int i = 0; i < elements.length; i++) {
@@ -158,10 +158,10 @@ class ArrayListTest {
     }
 
     @Nested
-    public class String {
+    public class ToString {
 
         @Test
-        public void stringShouldReturnStringWhenArrayListIsNotEmpty() {
+        public void shouldReturnStringWhenArrayListIsNotEmpty() {
             ArrayList arrayList = new ArrayList();
             int[] array = new int[]{1, 3, 99};
             addElement(array, arrayList);
@@ -169,7 +169,7 @@ class ArrayListTest {
         }
 
         @Test
-        public void stringShouldReturnStringWhenArrayListIEmpty() {
+        public void shouldReturnStringWhenArrayListIEmpty() {
             ArrayList arrayList = new ArrayList();
             Assertions.assertEquals("[]", arrayList.toString());
         }
