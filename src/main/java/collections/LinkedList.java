@@ -259,6 +259,10 @@ public class LinkedList {
      * @return result
      */
     public boolean equals(LinkedList that) {
+        if(that==null){
+            return false;
+        }
+
         if (this.size() != that.size()) {
             return false;
         }
