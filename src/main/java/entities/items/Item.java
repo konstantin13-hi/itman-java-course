@@ -1,5 +1,7 @@
 package entities.items;
 
+import java.util.Objects;
+
 public class Item {
 
     private int id;
@@ -26,6 +28,9 @@ public class Item {
 
     public String toString() {
         return "Item{id=" + id + ", title='" + title + "', price=" + price + "}";
+    }
+    public boolean equals(Object obj){
+        return Objects.equals(this.toString(), obj.toString());
     }
 
 

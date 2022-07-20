@@ -1,5 +1,7 @@
 package entities.items;
 
+import java.util.Objects;
+
 public class VideoGame extends Game {
     private String platform;
 
@@ -14,5 +16,8 @@ public class VideoGame extends Game {
 
     public String toString() {
         return "VideoGame{" + super.toString() + ", platform='" + platform + "'}";
+    }
+    public boolean equals(Object obj){
+        return Objects.equals(this.toString(), obj.toString());
     }
 }

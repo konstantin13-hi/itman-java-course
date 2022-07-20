@@ -1,5 +1,7 @@
 package entities.items;
 
+import java.util.Objects;
+
 public class BoardGame extends Game {
     private int timeMin;
     private int timeMax;
@@ -22,4 +24,7 @@ public class BoardGame extends Game {
     public String toString() {
         return "BoardGame{" + super.toString() + ", timeMin=" + timeMin + ", timeMax=" + timeMax + "}";
     }
+   public boolean equals(Object obj){
+       return Objects.equals(this.toString(), obj.toString());
+   }
 }
