@@ -18,6 +18,9 @@ public class VideoGame extends Game {
         return "VideoGame{" + super.toString() + ", platform='" + platform + "'}";
     }
     public boolean equals(Object obj){
+        if(obj==null){
+            return false;
+        }
         return Objects.equals(this.toString(), obj.toString());
     }
 }

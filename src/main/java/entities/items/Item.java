@@ -30,6 +30,9 @@ public class Item {
         return "Item{id=" + id + ", title='" + title + "', price=" + price + "}";
     }
     public boolean equals(Object obj){
+        if(obj==null){
+            return false;
+        }
         return Objects.equals(this.toString(), obj.toString());
     }
 

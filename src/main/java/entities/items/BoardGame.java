@@ -25,6 +25,9 @@ public class BoardGame extends Game {
         return "BoardGame{" + super.toString() + ", timeMin=" + timeMin + ", timeMax=" + timeMax + "}";
     }
    public boolean equals(Object obj){
+       if(obj==null){
+           return false;
+       }
        return Objects.equals(this.toString(), obj.toString());
    }
 }

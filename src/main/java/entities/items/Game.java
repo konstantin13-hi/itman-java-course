@@ -24,6 +24,9 @@ public class Game extends Item {
         return "Game{" + super.toString() + ", playersMin=" + playersMin + ", playersMax=" + playersMax + "}";
     }
     public boolean equals(Object obj){
+        if(obj==null){
+            return false;
+        }
         return Objects.equals(this.toString(), obj.toString());
     }
 }

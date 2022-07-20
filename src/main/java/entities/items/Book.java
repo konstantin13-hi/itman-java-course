@@ -16,6 +16,9 @@ public class Book extends Item {
         return pages;
     }
     public boolean equals(Object obj){
+        if(obj==null){
+            return false;
+        }
         return Objects.equals(this.toString(), obj.toString());
     }
 
