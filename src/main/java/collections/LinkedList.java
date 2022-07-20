@@ -259,11 +259,11 @@ public class LinkedList {
      * @return result
      */
     public boolean equals(LinkedList that) {
-        Node currentThis = this.head;
-        Node currentThat = that.head;
         if (this.size() != that.size()) {
             return false;
         }
+        Node currentThis = this.head;
+        Node currentThat = that.head;
         while (currentThat != null) {
             if (currentThat.getElement() != currentThis.getElement()) {
                 return false;
