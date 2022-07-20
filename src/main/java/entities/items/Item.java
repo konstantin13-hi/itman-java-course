@@ -25,7 +25,7 @@ public class Item {
     }
 
     public String toString() {
-        return "Item{id=" + id + ", title=" + title + ", price=" + price + "}";
+        return "Item{id=" + id + ", title='" + title + "', price=" + price + "}";
     }
 
 
