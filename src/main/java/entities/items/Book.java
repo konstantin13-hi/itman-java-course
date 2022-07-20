@@ -19,6 +19,6 @@ public class Book extends Item {
     }
 
     public String toString(){
-       return "Book{"+super.toString()+", author="+author+", pages="+pages+"}";
+       return "Book{"+super.toString()+", author='"+author+"', pages="+pages+"}";
    }
 }
