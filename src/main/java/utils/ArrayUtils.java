@@ -1,7 +1,7 @@
 package utils;
 
 import entities.Event;
-import collections.ArrayList;
+import collections.IntArrayList;
 
 public class ArrayUtils {
 
@@ -103,7 +103,7 @@ public class ArrayUtils {
     public static int[] distinct(int[] array) {
         int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
-        ArrayList arrayList = new ArrayList();
+        IntArrayList intArrayList = new IntArrayList();
         for (int i = 0; i < array.length; i++) {
             if (max < array[i]) {
                 max = array[i];
@@ -117,11 +117,11 @@ public class ArrayUtils {
         int[] cnt = new int[dif + 1];
         for (int i = 0; i < array.length; i++) {
             if (cnt[array[i] - min] < 1) {
-                arrayList.add(array[i]);
+                intArrayList.add(array[i]);
             }
             cnt[array[i] - min]++;
         }
-        return arrayList.toArray();
+        return intArrayList.toArray();
     }
 
     /**
@@ -233,20 +233,20 @@ public class ArrayUtils {
             }
         }
         int dif = max - min;
-        ArrayList[] arrayLists = new ArrayList[dif + 1];
-        for (int i = 0; i < arrayLists.length; i++) {
-            arrayLists[i] = new ArrayList();
+        IntArrayList[] intArrayLists = new IntArrayList[dif + 1];
+        for (int i = 0; i < intArrayLists.length; i++) {
+            intArrayLists[i] = new IntArrayList();
         }
         for (int i = 0; i < events.length; i++) {
             int days = (events[i].getYear() * 372 + events[i].getMonth() * 31 + events[i].getDay());
-            arrayLists[days - min].add(i);
+            intArrayLists[days - min].add(i);
         }
         Event[] events1 = new Event[events.length];
         System.arraycopy(events, 0, events1, 0, events.length);
-        for (int i = 0, index = 0; i < arrayLists.length; i++) {
-            int length = arrayLists[i].size();
+        for (int i = 0, index = 0; i < intArrayLists.length; i++) {
+            int length = intArrayLists[i].size();
             for (int j = 0; j < length; j++) {
-                events[index] = events1[arrayLists[i].get(j)];
+                events[index] = events1[intArrayLists[i].get(j)];
                 index++;
             }
         }

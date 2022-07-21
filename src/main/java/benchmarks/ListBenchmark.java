@@ -1,6 +1,6 @@
 package benchmarks;
 
-import collections.ArrayList;
+import collections.IntArrayList;
 import collections.LinkedList;
 
 public class ListBenchmark {
@@ -16,12 +16,12 @@ public class ListBenchmark {
      * @param length the first term
      * @return array list
      */
-    public static ArrayList createArrayListWithCapacity(int length) {
-        ArrayList arrayList = new ArrayList(length);
+    public static IntArrayList createArrayListWithCapacity(int length) {
+        IntArrayList intArrayList = new IntArrayList(length);
         for (int i = 0; i < length; i++) {
-            arrayList.add(i);
+            intArrayList.add(i);
         }
-        return arrayList;
+        return intArrayList;
     }
 
     /**
@@ -36,12 +36,12 @@ public class ListBenchmark {
      * @return array list
      */
 
-    public static ArrayList createArrayList(int length) {
-        ArrayList arrayList = new ArrayList();
+    public static IntArrayList createArrayList(int length) {
+        IntArrayList intArrayList = new IntArrayList();
         for (int i = 0; i < length; i++) {
-            arrayList.add(i);
+            intArrayList.add(i);
         }
-        return arrayList;
+        return intArrayList;
     }
 
     /**

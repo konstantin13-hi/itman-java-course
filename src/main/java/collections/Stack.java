@@ -1,9 +1,7 @@
 package collections;
 
-import collections.ArrayList;
-
 public class Stack {
-    private ArrayList arrayList;
+    private IntArrayList intArrayList;
 
     /**
      * Create arraylist
@@ -13,7 +11,7 @@ public class Stack {
      *
      */
     public Stack() {
-        arrayList = new ArrayList();
+        intArrayList = new IntArrayList();
     }
 
     /**
@@ -25,7 +23,7 @@ public class Stack {
      * @param element the first term
      */
     public void push(int element) {
-        arrayList.add(element);
+        intArrayList.add(element);
     }
 
     /**
@@ -37,7 +35,7 @@ public class Stack {
      * @return Get element from stack
      */
     public int peek() {
-        return arrayList.get(arrayList.size() - 1);
+        return intArrayList.get(intArrayList.size() - 1);
     }
 
     /**
@@ -49,7 +47,7 @@ public class Stack {
      * @return
      */
     public int pop() {
-        return arrayList.remove(arrayList.size() - 1);
+        return intArrayList.remove(intArrayList.size() - 1);
 
     }
 
@@ -62,7 +60,7 @@ public class Stack {
      * @return size of stack
      */
     public int size() {
-        return arrayList.size();
+        return intArrayList.size();
     }
 
     /**
@@ -74,7 +72,7 @@ public class Stack {
      * @return of checking
      */
     public boolean isEmpty() {
-        return arrayList.size() == 0;
+        return intArrayList.size() == 0;
     }
 
     /**
@@ -86,7 +84,7 @@ public class Stack {
      * @return array of elements
      */
     public int[] toArray() {
-        return arrayList.toArray();
+        return intArrayList.toArray();
 
     }
 }

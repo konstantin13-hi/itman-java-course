@@ -172,8 +172,8 @@ class LinkedListTest {
         @Test
         void shouldReturnTrueWhenArrayAndLinkedListsHaveSameElements(){
             LinkedList linkedList = LinkedList.of(10,20,30);
-            ArrayList arrayList = ArrayList.of(10,20,30);
-            Assertions.assertNotEquals(linkedList, arrayList);
+            IntArrayList intArrayList = IntArrayList.of(10,20,30);
+            Assertions.assertNotEquals(linkedList, intArrayList);
 
         }
 

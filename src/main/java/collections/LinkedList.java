@@ -220,13 +220,13 @@ public class LinkedList {
      * @return array
      */
     public int[] toArray() {
-        ArrayList arrayList = new ArrayList();
+        IntArrayList intArrayList = new IntArrayList();
         Node current = head;
         while (current != null) {
-            arrayList.add(current.getElement());
+            intArrayList.add(current.getElement());
             current = current.getNext();
         }
-        return arrayList.toArray();
+        return intArrayList.toArray();
     }
 
     /**

@@ -5,7 +5,7 @@ import utils.StringBuilder;
 
 import java.util.Objects;
 
-public class ArrayList {
+public class IntArrayList {
     private int logicalSize;
     private int[] elements;
 
@@ -19,7 +19,7 @@ public class ArrayList {
      *
      * @param that the first term
      */
-    public ArrayList(ArrayList that) {
+    public IntArrayList(IntArrayList that) {
         logicalSize = that.logicalSize;
         int[] arraySecond = new int[that.logicalSize];
         System.arraycopy(that.elements, 0, arraySecond, 0, that.logicalSize);
@@ -32,7 +32,7 @@ public class ArrayList {
      * @cpu 0(1)
      * @ram 0(1)
      */
-    public ArrayList() {
+    public IntArrayList() {
         elements = new int[16];
     }
 
@@ -44,7 +44,7 @@ public class ArrayList {
      *
      * @param capacity the first term
      */
-    public ArrayList(int capacity) {
+    public IntArrayList(int capacity) {
         elements = new int[capacity];
     }
 
@@ -57,12 +57,12 @@ public class ArrayList {
      * @param elements the first term
      * @return new arraylist
      */
-    public static ArrayList of(int... elements) {
-        ArrayList arrayList = new ArrayList(elements.length);
+    public static IntArrayList of(int... elements) {
+        IntArrayList intArrayList = new IntArrayList(elements.length);
         for (int element : elements) {
-            arrayList.add(element);
+            intArrayList.add(element);
         }
-        return arrayList;
+        return intArrayList;
     }
 
     /**

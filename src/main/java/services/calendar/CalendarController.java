@@ -1,10 +1,7 @@
 package services.calendar;
 
-import collections.ArrayList;
 import entities.Event;
 import org.springframework.web.bind.annotation.*;
-import entities.Ticket;
-import  services.calendar.ArrayListCalendar;
 
 @RestController
 public class CalendarController {

@@ -1,6 +1,5 @@
 package services.calendar;
 
-import collections.ArrayList;
 import entities.Event;
 
 import java.util.Arrays;

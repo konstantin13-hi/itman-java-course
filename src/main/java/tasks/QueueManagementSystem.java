@@ -1,10 +1,10 @@
 package tasks;
 
-import collections.ArrayList;
+import collections.IntArrayList;
 import entities.Ticket;
 
 public class QueueManagementSystem {
-    private ArrayList arrayList;
+    private IntArrayList intArrayList;
     private int currentNumberOfTicket;
     private int numberOfTicketsTheLastDays;
     private String place;
@@ -231,8 +231,8 @@ public class QueueManagementSystem {
     public QueueManagementSystem(String a) {
         queue = new Queue();
         this.place = a;
-        arrayList = new ArrayList();
-        arrayList.add(currentNumberOfTicket);
+        intArrayList = new IntArrayList();
+        intArrayList.add(currentNumberOfTicket);
     }
 
     /**
@@ -246,7 +246,7 @@ public class QueueManagementSystem {
         currentNumberOfTicket++;
         Ticket ticket = new Ticket(currentNumberOfTicket - numberOfTicketsTheLastDays, this.place);
         queue.offer(ticket);
-        arrayList.set(arrayList.size() - 1, currentNumberOfTicket - numberOfTicketsTheLastDays);
+        intArrayList.set(intArrayList.size() - 1, currentNumberOfTicket - numberOfTicketsTheLastDays);
         return ticket;
     }
 
@@ -270,7 +270,7 @@ public class QueueManagementSystem {
     public void toNextWorkDay() {
         queue = new Queue();
         numberOfTicketsTheLastDays = currentNumberOfTicket;
-        arrayList.add(0);
+        intArrayList.add(0);
     }
 
     public Ticket[] getCurrentQueue() {
@@ -288,7 +288,7 @@ public class QueueManagementSystem {
      * @cpu 0(n)
      * @ram 0(n)
      */
-    public ArrayList getVisitsByDay() {
-        return ArrayList.of(arrayList.toArray());
+    public IntArrayList getVisitsByDay() {
+        return IntArrayList.of(intArrayList.toArray());
     }
 }
