@@ -16,7 +16,7 @@ public class Queue {
      *
      * @param element the first term
      */
-    public void offer(int element) {
+    public void offer(Object element) {
         linkedList.addLast(element);
     }
 
@@ -28,7 +28,7 @@ public class Queue {
      *
      * @return first elemt
      */
-    public int peek() {
+    public Object peek() {
         return linkedList.getFirst();
     }
 
@@ -41,7 +41,7 @@ public class Queue {
      * @return first element
      */
 
-    public int poll() {
+    public Object poll() {
         return linkedList.removeFirst();
     }
 
@@ -80,7 +80,7 @@ public class Queue {
      * @return array consists of elements
      */
 
-    public int[] toArray() {
+    public Object[] toArray() {
         return linkedList.toArray();
     }
 }

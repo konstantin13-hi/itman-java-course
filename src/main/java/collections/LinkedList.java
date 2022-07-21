@@ -10,18 +10,18 @@ public class LinkedList {
 
 
     private static class Node {
-        private int element;
+        private Object element;
         private Node next;
         private Node prev;
 
-        public void setElement(int element) {
+        public void setElement(Object element) {
             this.element = element;
         }
 
 
         public Node() {
         }
-        public Node(int element, Node next, Node prev) {
+        public Node(Object element, Node next, Node prev) {
             this.element = element;
             this.next = next;
             this.prev = prev;
@@ -35,7 +35,7 @@ public class LinkedList {
             return prev;
         }
 
-        public int getElement() {
+        public Object getElement() {
             return element;
         }
 
@@ -81,7 +81,7 @@ public class LinkedList {
      *
      * @param element the first term
      */
-    public void addFirst(int element) {
+    public void addFirst(Object element) {
         if (this.head == null) {
             this.head = new Node(element, null, null);
             this.prev = head;
@@ -102,7 +102,7 @@ public class LinkedList {
      * @return element
      */
 
-    public int getFirst() {
+    public Object getFirst() {
         return head.getElement();
     }
 
@@ -114,8 +114,8 @@ public class LinkedList {
      *
      * @return first element
      */
-    public int removeFirst() {
-        int result = head.getElement();
+    public Object removeFirst() {
+        Object result = head.getElement();
         head = head.getNext();
         logicalSize--;
         return result;
@@ -129,7 +129,7 @@ public class LinkedList {
      *
      * @param element the first term
      */
-    public void addLast(int element) {
+    public void addLast(Object element) {
         if (prev == null) {
             prev = new Node(element, null, null);
             head = prev;
@@ -152,7 +152,7 @@ public class LinkedList {
      * @return last element
      */
 
-    public int getLast() {
+    public Object getLast() {
         return prev.getElement();
     }
 
@@ -165,8 +165,8 @@ public class LinkedList {
      * @return last element
      */
 
-    public int removeLast() {
-        int result = 0;
+    public Object removeLast() {
+        Object result ;
         Node current = prev;
         result = current.getElement();
         if (prev.getPrev() != null) {
@@ -219,14 +219,14 @@ public class LinkedList {
      *
      * @return array
      */
-    public int[] toArray() {
-        IntArrayList intArrayList = new IntArrayList();
+    public Object[] toArray() {
+        ArrayList arrayList = new ArrayList();
         Node current = head;
         while (current != null) {
-            intArrayList.add(current.getElement());
+            arrayList.add(current.getElement());
             current = current.getNext();
         }
-        return intArrayList.toArray();
+        return arrayList.toArray();
     }
 
     /**
@@ -278,7 +278,7 @@ public class LinkedList {
      * @param index the first term
      * @param element the second term
      */
-    public void set(int index, int element) {
+    public void set(int index, Object element) {
         findNode(index).setElement(element);
     }
 
@@ -293,7 +293,7 @@ public class LinkedList {
      * @param index the first term
      * @return number from arraylist
      */
-    public int get(int index) {
+    public Object get(int index) {
         return findNode(index).element;
     }
 
@@ -318,8 +318,8 @@ public class LinkedList {
      * @param index the first term
      * @return deleted element from list
      */
-    public int remove(int index) {
-        int result ;
+    public Object remove(int index) {
+        Object result ;
         if (logicalSize==1) {
             result=head.element;
             removeFirst();
