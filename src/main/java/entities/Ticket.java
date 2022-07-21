@@ -38,10 +38,16 @@ public class Ticket {
      * @cpu 0(1)
      * @ram 0(1)
      *
-     * @param that the first term
+     * @param obj the first term
      * @return result comparison
      */
-    public boolean equals(Ticket that) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        return Objects.equals(this.toString(), obj.toString());
+    }
+   /* public boolean equals(Ticket that) {
         boolean result;
         if (that == null) {
             return false;
@@ -53,6 +59,8 @@ public class Ticket {
                 Objects.equals(place, that.place);
         return result;
     }
+
+    */
 }
 
 

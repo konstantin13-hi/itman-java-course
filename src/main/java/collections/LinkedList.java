@@ -1,6 +1,8 @@
 package collections;
 
 
+import java.util.Objects;
+
 public class LinkedList {
     private Node head;
     private Node prev;
@@ -254,28 +256,15 @@ public class LinkedList {
      * @cpu 0(n)
      * @ram 0(1)
      *
-     * @param that the first term
+     * @param obj the first term
      *
      * @return result
      */
-    public boolean equals(LinkedList that) {
-        if(that==null){
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-
-        if (this.size() != that.size()) {
-            return false;
-        }
-        Node currentThis = this.head;
-        Node currentThat = that.head;
-        while (currentThat != null) {
-            if (currentThat.getElement() != currentThis.getElement()) {
-                return false;
-            }
-            currentThis = currentThis.getNext();
-            currentThat = currentThat.getNext();
-        }
-        return true;
+        return Objects.equals(this.toString(), obj.toString());
     }
 
     /**

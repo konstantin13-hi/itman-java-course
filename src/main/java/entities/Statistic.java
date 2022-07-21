@@ -3,6 +3,8 @@ package entities;
 import tasks.QueueManagementSystem;
 import tasks.QueueManagementSystemUtils;
 
+import java.util.Objects;
+
 
 public class Statistic {
     private int min;
@@ -58,12 +60,18 @@ public class Statistic {
      * @cpu 0(1)
      * @ram 0(1)
      *
-     * @param that the first
+     * @param obj the first
      * @return result of compare
      */
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        return Objects.equals(this.toString(), obj.toString());
+    }
 
 
-    public boolean equals(Statistic that) {
+  /*  public boolean equals(Statistic that) {
         if (that == null) {
             return false;
         }
@@ -73,4 +81,6 @@ public class Statistic {
                 that.average == this.average &&
                 that.median == this.median;
     }
+
+   */
 }

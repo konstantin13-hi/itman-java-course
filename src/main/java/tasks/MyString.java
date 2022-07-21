@@ -1,6 +1,7 @@
 package tasks;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MyString {
     private final char[] chars;
@@ -102,15 +103,23 @@ public class MyString {
      * @cpu 0(n)
      * @ram 0(1)
      *
-     * @param that first term
+     * @param obj first term
      * @return result of sameness
      */
-    public boolean equals(MyString that) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        return Objects.equals(this.toString(), obj.toString());
+    }
+   /* public boolean equals(MyString that) {
         if (that == null) {
             return false;
         }
         return Arrays.equals(that.chars, chars);
     }
+
+    */
 
     /**
      * Make a concatenation

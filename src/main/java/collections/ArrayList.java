@@ -3,6 +3,8 @@ package collections;
 import utils.ArrayUtils;
 import utils.StringBuilder;
 
+import java.util.Objects;
+
 public class ArrayList {
     private int logicalSize;
     private int[] elements;
@@ -148,22 +150,15 @@ public class ArrayList {
      * @cpu 0(n)
      * @ram 0(1)
      *
-     * @param that the first term
+     * @param obj the first term
      *
      * @return result
      */
-    public boolean equals(ArrayList that) {
-        if (that == null) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        boolean result = that.size() == this.size();
-        for (int i = 0; i < that.size(); i++) {
-            if (that.get(i) != this.get(i)) {
-                result = false;
-
-            }
-        }
-        return result;
+        return Objects.equals(this.toString(), obj.toString());
     }
 
     /**
