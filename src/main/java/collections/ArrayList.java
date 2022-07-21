@@ -64,7 +64,11 @@ public class ArrayList {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append('[');
         for (int i = 0; i < logicalSize; i++) {
-            stringBuilder.append(objects[i].toString());
+            if(objects[i]!=null){
+            stringBuilder.append(objects[i].toString());}
+            else {
+                stringBuilder.append("null");
+            }
             if (i + 1 != logicalSize) {
                 stringBuilder.append(", ");
             }
