@@ -1,5 +1,6 @@
 package utils;
 
+import collections.ArrayList;
 import entities.Event;
 import collections.IntArrayList;
 
@@ -233,20 +234,18 @@ public class ArrayUtils {
             }
         }
         int dif = max - min;
-        IntArrayList[] intArrayLists = new IntArrayList[dif + 1];
-        for (int i = 0; i < intArrayLists.length; i++) {
-            intArrayLists[i] = new IntArrayList();
+        ArrayList[] arrayLists = new ArrayList[dif + 1];
+        for (int i = 0; i < arrayLists.length; i++) {
+            arrayLists[i] = new ArrayList();
         }
         for (int i = 0; i < events.length; i++) {
             int days = (events[i].getYear() * 372 + events[i].getMonth() * 31 + events[i].getDay());
-            intArrayLists[days - min].add(i);
+            arrayLists[days - min].add(events[i]);
         }
-        Event[] events1 = new Event[events.length];
-        System.arraycopy(events, 0, events1, 0, events.length);
-        for (int i = 0, index = 0; i < intArrayLists.length; i++) {
-            int length = intArrayLists[i].size();
+        for (int i = 0, index = 0; i < arrayLists.length; i++) {
+            int length = arrayLists[i].size();
             for (int j = 0; j < length; j++) {
-                events[index] = events1[intArrayLists[i].get(j)];
+                events[index] = (Event) arrayLists[i].get(j);
                 index++;
             }
         }
