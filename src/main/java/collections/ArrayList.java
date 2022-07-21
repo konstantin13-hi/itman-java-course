@@ -19,10 +19,10 @@ public class ArrayList {
         if (logicalSize == objects.length) {
             Object[] newObject = new Object[logicalSize * 2];
             System.arraycopy(objects, 0, newObject, 0, objects.length);
-            logicalSize = logicalSize * 2;
             objects = newObject;
         }
-        objects[logicalSize++] = element;
+        objects[logicalSize] = element;
+        logicalSize++;
     }
 
     public void set(int index, Object element) {
