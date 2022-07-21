@@ -45,7 +45,7 @@ public class Ticket {
         if (obj == null) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString());
+        return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
     }
    /* public boolean equals(Ticket that) {
         boolean result;

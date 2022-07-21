@@ -75,7 +75,7 @@ public class Event {
         if (obj == null) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString());
+        return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
     }
    /* public boolean equals(Event that) {
         if (that == null || that.name == null && this.name != null) {

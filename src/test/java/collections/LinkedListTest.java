@@ -141,7 +141,7 @@ class LinkedListTest {
             linkedListSecond.addFirst(11);
             linkedListSecond.addFirst(1);
             linkedListSecond.addFirst(51);
-            Assertions.assertFalse(linkedList.equals(linkedListSecond));
+            Assertions.assertNotEquals(linkedList, linkedListSecond);
         }
 
         @Test
@@ -154,7 +154,7 @@ class LinkedListTest {
             linkedListSecond.addFirst(8);
             linkedListSecond.addFirst(9);
             linkedListSecond.addFirst(10);
-            Assertions.assertTrue(linkedList.equals(linkedListSecond));
+            Assertions.assertEquals(linkedList, linkedListSecond);
         }
 
         @Test
@@ -166,7 +166,15 @@ class LinkedListTest {
             LinkedList linkedListSecond = new LinkedList();
             linkedListSecond.addFirst(8);
             linkedListSecond.addFirst(9);
-            Assertions.assertFalse(linkedList.equals(linkedListSecond));
+            Assertions.assertNotEquals(linkedList, linkedListSecond);
+        }
+
+        @Test
+        void shouldReturnTrueWhenArrayAndLinkedListsHaveSameElements(){
+            LinkedList linkedList = LinkedList.of(10,20,30);
+            ArrayList arrayList = ArrayList.of(10,20,30);
+            Assertions.assertNotEquals(linkedList, arrayList);
+
         }
 
     }
