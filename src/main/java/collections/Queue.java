@@ -4,9 +4,6 @@ package collections;
 public class Queue {
     LinkedList linkedList = new LinkedList();
 
-    public Queue() {
-    }
-
     /**
      *
      * Inserts the specified element into the queue

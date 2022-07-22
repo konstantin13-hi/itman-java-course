@@ -4,7 +4,7 @@ import collections.IntArrayList;
 import collections.Queue;
 import entities.Ticket;
 
-public class QueueManagementSystem {
+public class QueueManagementSystem  {
     private IntArrayList intArrayList;
     private int currentNumberOfTicket;
     private int numberOfTicketsTheLastDays;
@@ -67,10 +67,16 @@ public class QueueManagementSystem {
     }
 
     public Ticket[] getCurrentQueue() {
-        return (Ticket[]) queue.toArray();
+        int length = queue.size();
+        Ticket[] tickets = new Ticket[length];
+        for (int i = 0; i < length; i++) {
+            tickets[i] = (Ticket) queue.peek();
+        }
+        return tickets;
     }
 
     public Ticket callNext() {
+
         return (Ticket) queue.poll();
     }
 

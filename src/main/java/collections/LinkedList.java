@@ -8,7 +8,6 @@ public class LinkedList {
     private Node prev;
     private int logicalSize;
 
-
     private static class Node {
         private Object element;
         private Node next;
@@ -18,9 +17,6 @@ public class LinkedList {
             this.element = element;
         }
 
-
-        public Node() {
-        }
         public Node(Object element, Node next, Node prev) {
             this.element = element;
             this.next = next;
@@ -47,13 +43,9 @@ public class LinkedList {
             this.next = next;
         }
 
-
     }
 
-
-    public LinkedList() {
-
-    }
+    public LinkedList() {}
 
     /**
      * Create an arraylist
@@ -240,9 +232,9 @@ public class LinkedList {
      * @param elements the first term
      * @return new arraylist
      */
-    public static LinkedList of(int... elements) {
+    public static LinkedList of(Object... elements) {
         LinkedList linkedList = new LinkedList();
-        for (int element : elements) {
+        for (Object element : elements) {
             linkedList.addLast(element);
         }
         return linkedList;

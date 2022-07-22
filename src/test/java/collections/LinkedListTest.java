@@ -1,5 +1,6 @@
 package collections;
 
+import entities.Ticket;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,17 @@ class LinkedListTest {
             Assertions.assertEquals("[13]", linkedList.toString());
         }
     }
+    @Nested
+    public class RemoveFirst{
+        @Test
+        void shouldWhen2(){
+            LinkedList linkedList = new LinkedList();
+            Ticket ticket = new Ticket(1,"A");
+            linkedList.addLast(ticket);
+            Assertions.assertEquals(ticket, linkedList.removeFirst());
+
+        }
+    }
 
     @Nested
     public class RemoveLast {
@@ -72,6 +84,14 @@ class LinkedListTest {
             Assertions.assertEquals(10, linkedList.removeLast());
             Assertions.assertEquals(13, linkedList.removeLast());
             Assertions.assertEquals(3, linkedList.removeLast());
+        }
+        @Test
+        void shouldWhen2(){
+            LinkedList linkedList = new LinkedList();
+            Ticket ticket = new Ticket(1,"A");
+            linkedList.addLast(ticket);
+            Assertions.assertEquals(ticket, linkedList.removeLast());
+
         }
     }
 
@@ -187,7 +207,7 @@ class LinkedListTest {
             linkedList.addLast(10);
             linkedList.addLast(9);
             linkedList.addLast(8);
-            Assertions.assertArrayEquals(new int[]{10, 9, 8}, linkedList.toArray());
+            Assertions.assertArrayEquals(new Object[]{10, 9, 8}, linkedList.toArray());
             Assertions.assertEquals(10, linkedList.removeFirst());
             Assertions.assertEquals(8, linkedList.removeLast());
         }
@@ -203,11 +223,11 @@ class LinkedListTest {
             linkedList.addFirst(9);
             linkedList.addFirst(8);
             linkedList.set(1, 2);
-            Assertions.assertArrayEquals(new int[]{8, 2, 10}, linkedList.toArray());
+            Assertions.assertArrayEquals(new Object[]{8, 2, 10}, linkedList.toArray());
             linkedList.set(0, 5);
-            Assertions.assertArrayEquals(new int[]{5, 2, 10}, linkedList.toArray());
+            Assertions.assertArrayEquals(new Object[]{5, 2, 10}, linkedList.toArray());
             linkedList.set(2, 4);
-            Assertions.assertArrayEquals(new int[]{5, 2, 4}, linkedList.toArray());
+            Assertions.assertArrayEquals(new Object[]{5, 2, 4}, linkedList.toArray());
         }
     }
 
@@ -247,6 +267,22 @@ class LinkedListTest {
             linkedList.addFirst(10);
             Assertions.assertEquals(10, linkedList.get(0));
         }
+        @Test
+        void shouldWhen(){
+            LinkedList linkedList = new LinkedList();
+            Ticket ticket = new Ticket(1,"A");
+            linkedList.addFirst(ticket);
+            Assertions.assertEquals(ticket, linkedList.get(0));
+
+        }
+        @Test
+        void shouldWhen2(){
+            LinkedList linkedList = new LinkedList();
+            Ticket ticket = new Ticket(1,"A");
+            linkedList.addLast(ticket);
+            Assertions.assertEquals(ticket, linkedList.get(0));
+
+        }
 
 
     }
@@ -260,9 +296,9 @@ class LinkedListTest {
             linkedList.addFirst(9);
             linkedList.addFirst(8);
             Assertions.assertEquals(9, linkedList.remove(1));
-            Assertions.assertArrayEquals(new int[]{8, 10}, linkedList.toArray());
+            Assertions.assertArrayEquals(new Object[]{8, 10}, linkedList.toArray());
             Assertions.assertEquals(10, linkedList.remove(1));
-            Assertions.assertArrayEquals(new int[]{8}, linkedList.toArray());
+            Assertions.assertArrayEquals(new Object[]{8}, linkedList.toArray());
             Assertions.assertEquals(8, linkedList.remove(0));
         }
 
