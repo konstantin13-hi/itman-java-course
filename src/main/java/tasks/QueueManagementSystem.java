@@ -68,9 +68,10 @@ public class QueueManagementSystem  {
 
     public Ticket[] getCurrentQueue() {
         int length = queue.size();
+        Object[] objects =queue.toArray();
         Ticket[] tickets = new Ticket[length];
         for (int i = 0; i < length; i++) {
-            tickets[i] = (Ticket) queue.peek();
+            tickets[i] = (Ticket) objects[i];
         }
         return tickets;
     }

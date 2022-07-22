@@ -19,13 +19,8 @@ class QueueManagementSystemTest {
             QueueManagementSystem system = new QueueManagementSystem("Bank");
             system.getNextTicket();
             system.getNextTicket();
-            Ticket ticket =system.callNext();
 
-          //  Assertions.assertArrayEquals(new Ticket[]{new Ticket(1,"Bank"),new Ticket(2,"Bank")},system.getCurrentQueue());
-           // Assertions.assertEquals(a, tickets[0]);
-           // Assertions.assertEquals(b, tickets[1]);
-
-            Assertions.assertEquals(1, system.getCurrentQueue().length);
+            Assertions.assertEquals(2, system.getCurrentQueue().length);
         }
 
     }
