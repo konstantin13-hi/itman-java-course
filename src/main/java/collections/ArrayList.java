@@ -2,7 +2,7 @@ package collections;
 
 import java.util.Objects;
 
-public class ArrayList {
+public class ArrayList implements List {
     private Object[] objects;
     private int logicalSize;
 

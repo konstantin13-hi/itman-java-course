@@ -3,7 +3,7 @@ package collections;
 
 import java.util.Objects;
 
-public class LinkedList {
+public class LinkedList implements List {
     private Node head;
     private Node prev;
     private int logicalSize;
