@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ArrayListTest {
     @Nested
     public class Set {
@@ -37,4 +35,5 @@ class ArrayListTest {
             Assertions.assertNotEquals(arrayList,arrayListSecond);
         }
     }
+
 }

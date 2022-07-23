@@ -53,9 +53,15 @@ public class ArrayList implements List {
     }
 
     public static ArrayList of(Object... elements) {
-        ArrayList arrayList = new ArrayList(elements.length);
+        ArrayList arrayList;
+        if (elements.length == 0) {
+            arrayList = new ArrayList();
+        } else {
+            arrayList = new ArrayList(elements.length);
+        }
         for (Object i : elements) {
             arrayList.add(i);
+
         }
         return arrayList;
     }
