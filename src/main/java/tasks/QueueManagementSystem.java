@@ -1,7 +1,7 @@
 package tasks;
 
 import collections.IntArrayList;
-import collections.Queue;
+import collections.LinkedQueue;
 import entities.Ticket;
 
 public class QueueManagementSystem  {
@@ -9,7 +9,7 @@ public class QueueManagementSystem  {
     private int currentNumberOfTicket;
     private int numberOfTicketsTheLastDays;
     private String place;
-    private Queue queue;
+    private LinkedQueue linkedQueue;
 
 
 
@@ -22,7 +22,7 @@ public class QueueManagementSystem  {
      */
 
     public QueueManagementSystem(String a) {
-        queue = new Queue();
+        linkedQueue = new LinkedQueue();
         this.place = a;
         intArrayList = new IntArrayList();
         intArrayList.add(currentNumberOfTicket);
@@ -38,7 +38,7 @@ public class QueueManagementSystem  {
     public Ticket getNextTicket() {
         currentNumberOfTicket++;
         Ticket ticket = new Ticket(currentNumberOfTicket - numberOfTicketsTheLastDays, this.place);
-        queue.offer(ticket);
+        linkedQueue.offer(ticket);
         intArrayList.set(intArrayList.size() - 1, currentNumberOfTicket - numberOfTicketsTheLastDays);
         return ticket;
     }
@@ -61,14 +61,14 @@ public class QueueManagementSystem  {
      * @ram 0(1)
      */
     public void toNextWorkDay() {
-        queue = new Queue();
+        linkedQueue = new LinkedQueue();
         numberOfTicketsTheLastDays = currentNumberOfTicket;
         intArrayList.add(0);
     }
 
     public Ticket[] getCurrentQueue() {
-        int length = queue.size();
-        Object[] objects =queue.toArray();
+        int length = linkedQueue.size();
+        Object[] objects = linkedQueue.toArray();
         Ticket[] tickets = new Ticket[length];
         for (int i = 0; i < length; i++) {
             tickets[i] = (Ticket) objects[i];
@@ -78,7 +78,7 @@ public class QueueManagementSystem  {
 
     public Ticket callNext() {
 
-        return (Ticket) queue.poll();
+        return (Ticket) linkedQueue.poll();
     }
 
     /**

@@ -3,7 +3,7 @@ package collections;
 
 import java.util.Objects;
 
-public class LinkedList implements List {
+public class LinkedList implements List,Queue {
     private Node head;
     private Node prev;
     private int logicalSize;
@@ -338,6 +338,22 @@ public class LinkedList implements List {
         return result;
     }
 
+    @Override
+    public void offer(Object element) {
+        addLast(element);
+
+    }
+
+    @Override
+    public Object peek() {
+        return getFirst();
+    }
+
+    @Override
+    public Object poll() {
+        return removeFirst();
+    }
+
     /**
      * Return size
      *
@@ -348,6 +364,11 @@ public class LinkedList implements List {
      */
     public int size() {
         return logicalSize;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return logicalSize==0;
     }
 
 }

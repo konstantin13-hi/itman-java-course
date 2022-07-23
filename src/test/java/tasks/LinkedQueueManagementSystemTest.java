@@ -1,18 +1,14 @@
 package tasks;
 
-import collections.Queue;
-import entities.Event;
 import entities.Ticket;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class QueueManagementSystemTest {
+class LinkedQueueManagementSystemTest {
 
     @Nested
-    public class GetCurrentQueue {
+    public class GetCurrentLinkedQueue {
 
         @Test
         public void shouldGetCurrentQueueWhenCalledOne() {
