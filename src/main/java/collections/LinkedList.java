@@ -259,6 +259,11 @@ public class LinkedList implements List {
         return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
     }
 
+    @Override
+    public void add(Object element) {
+        addLast(element);
+    }
+
     /**
      * Set element
      *
