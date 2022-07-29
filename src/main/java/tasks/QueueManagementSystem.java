@@ -66,6 +66,17 @@ public class QueueManagementSystem  {
         intArrayList.add(0);
     }
 
+    /**
+     * Returns current queue
+     *
+     * n=queue length
+     *
+     * @cpu O(n)
+     * @ram O(n)
+     *
+     * @return current queue
+     */
+
     public Ticket[] getCurrentQueue() {
         int length = linkedQueue.size();
         Object[] objects = linkedQueue.toArray();
@@ -76,8 +87,16 @@ public class QueueManagementSystem  {
         return tickets;
     }
 
-    public Ticket callNext() {
+    /**
+     * Returns ticket from head of queue
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @return ticket from head of queue
+     */
 
+    public Ticket callNext() {
         return (Ticket) linkedQueue.poll();
     }
 

@@ -4,6 +4,7 @@ package collections;
 import java.util.Objects;
 
 public class LinkedList implements List,Queue {
+
     private Node head;
     private Node prev;
     private int logicalSize;
@@ -126,7 +127,6 @@ public class LinkedList implements List,Queue {
             prev = new Node(element, null, null);
             head = prev;
         } else {
-
             Node newNode = new Node(element, null, prev);
             prev.setNext(newNode);
             prev = prev.getNext();
@@ -158,7 +158,7 @@ public class LinkedList implements List,Queue {
      */
 
     public Object removeLast() {
-        Object result ;
+        Object result;
         Node current = prev;
         result = current.getElement();
         if (prev.getPrev() != null) {
@@ -169,10 +169,7 @@ public class LinkedList implements List,Queue {
             head = null;
         }
         logicalSize--;
-
-
         return result;
-
     }
 
     /**
@@ -243,10 +240,10 @@ public class LinkedList implements List,Queue {
     /**
      * Make a compare between of two lists
      *
-     * n=that.size
+     * n=logicalSize
      *
      * @cpu 0(n)
-     * @ram 0(1)
+     * @ram 0(n)
      *
      * @param obj the first term
      *
@@ -259,6 +256,14 @@ public class LinkedList implements List,Queue {
         return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
     }
 
+    /**
+     * Add element in the back of list
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @param element the first term
+     */
     @Override
     public void add(Object element) {
         addLast(element);
@@ -316,21 +321,20 @@ public class LinkedList implements List,Queue {
      * @return deleted element from list
      */
     public Object remove(int index) {
-        Object result ;
-        if (logicalSize==1) {
-            result=head.element;
+        Object result;
+        if (logicalSize == 1) {
+            result = head.element;
             removeFirst();
-        }
-        else if (index==0) {
-            result=getFirst();
+        } else if (index == 0) {
+            result = getFirst();
             removeFirst();
-        } else if (index+1==logicalSize) {
-            result=getLast();
+        } else if (index + 1 == logicalSize) {
+            result = getLast();
             removeLast();
 
         } else {
             Node current = findNode(index);
-            result=current.element;
+            result = current.element;
             current.getNext().setPrev(current.getPrev());
             current.getPrev().setNext(current.getNext());
         }
@@ -338,17 +342,42 @@ public class LinkedList implements List,Queue {
         return result;
     }
 
+    /**
+     *
+     * Inserts the specified element into the queue
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @param element the first term
+     */
     @Override
     public void offer(Object element) {
         addLast(element);
 
     }
 
+    /**
+     * Returns the head of the queue
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @return first element
+     */
     @Override
     public Object peek() {
         return getFirst();
     }
 
+    /**
+     * Returns and removes the head of the queue
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @return first element
+     */
     @Override
     public Object poll() {
         return removeFirst();
@@ -366,9 +395,18 @@ public class LinkedList implements List,Queue {
         return logicalSize;
     }
 
+
+    /**
+     * Check list empty or not
+     *
+     * @cpu 0(1)
+     * @ram 0(1)
+     *
+     * @return result
+     */
     @Override
     public boolean isEmpty() {
-        return logicalSize==0;
+        return logicalSize == 0;
     }
 
 }

@@ -15,8 +15,9 @@ public class Book extends Item {
     public int getPages() {
         return pages;
     }
-    public boolean equals(Object obj){
-        if(obj==null){
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
         return Objects.equals(this.toString(), obj.toString());
@@ -25,8 +26,18 @@ public class Book extends Item {
     public String getAuthor() {
         return author;
     }
+    /**
+     * Returns string with data about item
+     *
+     * n=title length
+     *
+     * @cpu O(n)
+     * @ram O(n)
+     *
+     * @return string
+     */
 
-    public String toString(){
-       return "Book{"+super.toString()+", author='"+author+"', pages="+pages+"}";
-   }
+    public String toString() {
+        return "Book{" + super.toString() + ", author='" + author + "', pages=" + pages + "}";
+    }
 }

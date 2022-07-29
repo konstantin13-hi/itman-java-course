@@ -85,6 +85,5 @@ public class Stack {
      */
     public int[] toArray() {
         return intArrayList.toArray();
-
     }
 }

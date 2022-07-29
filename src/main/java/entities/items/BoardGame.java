@@ -21,13 +21,26 @@ public class BoardGame extends Game {
         return timeMax;
     }
 
+    /**
+     * @return string
+     */
+
     public String toString() {
         return "BoardGame{" + super.toString() + ", timeMin=" + timeMin + ", timeMax=" + timeMax + "}";
     }
-   public boolean equals(Object obj){
-       if(obj==null){
-           return false;
-       }
-       return Objects.equals(this.toString(), obj.toString());
-   }
+    /**
+     * Equals two objects
+     * @cpu O(1)
+     * @ram O(1)
+     * @param obj the first term
+     * @return result of equals two objects
+     */
+
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        return Objects.equals(this.toString(), obj.toString());
+    }
 }

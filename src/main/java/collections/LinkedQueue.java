@@ -23,7 +23,7 @@ public class LinkedQueue implements Queue {
      * @cpu O(1)
      * @ram O(1)
      *
-     * @return first elemt
+     * @return first element
      */
     public Object peek() {
         return linkedList.getFirst();

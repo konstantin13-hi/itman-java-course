@@ -267,22 +267,6 @@ class LinkedListTest {
             linkedList.addFirst(10);
             Assertions.assertEquals(10, linkedList.get(0));
         }
-        @Test
-        void shouldWhen(){
-            LinkedList linkedList = new LinkedList();
-            Ticket ticket = new Ticket(1,"A");
-            linkedList.addFirst(ticket);
-            Assertions.assertEquals(ticket, linkedList.get(0));
-
-        }
-        @Test
-        void shouldWhen2(){
-            LinkedList linkedList = new LinkedList();
-            Ticket ticket = new Ticket(1,"A");
-            linkedList.addLast(ticket);
-            Assertions.assertEquals(ticket, linkedList.get(0));
-
-        }
 
 
     }

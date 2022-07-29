@@ -88,7 +88,7 @@ class IntArrayListTest {
             IntArrayList intArrayListSecond = new IntArrayList(5);
             int[] arraySecond = new int[]{1, 2, 3, 4, 5};
             addElement(arraySecond, intArrayListSecond);
-            Assertions.assertTrue(intArrayList.equals(intArrayListSecond));
+            Assertions.assertEquals(intArrayList, intArrayListSecond);
         }
 
         @Test
@@ -99,7 +99,7 @@ class IntArrayListTest {
             IntArrayList intArrayListSecond = new IntArrayList(5);
             int[] arraySecond = new int[]{1, 2, 3};
             addElement(arraySecond, intArrayListSecond);
-            Assertions.assertFalse(intArrayList.equals(intArrayListSecond));
+            Assertions.assertNotEquals(intArrayList, intArrayListSecond);
 
         }
     }
@@ -134,12 +134,12 @@ class IntArrayListTest {
     @Nested
     public class CreateArrayList {
         @Test
-        public void shouldCopyElementsFromFirsArrayListWhenSecondtIsEmpty() {
+        public void shouldCopyElementsFromFirsArrayListWhenSecondIsEmpty() {
             IntArrayList intArrayList = new IntArrayList(100);
             int[] array = new int[]{10, 20, 30};
             addElement(array, intArrayList);
             IntArrayList that = new IntArrayList(intArrayList);
-            Assertions.assertTrue(intArrayList.equals(that));
+            Assertions.assertEquals(intArrayList, that);
         }
     }
 

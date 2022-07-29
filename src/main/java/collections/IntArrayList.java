@@ -145,10 +145,10 @@ public class IntArrayList {
     /**
      * Make a compare between of two arraylists
      *
-     * n=that.size
+     *n=logicalSize
      *
      * @cpu 0(n)
-     * @ram 0(1)
+     * @ram 0(n)
      *
      * @param obj the first term
      *
@@ -158,7 +158,7 @@ public class IntArrayList {
         if (obj == null) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
+        return Objects.equals(this.toString(), obj.toString());
     }
 
     /**

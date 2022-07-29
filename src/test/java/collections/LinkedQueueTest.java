@@ -43,7 +43,7 @@ class LinkedQueueTest {
             Assertions.assertEquals(7, linkedQueue.peek());
         }
         @Test
-        void shouldWhen(){
+        void shouldRemoveElementWhenQueueHasObjects(){
             LinkedQueue linkedQueue = new LinkedQueue();
             Ticket ticket = new Ticket(1,"A");
             Ticket ticketSecond = new Ticket(2,"A");

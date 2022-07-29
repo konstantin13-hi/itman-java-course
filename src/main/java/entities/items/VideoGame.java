@@ -13,14 +13,25 @@ public class VideoGame extends Game {
     public String getPlatform() {
         return platform;
     }
+    /**
+     * Returns string with data about item
+     *
+     * n=title length
+     *
+     * @cpu O(n)
+     * @ram O(n)
+     *
+     * @return string
+     */
 
     public String toString() {
         return "VideoGame{" + super.toString() + ", platform='" + platform + "'}";
     }
-    public boolean equals(Object obj){
-        if(obj==null){
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString());
+        return Objects.equals(this, obj);
     }
 }

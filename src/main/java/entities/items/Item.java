@@ -26,14 +26,34 @@ public class Item {
         this.price = price;
     }
 
+    /**
+     * Returns string with data about item
+     *
+     * n=title length
+     *
+     * @cpu O(n)
+     * @ram O(n)
+     *
+     * @return string
+     */
+
     public String toString() {
         return "Item{id=" + id + ", title='" + title + "', price=" + price + "}";
     }
-    public boolean equals(Object obj){
-        if(obj==null){
+
+    /**
+     * Equals two objects
+     * @cpu O(1)
+     * @ram O(1)
+     * @param obj the first term
+     * @return result of equals two objects
+     */
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString());
+        return Objects.equals(this, obj);
     }
 
 
