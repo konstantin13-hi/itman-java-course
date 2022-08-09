@@ -1,8 +1,11 @@
 package utils;
 
 import collections.ArrayList;
+import collections.List;
 import entities.Event;
 import collections.IntArrayList;
+
+import java.util.Comparator;
 
 public class ArrayUtils {
 
@@ -14,16 +17,17 @@ public class ArrayUtils {
      * @cpu O(n^2)
      * @ram O(1)
      *
-     * @param events the first term.
+     * @param elements the first term.
+     * @param comparator the second term.
      *
      */
-    public static void bubbleSort(Event[] events) {
-        for (int i = 0; i < events.length; i++) {
-            for (int j = 1; j < events.length; j++) {
-                if ((events[j - 1].compareTo(events[j]) > 0)) {
-                    Event t = events[j - 1];
-                    events[j - 1] = events[j];
-                    events[j] = t;
+    public static <T> void bubbleSort(T[] elements, Comparator<T> comparator) {
+        for (int i = 0; i < elements.length; i++) {
+            for (int j = 1; j < elements.length; j++) {
+                if (comparator.compare(elements[j - 1], elements[j]) > 0) {
+                    T t = elements[j - 1];
+                    elements[j - 1] = elements[j];
+                    elements[j] = t;
                 }
             }
         }
@@ -334,15 +338,15 @@ public class ArrayUtils {
      * @param fromIndex the index of the first array, indicating the start of the sort
      * @param toIndex the index of the first array indicating the end of the sort
      */
-    public static void mergeSort(Event[] array, int fromIndex, int toIndex) {
-        Event[] t = new Event[array.length];
+    public static<T> void mergeSort(T[] array,Comparator<T>comparator, int fromIndex, int toIndex) {
+        T[] t = (T[])new Object[array.length];
         int length = toIndex - fromIndex;
         for (int k = 1; k < length; k = k * 2) {
             for (int j = fromIndex; j < toIndex; j += k * 2) {
                 if (j + k < toIndex && j + k * 2 <= toIndex) {
-                    ArrayUtils.merge(array, j, j + k, array, j + k, j + k * 2, t, j);
+                    ArrayUtils.merge(array, j, j + k, array, j + k, j + k * 2, t, j,comparator);
                 } else if (j + k < toIndex && j + k * 2 >  toIndex) {
-                    ArrayUtils.merge(array, j, j + k, array, j + k,  toIndex, t, j);
+                    ArrayUtils.merge(array, j, j + k, array, j + k,  toIndex, t, j,comparator);
                 } else {
                     System.arraycopy(array, j, t, j, array.length-j);
                 }
@@ -362,8 +366,8 @@ public class ArrayUtils {
      *
      * @param events the first term
      */
-    public static void mergeSort(Event[] events) {
-       ArrayUtils.mergeSort(events,0,events.length);
+    public static<T> void mergeSort(T[] events,Comparator<T>comparator) {
+       ArrayUtils.mergeSort(events,comparator,0,events.length);
     }
 
     /**
@@ -385,11 +389,11 @@ public class ArrayUtils {
      * @param rFrom the index of the third array, indicating the start of the sort
      *
      */
-    public static void merge(Event[] a, int aFrom, int aTo, Event[] b, int bFrom, int bTo, Event[] r, int rFrom) {
+    public static<T> void merge(T[] a, int aFrom, int aTo, T[] b, int bFrom, int bTo, T[] r, int rFrom, Comparator<T>comparator) {
         int limit = aTo - aFrom + bTo - bFrom;
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
             if (j < aTo && k < bTo) {
-                r[rFrom++] = a[j].compareTo(b[k]) < 1 ? a[j++] : b[k++];
+                r[rFrom++] = comparator.compare(a[j],b[k]) < 1 ? a[j++] : b[k++];
             } else if (j < aTo && k == bTo) {
                 r[rFrom++] = a[j++];
             } else if (j == aTo && k < bTo) {

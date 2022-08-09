@@ -120,16 +120,16 @@ public class SortBenchmark {
         ArrayUtils.bubbleSort(bsp4);
         System.out.println(System.currentTimeMillis() - time4);
         long time5 = System.currentTimeMillis();
-        ArrayUtils.bubbleSort(bso1);
+        ArrayUtils.bubbleSort(bso1,new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time5);
         long time6 = System.currentTimeMillis();
-        ArrayUtils.bubbleSort(bso2);
+        ArrayUtils.bubbleSort(bso2,new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time6);
         long time7 = System.currentTimeMillis();
-        ArrayUtils.bubbleSort(bso3);
+        ArrayUtils.bubbleSort(bso3,new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time7);
         long time8 = System.currentTimeMillis();
-        ArrayUtils.bubbleSort(bso4);
+        ArrayUtils.bubbleSort(bso4,new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time8);
         long time9 = System.currentTimeMillis();
         ArrayUtils.countingSort(csp1);
@@ -168,16 +168,16 @@ public class SortBenchmark {
         ArrayUtils.mergeSort(msp4);
         System.out.println(System.currentTimeMillis() - time20);
         long time21 = System.currentTimeMillis();
-        ArrayUtils.mergeSort(mso1);
+        ArrayUtils.mergeSort(mso1,new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time21);
         long time22 = System.currentTimeMillis();
-        ArrayUtils.mergeSort(mso2);
+        ArrayUtils.mergeSort(mso2,new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time22);
         long time23 = System.currentTimeMillis();
-        ArrayUtils.mergeSort(mso3);
+        ArrayUtils.mergeSort(mso3,new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time23);
         long time24 = System.currentTimeMillis();
-        ArrayUtils.mergeSort(mso4);
+        ArrayUtils.mergeSort(mso4,new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time24);
     }
 

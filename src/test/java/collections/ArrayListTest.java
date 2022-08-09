@@ -26,12 +26,14 @@ class ArrayListTest {
         @Test
         public void shouldEqualsWhenSecondArrayHasNull() {
             ArrayList arrayList = new ArrayList(1);
+
             arrayList.add("A");
             arrayList.add("B");
             arrayList.add("C");
             arrayList.add("D");
             arrayList.add(null);
-            ArrayList arrayListSecond = ArrayList.of("A","B","C","D","E");
+            ArrayList arrayListSecond = new ArrayList();
+            arrayListSecond.of("A","B","C","D","E");
             Assertions.assertNotEquals(arrayList,arrayListSecond);
         }
     }

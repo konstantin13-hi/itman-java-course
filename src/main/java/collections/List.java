@@ -1,15 +1,33 @@
 package collections;
 
-public interface List {
-    void add(Object element);
+import java.util.Comparator;
+import java.util.Iterator;
 
-    void set(int index, Object element);
+public interface List<T> extends Collection<T> {
 
-    Object get(int index);
+    boolean add(T element);
+
+    boolean addAll(Collection<T> collection);
+
+    void set(int index, T element);
+
+    T get(int index);
 
     int size();
 
-    Object[] toArray();
+    T[] toArray();
 
-    Object remove(int index);
+    T remove(int index);
+
+    boolean remove(T element);
+
+    boolean add(int index, T element);
+
+    boolean addAll(int index,Collection <T> collection);
+
+    ListIterator iterator();
+
+    void sort(Comparator<T> comparator);
+
+
 }

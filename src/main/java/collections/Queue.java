@@ -1,15 +1,15 @@
 package collections;
 
-public interface Queue {
-    void offer(Object element);
+public interface Queue<T> {
+    void offer(T element);
 
-    Object peek();
+    T peek();
 
-    Object poll();
+    T poll();
 
     int size();
 
     boolean isEmpty();
 
-    Object[] toArray();
+    T[] toArray();
 }

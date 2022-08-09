@@ -190,9 +190,10 @@ class LinkedListTest {
         }
 
         @Test
-        void shouldReturnTrueWhenArrayAndLinkedListsHaveSameElements(){
-            LinkedList linkedList = LinkedList.of(10,20,30);
-            IntArrayList intArrayList = IntArrayList.of(10,20,30);
+        void shouldReturnTrueWhenArrayAndLinkedListsHaveSameElements() {
+            LinkedList linkedList = new LinkedList();
+            linkedList.of(10, 20, 30);
+            IntArrayList intArrayList = IntArrayList.of(10, 20, 30);
             Assertions.assertNotEquals(linkedList, intArrayList);
 
         }
@@ -275,7 +276,7 @@ class LinkedListTest {
     public class Remove {
         @Test
         void shouldRemoveAllElementWhenListHasThreeElements() {
-            LinkedList linkedList = new LinkedList();
+            LinkedList<Integer> linkedList = new LinkedList();
             linkedList.addFirst(10);
             linkedList.addFirst(9);
             linkedList.addFirst(8);
@@ -288,6 +289,21 @@ class LinkedListTest {
 
     }
 
+    @Nested
+    public class toArray {
+        @Test
+
+        void shouldWhen() {
+            LinkedList<Integer> list = new LinkedList();
+            list.add(1);
+            list.add(1);
+            list.add(1);
+
+           // Double[] actual=  (size->new Double[size]);
+           // Assertions.assertArrayEquals(new Integer[]{1,1,1},actual);
+
+        }
+    }
 
 
 
