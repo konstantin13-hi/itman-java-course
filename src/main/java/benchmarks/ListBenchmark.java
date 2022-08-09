@@ -16,6 +16,7 @@ public class ListBenchmark {
      * @cpu O(n)
      * @ram O(n)
      */
+    // 30 ms
     public static IntArrayList createIntArrayListWithCapacity(int length) {
         IntArrayList intArrayList = new IntArrayList(length);
         for (int i = 0; i < length; i++) {
@@ -34,7 +35,7 @@ public class ListBenchmark {
      * @cpu O(n)
      * @ram O(n)
      */
-
+    //65 ms
     public static IntArrayList createIntArrayList(int length) {
         IntArrayList intArrayList = new IntArrayList();
         for (int i = 0; i < length; i++) {
@@ -53,7 +54,7 @@ public class ListBenchmark {
      * @cpu O(n)
      * @ram O(n)
      */
-
+    // 439 ms
     public static LinkedList createLinkedList(int length) {
         LinkedList linkedList = new LinkedList();
         for (int i = 0; i < length; i++) {
@@ -63,6 +64,17 @@ public class ListBenchmark {
 
     }
 
+    /**
+     * Create array list
+     *
+     * @cpu O(n)
+     * @ram O(n)
+     *
+     * @param length
+     * @return the first term
+     */
+
+    //350
     public static ArrayList createArrayList(int length) {
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < length; i++) {

@@ -6,11 +6,24 @@ public class ArrayList implements List {
     private Object[] objects;
     private int logicalSize;
 
-
+    /**
+     * Create array with length 16
+     *
+     * @cpu 0(1)
+     * @ram 0(1)
+     */
     public ArrayList() {
         objects = new Object[16];
     }
 
+    /**
+     * Create array
+     *
+     * @cpu 0(1)
+     * @ram 0(n)
+     *
+     * @param capacity the first term
+     */
     public ArrayList(int capacity) {
         objects = new Object[capacity];
     }
@@ -22,7 +35,6 @@ public class ArrayList implements List {
      *
      * @param element the term
      */
-
     public void add(Object element) {
         if (logicalSize == objects.length) {
             Object[] newObject = new Object[logicalSize * 2];
@@ -160,17 +172,22 @@ public class ArrayList implements List {
      * n=logicalSize
      *
      * @cpu 0(n)
-     * @ram 0(n)
+     * @ram 0(1)
      *
      * @param that the first term
      *
      * @return result
      */
     public boolean equals(Object that) {
-        if (that == null) {
+        if (that == null || this.getClass() != that.getClass() || this.logicalSize != ((ArrayList) that).logicalSize) {
             return false;
         }
-        return Objects.equals(this.toString(), that.toString()) && that.getClass() == ArrayList.class;
+        for (int i = 0; i < logicalSize; i++) {
+            if (((ArrayList) that).get(i) != this.get(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

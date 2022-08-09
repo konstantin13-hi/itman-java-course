@@ -243,17 +243,27 @@ public class LinkedList implements List,Queue {
      * n=logicalSize
      *
      * @cpu 0(n)
-     * @ram 0(n)
+     * @ram 0(1)
      *
      * @param obj the first term
      *
      * @return result
      */
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this.getClass() != obj.getClass() || this.logicalSize != ((LinkedList) obj).logicalSize) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
+        Node nodeObj = ((LinkedList) obj).head;
+        Node node = this.head;
+        for (int i = 0; i < logicalSize; i++) {
+            if (node.element != nodeObj.element) {
+                return false;
+            }
+            nodeObj = nodeObj.next;
+            node = node.next;
+        }
+
+        return true;
     }
 
     /**
