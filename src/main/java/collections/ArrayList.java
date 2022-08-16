@@ -7,7 +7,7 @@ public class ArrayList implements List {
     private int logicalSize;
 
     /**
-     * Create array with length 16
+     * Create array with length 16.
      *
      * @cpu 0(1)
      * @ram 0(1)
@@ -17,7 +17,7 @@ public class ArrayList implements List {
     }
 
     /**
-     * Create array
+     * Create array.
      *
      * @param capacity the first term
      * @cpu 0(1)
@@ -28,7 +28,7 @@ public class ArrayList implements List {
     }
 
     /**
-     * Add element
+     * Add element.
      *
      * @param element the term
      * @cpu 0(1)
@@ -45,7 +45,7 @@ public class ArrayList implements List {
     }
 
     /**
-     * Set element
+     * Set element.
      *
      * @param index   the first term
      * @param element the second term
@@ -58,7 +58,7 @@ public class ArrayList implements List {
     }
 
     /**
-     * Get index
+     * Get index.
      *
      * @param index the first term
      * @return number from arraylist
@@ -71,7 +71,7 @@ public class ArrayList implements List {
     }
 
     /**
-     * Find size
+     * Find size.
      *
      * @return size
      * @cpu 0(1)
@@ -83,8 +83,7 @@ public class ArrayList implements List {
     }
 
     /**
-     * Create array of numbers
-     * <p>
+     * Create array of numbers.
      * n=logicalSize
      *
      * @return new array
@@ -99,8 +98,7 @@ public class ArrayList implements List {
     }
 
     /**
-     * Remove element
-     * <p>
+     * Remove element.
      * n=size
      *
      * @param index the first term
@@ -119,7 +117,7 @@ public class ArrayList implements List {
     }
 
     /**
-     * Create an arraylist
+     * Create an arraylist.
      *
      * @param elements the first term
      * @return new arraylist
@@ -142,8 +140,7 @@ public class ArrayList implements List {
     }
 
     /**
-     * Create array of numbers
-     * <p>
+     * Create array of numbers.
      * n=logicalSize
      *
      * @return new array
@@ -168,8 +165,7 @@ public class ArrayList implements List {
     }
 
     /**
-     * Make a compare between of two arraylists
-     * <p>
+     * Make a compare between of two arraylists.
      * n=logicalSize
      *
      * @param that the first term

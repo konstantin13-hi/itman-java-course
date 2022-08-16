@@ -20,7 +20,7 @@ public class Ticket {
     }
 
     /**
-     * Create string which consists information
+     * Create string which consists information.
      *
      * @return new string
      * @cpu 0(1)
@@ -32,7 +32,7 @@ public class Ticket {
     }
 
     /**
-     * Equal between two tickets
+     * Equal between two tickets.
      *
      * @param obj the first term
      * @return result comparison

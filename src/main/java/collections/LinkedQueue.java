@@ -5,7 +5,7 @@ public class LinkedQueue implements Queue {
     LinkedList linkedList = new LinkedList();
 
     /**
-     * Inserts the specified element into the queue
+     * Inserts the specified element into the queue.
      *
      * @param element the first term
      * @cpu O(1)
@@ -16,7 +16,7 @@ public class LinkedQueue implements Queue {
     }
 
     /**
-     * Returns the head of the queue
+     * Returns the head of the queue.
      *
      * @return first element
      * @cpu O(1)
@@ -27,7 +27,7 @@ public class LinkedQueue implements Queue {
     }
 
     /**
-     * Returns and removes the head of the queue
+     * Returns and removes the head of the queue.
      *
      * @return first element
      * @cpu O(1)
@@ -39,6 +39,8 @@ public class LinkedQueue implements Queue {
     }
 
     /**
+     * Returns the size.
+     *
      * @return size
      * @cpu O(1)
      * @ram O(1)
@@ -48,7 +50,7 @@ public class LinkedQueue implements Queue {
     }
 
     /**
-     * Check list for elements
+     * Check list for elements.
      *
      * @return true or false
      * @cpu O(1)
@@ -60,8 +62,7 @@ public class LinkedQueue implements Queue {
     }
 
     /**
-     * Returns an array containing elements
-     * <p>
+     * Returns an array containing elements.
      * n= size of Queue
      *
      * @return array consists of elements

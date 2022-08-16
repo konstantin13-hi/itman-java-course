@@ -4,7 +4,7 @@ public class Stack {
     private IntArrayList intArrayList;
 
     /**
-     * Create arraylist
+     * Create arraylist.
      *
      * @cpu 0(1)
      * @ram O(1)
@@ -14,7 +14,7 @@ public class Stack {
     }
 
     /**
-     * Add element in the stack
+     * Add element in the stack.
      *
      * @param element the first term
      * @cpu 0(1)
@@ -25,7 +25,7 @@ public class Stack {
     }
 
     /**
-     * Get element from stack
+     * Get element from stack.
      *
      * @return Get element from stack
      * @cpu 0(1)
@@ -36,9 +36,9 @@ public class Stack {
     }
 
     /**
-     * Delete element from stack
+     * Delete element from stack.
      *
-     * @return
+     * @return deleted element
      * @cpu 0(1)
      * @ram 0(1)
      */
@@ -48,7 +48,7 @@ public class Stack {
     }
 
     /**
-     * Check size of stack
+     * Check size of stack.
      *
      * @return size of stack
      * @cpu 0(1)
@@ -59,7 +59,7 @@ public class Stack {
     }
 
     /**
-     * Check stack empty or not
+     * Check stack empty or not.
      *
      * @return of checking
      * @cpu 0(1)
@@ -70,7 +70,7 @@ public class Stack {
     }
 
     /**
-     * Create array of elements
+     * Create array of elements.
      *
      * @return array of elements
      * @cpu 0(n)

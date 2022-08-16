@@ -48,8 +48,7 @@ public class Event {
     }
 
     /**
-     * Create the string
-     * <p>
+     * Create the string.
      * n=amount of letters in string getName
      *
      * @return string
@@ -57,11 +56,12 @@ public class Event {
      * @ram 0(n)
      */
     public String toString() {
-        return "Event{id=" + getId() + ", year=" + getYear() + ", month=" + getMonth() + ", day=" + getDay() + ", name=" + "'" + getName() + "'" + "}";
+        return "Event{id=" + getId() + ", year=" + getYear() +
+                ", month=" + getMonth() + ", day=" + getDay() + ", name=" + "'" + getName() + "'" + "}";
     }
 
     /**
-     * Make a compare between two events
+     * Make a compare between two events.
      *
      * @param obj the first term
      * @return result of  compare
@@ -72,12 +72,14 @@ public class Event {
         if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(this.name, ((Event) obj).name) && this.year == ((Event) obj).year
+        return this.id == ((Event) obj).id
+                && Objects.equals(this.name, ((Event) obj).name)
+                && this.year == ((Event) obj).year
                 && this.month == ((Event) obj).month && this.day == ((Event) obj).day;
     }
 
     /**
-     * Compare two events
+     * Compare two events.
      *
      * @param that the first term
      * @return number

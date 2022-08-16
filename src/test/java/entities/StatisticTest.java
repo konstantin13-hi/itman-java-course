@@ -13,7 +13,9 @@ class StatisticTest {
         @Test
         public void shouldReturnsStringWhenObjectIsNotEmpty() {
             Statistic statistic = new Statistic(1, 2, 3, 4, 5);
-            Assertions.assertEquals("Statistic{min=" + 1 + ", max=" + 2 + ", count=" + 3 + ", average=" + 4.0 + ", median=" + 5.0 + "}", statistic.toString());
+            Assertions.assertEquals("Statistic{min=" + 1 + ", max="
+                    + 2 + ", count=" + 3 + ", average=" + 4.0 + ", median="
+                    + 5.0 + "}", statistic.toString());
         }
 
     }

@@ -8,7 +8,7 @@ public class CalendarController {
     private ArrayListCalendar arrayListCalendar;
 
     /**
-     * Create arrayList
+     * Create arrayList.
      *
      * @cpu O(1)
      * @ram O(1)
@@ -18,7 +18,7 @@ public class CalendarController {
     }
 
     /**
-     * Add Event in calendar
+     * Add Event in calendar.
      *
      * @param a the event
      * @cpu O(1)
@@ -31,7 +31,7 @@ public class CalendarController {
     }
 
     /**
-     * return events with  year,month,day
+     * return events with  year,month,day.
      * n=logicalSize
      * m=amount of elements with correct dates
      * f=amount of elements in the array
@@ -53,7 +53,7 @@ public class CalendarController {
     }
 
     /**
-     * return events with  year,month
+     * return events with year,month.
      * n=logicalSize
      * m=amount of elements with correct dates
      * f=amount of elements in the array
@@ -73,7 +73,7 @@ public class CalendarController {
     }
 
     /**
-     * return events with  year
+     * return events with  year.
      * n=logicalSize
      * m=amount of elements with correct dates
      * f=amount of elements in the array
@@ -91,7 +91,7 @@ public class CalendarController {
     }
 
     /**
-     * return all events
+     * return all events.
      * n=logicalSize
      * f=amount of elements in the array
      * l=sum of two length name
@@ -107,10 +107,10 @@ public class CalendarController {
     }
 
     /**
-     * event replacement by id
+     * event replacement by id.
      *
      * @param firstVariable the number of id
-     * @param a             the event
+     * @param a the event
      * @cpu O(1)
      * @ram O(1)
      */
@@ -121,8 +121,7 @@ public class CalendarController {
     }
 
     /**
-     * Deleting an event by id
-     * <p>
+     * Deleting an event by id.
      * n=length array of events
      *
      * @param firstVariable the number of id

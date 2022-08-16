@@ -27,8 +27,7 @@ public class Item {
     }
 
     /**
-     * Returns string with data about item
-     * <p>
+     * Returns string with data about item.
      * n=title length
      *
      * @return string
@@ -41,19 +40,19 @@ public class Item {
     }
 
     /**
-     * Equals two objects
+     * Equals two objects.
      *
      * @param obj the first term
      * @return result of equals two objects
      * @cpu O(1)
      * @ram O(1)
      */
-
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(this, obj);
+        return id == ((Item) obj).id && Objects.equals(title, ((Item) obj).title)
+                && price == ((Item) obj).price;
     }
 
 

@@ -4,6 +4,14 @@ package tasks;
 public class Task551 {
 
     public static class Node {
+        /**
+         * Set element.
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         *
+         * @param element the first term
+         */
         public void setElement(int element) {
             this.element = element;
         }
@@ -12,29 +20,78 @@ public class Task551 {
         private Node next;
         private Node prev;
 
-
+        /**
+         * Create the Node.
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         *
+         * @param element the first term
+         * @param next the first reference
+         * @param prev the second reference
+         */
         public Node(int element, Node next, Node prev) {
             this.element = element;
             this.next = next;
             this.prev = prev;
         }
 
+        /**
+         * Set previous node.
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         *
+         * @param prev the first term
+         */
         public void setPrev(Node prev) {
             this.prev = prev;
         }
 
+        /**
+         * Returns prev node.
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         *
+         * @return prev reverence
+         */
         public Node getPrev() {
             return prev;
         }
 
+        /**
+         * Returns element.
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         *
+         * @return element
+         */
         public int getElement() {
             return element;
         }
 
+        /**
+         * Returns nex Node.
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         *
+         * @return Node
+         */
         public Node getNext() {
             return next;
         }
 
+        /**
+         * Set next reference.
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         *
+         * @param next the first term
+         */
         public void setNext(Node next) {
             this.next = next;
         }
@@ -43,7 +100,7 @@ public class Task551 {
     }
 
     /**
-     * Returns list with elements 12, 99, 37
+     * Returns list with elements 12, 99, 37.
      *
      * @return node
      * @cpu O(1)

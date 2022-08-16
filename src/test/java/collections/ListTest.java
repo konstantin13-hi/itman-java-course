@@ -9,9 +9,9 @@ import org.junit.jupiter.api.Test;
 public class ListTest {
 
     public abstract static class AbstractListTests {
-        abstract protected List createList();
+        protected abstract List createList();
 
-        abstract protected List of(Object... elements);
+        protected abstract List of(Object... elements);
 
 
         @Nested

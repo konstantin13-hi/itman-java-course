@@ -1,9 +1,10 @@
 package services.queue;
 
 import collections.IntArrayList;
+import entities.Ticket;
 import org.springframework.web.bind.annotation.*;
 import tasks.QueueManagementSystem;
-import entities.Ticket;
+
 
 
 @RestController
@@ -11,7 +12,7 @@ public class QueueController {
     private QueueManagementSystem queueManagementSystem;
 
     /**
-     * Creates a queue for the bank named "bank"
+     * Creates a queue for the bank named "bank".
      *
      * @cpu 0(1)
      * @ram 0(1)
@@ -21,7 +22,7 @@ public class QueueController {
     }
 
     /**
-     * Creates a new ticket and return him
+     * Creates a new ticket and return him.
      *
      * @return a ticket with data about the number and name
      * @cpu 0(1)
@@ -34,7 +35,7 @@ public class QueueController {
     }
 
     /**
-     * Get information how many tickets were issued
+     * Get information how many tickets were issued.
      *
      * @return the number of issued tickets
      * @cpu 0(1)
@@ -46,7 +47,7 @@ public class QueueController {
     }
 
     /**
-     * Create next work day
+     * Create next work day.
      *
      * @cpu 0(1)
      * @ram 0(1)
@@ -57,8 +58,7 @@ public class QueueController {
     }
 
     /**
-     * Create string which containing the number of issued tickets per day
-     * <p>
+     * Create string which containing the number of issued tickets per day.
      * n=logicalSize
      *
      * @return string containing the number of issued tickets per day
@@ -73,8 +73,7 @@ public class QueueController {
     }
 
     /**
-     * Returns array containing tickets current queue
-     * <p>
+     * Returns array containing tickets current queue.
      * n=number of elements in current queue
      *
      * @return array containing tickets current queue
@@ -88,7 +87,7 @@ public class QueueController {
     }
 
     /**
-     * Returns ticket from head
+     * Returns ticket from head.
      *
      * @return ticket from head
      * @cpu O(1)

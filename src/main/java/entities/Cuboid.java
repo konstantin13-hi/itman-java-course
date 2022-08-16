@@ -6,7 +6,7 @@ public class Cuboid {
     private int edgeC;
 
     /**
-     * Setting cuboid parameters
+     * Setting cuboid parameters.
      *
      * @param a the first term.
      * @param b the second term.
@@ -33,7 +33,7 @@ public class Cuboid {
     }
 
     /**
-     * Calc surface area
+     * Calc surface area.
      *
      * @return result of surface Area
      * @cpu 0(1)
@@ -44,7 +44,7 @@ public class Cuboid {
     }
 
     /**
-     * Calc volume
+     * Calc volume.
      *
      * @return result of the Volume
      * @cpu 0(1)

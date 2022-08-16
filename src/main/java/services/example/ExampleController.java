@@ -3,16 +3,11 @@ package services.example;
 
 import org.springframework.web.bind.annotation.*;
 import utils.StringBuilder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ExampleController {
     /**
-     * Return string with text:"I'm your first web-service"
+     * Return string with text:"I'm your first web-service".
      *
      * @return string with text:"I'm your first web-service"
      * @cpu 0(1)
@@ -24,7 +19,7 @@ public class ExampleController {
     }
 
     /**
-     * Return string with text: "I'm the second binding"
+     * Return string with text: "I'm the second binding".
      *
      * @return string with text: "I'm the second binding"
      * @cpu 0(1)
@@ -36,7 +31,7 @@ public class ExampleController {
     }
 
     /**
-     * Return string with text:"I'm post mapping"
+     * Return string with text:"I'm post mapping".
      *
      * @return string with text:"I'm post mapping"
      * @cpu 0(1)
@@ -49,7 +44,7 @@ public class ExampleController {
     }
 
     /**
-     * Return string with text:"I'm put mapping"
+     * Return string with text:"I'm put mapping".
      *
      * @return string with text:"I'm put mapping"
      * @cpu 0(1)
@@ -62,7 +57,7 @@ public class ExampleController {
     }
 
     /**
-     * Return string with text:"I'm patch mapping"
+     * Return string with text:"I'm patch mapping".
      *
      * @return string with text:"I'm patch mapping"
      * @cpu 0(1)
@@ -74,7 +69,7 @@ public class ExampleController {
     }
 
     /**
-     * Return string with text:"I'm delete mapping"
+     * Return string with text:"I'm delete mapping".
      *
      * @return string with text:"I'm delete mapping"
      * @cpu 0(1)
@@ -86,8 +81,7 @@ public class ExampleController {
     }
 
     /**
-     * Returns data from URI and request body
-     * <p>
+     * Returns data from URI and request body.
      * n=amount of letters in string pathVariable
      * m= amount of letters in string required
      * k=amount of letters in string optional
@@ -119,8 +113,7 @@ public class ExampleController {
     }
 
     /**
-     * Return numbers from firstVariable to secondVariable
-     * <p>
+     * Return numbers from firstVariable to secondVariable.
      * n= difference between secondVariable and firstVariable
      *
      * @param firstVariable  the number from which the return of numbers begins
@@ -136,8 +129,7 @@ public class ExampleController {
     }
 
     /**
-     * Return numbers from firstVariable to secondVariable
-     * <p>
+     * Return numbers from firstVariable to secondVariable.
      * n= difference between secondVariable and firstVariable
      *
      * @param firstVariable  the number from which the return of numbers begins
@@ -152,6 +144,16 @@ public class ExampleController {
         return stringBuilder(firstVariable, secondVariable);
     }
 
+    /**
+     * Returns string contains numbers from firstParam to secondParam.
+     *
+     * @cpu O(n*m)
+     * @ram O(n*m)
+     *
+     * @param firstParam first term
+     * @param secondParam second term
+     * @return string
+     */
     public String stringBuilder(int firstParam, int secondParam) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = firstParam; i < secondParam; i++) {

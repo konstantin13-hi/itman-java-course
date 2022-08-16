@@ -15,23 +15,34 @@ public class VideoGame extends Game {
     }
 
     /**
-     * Returns string with data about item
-     * <p>
-     * n=title length
+     * Returns string with data about item.
+     * n=platform length
+     * m=super toString
      *
      * @return string
-     * @cpu O(n)
-     * @ram O(n)
+     * @cpu O(n+m)
+     * @ram O(n+m)
      */
-
     public String toString() {
         return "VideoGame{" + super.toString() + ", platform='" + platform + "'}";
     }
 
+    /**
+     * Makes equals between two objects.
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     * @param obj the first term
+     * @return boolean result
+     */
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(this, obj);
+        return super.getId() == ((VideoGame) obj).getId()
+                && super.getPrice() == ((VideoGame) obj).getPrice()
+                && super.getPlayersMax() == ((VideoGame) obj).getPlayersMax()
+                && super.getPlayersMin() == ((VideoGame) obj).getPlayersMin()
+                && Objects.equals(this.platform, ((VideoGame) obj).platform);
     }
 }

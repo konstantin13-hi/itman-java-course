@@ -1,9 +1,15 @@
 package collections;
 
+/**
+ * List.java
+ * Interface class that has the following methods.
+ *
+ * @author MyName
+ * @since mm-dd-yyyy
+ */
 public interface List {
-
     /**
-     * Add element in the back of list
+     * Add element in the back of list.
      *
      * @param element the first term
      * @cpu O(1)
@@ -12,8 +18,7 @@ public interface List {
     void add(Object element);
 
     /**
-     * Set element
-     * <p>
+     * Set element.
      * n=index
      *
      * @param index   the first term
@@ -24,8 +29,7 @@ public interface List {
     void set(int index, Object element);
 
     /**
-     * Get index
-     * <p>
+     * Get index.
      * n=index
      *
      * @param index the first term
@@ -36,7 +40,7 @@ public interface List {
     Object get(int index);
 
     /**
-     * Return size
+     * Return size.
      *
      * @return size
      * @cpu 0(1)
@@ -45,9 +49,8 @@ public interface List {
     int size();
 
     /**
-     * Return array containing elements
-     * <p>
-     * n=logicalSize;
+     * Return array containing elements.
+     * n=logicalSize
      *
      * @return array
      * @cpu O(n)
@@ -56,7 +59,7 @@ public interface List {
     Object[] toArray();
 
     /**
-     * Remove element
+     * Remove element.
      *
      * @param index the first term
      * @return deleted element from list

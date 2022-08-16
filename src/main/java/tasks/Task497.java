@@ -3,7 +3,7 @@ package tasks;
 public class Task497 {
 
     /**
-     * Merge two sorted arrays
+     * Merge two sorted arrays.
      *
      * @param a the first term
      * @param b the second term

@@ -15,12 +15,16 @@ public class Task406Tests {
 
         @Test
         public void shouldFindSecondMaxWhenNegativeElements() {
-            Assertions.assertEquals(-31231, Task406.findSecondMax(new int[]{-12311, -312133311, -31231, -312312311, -31231231}));
+            Assertions.assertEquals(-31231,
+                    Task406.findSecondMax(new int[]{-12311, -312133311,
+                            -31231, -312312311, -31231231}));
         }
 
         @Test
         public void shouldFindSecondMaxWhenPositiveElements() {
-            Assertions.assertEquals(312133311, Task406.findSecondMax(new int[]{12311, 312133311, 31231, 312312311, 31231231}));
+            Assertions.assertEquals(312133311,
+                    Task406.findSecondMax(new int[]{12311,
+                            312133311, 31231, 312312311, 31231231}));
         }
     }
 }

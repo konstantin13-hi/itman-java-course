@@ -5,7 +5,7 @@ import utils.StringBuilder;
 public class StringBuilderBenchmark {
 
     /**
-     * Made a concatenation between of two string
+     * Made a concatenation between of two string.
      *
      * @param n the first term
      * @return new string
@@ -21,10 +21,10 @@ public class StringBuilderBenchmark {
     }
 
     /**
-     * Made a concatenation between of two string
+     * Made a concatenation between of two string.
      *
      * @param n the first term
-     * @return
+     * @return string
      * @cpu 0(n)
      * @ram 0(n)
      */

@@ -10,8 +10,7 @@ public class IntArrayList {
     private int[] elements;
 
     /**
-     * Create array with special length
-     * <p>
+     * Create array with special length.
      * n=that.size
      *
      * @param that the first term
@@ -26,7 +25,7 @@ public class IntArrayList {
     }
 
     /**
-     * Create array with length 16
+     * Create array with length 16.
      *
      * @cpu 0(1)
      * @ram 0(1)
@@ -36,7 +35,7 @@ public class IntArrayList {
     }
 
     /**
-     * Create array
+     * Create array.
      *
      * @param capacity the first term
      * @cpu 0(1)
@@ -47,7 +46,7 @@ public class IntArrayList {
     }
 
     /**
-     * Create a arraylist
+     * Create a arraylist.
      *
      * @param elements the first term
      * @return new arraylist
@@ -63,13 +62,13 @@ public class IntArrayList {
     }
 
     /**
-     * Add element
+     * Add element.
      *
      * @param element the term
      * @cpu 0(1)
      * @ram 0(1)
      */
-    public void add(int element) { //метод add 10 в 9 раз выполняется/ в иф попадаем 30 раз и всего операций происходит 2 *10 в 9 /в среднем один вызов метода выполняется 2 раза
+    public void add(int element) {
         if (logicalSize == elements.length) {
             int capacity = elements.length * 2;
             int[] secondArray = new int[capacity];
@@ -81,7 +80,7 @@ public class IntArrayList {
     }
 
     /**
-     * Set element
+     * Set element.
      *
      * @param index   the first term
      * @param element the second term
@@ -93,7 +92,7 @@ public class IntArrayList {
     }
 
     /**
-     * Get index
+     * Get index.
      *
      * @param index the first term
      * @return number from arraylist
@@ -105,7 +104,7 @@ public class IntArrayList {
     }
 
     /**
-     * Find size
+     * Find size.
      *
      * @return size
      * @cpu 0(1)
@@ -116,8 +115,7 @@ public class IntArrayList {
     }
 
     /**
-     * Remove element
-     * <p>
+     * Remove element.
      * n=size
      *
      * @param index the first term
@@ -136,8 +134,7 @@ public class IntArrayList {
     }
 
     /**
-     * Make a compare between of two arraylists
-     * <p>
+     * Make a compare between of two arraylists.
      * n=logicalSize
      *
      * @param obj the first term
@@ -153,7 +150,7 @@ public class IntArrayList {
     }
 
     /**
-     * Make a sort of array
+     * Make a sort of array.
      *
      * @cpu 0(nlog ( n))
      * @ram 0(n)
@@ -163,8 +160,7 @@ public class IntArrayList {
     }
 
     /**
-     * Create array of numbers
-     * <p>
+     * Create array of numbers.
      * n=logicalSize
      *
      * @return new array
@@ -179,8 +175,7 @@ public class IntArrayList {
     }
 
     /**
-     * Create a string
-     * <p>
+     * Create a string.
      * n=logicalSize
      *
      * @return new string

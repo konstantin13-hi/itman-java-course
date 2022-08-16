@@ -65,7 +65,9 @@ class ArrayListCalendarTest {
         void shouldReturnEventsWithDesiredYearWhenCalendarIsNotEmpty() {
             ArrayListCalendar arrayListCalendar = new ArrayListCalendar();
             addEvents(arrayListCalendar, createEvent());
-            Assertions.assertEquals("[Event{id=21, year=2101, month=1, day=1, name='dXD'}, Event{id=23, year=2101, month=9, day=11, name='dDDS'}]", Arrays.toString(arrayListCalendar.returnEventsYear(2101)));
+            Assertions.assertEquals("[Event{id=21, year=2101, month=1, day=1, name='dXD'}, " +
+                    "Event{id=23, year=2101, month=9, day=11, name='dDDS'}]",
+                    Arrays.toString(arrayListCalendar.returnEventsYear(2101)));
         }
     }
 
@@ -75,7 +77,8 @@ class ArrayListCalendarTest {
         void shouldReturnEventsWithDesiredYearAndMothWhenCalendarIsNotEmpty() {
             ArrayListCalendar arrayListCalendar = new ArrayListCalendar();
             addEvents(arrayListCalendar, createEvent());
-            Assertions.assertEquals("[Event{id=5, year=2011, month=7, day=8, name='dDX'}]", Arrays.toString(arrayListCalendar.returnEventsYearAndMonth(2011, 7)));
+            Assertions.assertEquals("[Event{id=5, year=2011, month=7, day=8, name='dDX'}]",
+                    Arrays.toString(arrayListCalendar.returnEventsYearAndMonth(2011, 7)));
 
         }
     }
@@ -86,7 +89,9 @@ class ArrayListCalendarTest {
         void shouldReturnEventsWithDesiredYearMonthDayWhenCalendarIsNotEmpty() {
             ArrayListCalendar arrayListCalendar = new ArrayListCalendar();
             addEvents(arrayListCalendar, createEvent());
-            Assertions.assertEquals("[Event{id=10, year=2013, month=1, day=1, name='DAE'}]", Arrays.toString(arrayListCalendar.returnEventsYearAndMonthDay(2013, 1, 1)));
+            Assertions.assertEquals("[Event{id=10, year=2013, month=1," +
+                    " day=1, name='DAE'}]", Arrays.toString(arrayListCalendar
+                    .returnEventsYearAndMonthDay(2013, 1, 1)));
         }
     }
 
@@ -121,20 +126,20 @@ class ArrayListCalendarTest {
         }
     }
 
-    public void addEvents(ArrayListCalendar arrayListCalendar, Event[] events) {
+    private void addEvents(ArrayListCalendar arrayListCalendar, Event[] events) {
         for (int i = 0; i < events.length; i++) {
             arrayListCalendar.addEvent(events[i]);
         }
     }
 
-    public void checkEvents(Event[] actual, Event[] expected) {
+    private void checkEvents(Event[] actual, Event[] expected) {
         for (int i = 0; i < expected.length; i++) {
             Assertions.assertEquals(expected[i], actual[i]);
         }
     }
 
 
-    public Event[] createEvent() {
+    private Event[] createEvent() {
         return new Event[]{
                 new Event(2001, 3, 13, "DOT"),
                 new Event(2011, 3, 21, "dXD"),

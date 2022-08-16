@@ -13,7 +13,7 @@ public class QueueManagementSystem {
 
 
     /**
-     * Add current number of ticket in arraylist
+     * Add current number of ticket in arraylist.
      *
      * @param a the first term
      * @cpu 0(1)
@@ -28,7 +28,7 @@ public class QueueManagementSystem {
     }
 
     /**
-     * Create new ticket
+     * Create new ticket.
      *
      * @return new ticket
      * @cpu 0(1)
@@ -43,7 +43,7 @@ public class QueueManagementSystem {
     }
 
     /**
-     * Get information of tickets
+     * Get information of tickets.
      *
      * @return current number
      * @cpu 0(1)
@@ -54,7 +54,7 @@ public class QueueManagementSystem {
     }
 
     /**
-     * Made next work day
+     * Made next work day.
      *
      * @cpu 0(1)
      * @ram 0(1)
@@ -66,8 +66,7 @@ public class QueueManagementSystem {
     }
 
     /**
-     * Returns current queue
-     * <p>
+     * Returns current queue.
      * n=queue length
      *
      * @return current queue
@@ -86,7 +85,7 @@ public class QueueManagementSystem {
     }
 
     /**
-     * Returns ticket from head of queue
+     * Returns ticket from head of queue.
      *
      * @return ticket from head of queue
      * @cpu O(1)
@@ -98,7 +97,7 @@ public class QueueManagementSystem {
     }
 
     /**
-     * Get visits day
+     * Get visits day.
      *
      * @return new arraylist
      * @cpu 0(n)

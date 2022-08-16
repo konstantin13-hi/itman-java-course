@@ -1,14 +1,14 @@
 package utils;
 
 import collections.ArrayList;
-import entities.Event;
 import collections.IntArrayList;
+import entities.Event;
+
 
 public class ArrayUtils {
 
     /**
-     * Sort elements of array .
-     * <p>
+     * Sort elements of array.
      * n=amount of elements in array
      *
      * @param events the first term.
@@ -28,8 +28,7 @@ public class ArrayUtils {
     }
 
     /**
-     * Sort elements in ascending order
-     * <p>
+     * Sort elements in ascending order.
      * n=amount of elements in array
      *
      * @param array the first term
@@ -50,8 +49,7 @@ public class ArrayUtils {
     }
 
     /**
-     * Sort elements with method counting sort
-     * <p>
+     * Sort elements with method counting sort.
      * n=amount of elements in array
      * m=difference between the maximum minimum element in array
      *
@@ -84,10 +82,49 @@ public class ArrayUtils {
             }
         }
     }
+    /**
+     * Make a counting sort.
+     * n=amount of elements in array
+     * m=difference between the maximum minimum element in array
+     * k= the largest repetition of events with the same index
+     *
+     * @param events the first term
+     * @cpu O(n + m)
+     * @ram O(n + m)
+     */
+
+    public static void countingSort(Event[] events) {
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < events.length; i++) {
+            int days = (events[i].getYear() * 372 + events[i].getMonth() * 31 + events[i].getDay());
+            if (max < days) {
+                max = days;
+            }
+            if (min > days) {
+                min = days;
+            }
+        }
+        int dif = max - min;
+        ArrayList[] arrayLists = new ArrayList[dif + 1];
+        for (int i = 0; i < arrayLists.length; i++) {
+            arrayLists[i] = new ArrayList();
+        }
+        for (int i = 0; i < events.length; i++) {
+            int days = (events[i].getYear() * 372 + events[i].getMonth() * 31 + events[i].getDay());
+            arrayLists[days - min].add(events[i]);
+        }
+        for (int i = 0, index = 0; i < arrayLists.length; i++) {
+            int length = arrayLists[i].size();
+            for (int j = 0; j < length; j++) {
+                events[index] = (Event) arrayLists[i].get(j);
+                index++;
+            }
+        }
+    }
 
     /**
-     * Find only unique elements in array
-     * <p>
+     * Find only unique elements in array.
      * n=amount of elements in array
      * m=difference between the maximum minimum element in array
      *
@@ -121,8 +158,7 @@ public class ArrayUtils {
     }
 
     /**
-     * Find the number that occurs the most times
-     * <p>
+     * Find the number that occurs the most times.
      * n=amount of elements in array
      * m=difference between the maximum minimum element in array
      *
@@ -161,8 +197,7 @@ public class ArrayUtils {
     }
 
     /**
-     * Find the number of elements that are contained simultaneously in two arrays
-     * <p>
+     * Find the number of elements that are contained simultaneously in two arrays.
      * a=amount of elements in array a
      * b=amount of elements in array b
      * k=difference between the maximum minimum element in array a
@@ -204,49 +239,7 @@ public class ArrayUtils {
     }
 
     /**
-     * Make a counting sort
-     * <p>
-     * n=amount of elements in array
-     * m=difference between the maximum minimum element in array
-     * k= the largest repetition of events with the same index
-     *
-     * @param events the first term
-     * @cpu O(n + m)
-     * @ram O(n + m)
-     */
-    public static void countingSort(Event[] events) {
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-        for (int i = 0; i < events.length; i++) {
-            int days = (events[i].getYear() * 372 + events[i].getMonth() * 31 + events[i].getDay());
-            if (max < days) {
-                max = days;
-            }
-            if (min > days) {
-                min = days;
-            }
-        }
-        int dif = max - min;
-        ArrayList[] arrayLists = new ArrayList[dif + 1];
-        for (int i = 0; i < arrayLists.length; i++) {
-            arrayLists[i] = new ArrayList();
-        }
-        for (int i = 0; i < events.length; i++) {
-            int days = (events[i].getYear() * 372 + events[i].getMonth() * 31 + events[i].getDay());
-            arrayLists[days - min].add(events[i]);
-        }
-        for (int i = 0, index = 0; i < arrayLists.length; i++) {
-            int length = arrayLists[i].size();
-            for (int j = 0; j < length; j++) {
-                events[index] = (Event) arrayLists[i].get(j);
-                index++;
-            }
-        }
-    }
-
-    /**
-     * Merge two arrays with sorted elements
-     * <p>
+     * Merge two arrays with sorted elements.
      * n=differences between start and end index of the first array
      * m=differences between start and end index of the second array
      *
@@ -273,10 +266,38 @@ public class ArrayUtils {
             }
         }
     }
+    /**
+     * Merge two arrays with sorted elements.
+     * n=differences between start and end index of the first array
+     * m=differences between start and end index of the second array
+     *
+     * @param a     the first array variable
+     * @param aFrom the index of the first array, indicating the start of the sort
+     * @param aTo   the index of the first array indicating the end of the sort
+     * @param b     the second array variable
+     * @param bFrom the index of the second array, indicating the start of the sort
+     * @param bTo   the index of the second array indicating the end of the sort
+     * @param r     the third array variable,where the first two arrays are merged and the elements are sorted
+     * @param rFrom the index of the third array, indicating the start of the sort
+     * @cpu O(n + m)
+     * @ram O(1)
+     */
+
+    public static void merge(Event[] a, int aFrom, int aTo, Event[] b, int bFrom, int bTo, Event[] r, int rFrom) {
+        int limit = aTo - aFrom + bTo - bFrom;
+        for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
+            if (j < aTo && k < bTo) {
+                r[rFrom++] = a[j].compareTo(b[k]) < 1 ? a[j++] : b[k++];
+            } else if (j < aTo && k == bTo) {
+                r[rFrom++] = a[j++];
+            } else if (j == aTo && k < bTo) {
+                r[rFrom++] = b[k++];
+            }
+        }
+    }
 
     /**
-     * Make merge sort
-     * <p>
+     * Make merge sort.
      * n=amount of elements in the array
      *
      * @param a the first term
@@ -288,8 +309,7 @@ public class ArrayUtils {
     }
 
     /**
-     * Make merge sort
-     * <p>
+     * Make merge sort.
      * n=sum of index differences between start and end
      *
      * @param array     the first array variable
@@ -317,10 +337,10 @@ public class ArrayUtils {
 
 
     /**
-     * Make merge sort
+     * Make merge sort.
      * n=index differences between start and end
      *
-     * @param array     the first array variable
+     * @param array the first array variable
      * @param fromIndex the index of the first array, indicating the start of the sort
      * @param toIndex   the index of the first array indicating the end of the sort
      * @cpu O(nlog ( n))
@@ -345,8 +365,7 @@ public class ArrayUtils {
 
 
     /**
-     * Make merge sort
-     * <p>
+     * Make merge sort.
      * n=amount of elements in the array
      *
      * @param events the first term
@@ -357,34 +376,5 @@ public class ArrayUtils {
         ArrayUtils.mergeSort(events, 0, events.length);
     }
 
-    /**
-     * Merge two arrays with sorted elements
-     * <p>
-     * n=differences between start and end index of the first array
-     * m=differences between start and end index of the second array
-     *
-     * @param a     the first array variable
-     * @param aFrom the index of the first array, indicating the start of the sort
-     * @param aTo   the index of the first array indicating the end of the sort
-     * @param b     the second array variable
-     * @param bFrom the index of the second array, indicating the start of the sort
-     * @param bTo   the index of the second array indicating the end of the sort
-     * @param r     the third array variable,where the first two arrays are merged and the elements are sorted
-     * @param rFrom the index of the third array, indicating the start of the sort
-     * @cpu O(n + m)
-     * @ram O(1)
-     */
-    public static void merge(Event[] a, int aFrom, int aTo, Event[] b, int bFrom, int bTo, Event[] r, int rFrom) {
-        int limit = aTo - aFrom + bTo - bFrom;
-        for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
-            if (j < aTo && k < bTo) {
-                r[rFrom++] = a[j].compareTo(b[k]) < 1 ? a[j++] : b[k++];
-            } else if (j < aTo && k == bTo) {
-                r[rFrom++] = a[j++];
-            } else if (j == aTo && k < bTo) {
-                r[rFrom++] = b[k++];
-            }
-        }
-    }
 }
 

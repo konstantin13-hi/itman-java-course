@@ -5,7 +5,7 @@ import utils.ArrayUtils;
 public class Task510 {
 
     /**
-     * Finds the minimum element that occurs more often
+     * Finds the minimum element that occurs more often.
      * n=array length
      *
      * @param array the first term

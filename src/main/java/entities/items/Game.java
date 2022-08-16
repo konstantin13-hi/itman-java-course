@@ -21,8 +21,7 @@ public class Game extends Item {
     }
 
     /**
-     * Returns string with data about item
-     * <p>
+     * Returns string with data about item.
      * n=title length
      *
      * @return string
@@ -34,10 +33,23 @@ public class Game extends Item {
         return "Game{" + super.toString() + ", playersMin=" + playersMin + ", playersMax=" + playersMax + "}";
     }
 
+    /**
+     * Equals two objects.
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     *
+     * @param obj the first term
+     * @return boolean result
+     */
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
-        return Objects.equals(this, obj);
+        return super.getId() == ((Game) obj).getId()
+                && super.getPrice() == ((Game) obj).getPrice()
+                && Objects.equals(super.getTitle(), ((Game) obj).getTitle())
+                && playersMax == ((Game) obj).playersMax
+                && playersMin == ((Game) obj).playersMin;
     }
 }

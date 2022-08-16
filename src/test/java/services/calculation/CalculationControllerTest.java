@@ -62,7 +62,7 @@ class CalculationControllerTest {
     }
 
     @Nested
-    public class returnOperators {
+    public class ReturnOperators {
         @Autowired
         private MockMvc mockMvc;
 

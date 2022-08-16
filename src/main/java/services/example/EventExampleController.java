@@ -9,7 +9,7 @@ public class EventExampleController {
     public Event event;
 
     /**
-     * Take an Event object with data
+     * Take an Event object with data.
      *
      * @param a a parameter that takes an Event object with data
      * @cpu 0(1)
@@ -22,7 +22,7 @@ public class EventExampleController {
     }
 
     /**
-     * Return an Event object with data about it
+     * Return an Event object with data about it.
      *
      * @return an Event object with data about it
      * @cpu 0(1)

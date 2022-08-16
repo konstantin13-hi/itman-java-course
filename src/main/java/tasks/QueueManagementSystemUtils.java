@@ -8,7 +8,7 @@ public class QueueManagementSystemUtils {
 
 
     /**
-     * Calculate total tickets
+     * Calculate total tickets.
      *
      * @param systems the first term
      * @return result total tickets
@@ -24,7 +24,7 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     * Calculate average visits
+     * Calculate average visits.
      *
      * @param systems the first term
      * @return result average tickets
@@ -39,7 +39,7 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     * Calculate median tickets
+     * Calculate median tickets.
      *
      * @param systems the first term
      * @return result median tickets
@@ -65,13 +65,14 @@ public class QueueManagementSystemUtils {
     }
 
     /**
+     * Returns array with levels.
      * n=amount of systems
      * m=amount of most business days
      *
-     * @param
-     * @return
-     * @cpu 0(n * m)
-     * @ram 0(m)
+     * @param intArrayLists the first term
+     * @return array with levels
+     * @cpu O(n * m)
+     * @ram O(m)
      */
     private static int[] calcLevel(IntArrayList[] intArrayLists) {
         int[] arrayDays = new int[sizeForLength(intArrayLists)];
@@ -86,19 +87,22 @@ public class QueueManagementSystemUtils {
     }
 
     /**
+     * Return array for different days.
      * n=amount of systems
      * m=amount of most business days
      *
-     * @return
-     * @cpu 0(n * m)
-     * @ram 0(m)
+     * @param intArrayLists the first term
+     * @return array for different days
+     * @cpu O(n * m)
+     * @ram O(m)
      */
     private static int[] calcTicketsForDifferentDays(IntArrayList[] intArrayLists) {
         int[] arrayDaysWithTickets = new int[sizeForLength(intArrayLists)];
         for (int j = 0; j < intArrayLists.length; j++) {
             for (int i = 0; i < arrayDaysWithTickets.length; i++) {
                 if (i >= arrayDaysWithTickets.length - intArrayLists[j].size()) {
-                    arrayDaysWithTickets[i] += intArrayLists[j].get(intArrayLists[j].size() - arrayDaysWithTickets.length + i);
+                    arrayDaysWithTickets[i] += intArrayLists[j].get(intArrayLists[j].size()
+                            - arrayDaysWithTickets.length + i);
                 }
             }
         }
@@ -106,13 +110,14 @@ public class QueueManagementSystemUtils {
     }
 
     /**
+     * Return size for length.
      * n=amount of systems
      * m=amount of most business days
      *
-     * @param intArrayLists
-     * @return
-     * @cpu 0(n)
-     * @ram 0(1)
+     * @param intArrayLists the first term
+     * @return size
+     * @cpu O(n)
+     * @ram O(1)
      */
     private static int sizeForLength(IntArrayList[] intArrayLists) {
         int max = 0;
@@ -125,13 +130,14 @@ public class QueueManagementSystemUtils {
     }
 
     /**
+     * Return array with average elements.
      * n=amount of systems
      * m=amount of most business days
      *
-     * @param
-     * @return
-     * @cpu 0(n * m)
-     * @ram 0(m)
+     * @param intArrayLists the first term
+     * @return array with average elements
+     * @cpu O(n * m)
+     * @ram O(m)
      */
     private static double[] getAverage(IntArrayList[] intArrayLists) {
         int[] arrayAllTickets = calcTicketsForDifferentDays(intArrayLists);
@@ -144,10 +150,12 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     * @param
-     * @return
-     * @cpu 0 (n*m)
-     * @ram 0(m)
+     * Return array with ming elements.
+     *
+     * @param intArrayLists the first term
+     * @return array with ming elements
+     * @cpu O(n*m)
+     * @ram O(m)
      */
 
     private static int[] getMin(IntArrayList[] intArrayLists) {
@@ -168,10 +176,12 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     * @param
-     * @return
-     * @cpu 0 (n*m))
-     * @ram 0(m)
+     * Return array with max elements.
+     *
+     * @param intArrayLists the first term
+     * @return array with max elements
+     * @cpu O(n*m))
+     * @ram O(m)
      */
     private static int[] getMax(IntArrayList[] intArrayLists) {
         int[] arrayDaysMin = new int[sizeForLength(intArrayLists)];
@@ -191,28 +201,31 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     * @param array
-     * @return
-     * @cpu 0(nlog ( n))
-     * @ram 0(n)
+     * Returns median.
+     *
+     * @param array the first term
+     * @return median
+     * @cpu O(nlog(n))
+     * @ram O(n)
      */
     private static double sortTickets(int[] array) {
         double result;
-        int[] median = array;
-        ArrayUtils.mergeSort(median);
+        ArrayUtils.mergeSort(array);
         if (array.length % 2 == 0) {
-            result = ((double) median[(array.length - 1) / 2] + (double) median[((array.length - 1) / 2) + 1]) / 2;
+            result = ((double) array[(array.length - 1) / 2] + (double) array[((array.length - 1) / 2) + 1]) / 2;
         } else {
-            result = median[(array.length - 1) / 2];
+            result = array[(array.length - 1) / 2];
         }
         return result;
     }
 
     /**
-     * @param
-     * @return
-     * @cpu 0(m * nlog ( n))
-     * @ram 0(m + n)
+     * Returns array.
+     *
+     * @param intArrayLists the first term
+     * @return array
+     * @cpu O(m * nlog ( n))
+     * @ram O(m + n)
      */
     private static double[] getMedian(IntArrayList[] intArrayLists) {
         double[] arrayDays = new double[sizeForLength(intArrayLists)];
@@ -233,8 +246,7 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     * Calculate statistic days
-     * <p>
+     * Calculate statistic days.
      * n=amount of systems
      * m=amount of most business days
      *

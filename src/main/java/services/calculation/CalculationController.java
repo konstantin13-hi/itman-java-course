@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CalculationController {
     /**
-     * Returns result of operation
+     * Returns result of operation.
      *
      * @param firstVariable  first number
      * @param secondVariable operator
@@ -27,7 +27,7 @@ public class CalculationController {
     }
 
     /**
-     * Return all kind of operators
+     * Return all kind of operators.
      *
      * @return all kind of operators
      * @cpu O(1)

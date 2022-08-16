@@ -4,16 +4,32 @@ public class StringBuilder {
     private char[] chars;
     private int logicalSize;
 
+    /**
+     * Create StringBuilder with capacity 16.
+     * n=capacity
+     *
+     * @cpu O(1)
+     * @ram O(n)
+     * @param capacity the first term
+     */
+
     public StringBuilder(int capacity) {
         chars = new char[capacity];
     }
+
+    /**
+     * Create StringBuilder with capacity 16.
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     */
 
     public StringBuilder() {
         chars = new char[16];
     }
 
     /**
-     * Find logical size
+     * Find logical size.
      *
      * @return logical size
      * @cpu 0(1)
@@ -24,8 +40,7 @@ public class StringBuilder {
     }
 
     /**
-     * Made concatenation between of two strings
-     * <p>
+     * Made concatenation between of two strings.
      * n=s.length
      *
      * @param s the first term
@@ -46,7 +61,7 @@ public class StringBuilder {
     }
 
     /**
-     * Made concatenation between of two strings
+     * Made concatenation between of two strings.
      *
      * @param x the first term
      * @return concatenation of two strings
@@ -65,8 +80,7 @@ public class StringBuilder {
     }
 
     /**
-     * Made concatenation between of two strings
-     * <p>
+     * Made concatenation between of two strings.
      * n=number of digits in the number
      *
      * @param x the first term
@@ -81,8 +95,7 @@ public class StringBuilder {
     }
 
     /**
-     * Made concatenation between of two strings
-     * <p>
+     * Made concatenation between of two strings.
      * n=number of digits in the number
      *
      * @param x the first term
@@ -97,8 +110,7 @@ public class StringBuilder {
     }
 
     /**
-     * Made concatenation between of two strings
-     * <p>
+     * Made concatenation between of two strings.
      * n=number of digits in the number
      *
      * @param x the first term
@@ -113,11 +125,11 @@ public class StringBuilder {
     }
 
     /**
-     * Made new string
-     * <p>
+     * Made new string.
      * n=logicalSize
      *
      * @return new string
+     *
      * @cpu 0(n)
      * @ram 0(n)
      */

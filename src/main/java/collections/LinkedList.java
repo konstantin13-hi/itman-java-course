@@ -46,12 +46,14 @@ public class LinkedList implements List, Queue {
 
     }
 
+    /**
+     * Creates Linked list.
+     */
     public LinkedList() {
     }
 
     /**
-     * Create an arraylist
-     * <p>
+     * Create an arraylist.
      * n=logicalSize of that list
      *
      * @param that the first term
@@ -67,7 +69,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Add element in the front of list
+     * Add element in the front of list.
      *
      * @param element the first term
      * @cpu O(1)
@@ -86,7 +88,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Return first element
+     * Return first element.
      *
      * @return element
      * @cpu O(1)
@@ -98,7 +100,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Return first element and delete him from list
+     * Return first element and delete him from list.
      *
      * @return first element
      * @cpu O(1)
@@ -112,7 +114,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Add element in the back of list
+     * Add element in the back of list.
      *
      * @param element the first term
      * @cpu O(1)
@@ -132,7 +134,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Return last element from list
+     * Return last element from list.
      *
      * @return last element
      * @cpu O(1)
@@ -144,7 +146,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Return last element and delete him from list
+     * Return last element and delete him from list.
      *
      * @return last element
      * @cpu O(1)
@@ -167,8 +169,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Create a string
-     * <p>
+     * Create a string.
      * n=logicalSize
      *
      * @return new string
@@ -193,8 +194,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Return array containing elements
-     * <p>
+     * Return array containing elements.
      * n=logicalSize;
      *
      * @return array
@@ -212,8 +212,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Create a list
-     * <p>
+     * Create a list.
      * n=number of elements
      *
      * @param elements the first term
@@ -230,8 +229,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Make a compare between of two lists
-     * <p>
+     * Make a compare between of two lists.
      * n=logicalSize
      *
      * @param obj the first term
@@ -257,7 +255,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Add element in the back of list
+     * Add element in the back of list.
      *
      * @param element the first term
      * @cpu O(1)
@@ -269,8 +267,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Set element
-     * <p>
+     * Set element.
      * n=index
      *
      * @param index   the first term
@@ -283,8 +280,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Get index
-     * <p>
+     * Get index.
      * n=index
      *
      * @param index the first term
@@ -308,7 +304,7 @@ public class LinkedList implements List, Queue {
 
 
     /**
-     * Remove element
+     * Remove element.
      *
      * @param index the first term
      * @return deleted element from list
@@ -338,7 +334,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Inserts the specified element into the queue
+     * Inserts the specified element into the queue.
      *
      * @param element the first term
      * @cpu O(1)
@@ -351,7 +347,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Returns the head of the queue
+     * Returns the head of the queue.
      *
      * @return first element
      * @cpu O(1)
@@ -363,7 +359,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Returns and removes the head of the queue
+     * Returns and removes the head of the queue.
      *
      * @return first element
      * @cpu O(1)
@@ -375,7 +371,7 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Return size
+     * Return size.
      *
      * @return size
      * @cpu 0(1)
@@ -387,7 +383,7 @@ public class LinkedList implements List, Queue {
 
 
     /**
-     * Check list empty or not
+     * Check list empty or not.
      *
      * @return result
      * @cpu 0(1)

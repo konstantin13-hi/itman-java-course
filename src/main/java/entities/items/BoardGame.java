@@ -22,27 +22,35 @@ public class BoardGame extends Game {
     }
 
     /**
+     * Returns string with data about BoardGame.
+     * n=title length
+     *
      * @return string
+     * @cpu O(n)
+     * @ram O(n)
      */
-
     public String toString() {
         return "BoardGame{" + super.toString() + ", timeMin=" + timeMin + ", timeMax=" + timeMax + "}";
     }
 
     /**
-     * Equals two objects
+     * Equals two objects.
      *
      * @param obj the first term
      * @return result of equals two objects
      * @cpu O(1)
      * @ram O(1)
      */
-
-
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString());
+        return super.getId() == ((BoardGame) obj).getId()
+                && super.getPrice() == ((BoardGame) obj).getPrice()
+                && super.getPlayersMax() == ((BoardGame) obj).getPlayersMax()
+                && super.getPlayersMin() == ((BoardGame) obj).getPlayersMin()
+                && Objects.equals(super.getTitle(), ((BoardGame) obj).getTitle())
+                && timeMin == ((BoardGame) obj).timeMin
+                && timeMax == ((BoardGame) obj).getTimeMax();
     }
 }

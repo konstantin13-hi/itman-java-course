@@ -7,8 +7,7 @@ import collections.LinkedList;
 public class ListBenchmark {
 
     /**
-     * Create array list with capacity
-     * <p>
+     * Create array list with capacity.
      * n=length
      *
      * @param length the first term
@@ -26,8 +25,7 @@ public class ListBenchmark {
     }
 
     /**
-     * Create array list
-     * <p>
+     * Create array list.
      * n = length
      *
      * @param length the first term
@@ -45,8 +43,7 @@ public class ListBenchmark {
     }
 
     /**
-     * Create linked list
-     * <p>
+     * Create linked list.
      * n = length
      *
      * @param length the first term
@@ -65,9 +62,9 @@ public class ListBenchmark {
     }
 
     /**
-     * Create array list
+     * Create array list.
      *
-     * @param length
+     * @param length the first term
      * @return the first term
      * @cpu O(n)
      * @ram O(n)

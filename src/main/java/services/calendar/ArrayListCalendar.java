@@ -10,7 +10,7 @@ public class ArrayListCalendar {
     private Event[] events;
 
     /**
-     * Create array events with length equals 10
+     * Create array events with length equals 10.
      *
      * @cpu O(1)
      * @ram O(1)
@@ -21,8 +21,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Create array events with length equals capacity
-     * <p>
+     * Create array events with length equals capacity.
      * n=input number
      *
      * @param capacity the first term
@@ -34,8 +33,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Create array with special length
-     * <p>
+     * Create array with special length.
      * n=that.size
      *
      * @param that the first term
@@ -50,7 +48,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Add Event
+     * Add Event.
      *
      * @param a the first term
      * @cpu O(1)
@@ -66,8 +64,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Deleting an event by id
-     * <p>
+     * Deleting an event by id.
      * n=length array of events
      *
      * @param id the first term
@@ -83,7 +80,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * event replacement by id
+     * event replacement by id.
      *
      * @param id id by which there will  change  event
      * @param a  event
@@ -95,7 +92,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Returns a string containing all events in sorted order
+     * Returns a string containing all events in sorted order.
      * return string contains event with parameters year, month ,day
      * n=logicalSize
      * f=amount of elements in the array
@@ -113,7 +110,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * return string contains event with parameters year
+     * Returns string contains event with parameters year.
      * n=logicalSize
      * m=amount of elements with correct dates
      * f=amount of elements in the array
@@ -147,7 +144,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * return string contains event with parameters year, month ,day
+     * return string contains event with parameters year, month ,day.
      * n=logicalSize
      * m=amount of elements with correct dates
      * f=amount of elements in the array
@@ -181,7 +178,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * return string contains event with parameters year, month ,day
+     * Returns string contains event with parameters year, month ,day.
      * n=logicalSize
      * m=amount of elements with correct dates
      * f=amount of elements in the array
@@ -216,8 +213,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Create array of numbers
-     * <p>
+     * Create array of numbers.
      * n=logicalSize
      *
      * @return new array
@@ -231,8 +227,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Make merge sort
-     * <p>
+     * Make merge sort.
      * n=amount of elements in the array
      * k=length of string
      * l=sum of two length name
@@ -246,7 +241,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Merge sort
+     * Merge sort.
      * n=index differences between start and end
      * k=length of string
      * l=sum of two length name
@@ -275,8 +270,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Merge two arrays with sorted elements
-     * <p>
+     * Merge two arrays with sorted elements.
      * n=differences between start and end index of the first array
      * m=differences between start and end index of the second array
      * l=sum of two length name
@@ -312,12 +306,11 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Compares two string of  objects (a, b) given as parameters
+     * Compares two string of  objects (a, b) given as parameters.
      * It returns the value:
      * 0: if (firstName==secondName)
      * -1: if (firstName < secondName)
      * 1: if (firstName > secondName)
-     * <p>
      * n=amount of leters of thirst event
      * m=amount of leters of second event
      *
@@ -340,7 +333,9 @@ public class ArrayListCalendar {
                 if (that[i] != chars[i]) {
                     if ((int) that[i] < (int) chars[i]) {
                         result = 1;
-                    } else result = -1;
+                    } else {
+                        result = -1;
+                    }
                 }
             }
         }
@@ -349,11 +344,11 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Create a string
-     * <p>
+     * Create a string.
      * n=logicalSize
      * j=letetals in the string
      *
+     * @param a the first term
      * @return new string
      * @cpu 0(n * j)
      * @ram 0(n * j)
@@ -376,7 +371,7 @@ public class ArrayListCalendar {
     }
 
     /**
-     * Find size
+     * Find size.
      *
      * @return size
      * @cpu 0(1)
@@ -388,7 +383,7 @@ public class ArrayListCalendar {
 
 
     /**
-     * Get event
+     * Get event.
      *
      * @param index the first term
      * @return number from arraylist

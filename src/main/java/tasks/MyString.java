@@ -7,7 +7,7 @@ public class MyString {
     private final char[] chars;
 
     /**
-     * Setting elements of char
+     * Setting elements of char.
      *
      * @param a the first term
      * @cpu 0(n)
@@ -20,8 +20,7 @@ public class MyString {
     }
 
     /**
-     * Create a string
-     * <p>
+     * Create a string.
      * n=amount 0f elements in chars
      *
      * @return new string
@@ -33,7 +32,7 @@ public class MyString {
     }
 
     /**
-     * Find a length
+     * Find a length.
      *
      * @return length of array
      * @cpu 0(1)
@@ -45,7 +44,7 @@ public class MyString {
     }
 
     /**
-     * Find char
+     * Find char.
      *
      * @param index the first term
      * @return index from array
@@ -57,8 +56,7 @@ public class MyString {
     }
 
     /**
-     * Make a lexicographically compare between two strings
-     * <p>
+     * Make a lexicographically compare between two strings.
      * n=that.length
      *
      * @param that the first term
@@ -82,7 +80,9 @@ public class MyString {
                 if (that.chars[i] != chars[i]) {
                     if ((int) that.chars[i] < (int) chars[i]) {
                         result = 1;
-                    } else result = -1;
+                    } else {
+                        result = -1;
+                    }
                 }
             }
         }
@@ -91,8 +91,7 @@ public class MyString {
     }
 
     /**
-     * Make a compare between two strings
-     * <p>
+     * Make a compare between two strings.
      * n=that.length
      *
      * @param obj first term
@@ -106,34 +105,25 @@ public class MyString {
         }
         return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
     }
-   /* public boolean equals(MyString that) {
-        if (that == null) {
-            return false;
-        }
-        return Arrays.equals(that.chars, chars);
-    }
-
-    */
 
     /**
-     * Make a concatenation
+     * Make a concatenation.
      *
      * @param a the first term
      * @param b the second term
-     * @return
+     * @return string
      * @cpu O(n + m)
-     * @ram o(n + m)
+     * @ram O(n + m)
      */
     public static MyString plus(MyString a, MyString b) {
-        char[] twoChars = new char[a.length() + b.length()];/// 1 2 3     4 5 6
+        char[] twoChars = new char[a.length() + b.length()];
         System.arraycopy(a.chars, 0, twoChars, 0, a.chars.length);
         System.arraycopy(b.chars, 0, twoChars, a.chars.length, b.chars.length);
         return new MyString(twoChars);
     }
 
     /**
-     * Create new a variable containing two chars
-     * <p>
+     * Create new a variable containing two chars.
      * n=amount of elements chars in variable chars
      * m=amount of elements chars in variable that
      *
@@ -147,8 +137,7 @@ public class MyString {
     }
 
     /**
-     * Make a replacement target in chars
-     * <p>
+     * Make a replacement target in chars.
      * n=amount of elements chars in variable chars
      *
      * @param target      the first term

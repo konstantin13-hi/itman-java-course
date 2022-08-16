@@ -6,7 +6,6 @@ public class Task407 {
      * Sort rows of array .
      *
      * @param matrix the first term
-     * @return sorted rows of array .
      * @cpu O(n * m + n ^ 2)
      * @ram O(n)
      */

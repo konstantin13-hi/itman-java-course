@@ -48,9 +48,11 @@ class IntArrayListTest {
         @Test
         void shouldReturnArrayWhenArrayListIsNotEmpty() {
             IntArrayList intArrayList = new IntArrayList(10);
-            int[] array = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+            int[] array = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                    1, 1, 1, 1, 1, 1};
             addElement(array, intArrayList);
-            Assertions.assertArrayEquals(new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, intArrayList.toArray());
+            Assertions.assertArrayEquals(new int[]{1, 1, 1, 1, 1, 1, 1,
+                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, intArrayList.toArray());
         }
     }
 
@@ -175,13 +177,13 @@ class IntArrayListTest {
         }
     }
 
-    public static void addElement(int[] x, IntArrayList intArrayList) {
+    private static void addElement(int[] x, IntArrayList intArrayList) {
         for (int j : x) {
             intArrayList.add(j);
         }
     }
 
-    public static void checkElement(IntArrayList intArrayList, IntArrayList intArrayListSecond) {
+    private static void checkElement(IntArrayList intArrayList, IntArrayList intArrayListSecond) {
         for (int i = 0; i < intArrayList.size(); i++) {
             Assertions.assertEquals(intArrayListSecond.get(i), intArrayList.get(i));
         }

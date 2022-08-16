@@ -13,7 +13,8 @@ class BookTest {
         @Test
         public void shouldReturnStringWhenObjectIsNotEmpty() {
             Book book = new Book(1, "Title", 100, "Author", 10);
-            Assertions.assertEquals("Book{Item{id=1, title='Title', price=100}, author='Author', pages=10}", book.toString());
+            Assertions.assertEquals("Book{Item{id=1, title='Title', price=100},"
+                    + " author='Author', pages=10}", book.toString());
         }
     }
 

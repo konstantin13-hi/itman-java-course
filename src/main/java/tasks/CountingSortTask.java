@@ -3,13 +3,12 @@ package tasks;
 public class CountingSortTask {
 
     /**
-     * It counts how many times each element occurs
-     * <p>
+     * It counts how many times each element occurs.
      * m=the maximum element
      * n=amount of elements
      *
-     * @param array
-     * @return
+     * @param array the first term
+     * @return array
      * @cpu O(n)
      * @ram O(m)
      */
@@ -32,8 +31,7 @@ public class CountingSortTask {
     }
 
     /**
-     * Fetches elements in sorted order
-     * <p>
+     * Fetches elements in sorted order.
      * n=amount of the elements
      * k=sum of elements
      *
@@ -61,7 +59,7 @@ public class CountingSortTask {
     }
 
     /**
-     * Sorting elements of array
+     * Sorting elements of array.
      * m=the maximum element
      * n=amount of elements
      *

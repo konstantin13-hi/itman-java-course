@@ -143,7 +143,7 @@ class LinkedListTest {
             linkedList.addLast(10);
             linkedList.addLast(9);
             linkedList.addLast(8);
-            LinkedList linkedList1 = new LinkedList(linkedList);
+            final LinkedList linkedList1 = new LinkedList(linkedList);
             linkedList.removeLast();
             linkedList.removeLast();
             linkedList.removeLast();
