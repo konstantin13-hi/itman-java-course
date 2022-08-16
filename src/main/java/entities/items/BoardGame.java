@@ -28,12 +28,14 @@ public class BoardGame extends Game {
     public String toString() {
         return "BoardGame{" + super.toString() + ", timeMin=" + timeMin + ", timeMax=" + timeMax + "}";
     }
+
     /**
      * Equals two objects
-     * @cpu O(1)
-     * @ram O(1)
+     *
      * @param obj the first term
      * @return result of equals two objects
+     * @cpu O(1)
+     * @ram O(1)
      */
 
 

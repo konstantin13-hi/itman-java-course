@@ -13,15 +13,15 @@ public class VideoGame extends Game {
     public String getPlatform() {
         return platform;
     }
+
     /**
      * Returns string with data about item
-     *
+     * <p>
      * n=title length
      *
+     * @return string
      * @cpu O(n)
      * @ram O(n)
-     *
-     * @return string
      */
 
     public String toString() {

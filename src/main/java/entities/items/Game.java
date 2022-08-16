@@ -19,22 +19,23 @@ public class Game extends Item {
         this.playersMin = playersMin;
         this.playersMax = playersMax;
     }
+
     /**
      * Returns string with data about item
-     *
+     * <p>
      * n=title length
      *
+     * @return string
      * @cpu O(n)
      * @ram O(n)
-     *
-     * @return string
      */
 
     public String toString() {
         return "Game{" + super.toString() + ", playersMin=" + playersMin + ", playersMax=" + playersMax + "}";
     }
-    public boolean equals(Object obj){
-        if(obj==null){
+
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
         return Objects.equals(this, obj);

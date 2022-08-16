@@ -28,13 +28,12 @@ public class Item {
 
     /**
      * Returns string with data about item
-     *
+     * <p>
      * n=title length
      *
+     * @return string
      * @cpu O(n)
      * @ram O(n)
-     *
-     * @return string
      */
 
     public String toString() {
@@ -43,10 +42,11 @@ public class Item {
 
     /**
      * Equals two objects
-     * @cpu O(1)
-     * @ram O(1)
+     *
      * @param obj the first term
      * @return result of equals two objects
+     * @cpu O(1)
+     * @ram O(1)
      */
 
     public boolean equals(Object obj) {
