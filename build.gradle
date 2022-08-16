@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'idea'
+    id 'checkstyle'
 }
 
 group 'by.itman'
@@ -15,6 +16,11 @@ repositories {
 test {
     jvmArgs = ["-Duser.timezone=UTC", "-Duser.language=en"]
     useJUnitPlatform()
+}
+
+checkstyle {
+    toolVersion '9.2'
+    maxWarnings(0)
 }
 
 dependencies {  
