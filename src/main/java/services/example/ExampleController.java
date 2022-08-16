@@ -14,10 +14,9 @@ public class ExampleController {
     /**
      * Return string with text:"I'm your first web-service"
      *
+     * @return string with text:"I'm your first web-service"
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return string with text:"I'm your first web-service"
      */
     @GetMapping("/")
     public String index() {
@@ -27,10 +26,9 @@ public class ExampleController {
     /**
      * Return string with text: "I'm the second binding"
      *
+     * @return string with text: "I'm the second binding"
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return string with text: "I'm the second binding"
      */
     @GetMapping("/second")
     public String indexSecond() {
@@ -40,10 +38,9 @@ public class ExampleController {
     /**
      * Return string with text:"I'm post mapping"
      *
+     * @return string with text:"I'm post mapping"
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return string with text:"I'm post mapping"
      */
 
     @PostMapping("/second")
@@ -54,10 +51,9 @@ public class ExampleController {
     /**
      * Return string with text:"I'm put mapping"
      *
+     * @return string with text:"I'm put mapping"
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return string with text:"I'm put mapping"
      */
 
     @PutMapping("/second")
@@ -68,10 +64,9 @@ public class ExampleController {
     /**
      * Return string with text:"I'm patch mapping"
      *
+     * @return string with text:"I'm patch mapping"
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return string with text:"I'm patch mapping"
      */
     @PatchMapping("/second")
     public String indexPatch() {
@@ -81,10 +76,9 @@ public class ExampleController {
     /**
      * Return string with text:"I'm delete mapping"
      *
+     * @return string with text:"I'm delete mapping"
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return string with text:"I'm delete mapping"
      */
     @DeleteMapping("/second")
     public String indexDelete() {
@@ -93,22 +87,21 @@ public class ExampleController {
 
     /**
      * Returns data from URI and request body
-     *
+     * <p>
      * n=amount of letters in string pathVariable
      * m= amount of letters in string required
      * k=amount of letters in string optional
      * l=amount of letters in string body
      *
-     * @cpu 0(n+m+k+l)
-     * @ram 0(n+m+k+l)
-     *
-     * @param pathVariable contains some string
+     * @param pathVariable   contains some string
      * @param secondVariable contains some number
-     * @param required contains some string
-     * @param optional contains some string
-     * @param defaultValue contains some number
-     * @param body contains some string
+     * @param required       contains some string
+     * @param optional       contains some string
+     * @param defaultValue   contains some number
+     * @param body           contains some string
      * @return data from URI and request body
+     * @cpu 0(n + m + k + l)
+     * @ram 0(n + m + k + l)
      */
     @PostMapping("/extract/{pathVariable}/{second}")
     public String extract(@PathVariable String pathVariable,
@@ -127,39 +120,39 @@ public class ExampleController {
 
     /**
      * Return numbers from firstVariable to secondVariable
-     *
+     * <p>
      * n= difference between secondVariable and firstVariable
      *
-     * @cpu 0(n)
-     * @ram 0(n)
-     * @param firstVariable the number from which the return of numbers begins
+     * @param firstVariable  the number from which the return of numbers begins
      * @param secondVariable the number up to which the numbers are returned
      * @return numbers from firstVariable to secondVariable
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     @GetMapping("/api/range")
     public String indexApi(@RequestParam(name = "from") int firstVariable,
                            @RequestParam(name = "to") int secondVariable) {
-        return stringBuilder(firstVariable,secondVariable);
+        return stringBuilder(firstVariable, secondVariable);
     }
 
     /**
      * Return numbers from firstVariable to secondVariable
-     *
+     * <p>
      * n= difference between secondVariable and firstVariable
      *
-     * @cpu 0(n)
-     * @ram 0(n)
-     * @param firstVariable the number from which the return of numbers begins
+     * @param firstVariable  the number from which the return of numbers begins
      * @param secondVariable the number up to which the numbers are returned
      * @return numbers from firstVariable to secondVariable
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     @GetMapping("/api/range/{FROM}/{TO}")
     public String indexApiSecond(@PathVariable(name = "FROM") int firstVariable,
                                  @PathVariable(name = "TO") int secondVariable) {
-        return stringBuilder(firstVariable,secondVariable);
+        return stringBuilder(firstVariable, secondVariable);
     }
 
-    public String stringBuilder(int firstParam,int secondParam){
+    public String stringBuilder(int firstParam, int secondParam) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = firstParam; i < secondParam; i++) {
             stringBuilder.append(i).append("\n");

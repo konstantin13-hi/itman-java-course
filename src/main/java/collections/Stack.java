@@ -8,7 +8,6 @@ public class Stack {
      *
      * @cpu 0(1)
      * @ram O(1)
-     *
      */
     public Stack() {
         intArrayList = new IntArrayList();
@@ -17,10 +16,9 @@ public class Stack {
     /**
      * Add element in the stack
      *
+     * @param element the first term
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @param element the first term
      */
     public void push(int element) {
         intArrayList.add(element);
@@ -29,10 +27,9 @@ public class Stack {
     /**
      * Get element from stack
      *
+     * @return Get element from stack
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return Get element from stack
      */
     public int peek() {
         return intArrayList.get(intArrayList.size() - 1);
@@ -41,10 +38,9 @@ public class Stack {
     /**
      * Delete element from stack
      *
+     * @return
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return
      */
     public int pop() {
         return intArrayList.remove(intArrayList.size() - 1);
@@ -54,10 +50,9 @@ public class Stack {
     /**
      * Check size of stack
      *
+     * @return size of stack
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return size of stack
      */
     public int size() {
         return intArrayList.size();
@@ -66,10 +61,9 @@ public class Stack {
     /**
      * Check stack empty or not
      *
+     * @return of checking
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return of checking
      */
     public boolean isEmpty() {
         return intArrayList.size() == 0;
@@ -78,10 +72,9 @@ public class Stack {
     /**
      * Create array of elements
      *
+     * @return array of elements
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return array of elements
      */
     public int[] toArray() {
         return intArrayList.toArray();

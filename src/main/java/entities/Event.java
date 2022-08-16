@@ -15,8 +15,9 @@ public class Event {
         this.month = month;
         this.name = name;
     }
-    public Event(int id, int year, int month, int day, String name){
-        this.id=id;
+
+    public Event(int id, int year, int month, int day, String name) {
+        this.id = id;
         this.day = day;
         this.year = year;
         this.month = month;
@@ -48,28 +49,26 @@ public class Event {
 
     /**
      * Create the string
-     *
+     * <p>
      * n=amount of letters in string getName
      *
+     * @return string
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return string
      */
     public String toString() {
-        return "Event{id="+getId()+", year=" + getYear() + ", month=" + getMonth() + ", day=" + getDay() + ", name=" + "'" + getName() + "'" + "}";
+        return "Event{id=" + getId() + ", year=" + getYear() + ", month=" + getMonth() + ", day=" + getDay() + ", name=" + "'" + getName() + "'" + "}";
     }
 
     /**
      * Make a compare between two events
-     *
+     * <p>
      * n=name.length
-     *
-     * @cpu 0(n)
-     * @ram 0(1)
      *
      * @param obj the first term
      * @return result of  compare
+     * @cpu 0(n)
+     * @ram 0(1)
      */
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -89,13 +88,10 @@ public class Event {
     /**
      * Compare two events
      *
-     *
+     * @param that the first term
+     * @return number
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @param that the first term
-     *
-     * @return number
      */
     public int compareTo(Event that) {
         int number;

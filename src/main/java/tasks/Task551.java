@@ -45,10 +45,9 @@ public class Task551 {
     /**
      * Returns list with elements 12, 99, 37
      *
+     * @return node
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @return node
      */
     public static Node buildLinkedList() {
         Node nodeThird = new Node(37, null, null);

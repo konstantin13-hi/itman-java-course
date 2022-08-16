@@ -41,11 +41,10 @@ public class QueueManagementSystemUtils {
     /**
      * Calculate median tickets
      *
-     * @cpu 0(nlog(n))
-     * @ram 0(n)
-     *
      * @param systems the first term
      * @return result median tickets
+     * @cpu 0(nlog ( n))
+     * @ram 0(n)
      */
     public static double calcMedianVisits(QueueManagementSystem[] systems) {
         if (systems.length == 0) {
@@ -69,11 +68,10 @@ public class QueueManagementSystemUtils {
      * n=amount of systems
      * m=amount of most business days
      *
-     * @cpu 0(n*m)
-     * @ram 0(m)
-     *
      * @param
      * @return
+     * @cpu 0(n * m)
+     * @ram 0(m)
      */
     private static int[] calcLevel(IntArrayList[] intArrayLists) {
         int[] arrayDays = new int[sizeForLength(intArrayLists)];
@@ -88,15 +86,12 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     *
      * n=amount of systems
      * m=amount of most business days
      *
-     * @cpu 0(n*m)
-     * @ram 0(m)
-     *
-     *
      * @return
+     * @cpu 0(n * m)
+     * @ram 0(m)
      */
     private static int[] calcTicketsForDifferentDays(IntArrayList[] intArrayLists) {
         int[] arrayDaysWithTickets = new int[sizeForLength(intArrayLists)];
@@ -111,15 +106,13 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     *
      * n=amount of systems
      * m=amount of most business days
      *
-     * @cpu 0(n)
-     * @ram 0(1)
-     *
      * @param intArrayLists
      * @return
+     * @cpu 0(n)
+     * @ram 0(1)
      */
     private static int sizeForLength(IntArrayList[] intArrayLists) {
         int max = 0;
@@ -135,11 +128,10 @@ public class QueueManagementSystemUtils {
      * n=amount of systems
      * m=amount of most business days
      *
-     * @cpu 0(n*m)
-     * @ram 0(m)
-     *
      * @param
      * @return
+     * @cpu 0(n * m)
+     * @ram 0(m)
      */
     private static double[] getAverage(IntArrayList[] intArrayLists) {
         int[] arrayAllTickets = calcTicketsForDifferentDays(intArrayLists);
@@ -152,10 +144,10 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     * @cpu 0 (n*m)
-     * @ram 0(m)
      * @param
      * @return
+     * @cpu 0 (n*m)
+     * @ram 0(m)
      */
 
     private static int[] getMin(IntArrayList[] intArrayLists) {
@@ -176,10 +168,10 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     * @cpu 0 (n*m))
-     * @ram 0(m)
      * @param
      * @return
+     * @cpu 0 (n*m))
+     * @ram 0(m)
      */
     private static int[] getMax(IntArrayList[] intArrayLists) {
         int[] arrayDaysMin = new int[sizeForLength(intArrayLists)];
@@ -199,11 +191,10 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     *
-     * @cpu 0(nlog(n))
-     * @ram 0(n)
      * @param array
      * @return
+     * @cpu 0(nlog ( n))
+     * @ram 0(n)
      */
     private static double sortTickets(int[] array) {
         double result;
@@ -218,10 +209,10 @@ public class QueueManagementSystemUtils {
     }
 
     /**
-     * @cpu 0(m*nlog(n))
-     * @ram 0(m+n)
      * @param
      * @return
+     * @cpu 0(m * nlog ( n))
+     * @ram 0(m + n)
      */
     private static double[] getMedian(IntArrayList[] intArrayLists) {
         double[] arrayDays = new double[sizeForLength(intArrayLists)];
@@ -243,15 +234,14 @@ public class QueueManagementSystemUtils {
 
     /**
      * Calculate statistic days
-     *
+     * <p>
      * n=amount of systems
      * m=amount of most business days
      *
-     * @cpu 0(n*m+(m*nlog(n))=m*n*log(n)
-     * @ram 0(n*m)
-     *
      * @param systems the first term
      * @return array of statistics all days
+     * @cpu 0(n * m + ( m * nlog ( n))=m*n*log(n)
+     * @ram 0(n * m)
      */
     public static Statistic[] calcStatisticByDays(QueueManagementSystem[] systems) {
         IntArrayList[] intArrayList = new IntArrayList[systems.length];

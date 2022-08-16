@@ -8,11 +8,10 @@ public class Task439 {
     /**
      * Find the element of array  which have the biggest date.
      *
-     * @cpu O(n)
-     * @ram O(1)
-     *
      * @param events the first term
      * @return one element of array  which have the biggest date.
+     * @cpu O(n)
+     * @ram O(1)
      */
     public static Event findLast(Event[] events) {
         if (events.length == 0) {

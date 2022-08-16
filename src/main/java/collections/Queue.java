@@ -2,64 +2,58 @@ package collections;
 
 public interface Queue {
     /**
-     *
      * Inserts the specified element into the queue
      *
+     * @param element the first term
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @param element the first term
      */
     void offer(Object element);
 
     /**
      * Returns the head of the queue
      *
+     * @return first element
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @return first element
      */
     Object peek();
 
     /**
      * Returns and removes the head of the queue
      *
+     * @return first element
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @return first element
      */
     Object poll();
 
     /**
      * Return size
      *
+     * @return size
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return size
      */
     int size();
 
     /**
      * Check list empty or not
      *
+     * @return result
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return result
      */
     boolean isEmpty();
 
     /**
      * Return array containing elements
-     *
+     * <p>
      * n=logicalSize;
-     * @cpu O(n)
-     * @ram O(n)
      *
      * @return array
+     * @cpu O(n)
+     * @ram O(n)
      */
     Object[] toArray();
 }

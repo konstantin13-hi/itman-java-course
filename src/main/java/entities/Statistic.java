@@ -44,10 +44,9 @@ public class Statistic {
     /**
      * Create the string
      *
+     * @return string
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return string
      */
     public String toString() {
         return "Statistic{min=" + min + ", max=" + max + ", count=" + count + ", average=" + average + ", median=" + median + "}";
@@ -56,12 +55,10 @@ public class Statistic {
     /**
      * Make a compare between two statics
      *
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
-     *
      * @param obj the first
      * @return result of compare
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public boolean equals(Object obj) {
         if (obj == null) {

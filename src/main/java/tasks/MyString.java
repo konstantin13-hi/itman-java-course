@@ -9,10 +9,9 @@ public class MyString {
     /**
      * Setting elements of char
      *
+     * @param a the first term
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @param a the first term
      */
     public MyString(char[] a) {
         char[] b = new char[a.length];
@@ -22,13 +21,12 @@ public class MyString {
 
     /**
      * Create a string
-     *
+     * <p>
      * n=amount 0f elements in chars
      *
+     * @return new string
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return new string
      */
     public String toString() {
         return new String(chars);
@@ -37,10 +35,9 @@ public class MyString {
     /**
      * Find a length
      *
+     * @return length of array
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return length of array
      */
 
     public int length() {
@@ -50,11 +47,10 @@ public class MyString {
     /**
      * Find char
      *
-     * @cpu 0(1)
-     * @ram 0(1)
-     *
      * @param index the first term
      * @return index from array
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public char charAt(int index) {
         return chars[index];
@@ -62,14 +58,13 @@ public class MyString {
 
     /**
      * Make a lexicographically compare between two strings
-     *
+     * <p>
      * n=that.length
      *
+     * @param that the first term
+     * @return result
      * @cpu 0(n)
      * @ram 0(1)
-     * @param that the first term
-     *
-     * @return result
      */
     public int compareTo(MyString that) {
         int result = 0;
@@ -97,14 +92,13 @@ public class MyString {
 
     /**
      * Make a compare between two strings
-     *
+     * <p>
      * n=that.length
-     *
-     * @cpu 0(n)
-     * @ram 0(1)
      *
      * @param obj first term
      * @return result of sameness
+     * @cpu 0(n)
+     * @ram 0(1)
      */
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -124,12 +118,11 @@ public class MyString {
     /**
      * Make a concatenation
      *
-     * @cpu O(n+m)
-     * @ram o(n+m)
-     *
      * @param a the first term
      * @param b the second term
      * @return
+     * @cpu O(n + m)
+     * @ram o(n + m)
      */
     public static MyString plus(MyString a, MyString b) {
         char[] twoChars = new char[a.length() + b.length()];/// 1 2 3     4 5 6
@@ -139,32 +132,30 @@ public class MyString {
     }
 
     /**
-     *Create new a variable containing two chars
-     *
+     * Create new a variable containing two chars
+     * <p>
      * n=amount of elements chars in variable chars
      * m=amount of elements chars in variable that
      *
-     * @cpu 0(n+m)
-     * @ram 0(n+m)
-     *
      * @param that the first term
      * @return result of two chars
+     * @cpu 0(n + m)
+     * @ram 0(n + m)
      */
     public MyString plus(MyString that) {
         return MyString.plus(this, that);
     }
 
     /**
-     *Make a replacement target in chars
-     *
+     * Make a replacement target in chars
+     * <p>
      * n=amount of elements chars in variable chars
      *
-     * @cpu 0(n)
-     * @ram 0(n)
-     *
-     * @param target the first term
+     * @param target      the first term
      * @param replacement the second term
      * @return result replacement of chars
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     public MyString replace(char target, char replacement) {
         char a = target;
@@ -178,8 +169,6 @@ public class MyString {
         }
         return new MyString(newChar);
     }
-
-
 
 
 }

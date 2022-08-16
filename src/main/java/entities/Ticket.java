@@ -22,10 +22,9 @@ public class Ticket {
     /**
      * Create string which consists information
      *
+     * @return new string
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return new string
      */
 
     public String toString() {
@@ -33,13 +32,12 @@ public class Ticket {
     }
 
     /**
-     *Equal between two tickets
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Equal between two tickets
      *
      * @param obj the first term
      * @return result comparison
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public boolean equals(Object obj) {
         if (obj == null) {

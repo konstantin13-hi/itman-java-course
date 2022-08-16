@@ -4,13 +4,12 @@ import collections.IntArrayList;
 import collections.LinkedQueue;
 import entities.Ticket;
 
-public class QueueManagementSystem  {
+public class QueueManagementSystem {
     private IntArrayList intArrayList;
     private int currentNumberOfTicket;
     private int numberOfTicketsTheLastDays;
     private String place;
     private LinkedQueue linkedQueue;
-
 
 
     /**
@@ -68,13 +67,12 @@ public class QueueManagementSystem  {
 
     /**
      * Returns current queue
-     *
+     * <p>
      * n=queue length
      *
+     * @return current queue
      * @cpu O(n)
      * @ram O(n)
-     *
-     * @return current queue
      */
 
     public Ticket[] getCurrentQueue() {
@@ -90,10 +88,9 @@ public class QueueManagementSystem  {
     /**
      * Returns ticket from head of queue
      *
+     * @return ticket from head of queue
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @return ticket from head of queue
      */
 
     public Ticket callNext() {

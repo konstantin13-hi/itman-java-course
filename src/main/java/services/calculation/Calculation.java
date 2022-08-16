@@ -27,6 +27,7 @@ public class Calculation {
                 return x / y;
             }
         };
+
         public abstract int action(int x, int y);
     }
 }

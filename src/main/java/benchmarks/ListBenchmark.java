@@ -67,11 +67,10 @@ public class ListBenchmark {
     /**
      * Create array list
      *
-     * @cpu O(n)
-     * @ram O(n)
-     *
      * @param length
      * @return the first term
+     * @cpu O(n)
+     * @ram O(n)
      */
 
     //350

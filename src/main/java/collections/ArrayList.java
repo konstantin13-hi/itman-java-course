@@ -19,21 +19,20 @@ public class ArrayList implements List {
     /**
      * Create array
      *
+     * @param capacity the first term
      * @cpu 0(1)
      * @ram 0(n)
-     *
-     * @param capacity the first term
      */
     public ArrayList(int capacity) {
         objects = new Object[capacity];
     }
+
     /**
      * Add element
      *
+     * @param element the term
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @param element the term
      */
     public void add(Object element) {
         if (logicalSize == objects.length) {
@@ -44,52 +43,53 @@ public class ArrayList implements List {
         objects[logicalSize] = element;
         logicalSize++;
     }
+
     /**
      * Set element
      *
+     * @param index   the first term
+     * @param element the second term
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @param index the first term
-     * @param element the second term
      */
 
     public void set(int index, Object element) {
         objects[index] = element;
     }
+
     /**
      * Get index
      *
-     * @cpu 0(1)
-     * @ram 0(1)
      * @param index the first term
      * @return number from arraylist
+     * @cpu 0(1)
+     * @ram 0(1)
      */
 
     public Object get(int index) {
         return objects[index];
     }
+
     /**
      * Find size
      *
+     * @return size
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return size
      */
 
     public int size() {
         return logicalSize;
     }
+
     /**
      * Create array of numbers
-     *
+     * <p>
      * n=logicalSize
      *
+     * @return new array
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return new array
      */
 
     public Object[] toArray() {
@@ -97,16 +97,16 @@ public class ArrayList implements List {
         System.arraycopy(objects, 0, newObject, 0, logicalSize);
         return newObject;
     }
+
     /**
      * Remove element
-     *
+     * <p>
      * n=size
-     *
-     * @cpu 0(n)
-     * @ram 0(1)
      *
      * @param index the first term
      * @return new array without one element
+     * @cpu 0(n)
+     * @ram 0(1)
      */
 
     public Object remove(int index) {
@@ -117,14 +117,14 @@ public class ArrayList implements List {
         logicalSize--;
         return object;
     }
+
     /**
      * Create an arraylist
      *
-     * @cpu 0(n)
-     * @ram 0(n)
-     *
      * @param elements the first term
      * @return new arraylist
+     * @cpu 0(n)
+     * @ram 0(n)
      */
 
     public static ArrayList of(Object... elements) {
@@ -140,15 +140,15 @@ public class ArrayList implements List {
         }
         return arrayList;
     }
+
     /**
      * Create array of numbers
-     *
+     * <p>
      * n=logicalSize
      *
+     * @return new array
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return new array
      */
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -166,17 +166,16 @@ public class ArrayList implements List {
         stringBuilder.append(']');
         return stringBuilder.toString();
     }
+
     /**
      * Make a compare between of two arraylists
-     *
+     * <p>
      * n=logicalSize
      *
+     * @param that the first term
+     * @return result
      * @cpu 0(n)
      * @ram 0(1)
-     *
-     * @param that the first term
-     *
-     * @return result
      */
     public boolean equals(Object that) {
         if (that == null || this.getClass() != that.getClass() || this.logicalSize != ((ArrayList) that).logicalSize) {

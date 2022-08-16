@@ -22,14 +22,12 @@ public class ArrayListCalendar {
 
     /**
      * Create array events with length equals capacity
-     *
+     * <p>
      * n=input number
      *
+     * @param capacity the first term
      * @cpu O(1)
      * @ram O(n)
-     *
-     *
-     * @param capacity the first term
      */
     public ArrayListCalendar(int capacity) {
         events = new Event[capacity];
@@ -37,28 +35,26 @@ public class ArrayListCalendar {
 
     /**
      * Create array with special length
-     *
+     * <p>
      * n=that.size
      *
+     * @param that the first term
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @param that the first term
      */
     public ArrayListCalendar(ArrayListCalendar that) {
         logicalSize = that.logicalSize;
-        Event [] arraySecond = new Event[that.logicalSize];
+        Event[] arraySecond = new Event[that.logicalSize];
         System.arraycopy(that.events, 0, arraySecond, 0, that.logicalSize);
         events = arraySecond;
     }
 
     /**
-     *Add Event
-     *
-     * @cpu O(1)
-     * @ram O(1)
+     * Add Event
      *
      * @param a the first term
+     * @cpu O(1)
+     * @ram O(1)
      */
     public void addEvent(Event a) {
         if (logicalSize == events.length) {
@@ -66,18 +62,17 @@ public class ArrayListCalendar {
             System.arraycopy(events, 0, newEvents, 0, logicalSize);
             events = newEvents;
         }
-        events[logicalSize++] = new Event(1+id++, a.getYear(), a.getMonth(), a.getDay(), a.getName());
+        events[logicalSize++] = new Event(1 + id++, a.getYear(), a.getMonth(), a.getDay(), a.getName());
     }
 
     /**
-     *Deleting an event by id
-     *
+     * Deleting an event by id
+     * <p>
      * n=length array of events
      *
+     * @param id the first term
      * @cpu O(n)
      * @ram O(1)
-     *
-     * @param id the first term
      */
     public void deleteEvent(int id) {
         for (int i = id; i < events.length; i++) {
@@ -90,11 +85,10 @@ public class ArrayListCalendar {
     /**
      * event replacement by id
      *
+     * @param id id by which there will  change  event
+     * @param a  event
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @param id id by which there will  change  event
-     * @param a event
      */
     public void changeEvent(int id, Event a) {
         events[id] = new Event(id, a.getDay(), a.getMonth(), a.getYear(), a.getName());
@@ -107,10 +101,10 @@ public class ArrayListCalendar {
      * f=amount of elements in the array
      * l=sum of two length name
      * k=length of string
-     * @cpu O(n+f*log(f)*k)=n*log(n)*k
-     * @ram O(n+f*l)=n*l
      *
      * @return all events
+     * @cpu O(n + f * log ( f)*k)=n*log(n)*k
+     * @ram O(n + f * l)=n*l
      */
     public Event[] returnAllEvents() {
         Event[] newEvent = toArray();
@@ -125,10 +119,11 @@ public class ArrayListCalendar {
      * f=amount of elements in the array
      * l=sum of two length name
      * k=length of string
-     * @cpu O(n+m+f*log(f)*k)=n*log(n)*k
-     * @ram O(n+m+f*l)=n*l
+     *
      * @param year the first term
      * @return string containing events with a year equal to the input parameter
+     * @cpu O(n + m + f * log ( f)*k)=n*log(n)*k
+     * @ram O(n + m + f * l)=n*l
      */
     public Event[] returnEventsYear(int year) {
         Event[] newEvent = toArray();
@@ -158,11 +153,12 @@ public class ArrayListCalendar {
      * f=amount of elements in the array
      * l=sum of two length name
      * k=length of string
-     * @cpu O(n+m+f*log(f)*k)=n*log(n)*k
-     * @ram O(n+m+f*l)=n*l
-     * @param year the first term
+     *
+     * @param year  the first term
      * @param month the second term
      * @return string contains event with parameters year, month
+     * @cpu O(n + m + f * log ( f)*k)=n*log(n)*k
+     * @ram O(n + m + f * l)=n*l
      */
 
     public Event[] returnEventsYearAndMonth(int year, int month) {
@@ -191,13 +187,13 @@ public class ArrayListCalendar {
      * f=amount of elements in the array
      * l=sum of two length name
      * k=length of string
-     * @cpu O(n+m+f*log(f)*k)=n*log(n)*k
-     * @ram O(n+m+f*l)=n*l
      *
-     * @param year the first term says about which year need
+     * @param year  the first term says about which year need
      * @param month the second says about which month need
-     * @param day the third term says about which day need
+     * @param day   the third term says about which day need
      * @return string contains event with parameters year, month ,day
+     * @cpu O(n + m + f * log ( f)*k)=n*log(n)*k
+     * @ram O(n + m + f * l)=n*l
      */
 
     public Event[] returnEventsYearAndMonthDay(int year, int month, int day) {
@@ -221,13 +217,12 @@ public class ArrayListCalendar {
 
     /**
      * Create array of numbers
-     *
+     * <p>
      * n=logicalSize
      *
+     * @return new array
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return new array
      */
     public Event[] toArray() {
         Event[] newEvent = new Event[logicalSize];
@@ -237,28 +232,30 @@ public class ArrayListCalendar {
 
     /**
      * Make merge sort
-     *
+     * <p>
      * n=amount of elements in the array
      * k=length of string
      * l=sum of two length name
-     * @cpu O(nlog(n)*k)
-     * @ram O(n*l)
      *
      * @param events the first term
+     * @cpu O(nlog ( n)*k)
+     * @ram O(n * l)
      */
     public static void mergeSort(Event[] events) {
         ArrayListCalendar.mergeSort(events, 0, events.length);
     }
+
     /**
      * Merge sort
      * n=index differences between start and end
      * k=length of string
      * l=sum of two length name
-     * @cpu O(nlog(n)*k)
-     * @ram O(n*l)
-     * @param array the first array variable
+     *
+     * @param array     the first array variable
      * @param fromIndex the index of the first array, indicating the start of the sort
-     * @param toIndex the index of the first array indicating the end of the sort
+     * @param toIndex   the index of the first array indicating the end of the sort
+     * @cpu O(nlog ( n)*k)
+     * @ram O(n * l)
      */
     public static void mergeSort(Event[] array, int fromIndex, int toIndex) {
         Event[] t = new Event[array.length];
@@ -279,23 +276,22 @@ public class ArrayListCalendar {
 
     /**
      * Merge two arrays with sorted elements
-     *
+     * <p>
      * n=differences between start and end index of the first array
      * m=differences between start and end index of the second array
      * l=sum of two length name
      * k=length of string
-     * @cpu O((n+m)k)
-     * @ram O(l)
      *
-     * @param a the first array variable
+     * @param a     the first array variable
      * @param aFrom the index of the first array, indicating the start of the sort
-     * @param aTo the index of the first array indicating the end of the sort
-     * @param b the second array variable
+     * @param aTo   the index of the first array indicating the end of the sort
+     * @param b     the second array variable
      * @param bFrom the index of the second array, indicating the start of the sort
-     * @param bTo the index of the second array indicating the end of the sort
-     * @param r the third array variable,where the first two arrays are merged and the elements are sorted
+     * @param bTo   the index of the second array indicating the end of the sort
+     * @param r     the third array variable,where the first two arrays are merged and the elements are sorted
      * @param rFrom the index of the third array, indicating the start of the sort
-     *
+     * @cpu O(( n + m)k)
+     * @ram O(l)
      */
     public static void merge(Event[] a, int aFrom, int aTo, Event[] b, int bFrom, int bTo, Event[] r, int rFrom) {
         int limit = aTo - aFrom + bTo - bFrom;
@@ -318,19 +314,18 @@ public class ArrayListCalendar {
     /**
      * Compares two string of  objects (a, b) given as parameters
      * It returns the value:
-     *  0: if (firstName==secondName)
+     * 0: if (firstName==secondName)
      * -1: if (firstName < secondName)
-     *  1: if (firstName > secondName)
-     *
-     *  n=amount of leters of thirst event
-     *  m=amount of leters of second event
-     *
-     * @cpu O(n)
-     * @ram O(n+m)
+     * 1: if (firstName > secondName)
+     * <p>
+     * n=amount of leters of thirst event
+     * m=amount of leters of second event
      *
      * @param a the first event
      * @param b the second event
      * @return result
+     * @cpu O(n)
+     * @ram O(n + m)
      */
     public static int compareTo(Event a, Event b) {
         //null
@@ -355,14 +350,13 @@ public class ArrayListCalendar {
 
     /**
      * Create a string
-     *
+     * <p>
      * n=logicalSize
      * j=letetals in the string
      *
-     * @cpu 0(n*j)
-     * @ram 0(n*j)
-     *
      * @return new string
+     * @cpu 0(n * j)
+     * @ram 0(n * j)
      */
     public String toString(Event[] a) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -371,9 +365,9 @@ public class ArrayListCalendar {
         }
         stringBuilder.append("[");
         for (int i = 0; i < a.length; i++) {
-            if (i!=a.length-1){
-            stringBuilder.append(a[i].toString()).append(",").append('\n');}
-            else {
+            if (i != a.length - 1) {
+                stringBuilder.append(a[i].toString()).append(",").append('\n');
+            } else {
                 stringBuilder.append(a[i].toString());
             }
         }
@@ -384,10 +378,9 @@ public class ArrayListCalendar {
     /**
      * Find size
      *
+     * @return size
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return size
      */
     public int size() {
         return logicalSize;
@@ -397,10 +390,10 @@ public class ArrayListCalendar {
     /**
      * Get event
      *
-     * @cpu 0(1)
-     * @ram 0(1)
      * @param index the first term
      * @return number from arraylist
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public Event get(int index) {
         return events[index];

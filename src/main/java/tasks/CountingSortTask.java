@@ -4,15 +4,14 @@ public class CountingSortTask {
 
     /**
      * It counts how many times each element occurs
-     *
+     * <p>
      * m=the maximum element
      * n=amount of elements
      *
-     * @cpu O(n)
-     * @ram O(m)
-     *
      * @param array
      * @return
+     * @cpu O(n)
+     * @ram O(m)
      */
     public static int[] count(int[] array) {
         if (array.length == 0) {
@@ -33,17 +32,15 @@ public class CountingSortTask {
     }
 
     /**
-     *Fetches elements in sorted order
-     *
+     * Fetches elements in sorted order
+     * <p>
      * n=amount of the elements
      * k=sum of elements
      *
-     * @cpu O(n+k)
-     * @ram О(k)
-     *
      * @param array the first term
-     *
      * @return sorted array
+     * @cpu O(n + k)
+     * @ram О(k)
      */
     // 0 1 0 0 6 0 0 0 10
     public static int[] restore(int[] array) {
@@ -68,10 +65,9 @@ public class CountingSortTask {
      * m=the maximum element
      * n=amount of elements
      *
-     * @cpu O(n+m)
-     * @ram 0(n+m)
-     *
      * @param array the first term
+     * @cpu O(n + m)
+     * @ram 0(n + m)
      */
     public static void sort(int[] array) {
         int[] restore = count(array);

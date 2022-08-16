@@ -3,7 +3,7 @@ package collections;
 
 import java.util.Objects;
 
-public class LinkedList implements List,Queue {
+public class LinkedList implements List, Queue {
 
     private Node head;
     private Node prev;
@@ -46,17 +46,17 @@ public class LinkedList implements List,Queue {
 
     }
 
-    public LinkedList() {}
+    public LinkedList() {
+    }
 
     /**
      * Create an arraylist
-     *
+     * <p>
      * n=logicalSize of that list
      *
+     * @param that the first term
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @param that the first term
      */
     public LinkedList(LinkedList that) {
         Node current = that.head;
@@ -69,10 +69,9 @@ public class LinkedList implements List,Queue {
     /**
      * Add element in the front of list
      *
+     * @param element the first term
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @param element the first term
      */
     public void addFirst(Object element) {
         if (this.head == null) {
@@ -89,10 +88,9 @@ public class LinkedList implements List,Queue {
     /**
      * Return first element
      *
+     * @return element
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @return element
      */
 
     public Object getFirst() {
@@ -102,10 +100,9 @@ public class LinkedList implements List,Queue {
     /**
      * Return first element and delete him from list
      *
+     * @return first element
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @return first element
      */
     public Object removeFirst() {
         Object result = head.getElement();
@@ -117,10 +114,9 @@ public class LinkedList implements List,Queue {
     /**
      * Add element in the back of list
      *
+     * @param element the first term
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @param element the first term
      */
     public void addLast(Object element) {
         if (prev == null) {
@@ -138,10 +134,9 @@ public class LinkedList implements List,Queue {
     /**
      * Return last element from list
      *
+     * @return last element
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @return last element
      */
 
     public Object getLast() {
@@ -151,10 +146,9 @@ public class LinkedList implements List,Queue {
     /**
      * Return last element and delete him from list
      *
+     * @return last element
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @return last element
      */
 
     public Object removeLast() {
@@ -174,13 +168,12 @@ public class LinkedList implements List,Queue {
 
     /**
      * Create a string
-     *
+     * <p>
      * n=logicalSize
      *
+     * @return new string
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return new string
      */
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -201,12 +194,12 @@ public class LinkedList implements List,Queue {
 
     /**
      * Return array containing elements
-     *
+     * <p>
      * n=logicalSize;
-     * @cpu O(n)
-     * @ram O(n)
      *
      * @return array
+     * @cpu O(n)
+     * @ram O(n)
      */
     public Object[] toArray() {
         ArrayList arrayList = new ArrayList();
@@ -220,14 +213,13 @@ public class LinkedList implements List,Queue {
 
     /**
      * Create a list
-     *
+     * <p>
      * n=number of elements
-     *
-     * @cpu 0(n)
-     * @ram 0(n)
      *
      * @param elements the first term
      * @return new arraylist
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     public static LinkedList of(Object... elements) {
         LinkedList linkedList = new LinkedList();
@@ -239,15 +231,13 @@ public class LinkedList implements List,Queue {
 
     /**
      * Make a compare between of two lists
-     *
+     * <p>
      * n=logicalSize
      *
+     * @param obj the first term
+     * @return result
      * @cpu 0(n)
      * @ram 0(1)
-     *
-     * @param obj the first term
-     *
-     * @return result
      */
     public boolean equals(Object obj) {
         if (obj == null || this.getClass() != obj.getClass() || this.logicalSize != ((LinkedList) obj).logicalSize) {
@@ -269,10 +259,9 @@ public class LinkedList implements List,Queue {
     /**
      * Add element in the back of list
      *
+     * @param element the first term
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @param element the first term
      */
     @Override
     public void add(Object element) {
@@ -281,14 +270,13 @@ public class LinkedList implements List,Queue {
 
     /**
      * Set element
-     *
+     * <p>
      * n=index
      *
+     * @param index   the first term
+     * @param element the second term
      * @cpu 0(n)
      * @ram 0(1)
-     *
-     * @param index the first term
-     * @param element the second term
      */
     public void set(int index, Object element) {
         findNode(index).setElement(element);
@@ -296,14 +284,13 @@ public class LinkedList implements List,Queue {
 
     /**
      * Get index
-     *
+     * <p>
      * n=index
-     *
-     * @cpu 0(n)
-     * @ram 0(1)
      *
      * @param index the first term
      * @return number from arraylist
+     * @cpu 0(n)
+     * @ram 0(1)
      */
     public Object get(int index) {
         return findNode(index).element;
@@ -320,15 +307,13 @@ public class LinkedList implements List,Queue {
     }
 
 
-
     /**
      * Remove element
      *
-     * @cpu O(n)
-     * @ram O(1)
-     *
      * @param index the first term
      * @return deleted element from list
+     * @cpu O(n)
+     * @ram O(1)
      */
     public Object remove(int index) {
         Object result;
@@ -353,13 +338,11 @@ public class LinkedList implements List,Queue {
     }
 
     /**
-     *
      * Inserts the specified element into the queue
      *
+     * @param element the first term
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @param element the first term
      */
     @Override
     public void offer(Object element) {
@@ -370,10 +353,9 @@ public class LinkedList implements List,Queue {
     /**
      * Returns the head of the queue
      *
+     * @return first element
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @return first element
      */
     @Override
     public Object peek() {
@@ -383,10 +365,9 @@ public class LinkedList implements List,Queue {
     /**
      * Returns and removes the head of the queue
      *
+     * @return first element
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @return first element
      */
     @Override
     public Object poll() {
@@ -396,10 +377,9 @@ public class LinkedList implements List,Queue {
     /**
      * Return size
      *
+     * @return size
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return size
      */
     public int size() {
         return logicalSize;
@@ -409,10 +389,9 @@ public class LinkedList implements List,Queue {
     /**
      * Check list empty or not
      *
+     * @return result
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return result
      */
     @Override
     public boolean isEmpty() {

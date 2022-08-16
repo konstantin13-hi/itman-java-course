@@ -8,14 +8,12 @@ public class ArrayUtils {
 
     /**
      * Sort elements of array .
-     *
+     * <p>
      * n=amount of elements in array
      *
-     * @cpu O(n^2)
-     * @ram O(1)
-     *
      * @param events the first term.
-     *
+     * @cpu O(n ^ 2)
+     * @ram O(1)
      */
     public static void bubbleSort(Event[] events) {
         for (int i = 0; i < events.length; i++) {
@@ -31,13 +29,12 @@ public class ArrayUtils {
 
     /**
      * Sort elements in ascending order
-     *
+     * <p>
      * n=amount of elements in array
      *
-     * @cpu O(n^2)
-     * @ram O(1)
-     *
      * @param array the first term
+     * @cpu O(n ^ 2)
+     * @ram O(1)
      */
     public static void bubbleSort(int[] array) {
         for (int i = 0; i < array.length; i++) {
@@ -54,14 +51,13 @@ public class ArrayUtils {
 
     /**
      * Sort elements with method counting sort
-     *
+     * <p>
      * n=amount of elements in array
      * m=difference between the maximum minimum element in array
      *
-     * @cpu O(n+m)
-     * @ram O(m)
-     *
      * @param array the first term
+     * @cpu O(n + m)
+     * @ram O(m)
      */
     public static void countingSort(int[] array) {
         if (array.length != 0) {
@@ -91,15 +87,14 @@ public class ArrayUtils {
 
     /**
      * Find only unique elements in array
-     *
+     * <p>
      * n=amount of elements in array
      * m=difference between the maximum minimum element in array
      *
-     * @cpu O(n)
-     * @ram O(m+n)
      * @param array the first term
-     *
      * @return array containing only unique elements
+     * @cpu O(n)
+     * @ram O(m + n)
      */
     public static int[] distinct(int[] array) {
         int max = Integer.MIN_VALUE;
@@ -127,15 +122,14 @@ public class ArrayUtils {
 
     /**
      * Find the number that occurs the most times
-     *
+     * <p>
      * n=amount of elements in array
      * m=difference between the maximum minimum element in array
      *
-     * @cpu O(n+m)
-     * @ram O(m)
-     *
      * @param array the first term
      * @return the number that occurs the most times
+     * @cpu O(n + m)
+     * @ram O(m)
      */
     public static int mostFrequent(int[] array) {
         int max = Integer.MIN_VALUE;
@@ -168,17 +162,17 @@ public class ArrayUtils {
 
     /**
      * Find the number of elements that are contained simultaneously in two arrays
-     *
+     * <p>
      * a=amount of elements in array a
      * b=amount of elements in array b
      * k=difference between the maximum minimum element in array a
      * d=difference between the maximum minimum element in array b
-     * @cpu 0(a+b+k)
-     * @ram 0(k+d)
      *
      * @param a the first term
      * @param b the second term
      * @return the number of elements that are contained simultaneously in two arrays
+     * @cpu 0(a + b + k)
+     * @ram 0(k + d)
      */
     public static int countEquals(int[] a, int[] b) {
         int max = Integer.MIN_VALUE;
@@ -211,15 +205,14 @@ public class ArrayUtils {
 
     /**
      * Make a counting sort
-     *
+     * <p>
      * n=amount of elements in array
      * m=difference between the maximum minimum element in array
      * k= the largest repetition of events with the same index
-     * 
-     * @cpu O(n+m)
-     * @ram O(n+m)
      *
      * @param events the first term
+     * @cpu O(n + m)
+     * @ram O(n + m)
      */
     public static void countingSort(Event[] events) {
         int min = Integer.MAX_VALUE;
@@ -253,22 +246,20 @@ public class ArrayUtils {
 
     /**
      * Merge two arrays with sorted elements
-     *
+     * <p>
      * n=differences between start and end index of the first array
      * m=differences between start and end index of the second array
      *
-     * @cpu O(n+m)
-     * @ram O(1)
-     *
-     * @param a the first array variable
+     * @param a     the first array variable
      * @param aFrom the index of the first array, indicating the start of the sort
-     * @param aTo the index of the first array indicating the end of the sort
-     * @param b the second array variable
+     * @param aTo   the index of the first array indicating the end of the sort
+     * @param b     the second array variable
      * @param bFrom the index of the second array, indicating the start of the sort
-     * @param bTo the index of the second array indicating the end of the sort
-     * @param r the third array variable,where the first two arrays are merged and the elements are sorted
+     * @param bTo   the index of the second array indicating the end of the sort
+     * @param r     the third array variable,where the first two arrays are merged and the elements are sorted
      * @param rFrom the index of the third array, indicating the start of the sort
-     *
+     * @cpu O(n + m)
+     * @ram O(1)
      */
     public static void merge(int[] a, int aFrom, int aTo, int[] b, int bFrom, int bTo, int[] r, int rFrom) {
         int limit = aTo - aFrom + bTo - bFrom;
@@ -285,39 +276,39 @@ public class ArrayUtils {
 
     /**
      * Make merge sort
-     *
+     * <p>
      * n=amount of elements in the array
      *
-     * @cpu O(nlog(n))
-     * @ram O(n)
      * @param a the first term
+     * @cpu O(nlog ( n))
+     * @ram O(n)
      */
     public static void mergeSort(int[] a) {
-       ArrayUtils.mergeSort(a,0,a.length);
+        ArrayUtils.mergeSort(a, 0, a.length);
     }
 
     /**
      * Make merge sort
-     *
+     * <p>
      * n=sum of index differences between start and end
      *
-     * @cpu O(nlog(n))
-     * @ram O(n)
-     * @param array the first array variable
+     * @param array     the first array variable
      * @param fromIndex the index of the first array, indicating the start of the sort
-     * @param toIndex the index of the first array indicating the end of the sort
+     * @param toIndex   the index of the first array indicating the end of the sort
+     * @cpu O(nlog ( n))
+     * @ram O(n)
      */
     public static void mergeSort(int[] array, int fromIndex, int toIndex) {
         int[] t = new int[array.length];
         int length = toIndex - fromIndex;
         for (int k = 1; k < length; k = k * 2) {
-            for (int j = fromIndex;  j < toIndex; j += k * 2) {
-                if (j+k < toIndex && j+k*2 <= toIndex) {
-                    ArrayUtils.merge(array, j , j+k, array, j+k, j + k*2, t, j);
-                } else if (j+k < toIndex && j+k*2 > toIndex) {
-                    ArrayUtils.merge(array,j, j+k, array, j+k, toIndex, t, j);
+            for (int j = fromIndex; j < toIndex; j += k * 2) {
+                if (j + k < toIndex && j + k * 2 <= toIndex) {
+                    ArrayUtils.merge(array, j, j + k, array, j + k, j + k * 2, t, j);
+                } else if (j + k < toIndex && j + k * 2 > toIndex) {
+                    ArrayUtils.merge(array, j, j + k, array, j + k, toIndex, t, j);
                 } else {
-                    System.arraycopy(array, j, t, j, array.length-j);
+                    System.arraycopy(array, j, t, j, array.length - j);
                 }
             }
             System.arraycopy(t, fromIndex, array, fromIndex, length);
@@ -328,11 +319,12 @@ public class ArrayUtils {
     /**
      * Make merge sort
      * n=index differences between start and end
-     * @cpu O(nlog(n))
-     * @ram O(n)
-     * @param array the first array variable
+     *
+     * @param array     the first array variable
      * @param fromIndex the index of the first array, indicating the start of the sort
-     * @param toIndex the index of the first array indicating the end of the sort
+     * @param toIndex   the index of the first array indicating the end of the sort
+     * @cpu O(nlog ( n))
+     * @ram O(n)
      */
     public static void mergeSort(Event[] array, int fromIndex, int toIndex) {
         Event[] t = new Event[array.length];
@@ -341,10 +333,10 @@ public class ArrayUtils {
             for (int j = fromIndex; j < toIndex; j += k * 2) {
                 if (j + k < toIndex && j + k * 2 <= toIndex) {
                     ArrayUtils.merge(array, j, j + k, array, j + k, j + k * 2, t, j);
-                } else if (j + k < toIndex && j + k * 2 >  toIndex) {
-                    ArrayUtils.merge(array, j, j + k, array, j + k,  toIndex, t, j);
+                } else if (j + k < toIndex && j + k * 2 > toIndex) {
+                    ArrayUtils.merge(array, j, j + k, array, j + k, toIndex, t, j);
                 } else {
-                    System.arraycopy(array, j, t, j, array.length-j);
+                    System.arraycopy(array, j, t, j, array.length - j);
                 }
             }
             System.arraycopy(t, fromIndex, array, fromIndex, length);
@@ -354,36 +346,33 @@ public class ArrayUtils {
 
     /**
      * Make merge sort
-     *
+     * <p>
      * n=amount of elements in the array
      *
-     * @cpu O(nlog(n))
-     * @ram O(n)
-     *
      * @param events the first term
+     * @cpu O(nlog ( n))
+     * @ram O(n)
      */
     public static void mergeSort(Event[] events) {
-       ArrayUtils.mergeSort(events,0,events.length);
+        ArrayUtils.mergeSort(events, 0, events.length);
     }
 
     /**
      * Merge two arrays with sorted elements
-     *
+     * <p>
      * n=differences between start and end index of the first array
      * m=differences between start and end index of the second array
      *
-     * @cpu O(n+m)
-     * @ram O(1)
-     *
-     * @param a the first array variable
+     * @param a     the first array variable
      * @param aFrom the index of the first array, indicating the start of the sort
-     * @param aTo the index of the first array indicating the end of the sort
-     * @param b the second array variable
+     * @param aTo   the index of the first array indicating the end of the sort
+     * @param b     the second array variable
      * @param bFrom the index of the second array, indicating the start of the sort
-     * @param bTo the index of the second array indicating the end of the sort
-     * @param r the third array variable,where the first two arrays are merged and the elements are sorted
+     * @param bTo   the index of the second array indicating the end of the sort
+     * @param r     the third array variable,where the first two arrays are merged and the elements are sorted
      * @param rFrom the index of the third array, indicating the start of the sort
-     *
+     * @cpu O(n + m)
+     * @ram O(1)
      */
     public static void merge(Event[] a, int aFrom, int aTo, Event[] b, int bFrom, int bTo, Event[] r, int rFrom) {
         int limit = aTo - aFrom + bTo - bFrom;

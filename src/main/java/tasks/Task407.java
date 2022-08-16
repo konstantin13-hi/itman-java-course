@@ -5,11 +5,10 @@ public class Task407 {
     /**
      * Sort rows of array .
      *
-     * @cpu O(n*m+n^2)
-     * @ram O(n)
-     *
      * @param matrix the first term
      * @return sorted rows of array .
+     * @cpu O(n * m + n ^ 2)
+     * @ram O(n)
      */
     public static void sortMatrixRowsDesc(int[][] matrix) {
         int[] a = new int[matrix.length];

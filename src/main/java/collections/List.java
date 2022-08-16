@@ -5,68 +5,63 @@ public interface List {
     /**
      * Add element in the back of list
      *
+     * @param element the first term
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @param element the first term
      */
     void add(Object element);
 
     /**
      * Set element
-     *
+     * <p>
      * n=index
      *
+     * @param index   the first term
+     * @param element the second term
      * @cpu 0(n)
      * @ram 0(1)
-     *
-     * @param index the first term
-     * @param element the second term
      */
     void set(int index, Object element);
 
     /**
      * Get index
-     *
+     * <p>
      * n=index
-     *
-     * @cpu 0(n)
-     * @ram 0(1)
      *
      * @param index the first term
      * @return number from arraylist
+     * @cpu 0(n)
+     * @ram 0(1)
      */
     Object get(int index);
 
     /**
      * Return size
      *
+     * @return size
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return size
      */
     int size();
 
     /**
      * Return array containing elements
-     *
+     * <p>
      * n=logicalSize;
-     * @cpu O(n)
-     * @ram O(n)
      *
      * @return array
+     * @cpu O(n)
+     * @ram O(n)
      */
     Object[] toArray();
 
     /**
      * Remove element
      *
-     * @cpu O(n)
-     * @ram O(1)
-     *
      * @param index the first term
      * @return deleted element from list
+     * @cpu O(n)
+     * @ram O(1)
      */
     Object remove(int index);
 }

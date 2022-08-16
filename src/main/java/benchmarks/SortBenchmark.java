@@ -9,13 +9,11 @@ public class SortBenchmark {
     /**
      * Create array with random elements and length
      *
-     * @cpu O(n)
-     * @ram O(n)
-     *
-     * @param n the first term
+     * @param n   the first term
      * @param min the second term
      * @param max the third term
-     *
+     * @cpu O(n)
+     * @ram O(n)
      * @retur array with random elements and length
      */
     public static int[] randomArray(int n, int min, int max) {
@@ -35,20 +33,19 @@ public class SortBenchmark {
     /**
      * Create array with random elements and length
      *
-     * @cpu O(n)
-     * @ram O(n)
-     *
-     * @param n the first
+     * @param n   the first
      * @param min the second term
      * @param max the third term
      * @return array with random elements and length
+     * @cpu O(n)
+     * @ram O(n)
      */
     public static Event[] randomEvents(int n, int min, int max) {
         Event[] events = new Event[n];
         Random random = new Random(1);
         int diff = max - min;
         for (int i = 0; i < n; i++) {
-            long number =  random.nextLong();
+            long number = random.nextLong();
             String name = Long.toString(number);
             int year = random.nextInt(diff) + min;
             int month = random.nextInt(11 + 1) + 1;

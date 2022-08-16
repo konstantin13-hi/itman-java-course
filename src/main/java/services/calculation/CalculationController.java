@@ -10,12 +10,12 @@ public class CalculationController {
     /**
      * Returns result of operation
      *
+     * @param firstVariable  first number
+     * @param secondVariable operator
+     * @param thirdViable    second number
+     * @return result
      * @cpu O(1)
      * @ram O(1)
-     * @param firstVariable first number
-     * @param secondVariable operator
-     * @param thirdViable second number
-     * @return result
      */
 
     @GetMapping("/calculation")
@@ -27,12 +27,11 @@ public class CalculationController {
     }
 
     /**
-     *Return all kind of operators
-     *
-     * @cpu O(1)
-     * @ram O(1)
+     * Return all kind of operators
      *
      * @return all kind of operators
+     * @cpu O(1)
+     * @ram O(1)
      */
 
     @GetMapping("/operators")

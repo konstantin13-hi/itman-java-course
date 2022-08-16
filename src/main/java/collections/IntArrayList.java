@@ -11,13 +11,12 @@ public class IntArrayList {
 
     /**
      * Create array with special length
-     *
+     * <p>
      * n=that.size
      *
+     * @param that the first term
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @param that the first term
      */
     public IntArrayList(IntArrayList that) {
         logicalSize = that.logicalSize;
@@ -39,10 +38,9 @@ public class IntArrayList {
     /**
      * Create array
      *
+     * @param capacity the first term
      * @cpu 0(1)
      * @ram 0(n)
-     *
-     * @param capacity the first term
      */
     public IntArrayList(int capacity) {
         elements = new int[capacity];
@@ -51,11 +49,10 @@ public class IntArrayList {
     /**
      * Create a arraylist
      *
-     * @cpu 0(n)
-     * @ram 0(n)
-     *
      * @param elements the first term
      * @return new arraylist
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     public static IntArrayList of(int... elements) {
         IntArrayList intArrayList = new IntArrayList(elements.length);
@@ -68,10 +65,9 @@ public class IntArrayList {
     /**
      * Add element
      *
+     * @param element the term
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @param element the term
      */
     public void add(int element) { //метод add 10 в 9 раз выполняется/ в иф попадаем 30 раз и всего операций происходит 2 *10 в 9 /в среднем один вызов метода выполняется 2 раза
         if (logicalSize == elements.length) {
@@ -87,11 +83,10 @@ public class IntArrayList {
     /**
      * Set element
      *
+     * @param index   the first term
+     * @param element the second term
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @param index the first term
-     * @param element the second term
      */
     public void set(int index, int element) {
         elements[index] = element;
@@ -100,10 +95,10 @@ public class IntArrayList {
     /**
      * Get index
      *
-     * @cpu 0(1)
-     * @ram 0(1)
      * @param index the first term
      * @return number from arraylist
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public int get(int index) {
         return elements[index];
@@ -112,10 +107,9 @@ public class IntArrayList {
     /**
      * Find size
      *
+     * @return size
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return size
      */
     public int size() {
         return logicalSize;
@@ -123,14 +117,13 @@ public class IntArrayList {
 
     /**
      * Remove element
-     *
+     * <p>
      * n=size
-     *
-     * @cpu 0(n)
-     * @ram 0(1)
      *
      * @param index the first term
      * @return new array without one element
+     * @cpu 0(n)
+     * @ram 0(1)
      */
     public int remove(int index) {
         int remove = elements[index];
@@ -144,15 +137,13 @@ public class IntArrayList {
 
     /**
      * Make a compare between of two arraylists
-     *
-     *n=logicalSize
-     *
-     * @cpu 0(n)
-     * @ram 0(n)
+     * <p>
+     * n=logicalSize
      *
      * @param obj the first term
-     *
      * @return result
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -164,22 +155,21 @@ public class IntArrayList {
     /**
      * Make a sort of array
      *
-     * @cpu 0(nlog(n))
+     * @cpu 0(nlog ( n))
      * @ram 0(n)
      */
     public void sort() {
-        ArrayUtils.mergeSort(elements,0,logicalSize);
+        ArrayUtils.mergeSort(elements, 0, logicalSize);
     }
 
     /**
      * Create array of numbers
-     *
+     * <p>
      * n=logicalSize
      *
+     * @return new array
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return new array
      */
 
     public int[] toArray() {
@@ -190,13 +180,12 @@ public class IntArrayList {
 
     /**
      * Create a string
-     *
+     * <p>
      * n=logicalSize
      *
+     * @return new string
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return new string
      */
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
