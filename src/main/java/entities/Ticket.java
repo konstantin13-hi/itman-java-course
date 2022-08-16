@@ -40,25 +40,12 @@ public class Ticket {
      * @ram 0(1)
      */
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
-    }
-   /* public boolean equals(Ticket that) {
-        boolean result;
-        if (that == null) {
-            return false;
-        }
-        if (place == null && that.place == null) {
-            result = true;
-        }
-        result = this.number == that.number &&
-                Objects.equals(place, that.place);
-        return result;
+        return this.number == ((Ticket) obj).number && Objects.equals(this.place, ((Ticket) obj).place);
     }
 
-    */
 }
 
 

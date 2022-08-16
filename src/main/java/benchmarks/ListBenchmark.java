@@ -82,6 +82,10 @@ public class ListBenchmark {
         return arrayList;
     }
 
+    // 30 ms create IntArrayList With Capacity
+    // 65 ms create IntArrayList
+    // 439 ms create LinkedList
+    // 350 ms create ArrayList
     public static void main(String[] args) {
         int length = 10_000_000;
         // 30 ms

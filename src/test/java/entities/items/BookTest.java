@@ -12,7 +12,7 @@ class BookTest {
     public class ToString {
         @Test
         public void shouldReturnStringWhenObjectIsNotEmpty() {
-            Book book = new Book(1,"Title",100,"Author",10);
+            Book book = new Book(1, "Title", 100, "Author", 10);
             Assertions.assertEquals("Book{Item{id=1, title='Title', price=100}, author='Author', pages=10}", book.toString());
         }
     }

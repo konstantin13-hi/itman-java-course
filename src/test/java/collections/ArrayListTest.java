@@ -31,8 +31,8 @@ class ArrayListTest {
             arrayList.add("C");
             arrayList.add("D");
             arrayList.add(null);
-            ArrayList arrayListSecond = ArrayList.of("A","B","C","D","E");
-            Assertions.assertNotEquals(arrayList,arrayListSecond);
+            ArrayList arrayListSecond = ArrayList.of("A", "B", "C", "D", "E");
+            Assertions.assertNotEquals(arrayList, arrayListSecond);
         }
     }
 

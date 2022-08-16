@@ -45,12 +45,13 @@ class LinkedListTest {
             Assertions.assertEquals("[13]", linkedList.toString());
         }
     }
+
     @Nested
-    public class RemoveFirst{
+    public class RemoveFirst {
         @Test
-        void shouldWhen2(){
+        void shouldWhen2() {
             LinkedList linkedList = new LinkedList();
-            Ticket ticket = new Ticket(1,"A");
+            Ticket ticket = new Ticket(1, "A");
             linkedList.addLast(ticket);
             Assertions.assertEquals(ticket, linkedList.removeFirst());
 
@@ -85,10 +86,11 @@ class LinkedListTest {
             Assertions.assertEquals(13, linkedList.removeLast());
             Assertions.assertEquals(3, linkedList.removeLast());
         }
+
         @Test
-        void shouldWhen2(){
+        void shouldWhen2() {
             LinkedList linkedList = new LinkedList();
-            Ticket ticket = new Ticket(1,"A");
+            Ticket ticket = new Ticket(1, "A");
             linkedList.addLast(ticket);
             Assertions.assertEquals(ticket, linkedList.removeLast());
 
@@ -190,9 +192,9 @@ class LinkedListTest {
         }
 
         @Test
-        void shouldReturnTrueWhenArrayAndLinkedListsHaveSameElements(){
-            LinkedList linkedList = LinkedList.of(10,20,30);
-            IntArrayList intArrayList = IntArrayList.of(10,20,30);
+        void shouldReturnTrueWhenArrayAndLinkedListsHaveSameElements() {
+            LinkedList linkedList = LinkedList.of(10, 20, 30);
+            IntArrayList intArrayList = IntArrayList.of(10, 20, 30);
             Assertions.assertNotEquals(linkedList, intArrayList);
 
         }
@@ -287,8 +289,6 @@ class LinkedListTest {
         }
 
     }
-
-
 
 
 }

@@ -62,28 +62,19 @@ public class Event {
 
     /**
      * Make a compare between two events
-     * <p>
-     * n=name.length
      *
      * @param obj the first term
      * @return result of  compare
-     * @cpu 0(n)
+     * @cpu 0(1)
      * @ram 0(1)
      */
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
+        return Objects.equals(this.name, ((Event) obj).name) && this.year == ((Event) obj).year
+                && this.month == ((Event) obj).month && this.day == ((Event) obj).day;
     }
-   /* public boolean equals(Event that) {
-        if (that == null || that.name == null && this.name != null) {
-            return false;
-        }
-        return (( this.name == null && that.name == null || (that.name.equals(this.name))) &&
-                (this.year == that.year && this.month == that.month && that.day == this.day && this.id==that.id));
-    }
-    */
 
     /**
      * Compare two events

@@ -37,7 +37,7 @@ public class StringBuilderBenchmark {
     }
 
     //35 sec 954ms concatenateUsingOperator
-    //69ms
+    //69ms  concatenateUsingStringBuilder
     public static void main(String[] args) {
         int number = 500000;
         long time = System.currentTimeMillis();
