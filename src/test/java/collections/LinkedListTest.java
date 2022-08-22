@@ -4,6 +4,7 @@ import entities.Ticket;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import tasks.MyString;
 
 class LinkedListTest {
     @Nested
@@ -197,6 +198,12 @@ class LinkedListTest {
             IntArrayList intArrayList = IntArrayList.of(10, 20, 30);
             Assertions.assertNotEquals(linkedList, intArrayList);
 
+        }
+
+        @Test
+        public void shouldEqualsWhenAddEmptyString() {
+            Assertions.assertEquals(ArrayList.of(new MyString(new char[]{})),
+                    ArrayList.of(new MyString(new char[]{})));
         }
 
     }

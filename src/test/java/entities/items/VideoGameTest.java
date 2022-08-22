@@ -15,5 +15,20 @@ class VideoGameTest {
                     " price=111}, playersMin=2, playersMax=10}, platform='GGG'}", v.toString());
         }
     }
+
+    @Nested
+    public class Equals {
+        @Test
+        public void shouldEqualsWhenObjectsDifferent() {
+            Assertions.assertNotEquals(new VideoGame(1, "Y", 111, 2, 10, "GGG"),
+                    new VideoGame(1, "Title", 111, 2, 10, "GGG"));
+        }
+
+        @Test
+        public void shouldEqualsWhenObjectsAreSame() {
+            Assertions.assertEquals(new VideoGame(1, "Title", 111, 2, 10, "GGG"),
+                    new VideoGame(1, "Title", 111, 2, 10, "GGG"));
+        }
+    }
 }
 

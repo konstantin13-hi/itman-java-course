@@ -100,10 +100,20 @@ public class MyString {
      * @ram 0(1)
      */
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
+        MyString that = (MyString) obj;
+        if (this.length() != that.length()) {
+            return false;
+        }
+        for (int i = 0; i < that.length(); i++) {
+            if (!Objects.equals(this.charAt(i), that.charAt(i))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -147,13 +157,11 @@ public class MyString {
      * @ram 0(n)
      */
     public MyString replace(char target, char replacement) {
-        char a = target;
-        char b = replacement;
         char[] newChar = new char[chars.length];
         System.arraycopy(chars, 0, newChar, 0, newChar.length);
         for (int i = 0; i < chars.length; i++) {
-            if (newChar[i] == a) {
-                newChar[i] = b;
+            if (newChar[i] == target) {
+                newChar[i] = replacement;
             }
         }
         return new MyString(newChar);

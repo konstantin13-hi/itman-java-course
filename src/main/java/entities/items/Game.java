@@ -35,8 +35,9 @@ public class Game extends Item {
 
     /**
      * Equals two objects.
+     * n=Tittle's length
      *
-     * @cpu O(1)
+     * @cpu O(n)
      * @ram O(1)
      *
      * @param obj the first term
@@ -46,10 +47,8 @@ public class Game extends Item {
         if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
-        return super.getId() == ((Game) obj).getId()
-                && super.getPrice() == ((Game) obj).getPrice()
-                && Objects.equals(super.getTitle(), ((Game) obj).getTitle())
-                && playersMax == ((Game) obj).playersMax
-                && playersMin == ((Game) obj).playersMin;
+        Game that = (Game) obj;
+        return playersMax == that.playersMax
+                && playersMin == that.playersMin && super.equals(that);
     }
 }

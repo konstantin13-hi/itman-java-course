@@ -238,19 +238,22 @@ public class LinkedList implements List, Queue {
      * @ram 0(1)
      */
     public boolean equals(Object obj) {
-        if (obj == null || this.getClass() != obj.getClass() || this.logicalSize != ((LinkedList) obj).logicalSize) {
+        if (this.getClass() != obj.getClass()) {
             return false;
         }
-        Node nodeObj = ((LinkedList) obj).head;
+        LinkedList list = (LinkedList) obj;
+        if (this.logicalSize != list.logicalSize) {
+            return false;
+        }
+        Node nodeObj = list.head;
         Node node = this.head;
         for (int i = 0; i < logicalSize; i++) {
-            if (node.element != nodeObj.element) {
+            if (!Objects.equals(node.element, nodeObj.element)) {
                 return false;
             }
             nodeObj = nodeObj.next;
             node = node.next;
         }
-
         return true;
     }
 

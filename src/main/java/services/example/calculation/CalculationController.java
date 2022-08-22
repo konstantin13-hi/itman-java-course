@@ -1,9 +1,10 @@
-package services.calculation;
+package services.example.calculation;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import services.example.calculation.Calculation;
 
 @RestController
 public class CalculationController {

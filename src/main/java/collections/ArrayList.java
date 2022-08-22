@@ -109,8 +109,9 @@ public class ArrayList implements List {
 
     public Object remove(int index) {
         Object object = get(index);
-        for (int i = index + 1; i < objects.length; i++) {
-            objects[i - 1] = objects[i];
+        if (objects.length - (index + 1) >= 0) {
+            System.arraycopy(objects, index + 1, objects,
+                    index + 1 - 1, objects.length - (index + 1));
         }
         logicalSize--;
         return object;
@@ -131,9 +132,10 @@ public class ArrayList implements List {
             arrayList = new ArrayList();
         } else {
             arrayList = new ArrayList(elements.length);
-        }
-        for (Object i : elements) {
-            arrayList.add(i);
+            for (Object i : elements) {
+                arrayList.add(i);
+
+            }
 
         }
         return arrayList;
@@ -174,11 +176,15 @@ public class ArrayList implements List {
      * @ram 0(1)
      */
     public boolean equals(Object that) {
-        if (that == null || this.getClass() != that.getClass() || this.logicalSize != ((ArrayList) that).logicalSize) {
+        if (this.getClass() != that.getClass()) {
             return false;
         }
-        for (int i = 0; i < logicalSize; i++) {
-            if (((ArrayList) that).get(i) != this.get(i)) {
+        ArrayList array = (ArrayList) that;
+        if (this.logicalSize != array.logicalSize) {
+            return false;
+        }
+        for (int i = 0; i < array.logicalSize; i++) {
+            if (!Objects.equals(array.get(i), this.get(i))) {
                 return false;
             }
         }

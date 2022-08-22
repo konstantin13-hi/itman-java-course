@@ -62,9 +62,14 @@ public class Statistic {
      * @ram 0(1)
      */
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
+        Statistic that = (Statistic) obj;
+        return this.average == that.average
+                && this.count == that.count
+                && this.max == that.max
+                && this.min == that.min
+                && this.median == that.median;
     }
 }

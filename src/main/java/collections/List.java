@@ -23,7 +23,8 @@ public interface List {
      *
      * @param index   the first term
      * @param element the second term
-     * @cpu 0(n)
+     * ArrayList @cpu O(n)
+     * LinkedList @cpu O(1)
      * @ram 0(1)
      */
     void set(int index, Object element);
@@ -33,8 +34,9 @@ public interface List {
      * n=index
      *
      * @param index the first term
-     * @return number from arraylist
-     * @cpu 0(n)
+     * @return number from array list
+     * ArrayList @cpu O(1)
+     * LinkedList @cpu 0(n)
      * @ram 0(1)
      */
     Object get(int index);
@@ -63,7 +65,8 @@ public interface List {
      *
      * @param index the first term
      * @return deleted element from list
-     * @cpu O(n)
+     * ArrayList @cpu O(1)
+     * LinkedList @cpu 0(n)
      * @ram O(1)
      */
     Object remove(int index);

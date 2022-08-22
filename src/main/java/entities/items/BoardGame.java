@@ -35,22 +35,20 @@ public class BoardGame extends Game {
 
     /**
      * Equals two objects.
+     * n=Tittle's length
      *
      * @param obj the first term
      * @return result of equals two objects
-     * @cpu O(1)
+     * @cpu O(n)
      * @ram O(1)
      */
     public boolean equals(Object obj) {
         if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return super.getId() == ((BoardGame) obj).getId()
-                && super.getPrice() == ((BoardGame) obj).getPrice()
-                && super.getPlayersMax() == ((BoardGame) obj).getPlayersMax()
-                && super.getPlayersMin() == ((BoardGame) obj).getPlayersMin()
-                && Objects.equals(super.getTitle(), ((BoardGame) obj).getTitle())
-                && timeMin == ((BoardGame) obj).timeMin
-                && timeMax == ((BoardGame) obj).getTimeMax();
+
+        BoardGame that = (BoardGame) obj;
+        return timeMin == that.timeMin
+                && timeMax == that.getTimeMax() && super.equals(that);
     }
 }

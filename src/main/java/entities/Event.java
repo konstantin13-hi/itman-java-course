@@ -72,10 +72,11 @@ public class Event {
         if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return this.id == ((Event) obj).id
-                && Objects.equals(this.name, ((Event) obj).name)
-                && this.year == ((Event) obj).year
-                && this.month == ((Event) obj).month && this.day == ((Event) obj).day;
+        Event that = (Event) obj;
+        return this.id == that.id
+                && Objects.equals(this.name, that.name)
+                && this.year == that.year
+                && this.month == that.month && this.day == that.day;
     }
 
     /**

@@ -18,4 +18,19 @@ class BookTest {
         }
     }
 
+    @Nested
+    public class Equals {
+        @Test
+        public void shouldEqualsWhenObjectsDifferent() {
+            Assertions.assertNotEquals(new Book(11, "Title", 100, "Author", 10),
+                    new Book(1, "Title", 100, "Author", 10));
+        }
+
+        @Test
+        public void shouldEqualsWhenObjectsAreSame() {
+            Assertions.assertEquals(new Item(1, "Title", 111),
+                    new Item(1, "Title", 111));
+        }
+    }
+
 }

@@ -15,4 +15,19 @@ class GameTest {
 
         }
     }
+
+    @Nested
+    public class Equals {
+        @Test
+        public void shouldEqualsWhenObjectsDifferent() {
+            Assertions.assertNotEquals(new Game(1, "R", 100, 1, 10),
+                    new Game(1, "Title", 100, 1, 10));
+        }
+
+        @Test
+        public void shouldEqualsWhenObjectsAreSame() {
+            Assertions.assertEquals(new Game(1, "Title", 100, 1, 10),
+                    new Game(1, "Title", 100, 1, 10));
+        }
+    }
 }

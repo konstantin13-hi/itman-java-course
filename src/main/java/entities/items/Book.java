@@ -22,8 +22,9 @@ public class Book extends Item {
 
     /**
      * Equals two objects.
+     * n=Tittle's length
      *
-     * @cpu O(1)
+     * @cpu O(n)
      * @ram O(1)
      *
      * @param obj the first term
@@ -33,11 +34,12 @@ public class Book extends Item {
         if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(author, ((Book) obj).author)
-                && pages == ((Book) obj).pages
-                && super.getId() == ((Book) obj).getId()
-                && super.getPrice() == ((Book) obj).getPrice()
-                && Objects.equals(super.getTitle(), ((Book) obj).getTitle());
+        Book that = (Book) obj;
+
+
+        return Objects.equals(author, that.author)
+                && pages == that.pages && super.equals(that);
+
     }
 
 

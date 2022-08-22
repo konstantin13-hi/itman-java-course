@@ -43,7 +43,8 @@ public class Ticket {
         if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return this.number == ((Ticket) obj).number && Objects.equals(this.place, ((Ticket) obj).place);
+        Ticket that = (Ticket) obj;
+        return this.number == that.number && Objects.equals(this.place, that.place);
     }
 
 }

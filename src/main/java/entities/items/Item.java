@@ -41,18 +41,20 @@ public class Item {
 
     /**
      * Equals two objects.
+     * n=Tittle's length
      *
      * @param obj the first term
      * @return result of equals two objects
-     * @cpu O(1)
+     * @cpu O(n)
      * @ram O(1)
      */
     public boolean equals(Object obj) {
         if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return id == ((Item) obj).id && Objects.equals(title, ((Item) obj).title)
-                && price == ((Item) obj).price;
+        Item that = (Item) obj;
+        return id == that.id && Objects.equals(title, that.title)
+                && price == that.price;
     }
 
 

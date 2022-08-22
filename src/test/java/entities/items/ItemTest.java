@@ -14,5 +14,20 @@ class ItemTest {
             Assertions.assertEquals("Item{id=1, title='Title', price=111}", i.toString());
         }
     }
+
+    @Nested
+    public class Equals {
+        @Test
+        public void shouldReturnStringWhenObjectIsNotEmpty() {
+            Assertions.assertEquals(new Item(1, "Title", 111),
+                    new Item(1, "Title", 111));
+        }
+
+        @Test
+        public void shouldReturnStringWhenObjectIsNotEmpy() {
+            Assertions.assertNotEquals(new Item(1, "Title", 111),
+                    new Item(1, "Title", 1));
+        }
+    }
 }
 

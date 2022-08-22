@@ -29,8 +29,9 @@ public class VideoGame extends Game {
 
     /**
      * Makes equals between two objects.
+     * n=Tittle's length
      *
-     * @cpu O(1)
+     * @cpu O(n)
      * @ram O(1)
      * @param obj the first term
      * @return boolean result
@@ -39,10 +40,7 @@ public class VideoGame extends Game {
         if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return super.getId() == ((VideoGame) obj).getId()
-                && super.getPrice() == ((VideoGame) obj).getPrice()
-                && super.getPlayersMax() == ((VideoGame) obj).getPlayersMax()
-                && super.getPlayersMin() == ((VideoGame) obj).getPlayersMin()
-                && Objects.equals(this.platform, ((VideoGame) obj).platform);
+        VideoGame that = (VideoGame) obj;
+        return Objects.equals(this.platform, that.platform) && super.equals(that);
     }
 }
