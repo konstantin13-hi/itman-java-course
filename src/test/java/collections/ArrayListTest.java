@@ -7,9 +7,9 @@ import tasks.MyString;
 
 class ArrayListTest {
     @Nested
-    public class Set {
+    public class ToString {
         @Test
-        public void shouldSetWhenArrayIsNotEmpty() {
+        public void shouldToStringWhenArrayIsNotEmpty() {
             ArrayList arrayList = new ArrayList(1);
             arrayList.add("A");
             arrayList.add("B");
@@ -17,7 +17,14 @@ class ArrayListTest {
             arrayList.add("D");
             arrayList.add("E");
             arrayList.set(2, "CC");
-            Assertions.assertArrayEquals(new Object[]{"A", "B", "CC", "D", "E"}, arrayList.toArray());
+            Assertions.assertEquals("[A, B, CC, D, E]", arrayList.toString());
+
+        }
+
+        @Test
+        public void shouldToStringWhenArrayIsEmpty() {
+            ArrayList arrayList = new ArrayList(1);
+            Assertions.assertEquals("[]", arrayList.toString());
 
         }
     }
