@@ -108,7 +108,7 @@ public class MyString {
             return false;
         }
         for (int i = 0; i < that.length(); i++) {
-            if (!Objects.equals(this.charAt(i), that.charAt(i))) {
+            if (this.charAt(i) != that.charAt(i)) {
                 return false;
             }
         }

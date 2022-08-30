@@ -179,8 +179,6 @@ class ExampleControllerTest {
                                 "4" + "\n"
                         ));
             }
-
-
         }
     }
 }

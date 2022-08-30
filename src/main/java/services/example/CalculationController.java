@@ -1,10 +1,8 @@
-package services.example.calculation;
-
+package services.example;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import services.example.calculation.Calculation;
 
 @RestController
 public class CalculationController {
@@ -39,4 +37,5 @@ public class CalculationController {
     public Calculation.Operators[] returnOperators() {
         return Calculation.Operators.values();
     }
+
 }

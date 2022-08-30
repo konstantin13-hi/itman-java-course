@@ -1,4 +1,4 @@
-package services.example.calculation;
+package services.example;
 
 public class Calculation {
     protected Operators operators;

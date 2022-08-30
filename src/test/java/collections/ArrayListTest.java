@@ -5,28 +5,15 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import tasks.MyString;
 
-class ArrayListTest {
-    @Nested
-    public class ToString {
-        @Test
-        public void shouldToStringWhenArrayIsNotEmpty() {
-            ArrayList arrayList = new ArrayList(1);
-            arrayList.add("A");
-            arrayList.add("B");
-            arrayList.add("C");
-            arrayList.add("D");
-            arrayList.add("E");
-            arrayList.set(2, "CC");
-            Assertions.assertEquals("[A, B, CC, D, E]", arrayList.toString());
+class ArrayListTest extends AbstractListTest {
+    @Override
+    protected List createList() {
+        return new ArrayList();
+    }
 
-        }
-
-        @Test
-        public void shouldToStringWhenArrayIsEmpty() {
-            ArrayList arrayList = new ArrayList(1);
-            Assertions.assertEquals("[]", arrayList.toString());
-
-        }
+    @Override
+    protected List of(final Object... elements) {
+        return ArrayList.of(elements);
     }
 
     @Nested
@@ -55,5 +42,4 @@ class ArrayListTest {
                     ArrayList.of((Object) new Integer[]{1, 3, 3}));
         }
     }
-
 }

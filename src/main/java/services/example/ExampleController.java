@@ -6,6 +6,7 @@ import utils.StringBuilder;
 
 @RestController
 public class ExampleController {
+
     /**
      * Return string with text:"I'm your first web-service".
      *
