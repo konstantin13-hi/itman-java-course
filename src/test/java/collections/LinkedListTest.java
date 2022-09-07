@@ -176,20 +176,5 @@ class LinkedListTest extends AbstractListTest {
             linkedListSecond.addFirst(9);
             Assertions.assertNotEquals(linkedList, linkedListSecond);
         }
-
-        @Test
-        void shouldReturnTrueWhenArrayAndLinkedListsHaveSameElements() {
-            LinkedList linkedList = LinkedList.of(10, 20, 30);
-            IntArrayList intArrayList = IntArrayList.of(10, 20, 30);
-            Assertions.assertNotEquals(linkedList, intArrayList);
-
-        }
-
-        @Test
-        public void shouldEqualsWhenAddEmptyString() {
-            Assertions.assertEquals(ArrayList.of(new MyString(new char[]{})),
-                    ArrayList.of(new MyString(new char[]{})));
-        }
-
     }
 }

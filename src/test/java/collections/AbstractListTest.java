@@ -4,6 +4,7 @@ import entities.Ticket;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import tasks.MyString;
 
 
 public abstract class AbstractListTest {
@@ -95,6 +96,52 @@ public abstract class AbstractListTest {
             List list = of();
             Assertions.assertArrayEquals(new Object[]{}, list.toArray());
 
+        }
+    }
+
+    @Nested
+    public class Of {
+        @Test
+        public void shouldAddElementsWhenListIsEmpty() {
+            List list = of(1, 2, 3, 4, 5);
+            Assertions.assertArrayEquals(new Object[]{1, 2, 3, 4, 5}, list.toArray());
+
+        }
+
+        @Test
+        public void shouldAddZeroElementsWhenListIsEmpty() {
+            List list = of();
+            Assertions.assertArrayEquals(new Object[]{}, list.toArray());
+
+        }
+    }
+
+    @Nested
+    public class Equals {
+        @Test
+        public void shouldEqualsWhenSecondArrayHasNull() {
+            List list = createList();
+            list.add("A");
+            list.add("B");
+            list.add("C");
+            list.add("D");
+            list.add(null);
+            List arrayListSecond = of("A", "B", "C", "D", "E");
+            Assertions.assertNotEquals(list, arrayListSecond);
+        }
+
+        @Test
+        public void shouldEqualsWhenAddEmptyString() {
+            List list = of(new MyString(new char[]{}));
+            Assertions.assertEquals(list,
+                    of(new MyString(new char[]{})));
+        }
+
+        @Test
+        public void shouldEqualsWhenDifferentTypes() {
+            List list = of(new MyString(new char[]{}));
+            Assertions.assertNotEquals(list,
+                    of((Object) new Integer[]{1, 3, 3}));
         }
     }
 }
