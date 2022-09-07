@@ -71,7 +71,7 @@ public class Task439Tests {
     }
 
 
-    public static void checkingArrayElements(Event expectedElement, Event actual) {
+    private static void checkingArrayElements(Event expectedElement, Event actual) {
         Assertions.assertEquals(0, expectedElement.compareTo(actual));
 
     }

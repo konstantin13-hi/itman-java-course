@@ -1,92 +1,82 @@
 package collections;
 
-import collections.ArrayList;
-
 public class Stack {
-    private ArrayList arrayList;
+    private IntArrayList intArrayList;
 
     /**
-     * Create arraylist
+     * Create arraylist.
      *
      * @cpu 0(1)
      * @ram O(1)
-     *
      */
     public Stack() {
-        arrayList = new ArrayList();
+        intArrayList = new IntArrayList();
     }
 
     /**
-     * Add element in the stack
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Add element in the stack.
      *
      * @param element the first term
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public void push(int element) {
-        arrayList.add(element);
+        intArrayList.add(element);
     }
 
     /**
-     * Get element from stack
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Get element from stack.
      *
      * @return Get element from stack
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public int peek() {
-        return arrayList.get(arrayList.size() - 1);
+        return intArrayList.get(intArrayList.size() - 1);
     }
 
     /**
-     * Delete element from stack
+     * Delete element from stack.
      *
+     * @return deleted element
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return
      */
     public int pop() {
-        return arrayList.remove(arrayList.size() - 1);
+        return intArrayList.remove(intArrayList.size() - 1);
 
     }
 
     /**
-     * Check size of stack
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Check size of stack.
      *
      * @return size of stack
-     */
-    public int size() {
-        return arrayList.size();
-    }
-
-    /**
-     * Check stack empty or not
-     *
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @return of checking
      */
-    public boolean isEmpty() {
-        return arrayList.size() == 0;
+    public int size() {
+        return intArrayList.size();
     }
 
     /**
-     * Create array of elements
+     * Check stack empty or not.
      *
-     * @cpu 0(n)
-     * @ram 0(n)
+     * @return of checking
+     * @cpu 0(1)
+     * @ram 0(1)
+     */
+    public boolean isEmpty() {
+        return intArrayList.size() == 0;
+    }
+
+    /**
+     * Create array of elements.
      *
      * @return array of elements
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     public int[] toArray() {
-        return arrayList.toArray();
-
+        return intArrayList.toArray();
     }
 }

@@ -15,7 +15,7 @@ public class Task407Tests {
         @Test
         public void shouldSortMatrixRowsDescWhenMatrixIsNotEmpty() {
             int[][] a = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-            int[][] b = new int[][]{{7, 8, 9}, {4, 5, 6}, {1, 2, 3}};//
+            int[][] b = new int[][]{{7, 8, 9}, {4, 5, 6}, {1, 2, 3}};
             Task407.sortMatrixRowsDesc(a);
             Assertions.assertArrayEquals(b, a);
         }

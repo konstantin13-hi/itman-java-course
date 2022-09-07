@@ -5,13 +5,12 @@ import utils.StringBuilder;
 public class StringBuilderBenchmark {
 
     /**
-     *Made a concatenation between of two string
-     *
-     * @cpu 0(n^2)
-     * @ram 0(n)
+     * Made a concatenation between of two string.
      *
      * @param n the first term
      * @return new string
+     * @cpu 0(n ^ 2)
+     * @ram 0(n)
      */
     public static String concatenateUsingOperator(int n) {
         String result = "";
@@ -22,12 +21,12 @@ public class StringBuilderBenchmark {
     }
 
     /**
-     * Made a concatenation between of two string
+     * Made a concatenation between of two string.
      *
+     * @param n the first term
+     * @return string
      * @cpu 0(n)
      * @ram 0(n)
-     * @param n the first term
-     * @return
      */
     public static String concatenateUsingStringBuilder(int n) {
         StringBuilder s = new StringBuilder(1);
@@ -36,8 +35,9 @@ public class StringBuilderBenchmark {
         }
         return s.toString();
     }
+
     //35 sec 954ms concatenateUsingOperator
-    //69ms
+    //69ms  concatenateUsingStringBuilder
     public static void main(String[] args) {
         int number = 500000;
         long time = System.currentTimeMillis();

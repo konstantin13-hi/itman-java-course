@@ -7,7 +7,7 @@ public class Task432 {
      *
      * @param x the first term
      * @return new array of prime divisors in ascending.
-     * @cpu O(sqrt(n))
+     * @cpu O(sqrt ( n))
      * @ram O(1)
      */
     public static long[] calcPrimeNumbers(long x) {

@@ -1,10 +1,23 @@
 package collections;
 
+import entities.Ticket;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import tasks.MyString;
 
-class LinkedListTest {
+class LinkedListTest extends AbstractListTest {
+
+    @Override
+    protected List createList() {
+        return new LinkedList();
+    }
+
+    @Override
+    protected List of(final Object... elements) {
+        return LinkedList.of(elements);
+    }
+
     @Nested
     public class AddFirst {
         @Test
@@ -20,28 +33,14 @@ class LinkedListTest {
     }
 
     @Nested
-    public class ToString {
+    public class RemoveFirst {
         @Test
-        void shouldReturnStringWhenListIsNotEmpty() {
+        void shouldWhen2() {
             LinkedList linkedList = new LinkedList();
-            linkedList.addFirst(10);
-            linkedList.addFirst(13);
-            linkedList.addFirst(3);
-            Assertions.assertEquals("[3, 13, 10]", linkedList.toString());
+            Ticket ticket = new Ticket(1, "A");
+            linkedList.addLast(ticket);
+            Assertions.assertEquals(ticket, linkedList.removeFirst());
 
-        }
-
-        @Test
-        void shouldReturnStringWhenListIsEmpty() {
-            LinkedList linkedList = new LinkedList();
-            Assertions.assertEquals("[]", linkedList.toString());
-        }
-
-        @Test
-        void shouldReturnStringWhenListHasOneElement() {
-            LinkedList linkedList = new LinkedList();
-            linkedList.addFirst(13);
-            Assertions.assertEquals("[13]", linkedList.toString());
         }
     }
 
@@ -72,6 +71,15 @@ class LinkedListTest {
             Assertions.assertEquals(10, linkedList.removeLast());
             Assertions.assertEquals(13, linkedList.removeLast());
             Assertions.assertEquals(3, linkedList.removeLast());
+        }
+
+        @Test
+        void shouldWhen2() {
+            LinkedList linkedList = new LinkedList();
+            Ticket ticket = new Ticket(1, "A");
+            linkedList.addLast(ticket);
+            Assertions.assertEquals(ticket, linkedList.removeLast());
+
         }
     }
 
@@ -121,7 +129,7 @@ class LinkedListTest {
             linkedList.addLast(10);
             linkedList.addLast(9);
             linkedList.addLast(8);
-            LinkedList linkedList1 = new LinkedList(linkedList);
+            final LinkedList linkedList1 = new LinkedList(linkedList);
             linkedList.removeLast();
             linkedList.removeLast();
             linkedList.removeLast();
@@ -141,7 +149,7 @@ class LinkedListTest {
             linkedListSecond.addFirst(11);
             linkedListSecond.addFirst(1);
             linkedListSecond.addFirst(51);
-            Assertions.assertFalse(linkedList.equals(linkedListSecond));
+            Assertions.assertNotEquals(linkedList, linkedListSecond);
         }
 
         @Test
@@ -154,7 +162,7 @@ class LinkedListTest {
             linkedListSecond.addFirst(8);
             linkedListSecond.addFirst(9);
             linkedListSecond.addFirst(10);
-            Assertions.assertTrue(linkedList.equals(linkedListSecond));
+            Assertions.assertEquals(linkedList, linkedListSecond);
         }
 
         @Test
@@ -166,98 +174,7 @@ class LinkedListTest {
             LinkedList linkedListSecond = new LinkedList();
             linkedListSecond.addFirst(8);
             linkedListSecond.addFirst(9);
-            Assertions.assertFalse(linkedList.equals(linkedListSecond));
-        }
-
-    }
-
-    @Nested
-    public class ToArray {
-        @Test
-        void shouldReturnArrayWhenListIsNotEmpty() {
-            LinkedList linkedList = new LinkedList();
-            linkedList.addLast(10);
-            linkedList.addLast(9);
-            linkedList.addLast(8);
-            Assertions.assertArrayEquals(new int[]{10, 9, 8}, linkedList.toArray());
-            Assertions.assertEquals(10, linkedList.removeFirst());
-            Assertions.assertEquals(8, linkedList.removeLast());
+            Assertions.assertNotEquals(linkedList, linkedListSecond);
         }
     }
-
-    @Nested
-    public class Set {
-
-        @Test
-        void shouldSetElementInAllIndexInListWhenListHasThreeElements() {
-            LinkedList linkedList = new LinkedList();
-            linkedList.addFirst(10);
-            linkedList.addFirst(9);
-            linkedList.addFirst(8);
-            linkedList.set(1, 2);
-            Assertions.assertArrayEquals(new int[]{8, 2, 10}, linkedList.toArray());
-            linkedList.set(0, 5);
-            Assertions.assertArrayEquals(new int[]{5, 2, 10}, linkedList.toArray());
-            linkedList.set(2, 4);
-            Assertions.assertArrayEquals(new int[]{5, 2, 4}, linkedList.toArray());
-        }
-    }
-
-    @Nested
-    public class Get {
-        @Test
-        void shouldGetMiddleElementWhenListHasMoreWhenTwoElements() {
-            LinkedList linkedList = new LinkedList();
-            linkedList.addFirst(10);
-            linkedList.addFirst(9);
-            linkedList.addFirst(8);
-            Assertions.assertEquals(9, linkedList.get(1));
-        }
-
-        @Test
-        void shouldGetFirstElementWhenListHasMoreWhenTwoElements() {
-            LinkedList linkedList = new LinkedList();
-            linkedList.addFirst(10);
-            linkedList.addFirst(9);
-            linkedList.addFirst(8);
-            Assertions.assertEquals(8, linkedList.get(0));
-
-        }
-
-        @Test
-        void shouldGetLastElementWhenListHasMoreWhenTwoElements() {
-            LinkedList linkedList = new LinkedList();
-            linkedList.addFirst(10);
-            linkedList.addFirst(9);
-            linkedList.addFirst(8);
-            Assertions.assertEquals(10, linkedList.get(2));
-        }
-
-        @Test
-        void shouldGetFirstElementWhenListHasOneElement() {
-            LinkedList linkedList = new LinkedList();
-            linkedList.addFirst(10);
-            Assertions.assertEquals(10, linkedList.get(0));
-        }
-
-
-    }
-
-    @Nested
-    public class Remove {
-        @Test
-        void shouldRemoveAllElementWhenListHasThreeElements() {
-            LinkedList linkedList = new LinkedList();
-            linkedList.addFirst(10);
-            linkedList.addFirst(9);
-            linkedList.addFirst(8);
-            Assertions.assertEquals(9, linkedList.remove(1));
-            Assertions.assertArrayEquals(new int[]{8, 10}, linkedList.toArray());
-            Assertions.assertEquals(10, linkedList.remove(1));
-            Assertions.assertArrayEquals(new int[]{8}, linkedList.toArray());
-            Assertions.assertEquals(8, linkedList.remove(0));
-        }
-
-    }
-
 }

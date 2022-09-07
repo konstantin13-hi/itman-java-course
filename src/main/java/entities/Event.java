@@ -15,8 +15,9 @@ public class Event {
         this.month = month;
         this.name = name;
     }
-    public Event(int id, int year, int month, int day, String name){
-        this.id=id;
+
+    public Event(int id, int year, int month, int day, String name) {
+        this.id = id;
         this.day = day;
         this.year = year;
         this.month = month;
@@ -47,48 +48,44 @@ public class Event {
     }
 
     /**
-     * Create the string
-     *
+     * Create the string.
      * n=amount of letters in string getName
      *
+     * @return string
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return string
      */
     public String toString() {
-        return "Event{id="+getId()+", year=" + getYear() + ", month=" + getMonth() + ", day=" + getDay() + ", name=" + "'" + getName() + "'" + "}";
+        return "Event{id=" + getId() + ", year=" + getYear() +
+                ", month=" + getMonth() + ", day=" + getDay() + ", name=" + "'" + getName() + "'" + "}";
     }
 
     /**
-     * Make a compare between two events
+     * Make a compare between two events.
      *
-     * n=name.length
-     *
-     * @cpu 0(n)
-     * @ram 0(1)
-     *
-     * @param that the first term
+     * @param obj the first term
      * @return result of  compare
-     */
-    public boolean equals(Event that) {
-        if (that == null || that.name == null && this.name != null) {
-            return false;
-        }
-        return (( this.name == null && that.name == null || (that.name.equals(this.name))) &&
-                (this.year == that.year && this.month == that.month && that.day == this.day && this.id==that.id));
-    }
-
-    /**
-     * Compare two events
-     *
-     *
      * @cpu 0(1)
      * @ram 0(1)
+     */
+    public boolean equals(Object obj) {
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Event that = (Event) obj;
+        return this.id == that.id
+                && Objects.equals(this.name, that.name)
+                && this.year == that.year
+                && this.month == that.month && this.day == that.day;
+    }
+
+    /**
+     * Compare two events.
      *
      * @param that the first term
-     *
      * @return number
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public int compareTo(Event that) {
         int number;

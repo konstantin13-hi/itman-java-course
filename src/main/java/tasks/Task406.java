@@ -5,11 +5,10 @@ public class Task406 {
     /**
      * Find second max element of array .
      *
-     * @cpu O(n)
-     * @ram O(1)
-     *
      * @param array the first term
      * @return the second max element of array .
+     * @cpu O(n)
+     * @ram O(1)
      */
     public static int findSecondMax(int[] array) {
         int a = 0;

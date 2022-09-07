@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class QueueManagementSystemUtilsTest {
+class LinkedQueueManagementSystemUtilsTest {
     @Nested
     public class CalcTotalVisits {
 
@@ -135,7 +135,7 @@ class QueueManagementSystemUtilsTest {
 
     }
 
-    public static QueueManagementSystem createTicketBetter(String name, int[] days) {
+    private static QueueManagementSystem createTicketBetter(String name, int[] days) {
         QueueManagementSystem systems = new QueueManagementSystem(name);
         for (int d = 0; d < days.length; d++) {
             for (int i = 0; i < days[d]; i++) {
@@ -148,13 +148,19 @@ class QueueManagementSystemUtilsTest {
         return systems;
     }
 
-    public static void test(QueueManagementSystem[] systems, int[] min, int[] max, double[] average, long[] count, double[] median) {
+    private static void test(QueueManagementSystem[] systems, int[] min, int[] max,
+                            double[] average, long[] count, double[] median) {
         for (int i = 0; i < min.length; i++) {
-            Assertions.assertEquals(min[i], QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getMin());
-            Assertions.assertEquals(max[i], QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getMax());
-            Assertions.assertEquals(average[i], QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getAverage());
-            Assertions.assertEquals(count[i], QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getCount());
-            Assertions.assertEquals(median[i], QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getMedian());
+            Assertions.assertEquals(min[i],
+                    QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getMin());
+            Assertions.assertEquals(max[i],
+                    QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getMax());
+            Assertions.assertEquals(average[i],
+                    QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getAverage());
+            Assertions.assertEquals(count[i],
+                    QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getCount());
+            Assertions.assertEquals(median[i],
+                    QueueManagementSystemUtils.calcStatisticByDays(systems)[i].getMedian());
         }
     }
 }

@@ -14,14 +14,14 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class QueueControllerTest {
+class LinkedQueueControllerTest {
     @Nested
     public class Script {
         @Autowired
         private MockMvc mockMvc;
 
         @Test
-        void queueWorkScriptShouldMakeRequestsOfNextTicketTotalTicketsNextWorkDayGetVisitsByDaysWhenUseAllTypesOfRequestAtOnce()
+        void scriptShouldMakeRequestsWhenUseAllTypesOfRequestAtOnce()
                 throws Exception {
 
 
@@ -125,7 +125,7 @@ class QueueControllerTest {
 
 
         @Test
-        void queueWorkScriptShouldMakeNextTicketCallNextGetCurrentQueueWhenUseAllTypesOfRequestAtOnce() throws Exception {
+        void scriptShouldMakeNextTicketCallNextGetCurrentQueueWhenUseAllTypesOfRequestAtOnce() throws Exception {
             MockHttpServletRequestBuilder requestNextTicket = MockMvcRequestBuilders
                     .get("/api/queue/nextTicket")
                     .contentType("application/json");

@@ -1,225 +1,194 @@
 package collections;
 
-import utils.ArrayUtils;
-import utils.StringBuilder;
+import java.util.Objects;
 
-public class ArrayList {
+public class ArrayList implements List {
+    private Object[] objects;
     private int logicalSize;
-    private int[] elements;
 
     /**
-     * Create array with special length
-     *
-     * n=that.size
-     *
-     * @cpu 0(n)
-     * @ram 0(n)
-     *
-     * @param that the first term
-     */
-    public ArrayList(ArrayList that) {
-        logicalSize = that.logicalSize;
-        int[] arraySecond = new int[that.logicalSize];
-        System.arraycopy(that.elements, 0, arraySecond, 0, that.logicalSize);
-        elements = arraySecond;
-    }
-
-    /**
-     * Create array with length 16
+     * Create array with length 16.
      *
      * @cpu 0(1)
      * @ram 0(1)
      */
     public ArrayList() {
-        elements = new int[16];
+        objects = new Object[16];
     }
 
     /**
-     * Create array
-     *
-     * @cpu 0(1)
-     * @ram 0(n)
+     * Create array.
      *
      * @param capacity the first term
+     * @cpu 0(1)
+     * @ram 0(n)
      */
     public ArrayList(int capacity) {
-        elements = new int[capacity];
+        objects = new Object[capacity];
     }
 
     /**
-     * Create a arraylist
-     *
-     * @cpu 0(n)
-     * @ram 0(n)
-     *
-     * @param elements the first term
-     * @return new arraylist
-     */
-    public static ArrayList of(int... elements) {
-        ArrayList arrayList = new ArrayList(elements.length);
-        for (int element : elements) {
-            arrayList.add(element);
-        }
-        return arrayList;
-    }
-
-    /**
-     * Add element
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Add element.
      *
      * @param element the term
+     * @cpu 0(1)
+     * @ram 0(1)
      */
-    public void add(int element) { //метод add 10 в 9 раз выполняется/ в иф попадаем 30 раз и всего операций происходит 2 *10 в 9 /в среднем один вызов метода выполняется 2 раза
-        if (logicalSize == elements.length) {
-            int capacity = elements.length * 2;
-            int[] secondArray = new int[capacity];
-            System.arraycopy(elements, 0, secondArray, 0, logicalSize);
-            elements = secondArray;
+    public void add(Object element) {
+        if (logicalSize == objects.length) {
+            Object[] newObject = new Object[logicalSize * 2];
+            System.arraycopy(objects, 0, newObject, 0, objects.length);
+            objects = newObject;
         }
-        elements[logicalSize] = element;
+        objects[logicalSize] = element;
         logicalSize++;
     }
 
     /**
-     * Set element
+     * Set element.
      *
+     * @param index   the first term
+     * @param element the second term
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @param index the first term
-     * @param element the second term
      */
-    public void set(int index, int element) {
-        elements[index] = element;
+
+    public void set(int index, Object element) {
+        objects[index] = element;
     }
 
     /**
-     * Get index
+     * Get index.
      *
-     * @cpu 0(1)
-     * @ram 0(1)
      * @param index the first term
      * @return number from arraylist
+     * @cpu 0(1)
+     * @ram 0(1)
      */
-    public int get(int index) {
-        return elements[index];
+
+    public Object get(int index) {
+        return objects[index];
     }
 
     /**
-     * Find size
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Find size.
      *
      * @return size
+     * @cpu 0(1)
+     * @ram 0(1)
      */
+
     public int size() {
         return logicalSize;
     }
 
     /**
-     * Remove element
+     * Create array of numbers.
+     * n=logicalSize
      *
-     * n=size
-     *
+     * @return new array
      * @cpu 0(n)
-     * @ram 0(1)
+     * @ram 0(n)
+     */
+
+    public Object[] toArray() {
+        Object[] newObject = new Object[logicalSize];
+        System.arraycopy(objects, 0, newObject, 0, logicalSize);
+        return newObject;
+    }
+
+    /**
+     * Remove element.
+     * n=size
      *
      * @param index the first term
      * @return new array without one element
-     */
-    public int remove(int index) {
-        int remove = elements[index];
-        for (int i = index + 1; i < elements.length; i++) {
-            elements[i - 1] = elements[i];
-        }
-        logicalSize--;
-
-        return remove;
-    }
-
-    /**
-     * Make a compare between of two arraylists
-     *
-     * n=that.size
-     *
      * @cpu 0(n)
      * @ram 0(1)
-     *
-     * @param that the first term
-     *
-     * @return result
      */
-    public boolean equals(ArrayList that) {
-        if (that == null) {
-            return false;
+
+    public Object remove(int index) {
+        Object object = get(index);
+        if (objects.length - (index + 1) >= 0) {
+            System.arraycopy(objects, index + 1, objects,
+                    index + 1 - 1, objects.length - (index + 1));
         }
-        boolean result = that.size() == this.size();
-        for (int i = 0; i < that.size(); i++) {
-            if (that.get(i) != this.get(i)) {
-                result = false;
+        logicalSize--;
+        return object;
+    }
+
+    /**
+     * Create an arraylist.
+     *
+     * @param elements the first term
+     * @return new arraylist
+     * @cpu 0(n)
+     * @ram 0(n)
+     */
+
+    public static ArrayList of(Object... elements) {
+        ArrayList arrayList;
+        if (elements.length == 0) {
+            arrayList = new ArrayList();
+        } else {
+            arrayList = new ArrayList(elements.length);
+            for (Object i : elements) {
+                arrayList.add(i);
 
             }
+
         }
-        return result;
+        return arrayList;
     }
 
     /**
-     * Make a sort of array
-     *
-     * @cpu 0(nlog(n))
-     * @ram 0(n)
-     */
-    public void sort() {
-        ArrayUtils.mergeSort(elements,0,logicalSize);
-    }
-
-    /**
-     * Create array of numbers
-     *
+     * Create array of numbers.
      * n=logicalSize
-     *
-     * @cpu 0(n)
-     * @ram 0(n)
      *
      * @return new array
-     */
-
-    public int[] toArray() {
-        int[] newArray = new int[logicalSize];
-        System.arraycopy(elements, 0, newArray, 0, newArray.length);
-        return newArray;
-    }
-
-    /**
-     * Create a string
-     *
-     * n=logicalSize
-     *
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return new string
      */
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        if (logicalSize != 0) {
-            stringBuilder.append("[");
-            for (int i = 0; i < logicalSize; i++) {
-                stringBuilder.append(elements[i]);
-                if (i != logicalSize - 1) {
-                    stringBuilder.append(", ");
-                }
+        stringBuilder.append('[');
+        for (int i = 0; i < logicalSize; i++) {
+            if (objects[i] != null) {
+                stringBuilder.append(objects[i].toString());
+            } else {
+                stringBuilder.append("null");
             }
-            stringBuilder.append("]");
-
-        } else {
-            stringBuilder.append("[]");
+            if (i + 1 != logicalSize) {
+                stringBuilder.append(", ");
+            }
         }
+        stringBuilder.append(']');
         return stringBuilder.toString();
     }
+
+    /**
+     * Make a compare between of two arraylists.
+     * n=logicalSize
+     *
+     * @param that the first term
+     * @return result
+     * @cpu 0(n)
+     * @ram 0(1)
+     */
+    public boolean equals(Object that) {
+        if (this.getClass() != that.getClass()) {
+            return false;
+        }
+        ArrayList array = (ArrayList) that;
+        if (this.logicalSize != array.logicalSize) {
+            return false;
+        }
+        for (int i = 0; i < array.logicalSize; i++) {
+            if (!Objects.equals(array.get(i), this.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
-
-

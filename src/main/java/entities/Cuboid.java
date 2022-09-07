@@ -6,14 +6,13 @@ public class Cuboid {
     private int edgeC;
 
     /**
-     *Setting cuboid parameters
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Setting cuboid parameters.
      *
      * @param a the first term.
      * @param b the second term.
      * @param c the third term
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public Cuboid(int a, int b, int c) {
         this.edgeA = a;
@@ -34,24 +33,22 @@ public class Cuboid {
     }
 
     /**
-     *Calc surface area
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Calc surface area.
      *
      * @return result of surface Area
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public long calcSurfaceArea() {
         return 2 * ((long) edgeA * edgeB + (long) edgeB * edgeC + (long) edgeA * edgeC);
     }
 
     /**
-     *Calc volume
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Calc volume.
      *
      * @return result of the Volume
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public long calcVolume() {
         return (long) edgeA * edgeB * edgeC;

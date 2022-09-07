@@ -1,28 +1,22 @@
 package tasks;
 
-import entities.Event;
 import entities.Ticket;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class QueueManagementSystemTest {
+class LinkedQueueManagementSystemTest {
 
     @Nested
-    public class GetCurrentQueue {
+    public class GetCurrentLinkedQueue {
 
         @Test
         public void shouldGetCurrentQueueWhenCalledOne() {
             QueueManagementSystem system = new QueueManagementSystem("Bank");
-            Ticket a = system.getNextTicket();
-            Ticket b = system.getNextTicket();
-            Ticket[] tickets = system.getCurrentQueue();
-            Assertions.assertEquals(a, tickets[0]);
-            Assertions.assertEquals(b, tickets[1]);
-            system.callNext();
-            Assertions.assertEquals(1, system.getCurrentQueue().length);
+            system.getNextTicket();
+            system.getNextTicket();
+
+            Assertions.assertEquals(2, system.getCurrentQueue().length);
         }
 
     }
@@ -39,12 +33,12 @@ class QueueManagementSystemTest {
         @Test
         public void shouldGetTotalTicketsWhenQueueIsNotEmpty() {
             QueueManagementSystem my = new QueueManagementSystem("Bank");
-            Ticket B = my.getNextTicket();
-            Ticket B1 = my.getNextTicket();
-            Ticket B2 = my.getNextTicket();
-            Assertions.assertEquals(1, B.getNumber());
-            Assertions.assertEquals(2, B1.getNumber());
-            Assertions.assertEquals(3, B2.getNumber());
+            Ticket b = my.getNextTicket();
+            Ticket b1 = my.getNextTicket();
+            Ticket b2 = my.getNextTicket();
+            Assertions.assertEquals(1, b.getNumber());
+            Assertions.assertEquals(2, b1.getNumber());
+            Assertions.assertEquals(3, b2.getNumber());
             Assertions.assertEquals(3, my.getTotalTickets());
         }
     }

@@ -3,6 +3,8 @@ package entities;
 import tasks.QueueManagementSystem;
 import tasks.QueueManagementSystemUtils;
 
+import java.util.Objects;
+
 
 public class Statistic {
     private int min;
@@ -40,37 +42,34 @@ public class Statistic {
     }
 
     /**
-     * Create the string
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Create the string.
      *
      * @return string
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public String toString() {
-        return "Statistic{min=" + min + ", max=" + max + ", count=" + count + ", average=" + average + ", median=" + median + "}";
+        return "Statistic{min=" + min + ", max=" + max + ", count=" +
+                count + ", average=" + average + ", median=" + median + "}";
     }
 
     /**
-     * Make a compare between two statics
+     * Make a compare between two statics.
      *
-     *
+     * @param obj the first
+     * @return result of compare
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @param that the first
-     * @return result of compare
      */
-
-
-    public boolean equals(Statistic that) {
-        if (that == null) {
+    public boolean equals(Object obj) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return that.min == this.min &&
-                that.max == this.max &&
-                that.count == this.count &&
-                that.average == this.average &&
-                that.median == this.median;
+        Statistic that = (Statistic) obj;
+        return this.average == that.average
+                && this.count == that.count
+                && this.max == that.max
+                && this.min == that.min
+                && this.median == that.median;
     }
 }

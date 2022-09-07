@@ -1,86 +1,67 @@
 package collections;
 
+/**
+ * Queue.java
+ * Interface class that has the following methods.
+ *
+ * @author MyName
+ * @since mm-dd-yyyy
+ */
 
-public class Queue {
-    LinkedList linkedList = new LinkedList();
-
-    public Queue() {
-    }
+public interface Queue {
 
     /**
-     *
-     * Inserts the specified element into the queue
-     *
-     * @cpu O(1)
-     * @ram O(1)
+     * Inserts the specified element into the queue.
      *
      * @param element the first term
-     */
-    public void offer(int element) {
-        linkedList.addLast(element);
-    }
-
-    /**
-     * Returns the head of the queue
-     *
      * @cpu O(1)
      * @ram O(1)
-     *
-     * @return first elemt
      */
-    public int peek() {
-        return linkedList.getFirst();
-    }
+    void offer(Object element);
 
     /**
-     * Returns and removes the head of the queue
-     *
-     * @cpu O(1)
-     * @ram O(1)
+     * Returns the head of the queue.
      *
      * @return first element
-     */
-
-    public int poll() {
-        return linkedList.removeFirst();
-    }
-
-    /**
-     *
      * @cpu O(1)
      * @ram O(1)
+     */
+    Object peek();
+
+    /**
+     * Returns and removes the head of the queue.
+     *
+     * @return first element
+     * @cpu O(1)
+     * @ram O(1)
+     */
+    Object poll();
+
+    /**
+     * Return size.
      *
      * @return size
+     * @cpu 0(1)
+     * @ram 0(1)
      */
-    public int size() {
-        return linkedList.size();
-    }
+    int size();
 
     /**
-     * Check list for elements
+     * Check list empty or not.
      *
-     * @cpu O(1)
-     * @ram O(1)
-     *
-     * @return true or false
+     * @return result
+     * @cpu 0(1)
+     * @ram 0(1)
      */
-
-    public boolean isEmpty() {
-        return linkedList.size() == 0;
-    }
+    boolean isEmpty();
 
     /**
-     * Returns an array containing elements
+     * Return array containing elements.
+     * n=logicalSize;
      *
-     * n= size of Queue
-     *
+     * @return array
      * @cpu O(n)
      * @ram O(n)
-     *
-     * @return array consists of elements
      */
-
-    public int[] toArray() {
-        return linkedList.toArray();
-    }
+    Object[] toArray();
 }
