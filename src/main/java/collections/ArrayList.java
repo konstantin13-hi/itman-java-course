@@ -13,17 +13,29 @@ public class ArrayList<T> implements List<T> {
     private T[] objects;
     private int logicalSize;
 
-
+    /**
+     * Create array with length 16.
+     *
+     * @cpu 0(1)
+     * @ram 0(1)
+     */
     public ArrayList() {
         objects = (T[]) new Object[16];
     }
 
+    /**
+     * Create array.
+     *
+     * @param capacity the first term
+     * @cpu 0(1)
+     * @ram 0(n)
+     */
     public ArrayList(int capacity) {
         objects = (T[]) new Object[capacity];
     }
 
     /**
-     * Add element
+     * Add element.
      *
      * @param element the term
      * @return
@@ -161,7 +173,7 @@ public class ArrayList<T> implements List<T> {
     }
 
     /**
-     * Set element
+     * Set element.
      *
      * @param index   the first term
      * @param element the second term
@@ -174,7 +186,7 @@ public class ArrayList<T> implements List<T> {
     }
 
     /**
-     * Get index
+     * Get index.
      *
      * @param index the first term
      * @return number from arraylist
@@ -187,7 +199,7 @@ public class ArrayList<T> implements List<T> {
     }
 
     /**
-     * Find size
+     * Find size.
      *
      * @return size
      * @cpu 0(1)
@@ -204,8 +216,7 @@ public class ArrayList<T> implements List<T> {
     }
 
     /**
-     * Create array of numbers
-     * <p>
+     * Create array of numbers.
      * n=logicalSize
      *
      * @return new array
@@ -245,15 +256,13 @@ public class ArrayList<T> implements List<T> {
     // }
 
     /**
-     * Remove element
-     *
+     * Remove element.
      * n=size
-     *
-     * @cpu 0(n)
-     * @ram 0(1)
      *
      * @param index the first term
      * @return new array without one element
+     * @cpu 0(n)
+     * @ram 0(1)
      */
 
     public T remove(int index) {
@@ -266,7 +275,7 @@ public class ArrayList<T> implements List<T> {
     }
 
     /**
-     * Create an arraylist
+     * Create an arraylist.
      *
      * @param elements the first term
      * @return new arraylist
@@ -284,13 +293,14 @@ public class ArrayList<T> implements List<T> {
         for (T i : elements) {
             arrayList.add(i);
 
+            }
+
         }
         return arrayList;
     }
 
     /**
-     * Create array of numbers
-     * <p>
+     * Create array of numbers.
      * n=logicalSize
      *
      * @return new array
@@ -315,15 +325,20 @@ public class ArrayList<T> implements List<T> {
     }
 
     /**
-     * Make a compare between of two arraylists
-     * <p>
+     * Make a compare between of two arraylists.
      * n=logicalSize
      *
-     * @param obj the first term
+     * @param that the first term
      * @return result
      * @cpu 0(n)
      * @ram 0(1)
      */
+    public boolean equals(Object that) {
+        if (this.getClass() != that.getClass()) {
+            return false;
+        }
+        ArrayList array = (ArrayList) that;
+        if (this.logicalSize != array.logicalSize) {
     public boolean equals(Object obj) {
         if (obj == null || this.getClass() != obj.getClass() || this.logicalSize != ((ArrayList<?>) obj).logicalSize) {
             return false;
@@ -336,6 +351,12 @@ public class ArrayList<T> implements List<T> {
                 return false;
             }
 
+        }
+        return true;
+        for (int i = 0; i < array.logicalSize; i++) {
+            if (!Objects.equals(array.get(i), this.get(i))) {
+                return false;
+            }
         }
         return true;
     }

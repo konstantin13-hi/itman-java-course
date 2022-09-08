@@ -12,29 +12,44 @@ public class Book extends Item {
         this.pages = pages;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
     public int getPages() {
         return pages;
     }
 
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        return Objects.equals(this.toString(), obj.toString());
-    }
-
-    public String getAuthor() {
-        return author;
-    }
     /**
-     * Returns string with data about item
-     *
-     * n=title length
+     * Equals two objects.
+     * n=Tittle's length
      *
      * @cpu O(n)
-     * @ram O(n)
+     * @ram O(1)
+     *
+     * @param obj the first term
+     * @return boolean result
+     */
+    public boolean equals(Object obj) {
+        if (obj == null || this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Book that = (Book) obj;
+
+
+        return Objects.equals(author, that.author)
+                && pages == that.pages && super.equals(that);
+
+    }
+
+
+    /**
+     * Returns string with data about item.
+     * n=title length
      *
      * @return string
+     * @cpu O(n)
+     * @ram O(n)
      */
 
     public String toString() {

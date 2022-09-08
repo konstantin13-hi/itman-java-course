@@ -137,7 +137,7 @@ public class ArrayUtilsTests {
         }
 
         @Test
-        public void shouldFindTheNumberOfElementsThatAreContainedSimultaneouslyInTwoArraysWhenArraysDoNotContainTheSameElements() {
+        public void shouldFindTheNumberThatAreContainedSimultaneouslyInTwoArraysWhenArraysNoContainTheSameElements() {
             int[] elements = new int[]{-1000000};
             int[] elementsSecond = new int[]{1000000};
             int expected = 0;
@@ -145,7 +145,7 @@ public class ArrayUtilsTests {
         }
 
         @Test
-        public void shouldFindTheNumberOfElementsThatAreContainedSimultaneouslyInTwoArraysWhenBigNumbersNegativeAndPositive() {
+        public void shouldFindNumbersThatAreContainedInTwoArraysWhenBigNumbersNegativeAndPositive() {
             int[] elements = new int[]{2147483647, 2146483648, 2147483647};
             int[] elementsSecond = new int[]{-2147483648, 1, 2147483647};
             int expected = 1;
@@ -230,7 +230,7 @@ public class ArrayUtilsTests {
         }
 
         @Test
-        public void mergeSortSpeedTest() {
+        public void shouldMergeSortSpeedTestWhenIsNotEmpty() {
             int[] a = new int[1000000];
             for (int i = 0; i < a.length; i++) {
                 a[i] = 1000000 - i - 1;
@@ -298,13 +298,13 @@ public class ArrayUtilsTests {
         }
     }
 
-    public static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
+    private static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {
             Assertions.assertTrue(actual[i].equals(expected[i]));
         }
     }
 
-    public static void checkingASortedArrayLinks(Event[] actual, Event[] expectedElement) {
+    private static void checkingASortedArrayLinks(Event[] actual, Event[] expectedElement) {
         for (int i = 0; i < expectedElement.length; i++) {
             Assertions.assertEquals(expectedElement[i], actual[i]);
         }

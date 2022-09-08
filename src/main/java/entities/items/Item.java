@@ -27,14 +27,12 @@ public class Item {
     }
 
     /**
-     * Returns string with data about item
-     *
+     * Returns string with data about item.
      * n=title length
      *
+     * @return string
      * @cpu O(n)
      * @ram O(n)
-     *
-     * @return string
      */
 
     public String toString() {
@@ -42,18 +40,21 @@ public class Item {
     }
 
     /**
-     * Equals two objects
-     * @cpu O(1)
-     * @ram O(1)
+     * Equals two objects.
+     * n=Tittle's length
+     *
      * @param obj the first term
      * @return result of equals two objects
+     * @cpu O(n)
+     * @ram O(1)
      */
-
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(this, obj);
+        Item that = (Item) obj;
+        return id == that.id && Objects.equals(title, that.title)
+                && price == that.price;
     }
 
 

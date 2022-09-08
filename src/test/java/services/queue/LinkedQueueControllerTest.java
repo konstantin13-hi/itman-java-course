@@ -21,7 +21,7 @@ class LinkedQueueControllerTest {
         private MockMvc mockMvc;
 
         @Test
-        void queueWorkScriptShouldMakeRequestsOfNextTicketTotalTicketsNextWorkDayGetVisitsByDaysWhenUseAllTypesOfRequestAtOnce()
+        void scriptShouldMakeRequestsWhenUseAllTypesOfRequestAtOnce()
                 throws Exception {
 
 
@@ -125,7 +125,7 @@ class LinkedQueueControllerTest {
 
 
         @Test
-        void queueWorkScriptShouldMakeNextTicketCallNextGetCurrentQueueWhenUseAllTypesOfRequestAtOnce() throws Exception {
+        void scriptShouldMakeNextTicketCallNextGetCurrentQueueWhenUseAllTypesOfRequestAtOnce() throws Exception {
             MockHttpServletRequestBuilder requestNextTicket = MockMvcRequestBuilders
                     .get("/api/queue/nextTicket")
                     .contentType("application/json");

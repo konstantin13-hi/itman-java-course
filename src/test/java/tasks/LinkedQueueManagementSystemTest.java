@@ -33,12 +33,12 @@ class LinkedQueueManagementSystemTest {
         @Test
         public void shouldGetTotalTicketsWhenQueueIsNotEmpty() {
             QueueManagementSystem my = new QueueManagementSystem("Bank");
-            Ticket B = my.getNextTicket();
-            Ticket B1 = my.getNextTicket();
-            Ticket B2 = my.getNextTicket();
-            Assertions.assertEquals(1, B.getNumber());
-            Assertions.assertEquals(2, B1.getNumber());
-            Assertions.assertEquals(3, B2.getNumber());
+            Ticket b = my.getNextTicket();
+            Ticket b1 = my.getNextTicket();
+            Ticket b2 = my.getNextTicket();
+            Assertions.assertEquals(1, b.getNumber());
+            Assertions.assertEquals(2, b1.getNumber());
+            Assertions.assertEquals(3, b2.getNumber());
             Assertions.assertEquals(3, my.getTotalTickets());
         }
     }

@@ -3,39 +3,17 @@ package collections;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import tasks.MyString;
 
-class ArrayListTest {
-    @Nested
-    public class Set {
-        @Test
-        public void shouldSetWhenArrayIsNotEmpty() {
-            ArrayList arrayList = new ArrayList(1);
-            arrayList.add("A");
-            arrayList.add("B");
-            arrayList.add("C");
-            arrayList.add("D");
-            arrayList.add("E");
-            arrayList.set(2, "CC");
-            Assertions.assertArrayEquals(new Object[]{"A", "B", "CC", "D", "E"}, arrayList.toArray());
-
-        }
+class ArrayListTest extends AbstractListTest {
+    @Override
+    protected List createList() {
+        return new ArrayList();
     }
 
-    @Nested
-    public class Equals {
-        @Test
-        public void shouldEqualsWhenSecondArrayHasNull() {
-            ArrayList arrayList = new ArrayList(1);
-
-            arrayList.add("A");
-            arrayList.add("B");
-            arrayList.add("C");
-            arrayList.add("D");
-            arrayList.add(null);
-            ArrayList arrayListSecond = new ArrayList();
-            arrayListSecond.of("A","B","C","D","E");
-            Assertions.assertNotEquals(arrayList,arrayListSecond);
-        }
+    @Override
+    protected List of(final Object... elements) {
+        return ArrayList.of(elements);
     }
 
 }

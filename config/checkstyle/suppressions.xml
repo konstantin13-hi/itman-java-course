@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <suppress files="[/\\]src[/\\]test[/\\]" id="MethodNameRegular"/>
+    <suppress files="[/\\]src[/\\]main[/\\]" id="MethodNameTest"/>
+    <suppress files="[/\\]src[/\\]main[/\\]java[/\\]entities[/\\]" id="AllMissingJavadocMethod"/>
+    <suppress files="[/\\]src[/\\](main|test)[/\\]java[/\\](benchmarks|collections|example|services|tasks|utils)[/\\]"
+              id="EntityMissingJavadocMethod"/>
+</suppressions>

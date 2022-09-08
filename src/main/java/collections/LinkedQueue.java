@@ -5,37 +5,33 @@ public class LinkedQueue implements Queue {
     LinkedList linkedList = new LinkedList();
 
     /**
-     *
-     * Inserts the specified element into the queue
-     *
-     * @cpu O(1)
-     * @ram O(1)
+     * Inserts the specified element into the queue.
      *
      * @param element the first term
+     * @cpu O(1)
+     * @ram O(1)
      */
     public void offer(Object element) {
         linkedList.addLast(element);
     }
 
     /**
-     * Returns the head of the queue
-     *
-     * @cpu O(1)
-     * @ram O(1)
+     * Returns the head of the queue.
      *
      * @return first element
+     * @cpu O(1)
+     * @ram O(1)
      */
     public Object peek() {
         return linkedList.getFirst();
     }
 
     /**
-     * Returns and removes the head of the queue
-     *
-     * @cpu O(1)
-     * @ram O(1)
+     * Returns and removes the head of the queue.
      *
      * @return first element
+     * @cpu O(1)
+     * @ram O(1)
      */
 
     public Object poll() {
@@ -43,23 +39,22 @@ public class LinkedQueue implements Queue {
     }
 
     /**
-     *
-     * @cpu O(1)
-     * @ram O(1)
+     * Returns the size.
      *
      * @return size
+     * @cpu O(1)
+     * @ram O(1)
      */
     public int size() {
         return linkedList.size();
     }
 
     /**
-     * Check list for elements
-     *
-     * @cpu O(1)
-     * @ram O(1)
+     * Check list for elements.
      *
      * @return true or false
+     * @cpu O(1)
+     * @ram O(1)
      */
 
     public boolean isEmpty() {
@@ -67,14 +62,12 @@ public class LinkedQueue implements Queue {
     }
 
     /**
-     * Returns an array containing elements
-     *
+     * Returns an array containing elements.
      * n= size of Queue
      *
+     * @return array consists of elements
      * @cpu O(n)
      * @ram O(n)
-     *
-     * @return array consists of elements
      */
 
     public Object[] toArray() {

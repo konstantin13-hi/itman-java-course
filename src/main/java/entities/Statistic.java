@@ -42,45 +42,34 @@ public class Statistic {
     }
 
     /**
-     * Create the string
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Create the string.
      *
      * @return string
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public String toString() {
-        return "Statistic{min=" + min + ", max=" + max + ", count=" + count + ", average=" + average + ", median=" + median + "}";
+        return "Statistic{min=" + min + ", max=" + max + ", count=" +
+                count + ", average=" + average + ", median=" + median + "}";
     }
 
     /**
-     * Make a compare between two statics
-     *
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Make a compare between two statics.
      *
      * @param obj the first
      * @return result of compare
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
+        Statistic that = (Statistic) obj;
+        return this.average == that.average
+                && this.count == that.count
+                && this.max == that.max
+                && this.min == that.min
+                && this.median == that.median;
     }
-
-
-  /*  public boolean equals(Statistic that) {
-        if (that == null) {
-            return false;
-        }
-        return that.min == this.min &&
-                that.max == this.max &&
-                that.count == this.count &&
-                that.average == this.average &&
-                that.median == this.median;
-    }
-
-   */
 }

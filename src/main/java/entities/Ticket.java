@@ -20,12 +20,11 @@ public class Ticket {
     }
 
     /**
-     * Create string which consists information
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Create string which consists information.
      *
      * @return new string
+     * @cpu 0(1)
+     * @ram 0(1)
      */
 
     public String toString() {
@@ -33,34 +32,21 @@ public class Ticket {
     }
 
     /**
-     *Equal between two tickets
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Equal between two tickets.
      *
      * @param obj the first term
      * @return result comparison
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this.getClass() != obj.getClass()) {
             return false;
         }
-        return Objects.equals(this.toString(), obj.toString()) && this.getClass() == obj.getClass();
-    }
-   /* public boolean equals(Ticket that) {
-        boolean result;
-        if (that == null) {
-            return false;
-        }
-        if (place == null && that.place == null) {
-            result = true;
-        }
-        result = this.number == that.number &&
-                Objects.equals(place, that.place);
-        return result;
+        Ticket that = (Ticket) obj;
+        return this.number == that.number && Objects.equals(this.place, that.place);
     }
 
-    */
 }
 
 

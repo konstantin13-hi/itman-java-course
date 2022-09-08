@@ -4,7 +4,7 @@ import collections.IntArrayList;
 import collections.LinkedQueue;
 import entities.Ticket;
 
-public class QueueManagementSystem  {
+public class QueueManagementSystem {
     private IntArrayList intArrayList;
     private int currentNumberOfTicket;
     private int numberOfTicketsTheLastDays;
@@ -12,9 +12,8 @@ public class QueueManagementSystem  {
     private LinkedQueue linkedQueue;
 
 
-
     /**
-     * Add current number of ticket in arraylist
+     * Add current number of ticket in arraylist.
      *
      * @param a the first term
      * @cpu 0(1)
@@ -29,7 +28,7 @@ public class QueueManagementSystem  {
     }
 
     /**
-     * Create new ticket
+     * Create new ticket.
      *
      * @return new ticket
      * @cpu 0(1)
@@ -44,7 +43,7 @@ public class QueueManagementSystem  {
     }
 
     /**
-     * Get information of tickets
+     * Get information of tickets.
      *
      * @return current number
      * @cpu 0(1)
@@ -55,7 +54,7 @@ public class QueueManagementSystem  {
     }
 
     /**
-     * Made next work day
+     * Made next work day.
      *
      * @cpu 0(1)
      * @ram 0(1)
@@ -67,14 +66,12 @@ public class QueueManagementSystem  {
     }
 
     /**
-     * Returns current queue
-     *
+     * Returns current queue.
      * n=queue length
      *
+     * @return current queue
      * @cpu O(n)
      * @ram O(n)
-     *
-     * @return current queue
      */
 
     public Ticket[] getCurrentQueue() {
@@ -88,12 +85,11 @@ public class QueueManagementSystem  {
     }
 
     /**
-     * Returns ticket from head of queue
-     *
-     * @cpu O(1)
-     * @ram O(1)
+     * Returns ticket from head of queue.
      *
      * @return ticket from head of queue
+     * @cpu O(1)
+     * @ram O(1)
      */
 
     public Ticket callNext() {
@@ -101,7 +97,7 @@ public class QueueManagementSystem  {
     }
 
     /**
-     * Get visits day
+     * Get visits day.
      *
      * @return new arraylist
      * @cpu 0(n)

@@ -81,12 +81,14 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 
     }
 
+    /**
+     * Creates Linked list.
+     */
     public LinkedList() {
     }
 
     /**
-     * Create an arraylist
-     * <p>
+     * Create an arraylist.
      * n=logicalSize of that list
      *
      * @param that the first term
@@ -102,7 +104,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Add element in the front of list
+     * Add element in the front of list.
      *
      * @param element the first term
      * @cpu O(1)
@@ -121,7 +123,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Return first element
+     * Return first element.
      *
      * @return element
      * @cpu O(1)
@@ -133,7 +135,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Return first element and delete him from list
+     * Return first element and delete him from list.
      *
      * @return first element
      * @cpu O(1)
@@ -147,7 +149,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Add element in the back of list
+     * Add element in the back of list.
      *
      * @param element the first term
      * @cpu O(1)
@@ -167,7 +169,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Return last element from list
+     * Return last element from list.
      *
      * @return last element
      * @cpu O(1)
@@ -179,7 +181,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Return last element and delete him from list
+     * Return last element and delete him from list.
      *
      * @return last element
      * @cpu O(1)
@@ -202,8 +204,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Create a string
-     * <p>
+     * Create a string.
      * n=logicalSize
      *
      * @return new string
@@ -224,12 +225,11 @@ public class LinkedList<T> implements List<T>, Queue<T> {
             }
         }
         stringBuilder.append(']');
-        return this.toString();
+        return stringBuilder.toString();
     }
 
     /**
-     * Return array containing elements
-     * <p>
+     * Return array containing elements.
      * n=logicalSize;
      *
      * @return array
@@ -259,8 +259,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Create a list
-     * <p>
+     * Create a list.
      * n=number of elements
      *
      * @param elements the first term
@@ -277,8 +276,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Make a compare between of two lists
-     * <p>
+     * Make a compare between of two lists.
      * n=logicalSize
      *
      * @param obj the first term
@@ -289,6 +287,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     @Override
     public boolean equals(Object obj) {
         if (obj == null || this.getClass() != obj.getClass() || this.logicalSize != ((LinkedList<?>) obj).logicalSize) {
+        if (this.getClass() != obj.getClass()) {
             return false;
         }
         LinkedList<?> list = (LinkedList<?>) obj;
@@ -300,13 +299,27 @@ public class LinkedList<T> implements List<T>, Queue<T> {
             }
 
         }
+        LinkedList list = (LinkedList) obj;
+        if (this.logicalSize != list.logicalSize) {
+            return false;
+        }
+        Node nodeObj = list.head;
+        Node node = this.head;
+        for (int i = 0; i < logicalSize; i++) {
+            if (!Objects.equals(node.element, nodeObj.element)) {
+                return false;
+            }
+            nodeObj = nodeObj.next;
+            node = node.next;
+        }
         return true;
     }
 
 
     /**
-     * Add element in the back of list
+     * Add element in the back of list.
      *
+     * @param element the first term
      * @param element the first term
      * @return true
      * @cpu O(1)
@@ -399,8 +412,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 
 
     /**
-     * Set element
-     * <p>
+     * Set element.
      * n=index
      *
      * @param index   the first term
@@ -413,8 +425,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Get index
-     * <p>
+     * Get index.
      * n=index
      *
      * @param index the first term
@@ -438,7 +449,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 
 
     /**
-     * Remove element
+     * Remove element.
      *
      * @param index the first term
      * @return deleted element from list
@@ -468,7 +479,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Inserts the specified element into the queue
+     * Inserts the specified element into the queue.
      *
      * @param element the first term
      * @cpu O(1)
@@ -481,7 +492,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Returns the head of the queue
+     * Returns the head of the queue.
      *
      * @return first element
      * @cpu O(1)
@@ -493,7 +504,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Returns and removes the head of the queue
+     * Returns and removes the head of the queue.
      *
      * @return first element
      * @cpu O(1)
@@ -505,7 +516,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     /**
-     * Return size
+     * Return size.
      *
      * @return size
      * @cpu 0(1)
@@ -517,7 +528,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
 
 
     /**
-     * Check list empty or not
+     * Check list empty or not.
      *
      * @return result
      * @cpu 0(1)

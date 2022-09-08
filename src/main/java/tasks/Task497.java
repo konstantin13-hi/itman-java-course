@@ -3,15 +3,13 @@ package tasks;
 public class Task497 {
 
     /**
-     * Merge two sorted arrays
-     *
-     * @cpu O(n+m)
-     * @ram O(n+m)
+     * Merge two sorted arrays.
      *
      * @param a the first term
      * @param b the second term
-     *
      * @return sorted array containing elements from two sorted arrays
+     * @cpu O(n + m)
+     * @ram O(n + m)
      */
     public static int[] merge(int[] a, int[] b) {
         int[] twoArrays = new int[a.length + b.length];

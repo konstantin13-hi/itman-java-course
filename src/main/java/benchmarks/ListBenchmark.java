@@ -7,8 +7,7 @@ import collections.LinkedList;
 public class ListBenchmark {
 
     /**
-     * Create array list with capacity
-     * <p>
+     * Create array list with capacity.
      * n=length
      *
      * @param length the first term
@@ -16,6 +15,7 @@ public class ListBenchmark {
      * @cpu O(n)
      * @ram O(n)
      */
+    // 30 ms
     public static IntArrayList createIntArrayListWithCapacity(int length) {
         IntArrayList intArrayList = new IntArrayList(length);
         for (int i = 0; i < length; i++) {
@@ -25,8 +25,7 @@ public class ListBenchmark {
     }
 
     /**
-     * Create array list
-     * <p>
+     * Create array list.
      * n = length
      *
      * @param length the first term
@@ -34,7 +33,7 @@ public class ListBenchmark {
      * @cpu O(n)
      * @ram O(n)
      */
-
+    //65 ms
     public static IntArrayList createIntArrayList(int length) {
         IntArrayList intArrayList = new IntArrayList();
         for (int i = 0; i < length; i++) {
@@ -44,8 +43,7 @@ public class ListBenchmark {
     }
 
     /**
-     * Create linked list
-     * <p>
+     * Create linked list.
      * n = length
      *
      * @param length the first term
@@ -53,7 +51,7 @@ public class ListBenchmark {
      * @cpu O(n)
      * @ram O(n)
      */
-
+    // 439 ms
     public static LinkedList createLinkedList(int length) {
         LinkedList linkedList = new LinkedList();
         for (int i = 0; i < length; i++) {
@@ -63,6 +61,16 @@ public class ListBenchmark {
 
     }
 
+    /**
+     * Create array list.
+     *
+     * @param length the first term
+     * @return the first term
+     * @cpu O(n)
+     * @ram O(n)
+     */
+
+    //350
     public static ArrayList createArrayList(int length) {
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < length; i++) {
@@ -71,6 +79,10 @@ public class ListBenchmark {
         return arrayList;
     }
 
+    // 30 ms create IntArrayList With Capacity
+    // 65 ms create IntArrayList
+    // 439 ms create LinkedList
+    // 350 ms create ArrayList
     public static void main(String[] args) {
         int length = 10_000_000;
         // 30 ms

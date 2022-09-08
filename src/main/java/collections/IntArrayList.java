@@ -10,14 +10,12 @@ public class IntArrayList {
     private int[] elements;
 
     /**
-     * Create array with special length
-     *
+     * Create array with special length.
      * n=that.size
      *
+     * @param that the first term
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @param that the first term
      */
     public IntArrayList(IntArrayList that) {
         logicalSize = that.logicalSize;
@@ -27,7 +25,7 @@ public class IntArrayList {
     }
 
     /**
-     * Create array with length 16
+     * Create array with length 16.
      *
      * @cpu 0(1)
      * @ram 0(1)
@@ -37,25 +35,23 @@ public class IntArrayList {
     }
 
     /**
-     * Create array
-     *
-     * @cpu 0(1)
-     * @ram 0(n)
+     * Create array.
      *
      * @param capacity the first term
+     * @cpu 0(1)
+     * @ram 0(n)
      */
     public IntArrayList(int capacity) {
         elements = new int[capacity];
     }
 
     /**
-     * Create a arraylist
-     *
-     * @cpu 0(n)
-     * @ram 0(n)
+     * Create a arraylist.
      *
      * @param elements the first term
      * @return new arraylist
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     public static IntArrayList of(int... elements) {
         IntArrayList intArrayList = new IntArrayList(elements.length);
@@ -66,14 +62,13 @@ public class IntArrayList {
     }
 
     /**
-     * Add element
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Add element.
      *
      * @param element the term
+     * @cpu 0(1)
+     * @ram 0(1)
      */
-    public void add(int element) { //метод add 10 в 9 раз выполняется/ в иф попадаем 30 раз и всего операций происходит 2 *10 в 9 /в среднем один вызов метода выполняется 2 раза
+    public void add(int element) {
         if (logicalSize == elements.length) {
             int capacity = elements.length * 2;
             int[] secondArray = new int[capacity];
@@ -85,52 +80,48 @@ public class IntArrayList {
     }
 
     /**
-     * Set element
+     * Set element.
      *
+     * @param index   the first term
+     * @param element the second term
      * @cpu 0(1)
      * @ram 0(1)
-     *
-     * @param index the first term
-     * @param element the second term
      */
     public void set(int index, int element) {
         elements[index] = element;
     }
 
     /**
-     * Get index
+     * Get index.
      *
-     * @cpu 0(1)
-     * @ram 0(1)
      * @param index the first term
      * @return number from arraylist
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public int get(int index) {
         return elements[index];
     }
 
     /**
-     * Find size
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Find size.
      *
      * @return size
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public int size() {
         return logicalSize;
     }
 
     /**
-     * Remove element
-     *
+     * Remove element.
      * n=size
-     *
-     * @cpu 0(n)
-     * @ram 0(1)
      *
      * @param index the first term
      * @return new array without one element
+     * @cpu 0(n)
+     * @ram 0(1)
      */
     public int remove(int index) {
         int remove = elements[index];
@@ -143,16 +134,13 @@ public class IntArrayList {
     }
 
     /**
-     * Make a compare between of two arraylists
-     *
-     *n=logicalSize
-     *
-     * @cpu 0(n)
-     * @ram 0(n)
+     * Make a compare between of two arraylists.
+     * n=logicalSize
      *
      * @param obj the first term
-     *
      * @return result
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -162,24 +150,22 @@ public class IntArrayList {
     }
 
     /**
-     * Make a sort of array
+     * Make a sort of array.
      *
-     * @cpu 0(nlog(n))
+     * @cpu 0(nlog ( n))
      * @ram 0(n)
      */
     public void sort() {
-        ArrayUtils.mergeSort(elements,0,logicalSize);
+        ArrayUtils.mergeSort(elements, 0, logicalSize);
     }
 
     /**
-     * Create array of numbers
-     *
+     * Create array of numbers.
      * n=logicalSize
      *
+     * @return new array
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return new array
      */
 
     public int[] toArray() {
@@ -189,14 +175,12 @@ public class IntArrayList {
     }
 
     /**
-     * Create a string
-     *
+     * Create a string.
      * n=logicalSize
      *
+     * @return new string
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return new string
      */
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();

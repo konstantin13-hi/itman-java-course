@@ -4,36 +4,49 @@ public class StringBuilder {
     private char[] chars;
     private int logicalSize;
 
+    /**
+     * Create StringBuilder with capacity 16.
+     * n=capacity
+     *
+     * @cpu O(1)
+     * @ram O(n)
+     * @param capacity the first term
+     */
+
     public StringBuilder(int capacity) {
         chars = new char[capacity];
     }
+
+    /**
+     * Create StringBuilder with capacity 16.
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     */
 
     public StringBuilder() {
         chars = new char[16];
     }
 
     /**
-     *Find logical size
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Find logical size.
      *
      * @return logical size
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public int length() {
         return logicalSize;
     }
 
     /**
-     *Made concatenation between of two strings
-     *
+     * Made concatenation between of two strings.
      * n=s.length
-     *
-     * @cpu 0(n)
-     * @ram 0(n)
      *
      * @param s the first term
      * @return concatenation of two strings
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     public StringBuilder append(String s) {
         char[] y;
@@ -48,14 +61,12 @@ public class StringBuilder {
     }
 
     /**
-     *Made concatenation between of two strings
-     *
-     *
-     * @cpu 0(1)
-     * @ram 0(1)
+     * Made concatenation between of two strings.
      *
      * @param x the first term
      * @return concatenation of two strings
+     * @cpu 0(1)
+     * @ram 0(1)
      */
     public StringBuilder append(boolean x) {
         String str;
@@ -69,15 +80,13 @@ public class StringBuilder {
     }
 
     /**
-     *Made concatenation between of two strings
-     *
+     * Made concatenation between of two strings.
      * n=number of digits in the number
-     *
-     * @cpu 0(n)
-     * @ram 0(n)
      *
      * @param x the first term
      * @return concatenation of two strings
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     public StringBuilder append(int x) {
         String str = Integer.toString(x);
@@ -86,15 +95,13 @@ public class StringBuilder {
     }
 
     /**
-     *Made concatenation between of two strings
-     *
+     * Made concatenation between of two strings.
      * n=number of digits in the number
-     *
-     * @cpu 0(n)
-     * @ram 0(n)
      *
      * @param x the first term
      * @return concatenation of two strings
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     public StringBuilder append(double x) {
         String str = Double.toString(x);
@@ -103,15 +110,13 @@ public class StringBuilder {
     }
 
     /**
-     *Made concatenation between of two strings
-     *
+     * Made concatenation between of two strings.
      * n=number of digits in the number
-     *
-     * @cpu 0(n)
-     * @ram 0(n)
      *
      * @param x the first term
      * @return concatenation of two strings
+     * @cpu 0(n)
+     * @ram 0(n)
      */
     public StringBuilder append(long x) {
         String str = Long.toString(x);
@@ -120,14 +125,13 @@ public class StringBuilder {
     }
 
     /**
-     *Made new string
+     * Made new string.
+     * n=logicalSize
      *
-     *n=logicalSize
+     * @return new string
      *
      * @cpu 0(n)
      * @ram 0(n)
-     *
-     * @return new string
      */
     public String toString() {
         return new String(chars, 0, logicalSize);

@@ -1,4 +1,4 @@
-package services.calculation;
+package services.example;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -62,7 +62,7 @@ class CalculationControllerTest {
     }
 
     @Nested
-    public class returnOperators {
+    public class ReturnOperators {
         @Autowired
         private MockMvc mockMvc;
 

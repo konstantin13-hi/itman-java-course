@@ -3,16 +3,14 @@ package tasks;
 public class CountingSortTask {
 
     /**
-     * It counts how many times each element occurs
-     *
+     * It counts how many times each element occurs.
      * m=the maximum element
      * n=amount of elements
      *
+     * @param array the first term
+     * @return array
      * @cpu O(n)
      * @ram O(m)
-     *
-     * @param array
-     * @return
      */
     public static int[] count(int[] array) {
         if (array.length == 0) {
@@ -33,17 +31,14 @@ public class CountingSortTask {
     }
 
     /**
-     *Fetches elements in sorted order
-     *
+     * Fetches elements in sorted order.
      * n=amount of the elements
      * k=sum of elements
      *
-     * @cpu O(n+k)
-     * @ram О(k)
-     *
      * @param array the first term
-     *
      * @return sorted array
+     * @cpu O(n + k)
+     * @ram О(k)
      */
     // 0 1 0 0 6 0 0 0 10
     public static int[] restore(int[] array) {
@@ -64,14 +59,13 @@ public class CountingSortTask {
     }
 
     /**
-     * Sorting elements of array
+     * Sorting elements of array.
      * m=the maximum element
      * n=amount of elements
      *
-     * @cpu O(n+m)
-     * @ram 0(n+m)
-     *
      * @param array the first term
+     * @cpu O(n + m)
+     * @ram 0(n + m)
      */
     public static void sort(int[] array) {
         int[] restore = count(array);
