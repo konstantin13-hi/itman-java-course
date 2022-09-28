@@ -5,6 +5,7 @@ import utils.ArrayUtils;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
 
@@ -247,15 +248,29 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     @Override
-    public void removeIf(Predicate predicate) {
-
+    public T[] toArray(IntFunction<T> factory) {
+        Node current = head;
+        T[] array = (T[]) factory.apply(logicalSize);
+        for (int i = 0; i < array.length; i++) {
+            array[i] = current.element;
+            current = current.next;
+        }
+        return array;
     }
 
-    @Override
-    public T[] toArray(IntFunction<T> factory) {
 
-        T[] array = (T[]) factory.apply(logicalSize);
-        return array;
+    @Override
+    public void removeIf(Predicate predicate) {
+        T t;
+        ListIterator<T> listIterator = iterator();
+        while (listIterator.hasNext()) {
+            t = listIterator.next();
+            if (predicate.test(t)) {
+                remove(t);
+            }
+        }
+
+
     }
 
     /**
@@ -263,11 +278,13 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * n=number of elements
      *
      * @param elements the first term
+     * @param <T> This describes my type parameter
      * @return new arraylist
      * @cpu 0(n)
      * @ram 0(n)
      */
-    public static <T> List of(T... elements) {
+    @SafeVarargs
+    public static <T> List<T> of(T... elements) {
         LinkedList<T> linkedList = new LinkedList<>();
         for (T element : elements) {
             linkedList.addLast(element);
@@ -286,19 +303,6 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      */
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || this.getClass() != obj.getClass() || this.logicalSize != ((LinkedList<?>) obj).logicalSize) {
-        if (this.getClass() != obj.getClass()) {
-            return false;
-        }
-        LinkedList<?> list = (LinkedList<?>) obj;
-        Iterator<T> iterator = this.iterator();
-        Iterator<?> iteratorSecond = list.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next() != iteratorSecond.next()) {
-                return false;
-            }
-
-        }
         LinkedList list = (LinkedList) obj;
         if (this.logicalSize != list.logicalSize) {
             return false;
@@ -320,7 +324,6 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * Add element in the back of list.
      *
      * @param element the first term
-     * @param element the first term
      * @return true
      * @cpu O(1)
      * @ram O(1)
@@ -332,9 +335,26 @@ public class LinkedList<T> implements List<T>, Queue<T> {
     }
 
     @Override
+    public boolean add(int index, T element) {
+        Node node = findNode(index);
+        Node newNode = new Node(element, node, node.getPrev());
+        node.getPrev().setNext(newNode);
+        node.setPrev(newNode);
+        return true;
+    }
+
+    @Override
     public boolean addAll(Collection<T> collection) {
         for (T t : collection) {
             add(t);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<T> collection) {
+        for (T i : collection) {
+            add(index++, i);
         }
         return true;
     }
@@ -365,21 +385,34 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return false;
     }
 
-    @Override
-    public boolean add(int index, T element) {
-        Node node = findNode(index);
-        Node newNode = new Node(element, node, node.getPrev());
-        node.getPrev().setNext(newNode);
-        node.setPrev(newNode);
-        return true;
-    }
+    /**
+     * Remove element.
+     *
+     * @param index the first term
+     * @return deleted element from list
+     * @cpu O(n)
+     * @ram O(1)
+     */
+    public T remove(int index) {
+        T result;
+        if (logicalSize == 1) {
+            result = head.element;
+            removeFirst();
+        } else if (index == 0) {
+            result = getFirst();
+            removeFirst();
+        } else if (index + 1 == logicalSize) {
+            result = getLast();
+            removeLast();
 
-    @Override
-    public boolean addAll(int index, Collection<T> collection) {
-        for (T i : collection) {
-            add(index++, i);
+        } else {
+            Node current = findNode(index);
+            result = current.element;
+            current.getNext().setPrev(current.getPrev());
+            current.getPrev().setNext(current.getNext());
+            logicalSize--;
         }
-        return true;
+        return result;
     }
 
     @Override
@@ -447,36 +480,6 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return current;
     }
 
-
-    /**
-     * Remove element.
-     *
-     * @param index the first term
-     * @return deleted element from list
-     * @cpu O(n)
-     * @ram O(1)
-     */
-    public T remove(int index) {
-        T result;
-        if (logicalSize == 1) {
-            result = head.element;
-            removeFirst();
-        } else if (index == 0) {
-            result = getFirst();
-            removeFirst();
-        } else if (index + 1 == logicalSize) {
-            result = getLast();
-            removeLast();
-
-        } else {
-            Node current = findNode(index);
-            result = current.element;
-            current.getNext().setPrev(current.getPrev());
-            current.getPrev().setNext(current.getNext());
-            logicalSize--;
-        }
-        return result;
-    }
 
     /**
      * Inserts the specified element into the queue.

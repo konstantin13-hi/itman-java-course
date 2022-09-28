@@ -98,19 +98,19 @@ public class SortBenchmark {
         System.out.println(System.currentTimeMillis() - time4);
         Event[] bso1 = randomEvents(10_000, 2000, 2021);
         long time5 = System.currentTimeMillis();
-        ArrayUtils.bubbleSort(bso1,new Event.EventComparator());
+        ArrayUtils.bubbleSort(bso1, new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time5);
         Event[] bso2 = randomEvents(10_000, -1_000_000, 1_000_000);
         long time6 = System.currentTimeMillis();
-        ArrayUtils.bubbleSort(bso2,new Event.EventComparator());
+        ArrayUtils.bubbleSort(bso2, new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time6);
         Event[] bso3 = randomEvents(100_000, 2000, 2021);
         long time7 = System.currentTimeMillis();
-        ArrayUtils.bubbleSort(bso3,new Event.EventComparator());
+        ArrayUtils.bubbleSort(bso3, new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time7);
         Event[] bso4 = randomEvents(100_000, -1_000_000, 1_000_000);
         long time8 = System.currentTimeMillis();
-        ArrayUtils.bubbleSort(bso4,new Event.EventComparator());
+        ArrayUtils.bubbleSort(bso4, new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time8);
         int[] csp1 = randomArray(10_000, -10_000, 10_000);
         long time9 = System.currentTimeMillis();
@@ -163,22 +163,22 @@ public class SortBenchmark {
         Event[] mso1 = randomEvents(10_000, 2000,
                 2021);
         long time21 = System.currentTimeMillis();
-        ArrayUtils.mergeSort(mso1,new Event.EventComparator());
+        ArrayUtils.mergeSort(mso1, new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time21);
         Event[] mso2 = randomEvents(10_000, -1_000_000,
                 1_000_000);
         long time22 = System.currentTimeMillis();
-        ArrayUtils.mergeSort(mso2,new Event.EventComparator());
+        ArrayUtils.mergeSort(mso2, new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time22);
         Event[] mso3 = randomEvents(100_000, 2000,
                 2021);
         long time23 = System.currentTimeMillis();
-        ArrayUtils.mergeSort(mso3,new Event.EventComparator());
+        ArrayUtils.mergeSort(mso3, new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time23);
         Event[] mso4 = randomEvents(100_000, -1_000_000,
                 1_000_000);
         long time24 = System.currentTimeMillis();
-        ArrayUtils.mergeSort(mso4,new Event.EventComparator());
+        ArrayUtils.mergeSort(mso4, new Event.EventComparator());
         System.out.println(System.currentTimeMillis() - time24);
     }
 

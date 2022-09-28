@@ -8,9 +8,9 @@ import tasks.MyString;
 
 
 public abstract class AbstractListTest {
-    protected abstract List createList();
+    protected abstract <T> List<T> createList();
 
-    protected abstract List of(Object... elements);
+    protected abstract <T> List<T> of(Object... elements);
 
 
     @Nested

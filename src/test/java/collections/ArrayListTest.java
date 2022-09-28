@@ -12,8 +12,9 @@ class ArrayListTest extends AbstractListTest {
     }
 
     @Override
-    protected List of(final Object... elements) {
+    protected List of(Object... elements) {
         return ArrayList.of(elements);
     }
+
 
 }

@@ -4,7 +4,6 @@ import collections.ArrayList;
 import collections.IntArrayList;
 import entities.Event;
 
-
 import java.util.Comparator;
 
 public class ArrayUtils {
@@ -13,13 +12,12 @@ public class ArrayUtils {
      * Sort elements of array.
      * n=amount of elements in array
      *
-     * @param events the first term.
      * @cpu O(n ^ 2)
      * @ram O(1)
      *
      * @param elements the first term.
      * @param comparator the second term.
-     *
+     * @param <T> describes my type parameter
      */
     public static <T> void bubbleSort(T[] elements, Comparator<T> comparator) {
         for (int i = 0; i < elements.length; i++) {
@@ -245,6 +243,124 @@ public class ArrayUtils {
     }
 
     /**
+     * Make merge sort.
+     * n=amount of elements in the array
+     *
+     * @param a the first term
+     * @cpu O(nlog ( n))
+     * @ram O(n)
+     */
+    public static void mergeSort(int[] a) {
+        ArrayUtils.mergeSort(a, 0, a.length);
+    }
+
+    /**
+     * Make merge sort.
+     * n=sum of index differences between start and end
+     *
+     * @param array     the first array variable
+     * @param fromIndex the index of the first array, indicating the start of the sort
+     * @param toIndex   the index of the first array indicating the end of the sort
+     * @cpu O(nlog ( n))
+     * @ram O(n)
+     */
+    public static void mergeSort(int[] array, int fromIndex, int toIndex) {
+        int[] t = new int[array.length];
+        int length = toIndex - fromIndex;
+        for (int k = 1; k < length; k = k * 2) {
+            for (int j = fromIndex; j < toIndex; j += k * 2) {
+                if (j + k < toIndex && j + k * 2 <= toIndex) {
+                    ArrayUtils.merge(array, j, j + k, array, j + k, j + k * 2, t, j);
+                } else if (j + k < toIndex && j + k * 2 > toIndex) {
+                    ArrayUtils.merge(array, j, j + k, array, j + k, toIndex, t, j);
+                } else {
+                    System.arraycopy(array, j, t, j, array.length - j);
+                }
+            }
+            System.arraycopy(t, fromIndex, array, fromIndex, length);
+        }
+    }
+
+
+    /**
+     * Make merge sort.
+     * n=index differences between start and end
+     *
+     * @param array the first array variable
+     * @param fromIndex the index of the first array, indicating the start of the sort
+     * @param toIndex   the index of the first array indicating the end of the sort
+     * @param <T> describes my type parameter
+     * @param comparator an interface for sorting
+     * @cpu O(nlog ( n))
+     * @ram O(n)
+     */
+    public static <T> void mergeSort(T[] array, Comparator<T> comparator, int fromIndex, int toIndex) {
+        T[] t = (T[]) new Object[array.length];
+        int length = toIndex - fromIndex;
+        for (int k = 1; k < length; k = k * 2) {
+            for (int j = fromIndex; j < toIndex; j += k * 2) {
+                if (j + k < toIndex && j + k * 2 <= toIndex) {
+                    ArrayUtils.merge(array, j, j + k, array, j + k, j + k * 2, t, j, comparator);
+                } else if (j + k < toIndex && j + k * 2 > toIndex) {
+                    ArrayUtils.merge(array, j, j + k, array, j + k, toIndex, t, j, comparator);
+                } else {
+                    System.arraycopy(array, j, t, j, array.length - j);
+                }
+            }
+            System.arraycopy(t, fromIndex, array, fromIndex, length);
+        }
+    }
+
+
+    /**
+     * Make merge sort.
+     *
+     * @param events  the first term
+     * @param comparator an interface for sorting
+     * @param <T> describes my type parameter
+     * n=amount of elements in the array
+     * @cpu O(nlog ( n))
+     * @ram O(n)
+     */
+    public static <T> void mergeSort(T[] events, Comparator<T> comparator) {
+        ArrayUtils.mergeSort(events, comparator, 0, events.length);
+    }
+
+    /**
+     * Merge two arrays with sorted elements.
+     * n=differences between start and end index of the first array
+     * m=differences between start and end index of the second array
+     *
+     * @cpu O(n+m)
+     * @ram O(1)
+     *
+     * @param a the first array variable
+     * @param aFrom the index of the first array, indicating the start of the sort
+     * @param aTo the index of the first array indicating the end of the sort
+     * @param b the second array variable
+     * @param bFrom the index of the second array, indicating the start of the sort
+     * @param bTo the index of the second array indicating the end of the sort
+     * @param r the third array variable,where the first two arrays are merged and the elements are sorted
+     * @param rFrom the index of the third array, indicating the start of the sort
+     * @param comparator an interface for sorting
+     * @param <T> describes my type parameter
+     */
+    public static <T> void merge(T[] a, int aFrom, int aTo,
+                                 T[] b, int bFrom, int bTo, T[] r,
+                                 int rFrom, Comparator<T> comparator) {
+        int limit = aTo - aFrom + bTo - bFrom;
+        for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
+            if (j < aTo && k < bTo) {
+                r[rFrom++] = comparator.compare(a[j], b[k]) < 1 ? a[j++] : b[k++];
+            } else if (j < aTo && k == bTo) {
+                r[rFrom++] = a[j++];
+            } else if (j == aTo && k < bTo) {
+                r[rFrom++] = b[k++];
+            }
+        }
+    }
+
+    /**
      * Merge two arrays with sorted elements.
      * n=differences between start and end index of the first array
      * m=differences between start and end index of the second array
@@ -294,118 +410,6 @@ public class ArrayUtils {
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
             if (j < aTo && k < bTo) {
                 r[rFrom++] = a[j].compareTo(b[k]) < 1 ? a[j++] : b[k++];
-            } else if (j < aTo && k == bTo) {
-                r[rFrom++] = a[j++];
-            } else if (j == aTo && k < bTo) {
-                r[rFrom++] = b[k++];
-            }
-        }
-    }
-
-    /**
-     * Make merge sort.
-     * n=amount of elements in the array
-     *
-     * @param a the first term
-     * @cpu O(nlog ( n))
-     * @ram O(n)
-     */
-    public static void mergeSort(int[] a) {
-        ArrayUtils.mergeSort(a, 0, a.length);
-    }
-
-    /**
-     * Make merge sort.
-     * n=sum of index differences between start and end
-     *
-     * @param array     the first array variable
-     * @param fromIndex the index of the first array, indicating the start of the sort
-     * @param toIndex   the index of the first array indicating the end of the sort
-     * @cpu O(nlog ( n))
-     * @ram O(n)
-     */
-    public static void mergeSort(int[] array, int fromIndex, int toIndex) {
-        int[] t = new int[array.length];
-        int length = toIndex - fromIndex;
-        for (int k = 1; k < length; k = k * 2) {
-            for (int j = fromIndex; j < toIndex; j += k * 2) {
-                if (j + k < toIndex && j + k * 2 <= toIndex) {
-                    ArrayUtils.merge(array, j, j + k, array, j + k, j + k * 2, t, j);
-                } else if (j + k < toIndex && j + k * 2 > toIndex) {
-                    ArrayUtils.merge(array, j, j + k, array, j + k, toIndex, t, j);
-                } else {
-                    System.arraycopy(array, j, t, j, array.length - j);
-                }
-            }
-            System.arraycopy(t, fromIndex, array, fromIndex, length);
-        }
-    }
-
-
-    /**
-     * Make merge sort.
-     * n=index differences between start and end
-     *
-     * @param array the first array variable
-     * @param fromIndex the index of the first array, indicating the start of the sort
-     * @param toIndex   the index of the first array indicating the end of the sort
-     * @cpu O(nlog ( n))
-     * @ram O(n)
-     */
-    public static<T> void mergeSort(T[] array,Comparator<T>comparator, int fromIndex, int toIndex) {
-        T[] t = (T[])new Object[array.length];
-        int length = toIndex - fromIndex;
-        for (int k = 1; k < length; k = k * 2) {
-            for (int j = fromIndex; j < toIndex; j += k * 2) {
-                if (j + k < toIndex && j + k * 2 <= toIndex) {
-                    ArrayUtils.merge(array, j, j + k, array, j + k, j + k * 2, t, j,comparator);
-                } else if (j + k < toIndex && j + k * 2 >  toIndex) {
-                    ArrayUtils.merge(array, j, j + k, array, j + k,  toIndex, t, j,comparator);
-                } else {
-                    System.arraycopy(array, j, t, j, array.length - j);
-                }
-            }
-            System.arraycopy(t, fromIndex, array, fromIndex, length);
-        }
-    }
-
-
-    /**
-     * Make merge sort.
-     * n=amount of elements in the array
-     *
-     * @param events the first term
-     * @cpu O(nlog ( n))
-     * @ram O(n)
-     */
-    public static<T> void mergeSort(T[] events,Comparator<T>comparator) {
-       ArrayUtils.mergeSort(events,comparator,0,events.length);
-    }
-
-    /**
-     * Merge two arrays with sorted elements
-     *
-     * n=differences between start and end index of the first array
-     * m=differences between start and end index of the second array
-     *
-     * @cpu O(n+m)
-     * @ram O(1)
-     *
-     * @param a the first array variable
-     * @param aFrom the index of the first array, indicating the start of the sort
-     * @param aTo the index of the first array indicating the end of the sort
-     * @param b the second array variable
-     * @param bFrom the index of the second array, indicating the start of the sort
-     * @param bTo the index of the second array indicating the end of the sort
-     * @param r the third array variable,where the first two arrays are merged and the elements are sorted
-     * @param rFrom the index of the third array, indicating the start of the sort
-     *
-     */
-    public static<T> void merge(T[] a, int aFrom, int aTo, T[] b, int bFrom, int bTo, T[] r, int rFrom, Comparator<T>comparator) {
-        int limit = aTo - aFrom + bTo - bFrom;
-        for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
-            if (j < aTo && k < bTo) {
-                r[rFrom++] = comparator.compare(a[j],b[k]) < 1 ? a[j++] : b[k++];
             } else if (j < aTo && k == bTo) {
                 r[rFrom++] = a[j++];
             } else if (j == aTo && k < bTo) {

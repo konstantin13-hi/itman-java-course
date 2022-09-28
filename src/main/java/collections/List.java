@@ -1,25 +1,37 @@
 package collections;
 
+import java.util.Comparator;
+
 /**
  * List.java
  * Interface class that has the following methods.
  *
- * @author MyName
- * @since mm-dd-yyyy
+ * @author Kanstantsin
+ * @since 13-09-2022
  */
-public interface List {
+public interface List<T> extends Collection<T> {
     /**
      * Add element in the back of list.
      *
      * @param element the first term
      * @cpu O(1)
      * @ram O(1)
+     * @return boolean result.If change size then will return true
      */
-    void add(Object element);
-import java.util.Comparator;
-import java.util.Iterator;
+    boolean add(T element);
 
-public interface List<T> extends Collection<T> {
+    /**
+     * Add element in the back of list.
+     *
+     * @param index   the first term
+     * @param element the second term
+     * @return boolean result.If change size then will return true.
+     * ArrayList and LinkedList:
+     * @cpu O(n)
+     * @ram O(1)
+     */
+    boolean add(int index, T element);
+
 
     /**
      * Set element.
@@ -31,8 +43,7 @@ public interface List<T> extends Collection<T> {
      * LinkedList @cpu O(1)
      * @ram 0(1)
      */
-    void set(int index, Object element);
-    boolean add(T element);
+    void set(int index, T element);
 
     /**
      * Get index.
@@ -44,12 +55,33 @@ public interface List<T> extends Collection<T> {
      * LinkedList @cpu 0(n)
      * @ram 0(1)
      */
-    Object get(int index);
+    T get(int index);
+
+    /**
+     * Adds elements in the back of list.
+     *
+     * @param collection the first term
+     * @return boolean result.If change size then will return true.
+     * ArrayList and
+     * @cpu O(n)
+     * @ram O(n)
+     */
     boolean addAll(Collection<T> collection);
 
-    void set(int index, T element);
+    /**
+     * Adds element in index position.
+     *
+     * @param index      the first term
+     * @param collection the second term
+     * @return boolean result.If change size then will return true.
+     * ArrayList and LinkedList:
+     * m=collection's size
+     * n=logical size
+     * @cpu O(n+m)
+     * @ram O(m)
+     */
 
-    T get(int index);
+    boolean addAll(int index, Collection<T> collection);
 
     /**
      * Return size.
@@ -68,14 +100,18 @@ public interface List<T> extends Collection<T> {
      * @cpu O(n)
      * @ram O(n)
      */
-    Object[] toArray();
     T[] toArray();
 
-    T remove(int index);
-
+    /**
+     * Removes element.
+     *
+     * @param element the first term
+     * @return boolean result.If change size then will return true.
+     * ArrayList:@cpu O(n)
+     * LinkedList:@cpu O(1)
+     * @ram O(1)
+     */
     boolean remove(T element);
-
-    boolean add(int index, T element);
 
     /**
      * Remove element.
@@ -86,11 +122,25 @@ public interface List<T> extends Collection<T> {
      * LinkedList @cpu 0(n)
      * @ram O(1)
      */
-    Object remove(int index);
-    boolean addAll(int index,Collection <T> collection);
+    T remove(int index);
 
+    /**
+     * Returns iterator.
+     *
+     * @return iterator
+     * @cpu O(1)
+     * @ram O(1)
+     */
     ListIterator iterator();
 
+    /**
+     * Sorts element.
+     *
+     * @param comparator the first term
+     * n=logical size
+     * @cpu O(log ( n)*n)
+     * @ram O(n)
+     */
     void sort(Comparator<T> comparator);
 
 

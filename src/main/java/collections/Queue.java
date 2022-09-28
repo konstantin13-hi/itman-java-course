@@ -8,7 +8,7 @@ package collections;
  * @since mm-dd-yyyy
  */
 
-public interface Queue {
+public interface Queue<T> {
 
     /**
      * Inserts the specified element into the queue.
@@ -17,8 +17,6 @@ public interface Queue {
      * @cpu O(1)
      * @ram O(1)
      */
-    void offer(Object element);
-public interface Queue<T> {
     void offer(T element);
 
     /**
@@ -28,7 +26,6 @@ public interface Queue<T> {
      * @cpu O(1)
      * @ram O(1)
      */
-    Object peek();
     T peek();
 
     /**
@@ -38,7 +35,6 @@ public interface Queue<T> {
      * @cpu O(1)
      * @ram O(1)
      */
-    Object poll();
     T poll();
 
     /**
@@ -67,6 +63,5 @@ public interface Queue<T> {
      * @cpu O(n)
      * @ram O(n)
      */
-    Object[] toArray();
     T[] toArray();
 }
