@@ -29,20 +29,22 @@ public class ArrayList<T> implements List<T> {
      * @param capacity the first term
      * @cpu 0(1)
      * @ram 0(n)
+     * {@inheritDoc}
      */
     public ArrayList(int capacity) {
         objects = (T[]) new Object[capacity];
     }
 
     /**
-     * Add element.
+     * Add element in the back of list.
      *
-     * @param element the term
-     * @return boolean result
-     * @cpu 0(1)
-     * @ram 0(1)
+     * @param index   the first term
+     * @param element the second term
+     * @return boolean result.If change size then will return true
+     * @cpu O(n)
+     * @ram O(1)
+     * {@inheritDoc}
      */
-
     @Override
     public boolean add(int index, T element) {
         if (logicalSize == 0) {
@@ -60,6 +62,14 @@ public class ArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * Add element in the back of list.
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     * {@inheritDoc}
+     * @return boolean result.If change size then will return true
+     */
     @Override
     public boolean add(T element) {
         if (logicalSize == objects.length) {
@@ -72,11 +82,28 @@ public class ArrayList<T> implements List<T> {
         return false;
     }
 
+    /**
+     * Returns iterator.
+     *
+     * @return iterator
+     * @cpu O(1)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
     public ListIterator<T> iterator() {
         return new ArrayListIterator();
     }
 
+    /**
+     * Sorts element.
+     *
+     * @param comparator the first term
+     * n=logical size
+     * @cpu O(log ( n)*n)
+     * @ram O(n)
+     * {@inheritDoc}
+     */
     @Override
     public void sort(Comparator<T> comparator) {
         ArrayUtils.mergeSort(toArray(), comparator);
@@ -104,7 +131,15 @@ public class ArrayList<T> implements List<T> {
         }
     }
 
-
+    /**
+     * Adds elements in the back of list.
+     *
+     * @param collection the first term
+     * @return boolean result.If change size then will return true
+     * @cpu O(n)
+     * @ram O(n)
+     * {@inheritDoc}
+     */
     @Override
     public boolean addAll(Collection<T> collection) {
         for (T i : collection) {
@@ -113,6 +148,18 @@ public class ArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * Adds element in index position.
+     *
+     * @param index      the first term
+     * @param collection the second term
+     * @return boolean result.If change size then will return true
+     * m=collection's size
+     * n=logical size
+     * @cpu O(n+m)
+     * @ram O(m)
+     * {@inheritDoc}
+     */
     @Override
     public boolean addAll(int index, Collection<T> collection) {
         if (logicalSize == 0 || index + 1 == logicalSize) {
@@ -134,6 +181,16 @@ public class ArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * Cheeks if an array contains element.
+     *
+     * @param element the first term
+     * @return boolean result.If current object has same element then will return true
+     * n = logicalSize
+     * @cpu O(n)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
     public boolean contains(T element) {
         for (int i = 0; i < logicalSize; i++) {
@@ -144,6 +201,15 @@ public class ArrayList<T> implements List<T> {
         return false;
     }
 
+    /**
+     * Removes element.
+     *
+     * @param element the first term
+     * @return boolean result.If change size then will return true.
+     * @cpu O(n)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
     public boolean remove(T element) {
         for (int i = 0; i < logicalSize; i++) {
@@ -163,6 +229,7 @@ public class ArrayList<T> implements List<T> {
      * @return new array without one element
      * @cpu 0(n)
      * @ram 0(1)
+     * {@inheritDoc}
      */
     @Override
     public T remove(int index) {
@@ -174,6 +241,17 @@ public class ArrayList<T> implements List<T> {
         return object;
     }
 
+    /**
+     * Cheeks if an array contains element.
+     *
+     * @param collection the first term
+     * @return boolean result.If current object has same elements then will return true
+     * n = logicalSize
+     * m = size of collection
+     * @cpu O(n*m)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
     public boolean containsAll(Collection<T> collection) {
         for (T i : collection) {
@@ -184,6 +262,17 @@ public class ArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * Cheeks if an array contains collection's elements.
+     *
+     * @param collection the first term
+     * LinkedList and ArrayList:
+     * n = logicalSize
+     * m = size of collection
+     * @cpu O(n*m)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
     public void removeAll(Collection<T> collection) {
         for (T i : collection) {
@@ -199,6 +288,7 @@ public class ArrayList<T> implements List<T> {
      * @param element the second term
      * @cpu 0(1)
      * @ram 0(1)
+     * {@inheritDoc}
      */
     @Override
     public void set(int index, T element) {
@@ -212,6 +302,7 @@ public class ArrayList<T> implements List<T> {
      * @return number from arraylist
      * @cpu 0(1)
      * @ram 0(1)
+     * {@inheritDoc}
      */
     @Override
     public T get(int index) {
@@ -224,12 +315,21 @@ public class ArrayList<T> implements List<T> {
      * @return size
      * @cpu 0(1)
      * @ram 0(1)
+     * {@inheritDoc}
      */
     @Override
     public int size() {
         return logicalSize;
     }
 
+    /**
+     * Cheeks array length.
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     * @return boolean result
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEmpty() {
         return logicalSize == 0;
@@ -242,6 +342,7 @@ public class ArrayList<T> implements List<T> {
      * @return new array
      * @cpu 0(n)
      * @ram 0(n)
+     * {@inheritDoc}
      */
     @Override
     public T[] toArray() {
@@ -250,6 +351,16 @@ public class ArrayList<T> implements List<T> {
         return newObject;
     }
 
+    /**
+     * Returns an array with a size depending on the input data.
+     *
+     * @cpu O(n)
+     * @ram O(n)
+     *
+     * @param factory the first term
+     * @return array
+     * {@inheritDoc}
+     */
     @Override
     public T[] toArray(IntFunction<T> factory) {
         T[] array = (T[]) factory.apply(logicalSize);
@@ -259,6 +370,15 @@ public class ArrayList<T> implements List<T> {
         return array;
     }
 
+    /**
+     * Removes elements matching predicate.
+     * n=logical size
+     *
+     * @param predicate the first date
+     * @cpu O(n)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
     public void removeIf(Predicate<T> predicate) {
         T t;
@@ -279,8 +399,8 @@ public class ArrayList<T> implements List<T> {
      * @return new arraylist
      * @cpu 0(n)
      * @ram 0(n)
+     * {@inheritDoc}
      */
-
     public static <T> ArrayList<T> of(T... elements) {
         ArrayList<T> arrayList;
         if (elements.length == 0) {
@@ -302,6 +422,7 @@ public class ArrayList<T> implements List<T> {
      * @return new array
      * @cpu 0(n)
      * @ram 0(n)
+     * {@inheritDoc}
      */
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -328,6 +449,7 @@ public class ArrayList<T> implements List<T> {
      * @return result
      * @cpu 0(n)
      * @ram 0(1)
+     * {@inheritDoc}
      */
     public boolean equals(Object that) {
         if (this.getClass() != that.getClass()) {

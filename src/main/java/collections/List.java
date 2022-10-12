@@ -131,7 +131,7 @@ public interface List<T> extends Collection<T> {
      * @cpu O(1)
      * @ram O(1)
      */
-    ListIterator iterator();
+    ListIterator<T> iterator();
 
     /**
      * Sorts element.

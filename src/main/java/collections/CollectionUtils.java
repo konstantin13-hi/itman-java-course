@@ -27,23 +27,6 @@ public class CollectionUtils {
         return result;
     }
 
-    /**
-     * Makes sort.
-     *
-     * @param list the first term
-     * @param <T>  type
-     * @cpu O(log ( n)n)
-     * @ram O(n)
-     */
-
-    public static <T extends Comparable<T>> void sort(List<Comparable<T>> list) {
-        T[] array = (T[]) new Object[list.size()];
-        ListIterator<T> iterator = list.iterator();
-        for (int i = 0; i < list.size(); i++) {
-            array[i] = iterator.next();
-        }
-        ArrayUtils.mergeSort(array, Comparable::compareTo);
-    }
 
     /**
      * Makes reverse.
@@ -61,7 +44,6 @@ public class CollectionUtils {
             array[i] = listIterator.next();
         }
         System.arraycopy(list, 0, array, 0, array.length);
-
 
     }
 }

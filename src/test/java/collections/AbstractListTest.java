@@ -86,7 +86,7 @@ public abstract class AbstractListTest {
     public class ToArray {
         @Test
         public void shouldToStringWhenListIsNotEmpty() {
-            List list = of(1, 2, 3, 4, 5);
+            List<Object> list = of(1, 2, 3, 4, 5);
             Assertions.assertArrayEquals(new Object[]{1, 2, 3, 4, 5}, list.toArray());
 
         }

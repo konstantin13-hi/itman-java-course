@@ -95,6 +95,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @param that the first term
      * @cpu 0(n)
      * @ram 0(n)
+     * {@inheritDoc}
      */
     public LinkedList(LinkedList<T> that) {
         Node current = that.head;
@@ -110,6 +111,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @param element the first term
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
     public void addFirst(T element) {
         if (this.head == null) {
@@ -129,6 +131,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
 
     public T getFirst() {
@@ -141,6 +144,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return first element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
     public T removeFirst() {
         T result = head.getElement();
@@ -155,6 +159,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @param element the first term
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
     public void addLast(T element) {
         if (prev == null) {
@@ -175,8 +180,8 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return last element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
-
     public T getLast() {
         return prev.getElement();
     }
@@ -187,8 +192,8 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return last element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
-
     public T removeLast() {
         T result;
         Node current = prev;
@@ -222,7 +227,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
                 stringBuilder.append(", ");
                 current = current.getNext();
             } else {
-                current = current.getNext();
+                current = null;
             }
         }
         stringBuilder.append(']');
@@ -238,7 +243,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @ram O(n)
      */
     public T[] toArray() {
-        ArrayList<T> arrayList = new ArrayList();
+        ArrayList<T> arrayList = new ArrayList<>();
         Node current = head;
         while (current != null) {
             arrayList.add(current.getElement());
@@ -258,13 +263,20 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return array;
     }
 
-
+    /**
+     * Removes elements matching predicate.
+     * n=logical size
+     *
+     * @param predicate the first date
+     * @cpu O(n)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
-    public void removeIf(Predicate predicate) {
+    public void removeIf(Predicate<T> predicate) {
         T t;
-        ListIterator<T> listIterator = iterator();
-        while (listIterator.hasNext()) {
-            t = listIterator.next();
+        for (T value : this) {
+            t = value;
             if (predicate.test(t)) {
                 remove(t);
             }
@@ -282,6 +294,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return new arraylist
      * @cpu 0(n)
      * @ram 0(n)
+     * {@inheritDoc}
      */
     @SafeVarargs
     public static <T> List<T> of(T... elements) {
@@ -300,6 +313,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return result
      * @cpu 0(n)
      * @ram 0(1)
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(Object obj) {
@@ -327,6 +341,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return true
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
     @Override
     public boolean add(T element) {
@@ -334,6 +349,15 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return true;
     }
 
+    /**
+     * Add element in the back of list.
+     *
+     *
+     * @param index   the first term
+     * @param element the second term
+     * @return boolean result.If change size then will return true.
+     * {@inheritDoc}
+     */
     @Override
     public boolean add(int index, T element) {
         Node node = findNode(index);
@@ -343,6 +367,16 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return true;
     }
 
+    /**
+     * Adds elements in the back of list.
+     *
+     * @param collection the first term
+     * @return boolean result.If change size then will return true.
+     * ArrayList and
+     * @cpu O(n)
+     * @ram O(n)
+     * {@inheritDoc}
+     */
     @Override
     public boolean addAll(Collection<T> collection) {
         for (T t : collection) {
@@ -351,6 +385,18 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return true;
     }
 
+    /**
+     * Adds element in index position.
+     *
+     * @param index      the first term
+     * @param collection the second term
+     * @return boolean result.If change size then will return true
+     * m=collection's size
+     * n=logical size
+     * @cpu O(n+m)
+     * @ram O(m)
+     * {@inheritDoc}
+     */
     @Override
     public boolean addAll(int index, Collection<T> collection) {
         for (T i : collection) {
@@ -359,6 +405,16 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return true;
     }
 
+    /**
+     * Cheeks if an array contains element.
+     *
+     * @param element the first term
+     * @return boolean result.If current object has same element then will return true
+     * n = logicalSize
+     * @cpu O(n)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
     public boolean contains(T element) {
         T[] array = toArray();
@@ -370,6 +426,15 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return false;
     }
 
+    /**
+     * Removes element.
+     *
+     * @param element the first term
+     * @return boolean result.If change size then will return true
+     * LinkedList:@cpu O(1)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
     public boolean remove(T element) {
         Iterator<T> i = this.iterator();
@@ -392,6 +457,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return deleted element from list
      * @cpu O(n)
      * @ram O(1)
+     * {@inheritDoc}
      */
     public T remove(int index) {
         T result;
@@ -415,27 +481,64 @@ public class LinkedList<T> implements List<T>, Queue<T> {
         return result;
     }
 
+    /**
+     * Returns iterator.
+     *
+     * @return iterator
+     * @cpu O(1)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
     public ListIterator<T> iterator() {
         return new LinkedListIterator();
     }
 
+    /**
+     * Sorts element.
+     *
+     * @param comparator the first term
+     * n=logical size
+     * @cpu O(log ( n)*n)
+     * @ram O(n)
+     * {@inheritDoc}
+     */
     @Override
     public void sort(Comparator<T> comparator) {
         ArrayUtils.mergeSort(toArray(), comparator);
     }
 
+    /**
+     * Cheeks if an array contains element.
+     *
+     * @param collection the first term
+     * @return boolean result.If current object has same elements then will return true
+     * n = logicalSize
+     * m = size of collection
+     * @cpu O(n*m)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
     public boolean containsAll(Collection<T> collection) {
         for (T t : collection) {
             if (!contains(t)) {
                 return false;
             }
-
         }
         return true;
     }
 
+    /**
+     * Cheeks if an array contains collection's elements.
+     *
+     * @param collection the first term
+     * n = logicalSize
+     * m = size of collection
+     * @cpu O(n*m)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
     @Override
     public void removeAll(Collection<T> collection) {
         for (T t : collection) {
@@ -465,6 +568,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return number from arraylist
      * @cpu 0(n)
      * @ram 0(1)
+     * {@inheritDoc}
      */
     public T get(int index) {
         return findNode(index).element;
@@ -487,6 +591,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @param element the first term
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
     @Override
     public void offer(T element) {
@@ -500,6 +605,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return first element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
     @Override
     public T peek() {
@@ -512,6 +618,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return first element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
     @Override
     public T poll() {
@@ -524,6 +631,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return size
      * @cpu 0(1)
      * @ram 0(1)
+     * {@inheritDoc}
      */
     public int size() {
         return logicalSize;
@@ -536,6 +644,7 @@ public class LinkedList<T> implements List<T>, Queue<T> {
      * @return result
      * @cpu 0(1)
      * @ram 0(1)
+     * {@inheritDoc}
      */
     @Override
     public boolean isEmpty() {
