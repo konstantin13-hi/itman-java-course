@@ -63,5 +63,5 @@ public interface Queue<T> {
      * @cpu O(n)
      * @ram O(n)
      */
-    T[] toArray();
+    Object[] toArray();
 }

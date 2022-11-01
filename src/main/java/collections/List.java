@@ -14,8 +14,6 @@ public interface List<T> extends Collection<T> {
      * Add element in the back of list.
      *
      * @param element the first term
-     * @cpu O(1)
-     * @ram O(1)
      * @return boolean result.If change size then will return true
      */
     boolean add(T element);
@@ -26,9 +24,6 @@ public interface List<T> extends Collection<T> {
      * @param index   the first term
      * @param element the second term
      * @return boolean result.If change size then will return true.
-     * ArrayList and LinkedList:
-     * @cpu O(n)
-     * @ram O(1)
      */
     boolean add(int index, T element);
 
@@ -39,9 +34,6 @@ public interface List<T> extends Collection<T> {
      *
      * @param index   the first term
      * @param element the second term
-     * ArrayList @cpu O(n)
-     * LinkedList @cpu O(1)
-     * @ram 0(1)
      */
     void set(int index, T element);
 
@@ -51,9 +43,6 @@ public interface List<T> extends Collection<T> {
      *
      * @param index the first term
      * @return number from array list
-     * ArrayList @cpu O(1)
-     * LinkedList @cpu 0(n)
-     * @ram 0(1)
      */
     T get(int index);
 
@@ -62,11 +51,8 @@ public interface List<T> extends Collection<T> {
      *
      * @param collection the first term
      * @return boolean result.If change size then will return true.
-     * ArrayList and
-     * @cpu O(n)
-     * @ram O(n)
      */
-    boolean addAll(Collection<T> collection);
+    boolean addAll(Collection<? extends T> collection);
 
     /**
      * Adds element in index position.
@@ -74,53 +60,38 @@ public interface List<T> extends Collection<T> {
      * @param index      the first term
      * @param collection the second term
      * @return boolean result.If change size then will return true.
-     * ArrayList and LinkedList:
-     * m=collection's size
-     * n=logical size
-     * @cpu O(n+m)
-     * @ram O(m)
      */
 
-    boolean addAll(int index, Collection<T> collection);
+    boolean addAll(int index, Collection<? extends T> collection);
 
     /**
      * Return size.
      *
      * @return size
-     * @cpu 0(1)
-     * @ram 0(1)
      */
     int size();
 
     /**
      * Return array containing elements.
-     * n=logicalSize
      *
      * @return array
-     * @cpu O(n)
-     * @ram O(n)
      */
-    T[] toArray();
+    Object[] toArray();
 
     /**
      * Removes element.
      *
      * @param element the first term
      * @return boolean result.If change size then will return true.
-     * ArrayList:@cpu O(n)
-     * LinkedList:@cpu O(1)
-     * @ram O(1)
      */
-    boolean remove(T element);
+
+    T remove(Object element);
 
     /**
      * Remove element.
      *
      * @param index the first term
      * @return deleted element from list
-     * ArrayList @cpu O(1)
-     * LinkedList @cpu 0(n)
-     * @ram O(1)
      */
     T remove(int index);
 
@@ -128,8 +99,6 @@ public interface List<T> extends Collection<T> {
      * Returns iterator.
      *
      * @return iterator
-     * @cpu O(1)
-     * @ram O(1)
      */
     ListIterator<T> iterator();
 
@@ -137,9 +106,6 @@ public interface List<T> extends Collection<T> {
      * Sorts element.
      *
      * @param comparator the first term
-     * n=logical size
-     * @cpu O(log ( n)*n)
-     * @ram O(n)
      */
     void sort(Comparator<T> comparator);
 

@@ -14,24 +14,46 @@ class CollectionUtilsTest {
     public class FindMin {
         @Test
         void shouldFindMinWhenArrayIsNotEmpty() {
-            List<Integer> list = new LinkedList<Integer>();
+            List<Integer> list = new LinkedList<>();
             list.add(3);
             list.add(5);
             list.add(0);
             list.add(10);
             list.add(8);
 
-            Comparator<Integer> comparator = (o1, o2) -> {
-                int result = 0;
-                if (o1 > o2) {
-                    result = 1;
-                } else if (o1 < o2) {
-                    result = -1;
-                }
-                return result;
-            };
             Assertions.assertEquals(0, CollectionUtils.findMin(list,
                     Comparator.comparingInt(o -> o)));
+        }
+
+
+    }
+
+    @Nested
+    public class FindMax {
+        @Test
+        void shouldFindMinWhenArrayIsNotEmpty() {
+            List<Integer> list = new LinkedList<>();
+            list.add(3);
+            list.add(5);
+            list.add(0);
+            list.add(10);
+            list.add(8);
+
+            Comparator<Integer> comparator = new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    int result = 0;
+                    if (o1 > o2) {
+                        result = -1;
+                    } else if (o1 < o2) {
+                        result = 1;
+                    }
+                    return result;
+                }
+            };
+
+            Assertions.assertEquals(10, CollectionUtils.findMax(list,
+                    comparator));
         }
 
 
@@ -47,6 +69,23 @@ class CollectionUtilsTest {
             list.add(2);
             list.add(4);
             list.add(1);
+            CollectionUtils.sort(list);
+            Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, list.toArray());
+        }
+    }
+
+    @Nested
+    public class Reverse {
+        @Test
+        void shouldReverseWhenArrayIsNotEmpty() {
+            List<Integer> list = new LinkedList<>();
+            list.add(3);
+            list.add(5);
+            list.add(2);
+            list.add(4);
+            list.add(1);
+            CollectionUtils.reverse(list);
+            Assertions.assertArrayEquals(new Integer[]{1, 4, 2, 5, 3}, list.toArray());
         }
     }
 }

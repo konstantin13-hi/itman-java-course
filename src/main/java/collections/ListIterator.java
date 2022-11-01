@@ -12,9 +12,7 @@ public interface ListIterator<T> extends Iterator<T> {
     /**
      * Sets element.
      *
-     * @param element the second term
-     * @cpu O(1)
-     * @ram O(1)
+     * @param element the first term
      */
     void set(T element);
 
@@ -22,8 +20,14 @@ public interface ListIterator<T> extends Iterator<T> {
      * Inserts before.
      *
      * @param element the first term
-     * @cpu O(1)
-     * @ram O(1)
      */
     void insertBefore(T element);
+
+    /**
+     * Returns current element.
+     *
+     * @return element
+     */
+    T current();
+
 }

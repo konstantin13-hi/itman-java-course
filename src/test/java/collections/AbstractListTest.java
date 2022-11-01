@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import tasks.MyString;
 
+import java.util.Comparator;
+
 
 public abstract class AbstractListTest {
     protected abstract <T> List<T> createList();
@@ -15,15 +17,42 @@ public abstract class AbstractListTest {
 
     @Nested
     public class Add {
+
         @Test
         public void shouldAddElementWhenListIsNotEmpty() {
-            List list = createList();
+            List<Object> list = createList();
             list.add(1);
             Assertions.assertArrayEquals(new Object[]{1}, list.toArray());
             list.add("5");
             list.add(6);
             Assertions.assertArrayEquals(new Object[]{1, "5", 6}, list.toArray());
         }
+
+        @Test
+        public void shouldAddElementWhenIndexFirst() {
+            List<Integer> list = of(1, 2, 3, 4, 5);
+            list.add(0, 0);
+            list.toArray();
+            Assertions.assertArrayEquals(new Integer[]{0, 1, 2, 3, 4, 5}, list.toArray());
+        }
+
+        @Test
+        public void shouldAddElementWhenIndexMiddle() {
+            List<Integer> list = of(1, 2, 3, 4, 5);
+            list.add(2, 0);
+            list.toArray();
+            Assertions.assertArrayEquals(new Integer[]{1, 2, 0, 3, 4, 5}, list.toArray());
+        }
+
+        @Test
+        public void shouldAddElementWhenIndexLast() {
+            List<Integer> list = of(1, 2, 3, 4, 5);
+            list.add(5, 0);
+            list.toArray();
+            Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 0}, list.toArray());
+        }
+
+
     }
 
 
@@ -31,28 +60,42 @@ public abstract class AbstractListTest {
     public class Get {
         @Test
         public void shouldGetElementWhenListIsNotEmpty() {
-            List list = of("12", 2, 1, new Ticket(1, "sde"));
+            List<Object> list = of("12", 2, 1, new Ticket(1, "sde"));
             Assertions.assertEquals(1, list.get(2));
             Assertions.assertEquals("12", list.get(0));
+            Assertions.assertEquals(2, list.get(1));
         }
+
+
     }
 
     @Nested
     public class Remove {
         @Test
-        public void shouldRemoveElementWhenListIsNotEmpty() {
-            List list = of("12", 2, 1, new Ticket(1, "sde"));
+        public void shouldRemoveElementByIndexWhenListIsNotEmpty() {
+            List<Object> list = of("12", 2, 1, new Ticket(1, "sde"), 33);
             Assertions.assertEquals(1, list.remove(2));
             Assertions.assertEquals("12", list.remove(0));
+            Assertions.assertEquals(33, list.remove(2));
             Assertions.assertArrayEquals(new Object[]{2, new Ticket(1, "sde")}, list.toArray());
         }
+
+        @Test
+        public void shouldRemoveElementWhenListIsNotEmpty() {
+            List<Object> list = of("12", 2, 1, new Ticket(1, "sde"), 33);
+            Assertions.assertEquals(1, list.remove(Integer.valueOf(1)));
+            Assertions.assertEquals("12", list.remove("12"));
+            Assertions.assertEquals(33, list.remove(Integer.valueOf(33)));
+            Assertions.assertArrayEquals(new Object[]{2, new Ticket(1, "sde")}, list.toArray());
+        }
+
     }
 
     @Nested
     public class Set {
         @Test
         public void shouldSetElementWhenListIsNotEmpty() {
-            List list = of(1, 2, 3, 4, 5);
+            List<Object> list = of(1, 2, 3, 4, 5);
             list.set(4, "1");
             list.set(3, "2");
             list.set(2, "3");
@@ -68,14 +111,14 @@ public abstract class AbstractListTest {
     public class ToString {
         @Test
         public void shouldToStringWhenListIsNotEmpty() {
-            List list = of(1, 2, 3, 4, 5);
+            List<Integer> list = of(1, 2, 3, 4, 5);
             Assertions.assertEquals("[1, 2, 3, 4, 5]", list.toString());
 
         }
 
         @Test
         public void shouldToStringWhenListIsEmpty() {
-            List list = of();
+            List<Integer> list = of();
             Assertions.assertEquals("[]", list.toString());
 
         }
@@ -85,17 +128,24 @@ public abstract class AbstractListTest {
     @Nested
     public class ToArray {
         @Test
-        public void shouldToStringWhenListIsNotEmpty() {
+        public void shouldToArrayWhenListIsNotEmpty() {
             List<Object> list = of(1, 2, 3, 4, 5);
             Assertions.assertArrayEquals(new Object[]{1, 2, 3, 4, 5}, list.toArray());
 
         }
 
         @Test
-        public void shouldToStringWhenListIsEmpty() {
-            List list = of();
+        public void shouldToArrayWhenListIsEmpty() {
+            List<Integer> list = of();
             Assertions.assertArrayEquals(new Object[]{}, list.toArray());
 
+        }
+
+        @Test
+        public void shouldIntFunctionWhenListIsNotEmpty() {
+            List<Integer> list = of(3, 2, 1, 5);
+            Integer[] integers = list.toArray(size -> new Integer[1]);
+            Assertions.assertArrayEquals(new Integer[]{3}, integers);
         }
     }
 
@@ -103,14 +153,14 @@ public abstract class AbstractListTest {
     public class Of {
         @Test
         public void shouldAddElementsWhenListIsEmpty() {
-            List list = of(1, 2, 3, 4, 5);
+            List<Integer> list = of(1, 2, 3, 4, 5);
             Assertions.assertArrayEquals(new Object[]{1, 2, 3, 4, 5}, list.toArray());
 
         }
 
         @Test
         public void shouldAddZeroElementsWhenListIsEmpty() {
-            List list = of();
+            List<Integer> list = of();
             Assertions.assertArrayEquals(new Object[]{}, list.toArray());
 
         }
@@ -120,28 +170,268 @@ public abstract class AbstractListTest {
     public class Equals {
         @Test
         public void shouldEqualsWhenSecondArrayHasNull() {
-            List list = createList();
+            List<String> list = createList();
             list.add("A");
             list.add("B");
             list.add("C");
             list.add("D");
             list.add(null);
-            List arrayListSecond = of("A", "B", "C", "D", "E");
+            List<String> arrayListSecond = of("A", "B", "C", "D", "E");
             Assertions.assertNotEquals(list, arrayListSecond);
         }
 
         @Test
         public void shouldEqualsWhenAddEmptyString() {
-            List list = of(new MyString(new char[]{}));
+            List<String> list = of(new MyString(new char[]{}));
             Assertions.assertEquals(list,
                     of(new MyString(new char[]{})));
         }
 
         @Test
         public void shouldEqualsWhenDifferentTypes() {
-            List list = of(new MyString(new char[]{}));
+            List<Integer> listS = new LinkedList<>();
+            Collection<Integer> collection = of(1, 2, 34);
+            listS.addAll(collection);
+
+
+            List<String> list = of(new MyString(new char[]{}));
             Assertions.assertNotEquals(list,
                     of((Object) new Integer[]{1, 3, 3}));
         }
     }
+
+    @Nested
+    public class AddAll {
+        @Test
+        public void shouldAddAllElementsWhenListIsNotEmpty() {
+            List<Integer> list = of(6, 7, 8, 9);
+            List<Integer> listSecond = of(1, 2, 3, 4, 5);
+            list.addAll(listSecond);
+            Assertions.assertArrayEquals(new Integer[]{6, 7, 8, 9, 1, 2, 3, 4, 5}, list.toArray());
+
+        }
+
+        @Test
+        public void shouldAddAllElementsWhenListIsEmpty() {
+            List<Integer> list = of();
+            List<Integer> listSecond = of(1, 2, 3, 4, 5);
+            list.addAll(listSecond);
+            Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, list.toArray());
+
+        }
+
+        @Test
+        public void shouldAddAllElementsWhenWildCard() {
+            List<Integer> list = of(999);
+            List<Number> listSecond = of(1, 2, 3, 4, 5);
+            listSecond.addAll(list);
+            Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 999}, listSecond.toArray());
+
+        }
+
+        @Test
+        public void shouldAddAllElementsWhenIndexFirst() {
+            List<Integer> list = of(8, 8);
+            List<Integer> listSecond = of(1, 2, 3, 4, 5);
+            list.addAll(0, listSecond);
+            Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 8, 8}, list.toArray());
+        }
+
+        @Test
+        public void shouldAddAllElementsWhenIndexMiddle() {
+            List<Integer> list = of(8, 8, 9, 10, 11, 12);
+            List<Integer> listSecond = of(1, 2, 3, 4, 5);
+            list.addAll(3, listSecond);
+            Assertions.assertArrayEquals(new Integer[]{8, 8, 9, 1, 2, 3, 4, 5, 10, 11, 12}, list.toArray());
+        }
+
+        @Test
+        public void shouldAddAllElementsWhenIndexLast() {
+            List<Integer> list = of(12);
+            List<Integer> listSecond = of(1, 2, 3, 4, 5);
+            list.addAll(1, listSecond);
+            Assertions.assertArrayEquals(new Integer[]{12, 1, 2, 3, 4, 5}, list.toArray());
+        }
+
+        @Test
+        public void shouldAddAllElementsWhenIndexAndWildCard() {
+            List<Number> list = of(12, 13);
+            List<Integer> listSecond = of(5);
+            list.addAll(0, listSecond);
+            list.addAll(3, listSecond);
+            list.addAll(2, listSecond);
+            Assertions.assertArrayEquals(new Integer[]{5, 12, 5, 13, 5}, list.toArray());
+        }
+    }
+
+    @Nested
+    public class Size {
+        @Test
+        public void shouldReturnSizeWhenListIsEmpty() {
+            List<Integer> list = of();
+            Assertions.assertEquals(0, list.size());
+        }
+
+
+        @Test
+        public void shouldReturnSizeWhenListIsNotEmpty() {
+            List<Integer> list = of(1, 2, 3);
+            Assertions.assertEquals(3, list.size());
+        }
+
+    }
+
+    @Nested
+    public class Iterator {
+        @Nested
+        public class Next {
+            @Test
+            public void shouldReturnElementWhenListIsNotEmpty() {
+                List<Integer> list = of(1, 2, 3, 5);
+                ListIterator<Integer> iterator = list.iterator();
+                Assertions.assertEquals(1, iterator.next());
+                Assertions.assertEquals(2, iterator.next());
+                Assertions.assertEquals(3, iterator.next());
+                Assertions.assertEquals(5, iterator.next());
+            }
+        }
+
+        @Nested
+        public class Set {
+            @Test
+            public void shouldSentElementWhenListIsNotEmpty() {
+                List<Integer> list = of(1, 2, 3, 5);
+                ListIterator<Integer> iterator = list.iterator();
+                do {
+                    iterator.set(7);
+                    iterator.next();
+                } while (iterator.hasNext());
+                Assertions.assertArrayEquals(new Integer[]{7, 7, 7, 7}, list.toArray());
+            }
+
+
+        }
+
+        @Nested
+        public class InsertBefore {
+            @Test
+            public void shouldInsertElementWhenListIsNotEmpty() {
+                List<Integer> list = of(1, 2, 3, 5);
+                ListIterator<Integer> iterator = list.iterator();
+                for (int i = 0; i < 3; i++) {
+                    iterator.insertBefore(7);
+                }
+                Assertions.assertArrayEquals(new Integer[]{7, 7, 7, 1, 2, 3, 5}, list.toArray());
+            }
+
+
+        }
+
+        @Nested
+        public class Remove {
+            @Test
+            public void shouldReturnElementWhenListIsNotEmpty() {
+                List<Integer> list = of(1, 2, 3, 5);
+                ListIterator<Integer> iterator = list.iterator();
+                iterator.remove();
+                Assertions.assertArrayEquals(new Integer[]{2, 3, 5}, list.toArray());
+                iterator.next();
+                iterator.remove();
+                Assertions.assertArrayEquals(new Integer[]{2, 5}, list.toArray());
+            }
+
+
+        }
+    }
+
+    @Nested
+    public class Sort {
+        @Test
+        public void shouldSortListWhenListIsNotEmpty() {
+            List<Integer> list = of(3, 1, 0, 15, 2, 5);
+            list.sort(Comparator.comparingInt(o -> o));
+            Assertions.assertArrayEquals(new Integer[]{0, 1, 2, 3, 5, 15}, list.toArray());
+        }
+    }
+
+    @Nested
+    public class IsEmpty {
+        @Test
+        public void shouldReturnResultWhenLisIsNotEmpty() {
+            List<Integer> list = of(3, 2, 1, 3);
+            Assertions.assertFalse(list.isEmpty());
+
+        }
+
+        @Test
+        public void shouldReturnResultWhenLisIsEmpty() {
+            List<Integer> list = of();
+            Assertions.assertTrue(list.isEmpty());
+        }
+    }
+
+    @Nested
+    public class Contains {
+        @Test
+        public void shouldContainElementWhenListHasSpecifiedElement() {
+            List<Integer> list = of(3, 2, 1, 3, 5, 6, 7);
+            Assertions.assertTrue(list.contains(3));
+        }
+
+        @Test
+        public void shouldContainElementWhenListHastSpecifiedElement() {
+            List<Integer> list = of(3, 2, 1, 3, 5, 6, 7);
+            Assertions.assertFalse(list.contains(100));
+        }
+    }
+
+    @Nested
+    public class ContainsAll {
+        @Test
+        public void shouldContainAllElementsWhenListHasSpecifiedElement() {
+            List<Integer> list = of(3, 2, 1, 3, 5, 6, 7);
+            List<Integer> listSecond = of(7, 5, 3);
+            Assertions.assertTrue(list.containsAll(listSecond));
+        }
+
+        @Test
+        public void shouldContainAllElementsWhenListHastSpecifiedElement() {
+            List<Integer> list = of(3, 2, 1, 3, 5, 6, 7);
+            List<Integer> listSecond = of(7, 5, 3, 1, 3, 3, 6, 1);
+            Assertions.assertTrue(list.containsAll(listSecond));
+        }
+    }
+
+    @Nested
+    public class RemoveAll {
+        @Test
+        public void shouldRemoveAllWhenListIsNotEmpty() {
+            List<Integer> list = of(3, 2, 1, 3, 5, 6, 7);
+            List<Integer> listSecond = of(7, 3, 1, 6, 2, 3, 5);
+            list.removeAll(listSecond);
+            Assertions.assertTrue(list.isEmpty());
+        }
+
+        @Test
+        public void shouldRemoveAllWhenListSecondDoestContainSameElements() {
+            List<Integer> list = of(3, 2, 1, 3, 5, 6, 7);
+            List<Integer> listSecond = of(9, 9, 9, 9, 9, 9, 9);
+            list.removeAll(listSecond);
+            Assertions.assertArrayEquals(new Integer[]{3, 2, 1, 3, 5, 6, 7}, list.toArray());
+        }
+
+    }
+
+    @Nested
+    public class RemoveIf {
+        @Test
+        public void shouldRemoveElementWhenListIsNotEmpty() {
+            List<Integer> list = of(3, 2, 1, 3, 5, 6, 7);
+            list.removeIf(x -> x == 3);
+            Assertions.assertArrayEquals(new Integer[]{2, 1, 5, 6, 7}, list.toArray());
+
+        }
+    }
+
+
 }
