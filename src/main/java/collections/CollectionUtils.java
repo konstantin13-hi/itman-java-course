@@ -40,7 +40,7 @@ public class CollectionUtils {
      * @return max element
      */
     public static <T> T findMax(List<? extends T> list, Comparator<? super T> comparator) {
-        return findMin(list, comparator);
+        return findMin(list, comparator.reversed());
     }
 
 

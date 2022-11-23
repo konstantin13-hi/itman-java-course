@@ -107,7 +107,7 @@ public interface List<T> extends Collection<T> {
      *
      * @param comparator the first term
      */
-    void sort(Comparator<T> comparator);
+    void sort(Comparator<? super T> comparator);
 
 
 }

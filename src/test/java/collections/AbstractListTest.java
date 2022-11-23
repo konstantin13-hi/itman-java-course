@@ -255,6 +255,10 @@ public abstract class AbstractListTest {
 
         @Test
         public void shouldAddAllElementsWhenIndexAndWildCard() {
+            //12 13
+            // 5 12 13
+            // 5 12 13 5
+            // 5 12 5 13 5
             List<Number> list = of(12, 13);
             List<Integer> listSecond = of(5);
             list.addAll(0, listSecond);
@@ -318,6 +322,7 @@ public abstract class AbstractListTest {
             public void shouldInsertElementWhenListIsNotEmpty() {
                 List<Integer> list = of(1, 2, 3, 5);
                 ListIterator<Integer> iterator = list.iterator();
+                iterator.next();
                 for (int i = 0; i < 3; i++) {
                     iterator.insertBefore(7);
                 }
@@ -333,11 +338,16 @@ public abstract class AbstractListTest {
             public void shouldReturnElementWhenListIsNotEmpty() {
                 List<Integer> list = of(1, 2, 3, 5);
                 ListIterator<Integer> iterator = list.iterator();
+                iterator.next();
                 iterator.remove();
                 Assertions.assertArrayEquals(new Integer[]{2, 3, 5}, list.toArray());
                 iterator.next();
+                iterator.next();
                 iterator.remove();
                 Assertions.assertArrayEquals(new Integer[]{2, 5}, list.toArray());
+                iterator.next();
+                iterator.remove();
+                Assertions.assertArrayEquals(new Integer[]{2}, list.toArray());
             }
 
 

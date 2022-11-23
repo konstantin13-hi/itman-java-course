@@ -172,73 +172,76 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
 
         /**
          * {@inheritDoc}
+         * n=logicalSize
          *
-         * @cpu O(1)
+         * @cpu O(n)
          * @ram O(1)
          */
         @Override
         public void insertBefore(T element) {
-            add(current, element);
+            add(current - 1, element);
         }
 
         /**
          * {@inheritDoc}
+         * n=logicalSize
          *
-         * @cpu O(1)
+         * @cpu O(n)
          * @ram O(1)
          */
         @Override
         public void remove() {
-            ArrayList.this.remove(current);
+            ArrayList.this.remove(current - 1);
+            current--;
 
         }
     }
 
-
-
-
     /**
-     * Adds element in index position.
-     *
-     * @param index      the first term
-     * @param collection the second term
-     * @return boolean result.If change size then will return true
-     * m=collection's size
-     * n=logical size
-     * @cpu O(n + m)
-     * @ram O(m)
      * {@inheritDoc}
+     * n = logical size
+     * m = collection's size
+     *
+     * @cpu O(n + m)
+     * @ram O(n + m)
      */
     @Override
     public boolean addAll(int index, Collection<? extends T> collection) {
-        if (logicalSize == 0 || index + 1 == logicalSize) {
-            int indexSecond = index;
-            for (T i : collection) {
-                add(indexSecond++, i);
-            }
-        } else {
-            T[] t = (T[]) new Object[objects.length + collection.size()];
+        if (logicalSize + collection.size() >= objects.length) {
+            T[] t = (T[]) new Object[2 * (objects.length + collection.size())];
             System.arraycopy(objects, 0, t, 0, index);
-            System.arraycopy(objects, index, t, index + collection.size(), objects.length - index);
-            int indexSecond = index;
-            for (T i : collection) {
-                logicalSize++;
-                t[indexSecond++] = i;
-            }
+            System.arraycopy(objects, index, t, index + collection.size(),
+                    objects.length - index);
             objects = t;
+        } else {
+            for (int i = logicalSize - index, j = logicalSize - 1; i > 0; i--) {
+                objects[j + collection.size()] = objects[j--];
+            }
+
         }
+        int indexSecond = index;
+        for (T i : collection) {
+            logicalSize++;
+            objects[indexSecond++] = i;
+        }
+
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * n=collection's size
+     *
+     * @cpu O(n)
+     * @ram O(n)
+     */
     @Override
     public boolean addAll(Collection<? extends T> collection) {
         return super.addAll(collection);
     }
 
-
     /**
-     * Remove element.
-     * n=size
+     *{@inheritDoc}
      *
      * @param index the first term
      * @return new array without one element
@@ -256,6 +259,13 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
         return object;
     }
 
+    /**
+     *{@inheritDoc}
+     *
+     * @cpu O(n)
+     * @ram O(1)
+     *
+     */
     @Override
     public T remove(Object element) {
         return super.remove(element);
@@ -304,8 +314,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
     /**
      * {@inheritDoc}
      * n=logical size
+     * t=test's method
      *
-     * @cpu O(n)
+     * @cpu O(n*t)
      * @ram O(1)
      */
     @Override
@@ -326,8 +337,11 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
 
     /**
      * {@inheritDoc}
+     * n=logical size
+     * m= collection's size
+     * k= method equal
      *
-     * @cpu O(n*m)
+     * @cpu O(n*m*k)
      * @ram O(1)
      */
     @Override
@@ -339,8 +353,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * {@inheritDoc}
      * n = logical size
      * m = collection's size
+     * k = method equal
      *
-     * @cpu O(n * m)
+     * @cpu O(n * m* k)
      * @ram O(1)
      */
     @Override
@@ -351,8 +366,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
     /**
      * {@inheritDoc}
      * n = logical size
+     * k=method equal
      *
-     * @cpu O(n)
+     * @cpu O(n*k)
      * @ram O(1)
      */
     @Override
@@ -363,8 +379,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
     /**
      * {@inheritDoc}
      * n = logical size
+     * q = equal method of object
      *
-     * @cpu O(n)
+     * @cpu O(n*q)
      * @ram O(1)
      */
     @Override
@@ -374,12 +391,13 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
 
     /**
      * {@inheritDoc}
+     * k=comparator
      *
-     * @cpu O(n*log(n))
+     * @cpu O(n*log(n)*k)
      * @ram O(n)
      */
     @Override
-    public void sort(Comparator<T> comparator) {
+    public void sort(Comparator<? super T> comparator) {
         super.sort(comparator);
     }
 

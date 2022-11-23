@@ -30,6 +30,16 @@ class LinkedListTest extends AbstractListTest {
             linkedList.removeFirst();
             Assertions.assertEquals(13, linkedList.getFirst());
         }
+
+        @Test
+        void s() {
+            LinkedList linkedList = new LinkedList();
+            linkedList.addFirst(10);
+            linkedList.removeFirst();
+            linkedList.addFirst(4);
+            Assertions.assertArrayEquals(new Integer[]{4}, linkedList.toArray());
+
+        }
     }
 
     @Nested

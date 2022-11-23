@@ -20,12 +20,9 @@ class CollectionUtilsTest {
             list.add(0);
             list.add(10);
             list.add(8);
-
             Assertions.assertEquals(0, CollectionUtils.findMin(list,
                     Comparator.comparingInt(o -> o)));
         }
-
-
     }
 
     @Nested
@@ -38,25 +35,9 @@ class CollectionUtilsTest {
             list.add(0);
             list.add(10);
             list.add(8);
-
-            Comparator<Integer> comparator = new Comparator<Integer>() {
-                @Override
-                public int compare(Integer o1, Integer o2) {
-                    int result = 0;
-                    if (o1 > o2) {
-                        result = -1;
-                    } else if (o1 < o2) {
-                        result = 1;
-                    }
-                    return result;
-                }
-            };
-
             Assertions.assertEquals(10, CollectionUtils.findMax(list,
-                    comparator));
+                    Comparator.comparingInt(o -> o)));
         }
-
-
     }
 
     @Nested

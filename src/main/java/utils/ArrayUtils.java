@@ -294,7 +294,7 @@ public class ArrayUtils {
      * @cpu O(nlog ( n))
      * @ram O(n)
      */
-    public static <T> void mergeSort(T[] array, Comparator<T> comparator, int fromIndex, int toIndex) {
+    public static <T> void mergeSort(T[] array, Comparator<? super T> comparator, int fromIndex, int toIndex) {
         T[] t = (T[]) new Object[array.length];
         int length = toIndex - fromIndex;
         for (int k = 1; k < length; k = k * 2) {
@@ -322,7 +322,7 @@ public class ArrayUtils {
      * @cpu O(nlog ( n))
      * @ram O(n)
      */
-    public static <T> void mergeSort(T[] events, Comparator<T> comparator) {
+    public static <T> void mergeSort(T[] events, Comparator<? super T> comparator) {
         ArrayUtils.mergeSort(events, comparator, 0, events.length);
     }
 
@@ -347,7 +347,7 @@ public class ArrayUtils {
      */
     public static <T> void merge(T[] a, int aFrom, int aTo,
                                  T[] b, int bFrom, int bTo, T[] r,
-                                 int rFrom, Comparator<T> comparator) {
+                                 int rFrom, Comparator<? super T> comparator) {
         int limit = aTo - aFrom + bTo - bFrom;
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
             if (j < aTo && k < bTo) {

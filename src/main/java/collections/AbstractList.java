@@ -4,6 +4,7 @@ import utils.ArrayUtils;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
 
@@ -50,17 +51,14 @@ public abstract class AbstractList<T> implements List<T> {
      * @param collection the first term
      */
     public void removeAll(Collection<? extends T> collection) {
-        ListIterator<T> listIterator;
         for (T i : collection) {
-            listIterator = iterator();
-            while (listIterator.hasNext()) {
-                if (i.equals(listIterator.current())) {
-                    listIterator.remove();
+            Iterator<T> iterator = this.iterator();
+            while (iterator.hasNext()) {
+                if (Objects.equals(iterator.next(), i)) {
+                    iterator.remove();
                 }
-                listIterator.next();
             }
         }
-
     }
 
     /**
@@ -70,13 +68,14 @@ public abstract class AbstractList<T> implements List<T> {
      * @return boolean result.If change size then will return true
      */
     public T remove(Object element) {
+        T t;
         Iterator<T> i = this.iterator();
-        int index = 0;
         while (i.hasNext()) {
-            if (i.next().equals(element)) {
-                return remove(index);
+            t = i.next();
+            if (Objects.equals(t, element)) {
+                i.remove();
+                return t;
             }
-            index++;
         }
         return null;
 
@@ -106,10 +105,6 @@ public abstract class AbstractList<T> implements List<T> {
      *
      * @param element the first term
      * @return boolean result.If current object has same element then will return true
-     * n = logicalSize
-     * @cpu O(n)
-     * @ram O(1)
-     * {@inheritDoc}
      */
     @Override
     public boolean contains(T element) {
@@ -117,7 +112,7 @@ public abstract class AbstractList<T> implements List<T> {
         ListIterator<T> listIterator = iterator();
         for (int i = 0; i < logicalSize; i++) {
             t = listIterator.next();
-            if (element.equals(t)) {
+            if (Objects.equals(t, element)) {
                 return true;
             }
         }
@@ -127,12 +122,8 @@ public abstract class AbstractList<T> implements List<T> {
 
     /**
      * Removes elements matching predicate.
-     * n=logical size
      *
      * @param predicate the first date
-     * @cpu O(n)
-     * @ram O(1)
-     * {@inheritDoc}
      */
     @Override
     public void removeIf(Predicate<? super T> predicate) {
@@ -149,10 +140,11 @@ public abstract class AbstractList<T> implements List<T> {
     /**
      * Make a compare between of two lists.
      * n=logicalSize
+     * k= method equal
      *
      * @param obj the first term
      * @return result
-     * @cpu 0(n)
+     * @cpu 0(n*k)
      * @ram 0(1)
      * {@inheritDoc}
      */
@@ -165,7 +157,7 @@ public abstract class AbstractList<T> implements List<T> {
                 return false;
             }
             while (listIterator.hasNext()) {
-                if (!listIteratorSecond.next().equals(listIterator.next())) {
+                if (!Objects.equals(listIteratorSecond.next(), listIterator.next())) {
                     return false;
                 }
             }
@@ -206,16 +198,15 @@ public abstract class AbstractList<T> implements List<T> {
     }
 
     /**
-     * Sorts element.
+     * {@inheritDoc}
      *
      * @param comparator the first term
-     *                   n=logical size
-     * @cpu O(log ( n)*n)
+     * n=logical size
+     * @cpu O(log (n)*n )
      * @ram O(n)
-     * {@inheritDoc}
      */
     @Override
-    public void sort(Comparator<T> comparator) {
+    public void sort(Comparator<? super T> comparator) {
         T[] array = (T[]) toArray();
         ArrayUtils.mergeSort(array, comparator);
         ListIterator<T> iterator = iterator();

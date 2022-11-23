@@ -15,7 +15,6 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
 
 
     private class LinkedListIterator implements ListIterator<T> {
-        private int current;
         private Node currentObject = head;
 
         /**
@@ -26,7 +25,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
          */
         @Override
         public boolean hasNext() {
-            return logicalSize > current;
+            return currentObject != null;
         }
 
         /**
@@ -37,7 +36,6 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
          */
         @Override
         public T next() {
-            current++;
             T result = currentObject.element;
             currentObject = currentObject.getNext();
             return result;
@@ -73,7 +71,14 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
          */
         @Override
         public void insertBefore(T element) {
-            add(current, element);
+            Node node = new Node(element, currentObject.prev, currentObject.prev.prev);
+            if (currentObject.prev.prev != null) {
+                currentObject.prev.prev.setNext(node);
+            } else {
+                head = node;
+            }
+            currentObject.prev.setPrev(node);
+            logicalSize++;
         }
 
         /**
@@ -83,7 +88,21 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
          * @ram O(1)
          */
         public void remove() {
-            LinkedList.this.remove(current);
+            if (currentObject == null) {
+                if (logicalSize == 1) {
+                    removeFirst();
+                } else {
+                    removeLast();
+                }
+            } else {
+                if (currentObject.prev.prev == null) {
+                    removeFirst();
+                } else {
+                    currentObject.prev.prev.setNext(currentObject);
+                    currentObject.setPrev(currentObject.prev.prev);
+                    logicalSize--;
+                }
+            }
         }
     }
 
@@ -310,8 +329,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
     /**
      * {@inheritDoc}
      * n=logical size
+     * t=test's mothod
      *
-     * @cpu O(n)
+     * @cpu O(n * t)
      * @ram O(1)
      */
     @Override
@@ -332,8 +352,11 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
 
     /**
      * {@inheritDoc}
+     * n=logical size
+     * m= collection's size
+     * k= method equal
      *
-     * @cpu O(n*m)
+     * @cpu O(n*m*k)
      * @ram O(1)
      */
     @Override
@@ -387,8 +410,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * {@inheritDoc}
      * n = logical size
      * m = collection's size
+     * k = method equal
      *
-     * @cpu O(n * m)
+     * @cpu O(n * m *k)
      * @ram O(1)
      */
     @Override
@@ -399,8 +423,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
     /**
      * {@inheritDoc}
      * n = logical size
+     * k=method equal
      *
-     * @cpu O(n)
+     * @cpu O(n*k)
      * @ram O(1)
      */
     @Override
@@ -422,12 +447,13 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
 
     /**
      * {@inheritDoc}
+     * k=comparator
      *
-     * @cpu O(n*log(n))
+     * @cpu O(n*log(n)*k)
      * @ram O(n)
      */
     @Override
-    public void sort(Comparator<T> comparator) {
+    public void sort(Comparator<? super T> comparator) {
         super.sort(comparator);
     }
 
@@ -494,6 +520,8 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
     /**
      * Add element in the back of list.
      *
+     * @cpu O(n)
+     * @ram O(1)
      * @param index   the first term
      * @param element the second term
      * @return boolean result.If change size then will return true.
