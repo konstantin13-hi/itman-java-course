@@ -3,6 +3,7 @@ package collections;
 import utils.ArrayUtils;
 
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
 
@@ -341,7 +342,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * m= collection's size
      * k= method equal
      *
-     * @cpu O(n*m*k)
+     * @cpu O(n^2*m*k)
      * @ram O(1)
      */
     @Override
@@ -415,7 +416,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
 
     /**
      * {@inheritDoc}
-     * n = factory's size
+     * n = logical size
      *
      * @cpu O(n)
      * @ram O(n)

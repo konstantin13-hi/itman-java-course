@@ -272,7 +272,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
     /**
      * {@inheritDoc}
      * n=logical size
-     * m=leters in Object
+     * m=Object's toString
      *
      * @cpu O(n*m)
      * @ram O(n)
@@ -287,7 +287,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * m=collection's size
      * n=logical size
      *
-     * @cpu O(n + m)
+     * @cpu O(n * m)
      * @ram O(m)
      */
     @Override
@@ -303,7 +303,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * @return boolean result.If change size then will return true
      * m=collection's size
      * n=logical size
-     * @cpu O(n + m)
+     * @cpu O(n * m)
      * @ram O(m)
      *
      */
@@ -342,7 +342,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
     /**
      * {@inheritDoc}
      *
-     * @cpu O(n)
+     * @cpu O(1)
      * @ram O(1)
      */
     @Override
@@ -435,10 +435,11 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
 
     /**
      * {@inheritDoc}
-     * n = logical size
+     * n=logicalSize
+     * k= method equal
      *
-     * @cpu O(n)
-     * @ram O(1)
+     * @cpu 0(n*k)
+     * @ram 0(1)
      */
     @Override
     public boolean equals(Object obj) {
@@ -471,7 +472,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
 
     /**
      * {@inheritDoc}
-     * n = factory's size
+     * n = logical size
      *
      * @cpu O(n)
      * @ram O(n)

@@ -25,9 +25,6 @@ public abstract class AbstractList<T> implements List<T> {
      * Return size.
      *
      * @return size
-     * @cpu 0(1)
-     * @ram 0(1)
-     * {@inheritDoc}
      */
     public int size() {
         return logicalSize;
@@ -37,9 +34,6 @@ public abstract class AbstractList<T> implements List<T> {
      * Check list empty or not.
      *
      * @return result
-     * @cpu 0(1)
-     * @ram 0(1)
-     * {@inheritDoc}
      */
     public boolean isEmpty() {
         return logicalSize == 0;
@@ -87,8 +81,6 @@ public abstract class AbstractList<T> implements List<T> {
      *
      * @param collection the first term
      * @return boolean result.If current object has same elements then will return true
-     * n = logicalSize
-     * m = size of collection
      */
     @Override
     public boolean containsAll(Collection<? extends T> collection) {
@@ -139,14 +131,9 @@ public abstract class AbstractList<T> implements List<T> {
 
     /**
      * Make a compare between of two lists.
-     * n=logicalSize
-     * k= method equal
      *
      * @param obj the first term
      * @return result
-     * @cpu 0(n*k)
-     * @ram 0(1)
-     * {@inheritDoc}
      */
     public boolean equals(Object obj) {
         if (obj instanceof List) {
@@ -170,12 +157,8 @@ public abstract class AbstractList<T> implements List<T> {
 
     /**
      * Create array of numbers.
-     * n=logicalSize
      *
      * @return new array
-     * @cpu 0(n)
-     * @ram 0(n)
-     * {@inheritDoc}
      */
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -198,12 +181,9 @@ public abstract class AbstractList<T> implements List<T> {
     }
 
     /**
-     * {@inheritDoc}
+     * Sort elements.
      *
      * @param comparator the first term
-     * n=logical size
-     * @cpu O(log (n)*n )
-     * @ram O(n)
      */
     @Override
     public void sort(Comparator<? super T> comparator) {
@@ -218,11 +198,8 @@ public abstract class AbstractList<T> implements List<T> {
 
     /**
      * Return array containing elements.
-     * n=logicalSize;
      *
-     * @return array
-     * @cpu O(n)
-     * @ram O(n)
+     * @return arra
      */
     public Object[] toArray() {
         Object[] array = new Object[logicalSize];
@@ -239,9 +216,6 @@ public abstract class AbstractList<T> implements List<T> {
      *
      * @param factory the first term
      * @return array
-     * {@inheritDoc}
-     * @cpu O(n)
-     * @ram O(n)
      */
 
     @Override
