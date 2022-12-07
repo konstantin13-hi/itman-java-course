@@ -429,7 +429,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * @ram O(1)
      */
     @Override
-    public boolean contains(T element) {
+    public boolean contains(Object element) {
         return super.contains(element);
     }
 
@@ -473,8 +473,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
     /**
      * {@inheritDoc}
      * n = logical size
+     * m = method apply
      *
-     * @cpu O(n)
+     * @cpu O(n * m)
      * @ram O(n)
      */
     @Override

@@ -99,7 +99,7 @@ public abstract class AbstractList<T> implements List<T> {
      * @return boolean result.If current object has same element then will return true
      */
     @Override
-    public boolean contains(T element) {
+    public boolean contains(Object element) {
         T t;
         ListIterator<T> listIterator = iterator();
         for (int i = 0; i < logicalSize; i++) {
@@ -199,7 +199,7 @@ public abstract class AbstractList<T> implements List<T> {
     /**
      * Return array containing elements.
      *
-     * @return arra
+     * @return array
      */
     public Object[] toArray() {
         Object[] array = new Object[logicalSize];

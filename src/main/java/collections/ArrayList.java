@@ -3,6 +3,7 @@ package collections;
 import utils.ArrayUtils;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
@@ -242,7 +243,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
     }
 
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      *
      * @param index the first term
      * @return new array without one element
@@ -261,11 +262,10 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
     }
 
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      *
      * @cpu O(n)
      * @ram O(1)
-     *
      */
     @Override
     public T remove(Object element) {
@@ -317,7 +317,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * n=logical size
      * t=test's method
      *
-     * @cpu O(n*t)
+     * @cpu O(n * t)
      * @ram O(1)
      */
     @Override
@@ -342,12 +342,19 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * m= collection's size
      * k= method equal
      *
-     * @cpu O(n^2*m*k)
+     * @cpu O(n * m * k)
      * @ram O(1)
      */
     @Override
     public void removeAll(Collection<? extends T> collection) {
-        super.removeAll(collection);
+        int elementPosition = 0;
+        for (int j = 0; j < logicalSize; j++) {
+            if (!collection.contains(objects[j])) {
+                objects[elementPosition++] = objects[j];
+            }
+        }
+        logicalSize = elementPosition;
+
     }
 
     /**
@@ -356,7 +363,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * m = collection's size
      * k = method equal
      *
-     * @cpu O(n * m* k)
+     * @cpu O(n * m * k)
      * @ram O(1)
      */
     @Override
@@ -369,11 +376,11 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * n = logical size
      * k=method equal
      *
-     * @cpu O(n*k)
+     * @cpu O(n * k)
      * @ram O(1)
      */
     @Override
-    public boolean contains(T element) {
+    public boolean contains(Object element) {
         return super.contains(element);
     }
 
@@ -382,7 +389,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * n = logical size
      * q = equal method of object
      *
-     * @cpu O(n*q)
+     * @cpu O(n * q)
      * @ram O(1)
      */
     @Override
@@ -394,7 +401,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * {@inheritDoc}
      * k=comparator
      *
-     * @cpu O(n*log(n)*k)
+     * @cpu O(n * log ( n)*k)
      * @ram O(n)
      */
     @Override
@@ -417,8 +424,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
     /**
      * {@inheritDoc}
      * n = logical size
+     * m = method apply
      *
-     * @cpu O(n)
+     * @cpu O(n * m)
      * @ram O(n)
      */
     @Override

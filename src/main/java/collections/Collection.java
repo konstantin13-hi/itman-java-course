@@ -46,7 +46,7 @@ public interface Collection<T> extends Iterable<T> {
      * @param element the first term
      * @return boolean result.If current object has same element then will return true
      */
-    boolean contains(T element);
+    boolean contains(Object element);
 
     /**
      * Removes the passed element.
