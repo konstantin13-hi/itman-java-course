@@ -28,7 +28,7 @@ public class ArrayUtilsTests {
                     new Event(1994, 2, 4, "sa3"),
                     new Event(1994, 11, 12, "sae1")
             };
-            ArrayUtils.bubbleSort(actual);
+            ArrayUtils.bubbleSort(actual, new Event.EventComparator());
             checkingASortedArrayElements(actual, expected);
             checkingASortedArrayLinks(actual, expectedElement);
         }
@@ -55,7 +55,7 @@ public class ArrayUtilsTests {
                     new Event(2000, 11, 12, "Day of City in Gomel"),
                     new Event(2031, 11, 13, "Day of City in Minsk")
             };
-            ArrayUtils.bubbleSort(actual);
+            ArrayUtils.bubbleSort(actual, new Event.EventComparator());
             checkingASortedArrayElements(actual, expected);
             checkingASortedArrayLinks(actual, expectedElement);
         }
@@ -265,7 +265,7 @@ public class ArrayUtilsTests {
                     new Event(10, 0, 0, "Day of City in Gomel"),
                     new Event(11, 0, 0, "Day of City in Minsk")
             };
-            ArrayUtils.mergeSort(actual);
+            ArrayUtils.mergeSort(actual, new Event.EventComparator());
             checkingASortedArrayElements(actual, expected);
             checkingASortedArrayLinks(actual, expectedElement);
         }
@@ -292,7 +292,7 @@ public class ArrayUtilsTests {
                     new Event(8, 0, 0, "Day of City in Borisow"),
                     new Event(11, 0, 0, "Day of City in Minsk")
             };
-            ArrayUtils.mergeSort(actual, 1, 3);
+            ArrayUtils.mergeSort(actual, new Event.EventComparator(), 1, 3);
             checkingASortedArrayElements(actual, expected);
             checkingASortedArrayLinks(actual, expectedElement);
         }

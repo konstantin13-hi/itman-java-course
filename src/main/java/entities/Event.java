@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Event {
@@ -101,6 +102,13 @@ public class Event {
             number = -1;
         }
         return number;
+    }
+
+    public static class EventComparator implements Comparator<Event> {
+        @Override
+        public int compare(Event o1, Event o2) {
+            return o1.compareTo(o2);
+        }
     }
 }
 

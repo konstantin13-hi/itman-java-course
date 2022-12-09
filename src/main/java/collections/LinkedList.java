@@ -1,24 +1,121 @@
 package collections;
 
 
-import java.util.Objects;
+import utils.ArrayUtils;
 
-public class LinkedList implements List, Queue {
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
+
+public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> {
 
     private Node head;
     private Node prev;
-    private int logicalSize;
 
-    private static class Node {
-        private Object element;
+
+    private class LinkedListIterator implements ListIterator<T> {
+        private Node currentObject = head;
+
+        /**
+         * {@inheritDoc}
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         */
+        @Override
+        public boolean hasNext() {
+            return currentObject != null;
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         */
+        @Override
+        public T next() {
+            T result = currentObject.element;
+            currentObject = currentObject.getNext();
+            return result;
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         */
+        public T current() {
+            return currentObject.element;
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         */
+        @Override
+        public void set(T element) {
+            currentObject.setElement(element);
+
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         */
+        @Override
+        public void insertBefore(T element) {
+            Node node = new Node(element, currentObject.prev, currentObject.prev.prev);
+            if (currentObject.prev.prev != null) {
+                currentObject.prev.prev.setNext(node);
+            } else {
+                head = node;
+            }
+            currentObject.prev.setPrev(node);
+            logicalSize++;
+        }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @cpu O(1)
+         * @ram O(1)
+         */
+        public void remove() {
+            if (currentObject == null) {
+                if (logicalSize == 1) {
+                    removeFirst();
+                } else {
+                    removeLast();
+                }
+            } else {
+                if (currentObject.prev.prev == null) {
+                    removeFirst();
+                } else {
+                    currentObject.prev.prev.setNext(currentObject);
+                    currentObject.setPrev(currentObject.prev.prev);
+                    logicalSize--;
+                }
+            }
+        }
+    }
+
+    private class Node {
+        private T element;
         private Node next;
         private Node prev;
 
-        public void setElement(Object element) {
+        public void setElement(T element) {
             this.element = element;
         }
 
-        public Node(Object element, Node next, Node prev) {
+        public Node(T element, Node next, Node prev) {
             this.element = element;
             this.next = next;
             this.prev = prev;
@@ -32,7 +129,7 @@ public class LinkedList implements List, Queue {
             return prev;
         }
 
-        public Object getElement() {
+        public T getElement() {
             return element;
         }
 
@@ -59,8 +156,9 @@ public class LinkedList implements List, Queue {
      * @param that the first term
      * @cpu 0(n)
      * @ram 0(n)
+     * {@inheritDoc}
      */
-    public LinkedList(LinkedList that) {
+    public LinkedList(LinkedList<T> that) {
         Node current = that.head;
         while (current != null) {
             addLast(current.getElement());
@@ -74,8 +172,9 @@ public class LinkedList implements List, Queue {
      * @param element the first term
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
-    public void addFirst(Object element) {
+    public void addFirst(T element) {
         if (this.head == null) {
             this.head = new Node(element, null, null);
             this.prev = head;
@@ -93,9 +192,9 @@ public class LinkedList implements List, Queue {
      * @return element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
-
-    public Object getFirst() {
+    public T getFirst() {
         return head.getElement();
     }
 
@@ -105,9 +204,10 @@ public class LinkedList implements List, Queue {
      * @return first element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
-    public Object removeFirst() {
-        Object result = head.getElement();
+    public T removeFirst() {
+        T result = head.getElement();
         head = head.getNext();
         logicalSize--;
         return result;
@@ -119,8 +219,9 @@ public class LinkedList implements List, Queue {
      * @param element the first term
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
-    public void addLast(Object element) {
+    public void addLast(T element) {
         if (prev == null) {
             prev = new Node(element, null, null);
             head = prev;
@@ -139,9 +240,9 @@ public class LinkedList implements List, Queue {
      * @return last element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
-
-    public Object getLast() {
+    public T getLast() {
         return prev.getElement();
     }
 
@@ -151,10 +252,10 @@ public class LinkedList implements List, Queue {
      * @return last element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
-
-    public Object removeLast() {
-        Object result;
+    public T removeLast() {
+        T result;
         Node current = prev;
         result = current.getElement();
         if (prev.getPrev() != null) {
@@ -169,142 +270,110 @@ public class LinkedList implements List, Queue {
     }
 
     /**
-     * Create a string.
-     * n=logicalSize
+     * {@inheritDoc}
+     * n=logical size
+     * m=Object's toString
      *
-     * @return new string
-     * @cpu 0(n)
-     * @ram 0(n)
-     */
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append('[');
-        Node current = head;
-        while (current != null) {
-            stringBuilder.append(current.getElement());
-            if (current.getNext() != null) {
-                stringBuilder.append(", ");
-                current = current.getNext();
-            } else {
-                current = current.getNext();
-            }
-        }
-        stringBuilder.append(']');
-        return stringBuilder.toString();
-    }
-
-    /**
-     * Return array containing elements.
-     * n=logicalSize;
-     *
-     * @return array
-     * @cpu O(n)
+     * @cpu O(n*m)
      * @ram O(n)
      */
-    public Object[] toArray() {
-        ArrayList arrayList = new ArrayList();
-        Node current = head;
-        while (current != null) {
-            arrayList.add(current.getElement());
-            current = current.getNext();
-        }
-        return arrayList.toArray();
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
     /**
-     * Create a list.
-     * n=number of elements
+     * {@inheritDoc}
+     * m=collection's size
+     * n=logical size
      *
-     * @param elements the first term
-     * @return new arraylist
-     * @cpu 0(n)
-     * @ram 0(n)
+     * @cpu O(n * m)
+     * @ram O(m)
      */
-    public static LinkedList of(Object... elements) {
-        LinkedList linkedList = new LinkedList();
-        for (Object element : elements) {
-            linkedList.addLast(element);
-        }
-        return linkedList;
+    @Override
+    public boolean addAll(Collection<? extends T> collection) {
+        return super.addAll(collection);
     }
 
     /**
-     * Make a compare between of two lists.
-     * n=logicalSize
+     * Adds element in index position.
      *
-     * @param obj the first term
-     * @return result
-     * @cpu 0(n)
-     * @ram 0(1)
+     * @param index      the first term
+     * @param collection the second term
+     * @return boolean result.If change size then will return true
+     * m=collection's size
+     * n=logical size
+     * @cpu O(n * m)
+     * @ram O(m)
+     *
      */
-    public boolean equals(Object obj) {
-        if (this.getClass() != obj.getClass()) {
-            return false;
-        }
-        LinkedList list = (LinkedList) obj;
-        if (this.logicalSize != list.logicalSize) {
-            return false;
-        }
-        Node nodeObj = list.head;
-        Node node = this.head;
-        for (int i = 0; i < logicalSize; i++) {
-            if (!Objects.equals(node.element, nodeObj.element)) {
-                return false;
-            }
-            nodeObj = nodeObj.next;
-            node = node.next;
+    @Override
+    public boolean addAll(int index, Collection<? extends T> collection) {
+        for (T i : collection) {
+            add(index++, i);
         }
         return true;
     }
 
     /**
-     * Add element in the back of list.
+     * {@inheritDoc}
      *
-     * @param element the first term
      * @cpu O(1)
      * @ram O(1)
      */
     @Override
-    public void add(Object element) {
-        addLast(element);
+    public int size() {
+        return super.size();
     }
 
     /**
-     * Set element.
-     * n=index
+     * {@inheritDoc}
+     * n=logical size
+     * t=test's mothod
      *
-     * @param index   the first term
-     * @param element the second term
-     * @cpu 0(n)
-     * @ram 0(1)
+     * @cpu O(n * t)
+     * @ram O(1)
      */
-    public void set(int index, Object element) {
-        findNode(index).setElement(element);
+    @Override
+    public void removeIf(Predicate<? super T> predicate) {
+        super.removeIf(predicate);
     }
 
     /**
-     * Get index.
-     * n=index
+     * {@inheritDoc}
      *
-     * @param index the first term
-     * @return number from arraylist
-     * @cpu 0(n)
-     * @ram 0(1)
+     * @cpu O(1)
+     * @ram O(1)
      */
-    public Object get(int index) {
-        return findNode(index).element;
+    @Override
+    public boolean isEmpty() {
+        return super.isEmpty();
     }
 
-    private Node findNode(int index) {
-        Node current = head;
-        int c = 0;
-        while (current != null && c != index) {
-            current = current.getNext();
-            c++;
-        }
-        return current;
+    /**
+     * {@inheritDoc}
+     * n=logical size
+     * m= collection's size
+     * k= method equal
+     *
+     * @cpu O(n*m*k)
+     * @ram O(1)
+     */
+    @Override
+    public void removeAll(Collection<? extends T> collection) {
+        super.removeAll(collection);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @cpu O(n)
+     * @ram O(1)
+     */
+    @Override
+    public T remove(Object element) {
+        return super.remove(element);
+    }
 
     /**
      * Remove element.
@@ -313,9 +382,10 @@ public class LinkedList implements List, Queue {
      * @return deleted element from list
      * @cpu O(n)
      * @ram O(1)
+     * {@inheritDoc}
      */
-    public Object remove(int index) {
-        Object result;
+    public T remove(int index) {
+        T result;
         if (logicalSize == 1) {
             result = head.element;
             removeFirst();
@@ -331,10 +401,200 @@ public class LinkedList implements List, Queue {
             result = current.element;
             current.getNext().setPrev(current.getPrev());
             current.getPrev().setNext(current.getNext());
+            logicalSize--;
         }
-        logicalSize--;
         return result;
     }
+
+    /**
+     * {@inheritDoc}
+     * n = logical size
+     * m = collection's size
+     * k = method equal
+     *
+     * @cpu O(n * m *k)
+     * @ram O(1)
+     */
+    @Override
+    public boolean containsAll(Collection<? extends T> collection) {
+        return super.containsAll(collection);
+    }
+
+    /**
+     * {@inheritDoc}
+     * n = logical size
+     * k=method equal
+     *
+     * @cpu O(n*k)
+     * @ram O(1)
+     */
+    @Override
+    public boolean contains(Object element) {
+        return super.contains(element);
+    }
+
+    /**
+     * {@inheritDoc}
+     * n=logicalSize
+     * k= method equal
+     *
+     * @cpu 0(n*k)
+     * @ram 0(1)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    /**
+     * {@inheritDoc}
+     * k=comparator
+     *
+     * @cpu O(n*log(n)*k)
+     * @ram O(n)
+     */
+    @Override
+    public void sort(Comparator<? super T> comparator) {
+        super.sort(comparator);
+    }
+
+    /**
+     * {@inheritDoc}
+     * n = logical size
+     *
+     * @cpu O(n)
+     * @ram O(n)
+     */
+    @Override
+    public Object[] toArray() {
+        return super.toArray();
+    }
+
+    /**
+     * {@inheritDoc}
+     * n = logical size
+     * m = method apply
+     *
+     * @cpu O(n * m)
+     * @ram O(n)
+     */
+    @Override
+    public T[] toArray(IntFunction<T[]> factory) {
+        return super.toArray(factory);
+    }
+
+    /**
+     * Create a list.
+     * n=number of elements
+     *
+     * @param elements the first term
+     * @param <T>      This describes my type parameter
+     * @return new arraylist
+     * @cpu 0(n)
+     * @ram 0(n)
+     * {@inheritDoc}
+     */
+    @SafeVarargs
+    public static <T> List<T> of(T... elements) {
+        LinkedList<T> linkedList = new LinkedList<>();
+        for (T element : elements) {
+            linkedList.addLast(element);
+        }
+        return linkedList;
+    }
+
+
+    /**
+     * Add element in the back of list.
+     *
+     * @param element the first term
+     * @return true
+     * @cpu O(1)
+     * @ram O(1)
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean add(T element) {
+        addLast(element);
+        return true;
+    }
+
+    /**
+     * Add element in the back of list.
+     *
+     * @cpu O(n)
+     * @ram O(1)
+     * @param index   the first term
+     * @param element the second term
+     * @return boolean result.If change size then will return true.
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean add(int index, T element) {
+        if (index == logicalSize) {
+            addLast(element);
+        } else if (index == 0) {
+            addFirst(element);
+        } else {
+            Node node = findNode(index);
+            Node newNode = new Node(element, node, node.getPrev());
+            node.getPrev().setNext(newNode);
+            node.setPrev(newNode);
+            logicalSize++;
+        }
+
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @cpu O(1)
+     * @ram O(1)
+     */
+    @Override
+    public ListIterator<T> iterator() {
+        return new LinkedListIterator();
+    }
+
+    /**
+     * Set element.
+     * n=index
+     *
+     * @param index   the first term
+     * @param element the second term
+     * @cpu 0(n)
+     * @ram 0(1)
+     */
+    public void set(int index, T element) {
+        findNode(index).setElement(element);
+    }
+
+    /**
+     * Get index.
+     * n=index
+     *
+     * @param index the first term
+     * @return number from arraylist
+     * @cpu 0(n)
+     * @ram 0(1)
+     * {@inheritDoc}
+     */
+    public T get(int index) {
+        return findNode(index).element;
+    }
+
+
+    private Node findNode(int index) {
+        Node current = head;
+        int c = 0;
+        while (current != null && c != index) {
+            current = current.getNext();
+            c++;
+        }
+        return current;
+    }
+
 
     /**
      * Inserts the specified element into the queue.
@@ -342,9 +602,10 @@ public class LinkedList implements List, Queue {
      * @param element the first term
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
     @Override
-    public void offer(Object element) {
+    public void offer(T element) {
         addLast(element);
 
     }
@@ -355,9 +616,10 @@ public class LinkedList implements List, Queue {
      * @return first element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
     @Override
-    public Object peek() {
+    public T peek() {
         return getFirst();
     }
 
@@ -367,34 +629,11 @@ public class LinkedList implements List, Queue {
      * @return first element
      * @cpu O(1)
      * @ram O(1)
+     * {@inheritDoc}
      */
     @Override
-    public Object poll() {
+    public T poll() {
         return removeFirst();
-    }
-
-    /**
-     * Return size.
-     *
-     * @return size
-     * @cpu 0(1)
-     * @ram 0(1)
-     */
-    public int size() {
-        return logicalSize;
-    }
-
-
-    /**
-     * Check list empty or not.
-     *
-     * @return result
-     * @cpu 0(1)
-     * @ram 0(1)
-     */
-    @Override
-    public boolean isEmpty() {
-        return logicalSize == 0;
     }
 
 }

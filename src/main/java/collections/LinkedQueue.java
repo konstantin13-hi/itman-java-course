@@ -1,8 +1,8 @@
 package collections;
 
 
-public class LinkedQueue implements Queue {
-    LinkedList linkedList = new LinkedList();
+public class LinkedQueue<T>  implements Queue<T> {
+    LinkedList<T> linkedList = new LinkedList<T>();
 
     /**
      * Inserts the specified element into the queue.
@@ -11,7 +11,7 @@ public class LinkedQueue implements Queue {
      * @cpu O(1)
      * @ram O(1)
      */
-    public void offer(Object element) {
+    public void offer(T element) {
         linkedList.addLast(element);
     }
 
@@ -22,7 +22,7 @@ public class LinkedQueue implements Queue {
      * @cpu O(1)
      * @ram O(1)
      */
-    public Object peek() {
+    public T peek() {
         return linkedList.getFirst();
     }
 
@@ -34,7 +34,7 @@ public class LinkedQueue implements Queue {
      * @ram O(1)
      */
 
-    public Object poll() {
+    public T poll() {
         return linkedList.removeFirst();
     }
 

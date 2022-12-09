@@ -1,21 +1,32 @@
 package collections;
 
+import java.util.Comparator;
+
 /**
  * List.java
  * Interface class that has the following methods.
  *
- * @author MyName
- * @since mm-dd-yyyy
+ * @author Kanstantsin
+ * @since 13-09-2022
  */
-public interface List {
+public interface List<T> extends Collection<T> {
     /**
      * Add element in the back of list.
      *
      * @param element the first term
-     * @cpu O(1)
-     * @ram O(1)
+     * @return boolean result.If change size then will return true
      */
-    void add(Object element);
+    boolean add(T element);
+
+    /**
+     * Add element in the back of list.
+     *
+     * @param index   the first term
+     * @param element the second term
+     * @return boolean result.If change size then will return true.
+     */
+    boolean add(int index, T element);
+
 
     /**
      * Set element.
@@ -23,11 +34,8 @@ public interface List {
      *
      * @param index   the first term
      * @param element the second term
-     * ArrayList @cpu O(n)
-     * LinkedList @cpu O(1)
-     * @ram 0(1)
      */
-    void set(int index, Object element);
+    void set(int index, T element);
 
     /**
      * Get index.
@@ -35,39 +43,71 @@ public interface List {
      *
      * @param index the first term
      * @return number from array list
-     * ArrayList @cpu O(1)
-     * LinkedList @cpu 0(n)
-     * @ram 0(1)
      */
-    Object get(int index);
+    T get(int index);
+
+    /**
+     * Adds elements in the back of list.
+     *
+     * @param collection the first term
+     * @return boolean result.If change size then will return true.
+     */
+    boolean addAll(Collection<? extends T> collection);
+
+    /**
+     * Adds element in index position.
+     *
+     * @param index      the first term
+     * @param collection the second term
+     * @return boolean result.If change size then will return true.
+     */
+
+    boolean addAll(int index, Collection<? extends T> collection);
 
     /**
      * Return size.
      *
      * @return size
-     * @cpu 0(1)
-     * @ram 0(1)
      */
     int size();
 
     /**
      * Return array containing elements.
-     * n=logicalSize
      *
      * @return array
-     * @cpu O(n)
-     * @ram O(n)
      */
     Object[] toArray();
+
+    /**
+     * Removes element.
+     *
+     * @param element the first term
+     * @return boolean result.If change size then will return true.
+     */
+
+    T remove(Object element);
 
     /**
      * Remove element.
      *
      * @param index the first term
      * @return deleted element from list
-     * ArrayList @cpu O(1)
-     * LinkedList @cpu 0(n)
-     * @ram O(1)
      */
-    Object remove(int index);
+    T remove(int index);
+
+    /**
+     * Returns iterator.
+     *
+     * @return iterator
+     */
+    ListIterator<T> iterator();
+
+    /**
+     * Sorts element.
+     *
+     * @param comparator the first term
+     */
+    void sort(Comparator<? super T> comparator);
+
+
 }
