@@ -50,7 +50,8 @@ class IoTaskTest {
 
                 String[] strings = new String[1];
                 strings[0] = "testFour.txt";
-                Assertions.assertEquals(returnsStrings(strings), strings[0] + " - Error on line 1.Incorrect number ref");
+                Assertions.assertEquals(returnsStrings(strings), strings[0] +
+                        " - Error on line 1.Incorrect number ref");
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
