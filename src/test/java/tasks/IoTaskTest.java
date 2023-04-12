@@ -16,7 +16,6 @@ class IoTaskTest {
         public void shouldReturnResultWhenFileContainsIntegers() throws IOException {
             try {
 
-
                 String[] strings = new String[1];
                 strings[0] = "test.txt";
                 Assertions.assertEquals(returnsStrings(strings), "test.txt - 149.33");
