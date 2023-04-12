@@ -15,91 +15,56 @@ class IoTaskTest {
     public class IoTaskMain {
         @Test
         public void shouldReturnResultWhenFileContainsIntegers() throws IOException {
-            try {
-
                 String[] strings = new String[1];
                 String path = new File("src" + File.separator + "test" + File.separator +
                         "resources" + File.separator + "test.txt").getAbsolutePath();
                 strings[0] = path;
                 Assertions.assertEquals(returnsStrings(strings),
                         path + " - 149.33");
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-
-
         }
 
 
         @Test
         public void shouldReturnResultWhenFileContainsDoubles() throws IOException {
-            try {
-
                 String[] strings = new String[1];
                 String path = new File("src" + File.separator + "test" + File.separator +
                         "resources" + File.separator + "testSecond.txt").getAbsolutePath();
                 strings[0] = path;
                 Assertions.assertEquals(returnsStrings(strings), strings[0] + " - 27.77");
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-
-
         }
 
 
         @Test
         public void shouldReturnErrorWhenFileContainsString() throws IOException {
-            try {
-
-
                 String[] strings = new String[1];
                 String path = new File("src" + File.separator + "test" + File.separator +
                         "resources" + File.separator + "testFour.txt").getAbsolutePath();
                 strings[0] = path;
                 Assertions.assertEquals(returnsStrings(strings), strings[0] +
                         " - Error on line 1.Incorrect number ref");
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-
-
         }
 
         @Test
         public void shouldReturnErrorWhenFileContainsSpace() throws IOException {
-            try {
                 String[] strings = new String[1];
                 String path = new File("src" + File.separator + "test" + File.separator +
                         "resources" + File.separator + "testThird.txt").getAbsolutePath();
                 strings[0] = path;
                 Assertions.assertEquals(returnsStrings(strings), strings[0] +
                         " - Error on line 2.Empty line,not found number");
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-
         }
 
         @Test
         public void shouldReturnErrorWhenFileDoesntExist() throws IOException {
-            try {
-
                 String[] strings = new String[1];
                 strings[0] = "testNotExists.txt";
                 Assertions.assertEquals(returnsStrings(strings), strings[0] +
                         " - Incorrect input path");
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
         }
 
 
         @Test
         public void shouldReturnResultsWhenSeveralFiles() throws IOException {
-            try {
-
-
                 String[] strings = new String[5];
                 String path = new File("src" + File.separator + "test" + File.separator +
                         "resources" + File.separator + "test.txt").getAbsolutePath();
@@ -120,9 +85,6 @@ class IoTaskTest {
                                 strings[2] + " - Error on line 2.Empty line,not found number" + "\n" +
                                 strings[3] + " - Error on line 1.Incorrect number ref" + "\n" +
                                 strings[4] + " - Incorrect input path");
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
         }
     }
 
