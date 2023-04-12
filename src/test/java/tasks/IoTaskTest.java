@@ -17,8 +17,11 @@ class IoTaskTest {
             try {
 
                 String[] strings = new String[1];
-                strings[0] = "test.txt";
-                Assertions.assertEquals(returnsStrings(strings), "test.txt - 149.33");
+                strings[0] = "/Users/konstantincizevskij/" +
+                        "IdeaProjects/itman-java-course/src/test/resources/test.txt";
+                Assertions.assertEquals(returnsStrings(strings),
+                        "/Users/konstantincizevskij/" +
+                                "IdeaProjects/itman-java-course/src/test/resources/test.txt - 149.33");
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
@@ -32,7 +35,8 @@ class IoTaskTest {
             try {
 
                 String[] strings = new String[1];
-                strings[0] = "testSecond.txt";
+                strings[0] = "/Users/konstantincizevskij/" +
+                        "IdeaProjects/itman-java-course/src/test/resources/testSecond.txt";
                 Assertions.assertEquals(returnsStrings(strings), strings[0] + " - 27.77");
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
@@ -48,7 +52,8 @@ class IoTaskTest {
 
 
                 String[] strings = new String[1];
-                strings[0] = "testFour.txt";
+                strings[0] = "/Users/konstantincizevskij/IdeaProjects/" +
+                        "itman-java-course/src/test/resources/testFour.txt";
                 Assertions.assertEquals(returnsStrings(strings), strings[0] +
                         " - Error on line 1.Incorrect number ref");
             } catch (Exception ex) {
@@ -62,7 +67,8 @@ class IoTaskTest {
         public void shouldReturnErrorWhenFileContainsSpace() throws IOException {
             try {
                 String[] strings = new String[1];
-                strings[0] = "testThird.txt";
+                strings[0] = "/Users/konstantincizevskij/" +
+                        "IdeaProjects/itman-java-course/src/test/resources/testThird.txt";
                 Assertions.assertEquals(returnsStrings(strings), strings[0] +
                         " - Error on line 2.Empty line,not found number");
             } catch (Exception ex) {
@@ -76,7 +82,8 @@ class IoTaskTest {
             try {
 
                 String[] strings = new String[1];
-                strings[0] = "testNotExists.txt";
+                strings[0] = "/Users/konstantincizevskij/" +
+                        "IdeaProjects/itman-java-course/src/test/resources/testNotExists.txt";
                 Assertions.assertEquals(returnsStrings(strings), strings[0] +
                         " - Incorrect input path");
             } catch (Exception ex) {
@@ -91,11 +98,16 @@ class IoTaskTest {
 
 
                 String[] strings = new String[5];
-                strings[0] = "test.txt";
-                strings[1] = "testSecond.txt";
-                strings[2] = "testThird.txt";
-                strings[3] = "testFour.txt";
-                strings[4] = "testNotExists.txt";
+                strings[0] = "/Users/konstantincizevskij/" +
+                        "IdeaProjects/itman-java-course/src/test/resources/test.txt";
+                strings[1] = "/Users/konstantincizevskij/" +
+                        "IdeaProjects/itman-java-course/src/test/resources/testSecond.txt";
+                strings[2] = "/Users/konstantincizevskij/" +
+                        "IdeaProjects/itman-java-course/src/test/resources/testThird.txt";
+                strings[3] = "/Users/konstantincizevskij" +
+                        "/IdeaProjects/itman-java-course/src/test/resources/testFour.txt";
+                strings[4] = "/Users/konstantincizevskij/" +
+                        "IdeaProjects/itman-java-course/src/test/resources/testNotExists.txt";
                 Assertions.assertEquals(returnsStrings(strings),
                         strings[0] + " - 149.33" + "\n" +
                                 strings[1] + " - 27.77" + "\n" +
