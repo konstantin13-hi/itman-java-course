@@ -23,11 +23,5 @@ public interface ListIterator<T> extends Iterator<T> {
      */
     void insertBefore(T element);
 
-    /**
-     * Returns current element.
-     *
-     * @return element
-     */
-    T current();
 
 }

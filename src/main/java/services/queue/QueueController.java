@@ -2,7 +2,9 @@ package services.queue;
 
 import collections.IntArrayList;
 import entities.Ticket;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import tasks.QueueManagementSystem;
 
 
@@ -95,6 +97,11 @@ public class QueueController {
      */
     @PostMapping("/api/queue/callNext")
     public Ticket callNext() {
-        return queueManagementSystem.callNext();
+        try {
+            return queueManagementSystem.callNext();
+        } catch (Exception exc) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "ticket not found", exc);
+        }
     }
 }

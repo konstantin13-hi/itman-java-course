@@ -52,6 +52,18 @@ public abstract class AbstractListTest {
             Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 0}, list.toArray());
         }
 
+        @Test
+        public void shouldAddElementWhenIndexNegative() {
+            List<Integer> list = of(1, 2, 3, 4, 5);
+            Assertions.assertThrows(IndexOutOfBoundsException.class, () -> list.add(-1, 0));
+        }
+
+        @Test
+        public void shouldAddElementWhenIndexMoreThanLength() {
+            List<Integer> list = of(1, 2, 3, 4, 5);
+            Assertions.assertThrows(IndexOutOfBoundsException.class, () -> list.add(6, 0));
+        }
+
 
     }
 
@@ -64,6 +76,19 @@ public abstract class AbstractListTest {
             Assertions.assertEquals(1, list.get(2));
             Assertions.assertEquals("12", list.get(0));
             Assertions.assertEquals(2, list.get(1));
+        }
+
+        @Test
+        public void shouldAddElementWhenIndexNegative() {
+            List<Integer> list = of(1, 2, 3, 4, 5);
+            Assertions.assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));
+
+        }
+
+        @Test
+        public void shouldAddElementWhenIndexMoreThanLength() {
+            List<Integer> list = of(1, 2, 3, 4, 5);
+            Assertions.assertThrows(IndexOutOfBoundsException.class, () -> list.get(6));
         }
 
 
@@ -307,8 +332,8 @@ public abstract class AbstractListTest {
                 List<Integer> list = of(1, 2, 3, 5);
                 ListIterator<Integer> iterator = list.iterator();
                 do {
-                    iterator.set(7);
                     iterator.next();
+                    iterator.set(7);
                 } while (iterator.hasNext());
                 Assertions.assertArrayEquals(new Integer[]{7, 7, 7, 7}, list.toArray());
             }
@@ -439,6 +464,19 @@ public abstract class AbstractListTest {
             List<Integer> list = of(3, 2, 1, 3, 5, 6, 7);
             list.removeIf(x -> x == 3);
             Assertions.assertArrayEquals(new Integer[]{2, 1, 5, 6, 7}, list.toArray());
+
+        }
+
+
+        @Test
+        public void shouldThrowExceptionWhenRemoveIfIsNull() {
+            List<Integer> list = of(3, 2, 1, 3, 5, 6, 7);
+            try {
+                list.removeIf(null);
+            } catch (NullPointerException ex) {
+                Assertions.assertEquals(ex.getMessage(), "Predicate is Null");
+            }
+
 
         }
     }

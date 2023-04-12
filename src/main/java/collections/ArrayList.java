@@ -4,6 +4,7 @@ import utils.ArrayUtils;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
@@ -32,6 +33,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * {@inheritDoc}
      */
     public ArrayList(int capacity) {
+        if (capacity < 0) {
+            throw new IllegalArgumentException("Capacity lower than 0");
+        }
         objects = (T[]) new Object[capacity];
     }
 
@@ -46,6 +50,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * {@inheritDoc}
      */
     public static <T> ArrayList<T> of(T... elements) {
+        if (elements == null) {
+            throw new NullPointerException("null");
+        }
         ArrayList<T> arrayList;
         if (elements.length == 0) {
             arrayList = new ArrayList<>();
@@ -71,6 +78,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public boolean add(int index, T element) {
+        if (index > logicalSize || index < 0) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
         if (logicalSize == 0) {
             add(element);
         } else {
@@ -129,7 +139,8 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
 
 
     private class ArrayListIterator implements ListIterator<T> {
-        private int current;
+        private int currentIndex;
+        private boolean removeAllowed;
 
         /**
          * {@inheritDoc}
@@ -138,7 +149,8 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          * @ram O(1)
          */
         public boolean hasNext() {
-            return logicalSize > current;
+
+            return logicalSize > currentIndex;
         }
 
         /**
@@ -148,17 +160,11 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          * @ram O(1)
          */
         public T next() {
-            return objects[current++];
-        }
-
-        /**
-         * {@inheritDoc}
-         *
-         * @cpu O(1)
-         * @ram O(1)
-         */
-        public T current() {
-            return objects[current];
+            if (!hasNext()) {
+                throw new NoSuchElementException("No next element");
+            }
+            removeAllowed = true;
+            return objects[currentIndex++];
         }
 
         /**
@@ -169,7 +175,15 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          */
         @Override
         public void set(T element) {
-            objects[current] = element;
+            if (!removeAllowed) {
+                throw new IllegalStateException("set() method can only be called after a call to next()");
+            }
+            if (currentIndex == 0) {
+                throw new IllegalStateException("set() method can only be called after a call to next()");
+            }
+
+            objects[currentIndex - 1] = element;
+            // objects[currentIndex] = element;
         }
 
         /**
@@ -181,7 +195,13 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          */
         @Override
         public void insertBefore(T element) {
-            add(current - 1, element);
+            if (currentIndex == 0) {
+                throw new IllegalStateException("insertBefore() method can only be called after a call to next()");
+            }
+
+            add(currentIndex - 1, element);
+            currentIndex++;
+
         }
 
         /**
@@ -193,8 +213,14 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          */
         @Override
         public void remove() {
-            ArrayList.this.remove(current - 1);
-            current--;
+            if (!removeAllowed) {
+                throw new IllegalStateException("remove() method can only be called once after a call to next()");
+            }
+            if (currentIndex == 0) {
+                throw new IllegalStateException("remove() method can only be called after a call to next()");
+            }
+            ArrayList.this.remove(currentIndex - 1);
+            currentIndex--;
 
         }
     }
@@ -209,6 +235,12 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public boolean addAll(int index, Collection<? extends T> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
+        if (index < 0 || index > logicalSize) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
         if (logicalSize + collection.size() >= objects.length) {
             T[] t = (T[]) new Object[2 * (objects.length + collection.size())];
             System.arraycopy(objects, 0, t, 0, index);
@@ -253,6 +285,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public T remove(int index) {
+        if (index < 0 || index >= logicalSize) {
+            throw new IndexOutOfBoundsException("");
+        }
         T object = get(index);
         for (int i = index + 1; i < objects.length; i++) {
             objects[i - 1] = objects[i];
@@ -284,6 +319,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public void set(int index, T element) {
+        if (index < 0 || index >= logicalSize) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
         objects[index] = element;
     }
 
@@ -298,6 +336,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public T get(int index) {
+        if (index < 0 || index >= logicalSize) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
         return objects[index];
     }
 
@@ -322,6 +363,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public void removeIf(Predicate<? super T> predicate) {
+        if (predicate == null) {
+            throw new NullPointerException("Predicate is Null");
+        }
         super.removeIf(predicate);
     }
 
@@ -338,15 +382,16 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
 
     /**
      * {@inheritDoc}
-     * n=logical size
      * m= collection's size
-     * k= method equal
      *
-     * @cpu O(n * m * k)
+     * @cpu O(m * method contain)
      * @ram O(1)
      */
     @Override
-    public void removeAll(Collection<? extends T> collection) {
+    public void removeAll(Collection<?> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
         int elementPosition = 0;
         for (int j = 0; j < logicalSize; j++) {
             if (!collection.contains(objects[j])) {
@@ -368,6 +413,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public boolean containsAll(Collection<? extends T> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
         return super.containsAll(collection);
     }
 
@@ -406,6 +454,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public void sort(Comparator<? super T> comparator) {
+        if (comparator == null) {
+            throw new NullPointerException("");
+        }
         super.sort(comparator);
     }
 
@@ -431,6 +482,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public T[] toArray(IntFunction<T[]> factory) {
+        if (factory == null) {
+            throw new NullPointerException("Factory is Null");
+        }
         return super.toArray(factory);
     }
 

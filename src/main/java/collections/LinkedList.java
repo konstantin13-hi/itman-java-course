@@ -1,10 +1,8 @@
 package collections;
 
 
-import utils.ArrayUtils;
-
 import java.util.Comparator;
-import java.util.Objects;
+import java.util.NoSuchElementException;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
 
@@ -16,6 +14,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
 
     private class LinkedListIterator implements ListIterator<T> {
         private Node currentObject = head;
+        private Node previoustObject = null;
+        private boolean removeAllowed = false;
+
 
         /**
          * {@inheritDoc}
@@ -36,19 +37,14 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
          */
         @Override
         public T next() {
-            T result = currentObject.element;
+            if (!hasNext()) {
+                throw new NoSuchElementException("No next element");
+            }
+            final T result = currentObject.element;
+            previoustObject = currentObject;
             currentObject = currentObject.getNext();
+            removeAllowed = true;
             return result;
-        }
-
-        /**
-         * {@inheritDoc}
-         *
-         * @cpu O(1)
-         * @ram O(1)
-         */
-        public T current() {
-            return currentObject.element;
         }
 
         /**
@@ -59,7 +55,10 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
          */
         @Override
         public void set(T element) {
-            currentObject.setElement(element);
+            if (!removeAllowed) {
+                throw new IllegalStateException("set() method can only be called after a call to next()");
+            }
+            previoustObject.setElement(element);
 
         }
 
@@ -71,6 +70,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
          */
         @Override
         public void insertBefore(T element) {
+            if (!hasNext()) {
+                throw new IllegalStateException("The next has not been called");
+            }
             Node node = new Node(element, currentObject.prev, currentObject.prev.prev);
             if (currentObject.prev.prev != null) {
                 currentObject.prev.prev.setNext(node);
@@ -88,6 +90,12 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
          * @ram O(1)
          */
         public void remove() {
+            if (!removeAllowed) {
+                throw new IllegalStateException("remove() method can only be called once after a call to next()");
+            }
+            if (previoustObject == null) {
+                throw new IllegalStateException("remove() method can only be called after a call to next()");
+            }
             if (currentObject == null) {
                 if (logicalSize == 1) {
                     removeFirst();
@@ -103,6 +111,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
                     logicalSize--;
                 }
             }
+            removeAllowed = false;
         }
     }
 
@@ -159,6 +168,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * {@inheritDoc}
      */
     public LinkedList(LinkedList<T> that) {
+        if (that == null) {
+            throw new NullPointerException("LinkedList is Null");
+        }
         Node current = that.head;
         while (current != null) {
             addLast(current.getElement());
@@ -208,7 +220,17 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      */
     public T removeFirst() {
         T result = head.getElement();
-        head = head.getNext();
+        Node node = head;
+        if (logicalSize == 1) {
+            head = null;
+            prev = null;
+            node.setPrev(null);
+            node.setNext(null);
+        } else {
+            head = head.getNext();
+            head.prev = null;
+            node.setNext(null);
+        }
         logicalSize--;
         return result;
     }
@@ -261,6 +283,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
         if (prev.getPrev() != null) {
             current.getPrev().setNext(null);
             prev = current.getPrev();
+            current.setPrev(null);
         } else {
             prev = null;
             head = null;
@@ -274,7 +297,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * n=logical size
      * m=Object's toString
      *
-     * @cpu O(n*m)
+     * @cpu O(n * m)
      * @ram O(n)
      */
     @Override
@@ -292,6 +315,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      */
     @Override
     public boolean addAll(Collection<? extends T> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
         return super.addAll(collection);
     }
 
@@ -305,10 +331,12 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * n=logical size
      * @cpu O(n * m)
      * @ram O(m)
-     *
      */
     @Override
     public boolean addAll(int index, Collection<? extends T> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
         for (T i : collection) {
             add(index++, i);
         }
@@ -336,6 +364,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      */
     @Override
     public void removeIf(Predicate<? super T> predicate) {
+        if (predicate == null) {
+            throw new NullPointerException("Predicate is Null");
+        }
         super.removeIf(predicate);
     }
 
@@ -356,11 +387,15 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * m= collection's size
      * k= method equal
      *
-     * @cpu O(n*m*k)
+     * @param collection first term
+     * @cpu O(n * m * k)
      * @ram O(1)
      */
     @Override
-    public void removeAll(Collection<? extends T> collection) {
+    public void removeAll(Collection<?> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
         super.removeAll(collection);
     }
 
@@ -412,11 +447,14 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * m = collection's size
      * k = method equal
      *
-     * @cpu O(n * m *k)
+     * @cpu O(n * m * k)
      * @ram O(1)
      */
     @Override
     public boolean containsAll(Collection<? extends T> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
         return super.containsAll(collection);
     }
 
@@ -425,7 +463,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * n = logical size
      * k=method equal
      *
-     * @cpu O(n*k)
+     * @cpu O(n * k)
      * @ram O(1)
      */
     @Override
@@ -438,7 +476,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * n=logicalSize
      * k= method equal
      *
-     * @cpu 0(n*k)
+     * @cpu 0(n * k)
      * @ram 0(1)
      */
     @Override
@@ -450,11 +488,14 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * {@inheritDoc}
      * k=comparator
      *
-     * @cpu O(n*log(n)*k)
+     * @cpu O(n * log ( n)*k)
      * @ram O(n)
      */
     @Override
     public void sort(Comparator<? super T> comparator) {
+        if (comparator == null) {
+            throw new NullPointerException("Comparator is Null");
+        }
         super.sort(comparator);
     }
 
@@ -480,6 +521,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      */
     @Override
     public T[] toArray(IntFunction<T[]> factory) {
+        if (factory == null) {
+            throw new NullPointerException("IntFunction is Null");
+        }
         return super.toArray(factory);
     }
 
@@ -522,15 +566,18 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
     /**
      * Add element in the back of list.
      *
-     * @cpu O(n)
-     * @ram O(1)
      * @param index   the first term
      * @param element the second term
      * @return boolean result.If change size then will return true.
      * {@inheritDoc}
+     * @cpu O(n)
+     * @ram O(1)
      */
     @Override
     public boolean add(int index, T element) {
+        if (index < 0 || index > logicalSize) {
+            throw new ArrayIndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
         if (index == logicalSize) {
             addLast(element);
         } else if (index == 0) {
@@ -567,6 +614,10 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * @ram 0(1)
      */
     public void set(int index, T element) {
+        if (index < 0 || index >= logicalSize) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+
+        }
         findNode(index).setElement(element);
     }
 
@@ -581,11 +632,18 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      * {@inheritDoc}
      */
     public T get(int index) {
+        if (index < 0 || index >= logicalSize) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+
+        }
         return findNode(index).element;
     }
 
 
     private Node findNode(int index) {
+        if (index < 0 || index >= logicalSize) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
         Node current = head;
         int c = 0;
         while (current != null && c != index) {
