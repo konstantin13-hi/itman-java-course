@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import tasks.MyString;
 
 import java.util.Comparator;
+import java.util.ConcurrentModificationException;
 
 
 public abstract class AbstractListTest {
@@ -280,16 +281,28 @@ public abstract class AbstractListTest {
 
         @Test
         public void shouldAddAllElementsWhenIndexAndWildCard() {
-            //12 13
-            // 5 12 13
-            // 5 12 13 5
-            // 5 12 5 13 5
             List<Number> list = of(12, 13);
             List<Integer> listSecond = of(5);
             list.addAll(0, listSecond);
             list.addAll(3, listSecond);
             list.addAll(2, listSecond);
             Assertions.assertArrayEquals(new Integer[]{5, 12, 5, 13, 5}, list.toArray());
+        }
+
+        @Test
+        public void shouldThrowExceptionWhenYouAddCollectionToYourself() {
+            List<Number> list = of(12, 13);
+            Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                list.addAll(list);
+            });
+        }
+
+        @Test
+        public void shouldThrowExceptionWhenYouAddCollectionToYourselfWithIndex() {
+            List<Number> list = of(12, 13);
+            Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                list.addAll(1, list);
+            });
         }
     }
 
@@ -323,6 +336,26 @@ public abstract class AbstractListTest {
                 Assertions.assertEquals(3, iterator.next());
                 Assertions.assertEquals(5, iterator.next());
             }
+
+            @Test
+            public void shouldTrowExceptionWhenChangingCollection() {
+                List<Integer> list = of(1, 2, 3, 5);
+                ListIterator<Integer> iterator = list.iterator();
+                iterator.next();
+                list.remove(0);
+                Assertions.assertThrows(ConcurrentModificationException.class,
+                        () -> iterator.hasNext());
+            }
+        }
+
+        @Test
+        public void shouldReturnElementWhenListIsNotEmpty() {
+            List<Integer> list = of(1, 2, 3, 5);
+            ListIterator<Integer> iterator = list.iterator();
+            Assertions.assertEquals(1, iterator.next());
+            Assertions.assertEquals(2, iterator.next());
+            Assertions.assertEquals(3, iterator.next());
+            Assertions.assertEquals(5, iterator.next());
         }
 
         @Nested
@@ -338,6 +371,15 @@ public abstract class AbstractListTest {
                 Assertions.assertArrayEquals(new Integer[]{7, 7, 7, 7}, list.toArray());
             }
 
+            @Test
+            public void shouldThrowExceptionWhenTryingSetElement() {
+                List<Integer> list = of(1, 2, 3, 5);
+                ListIterator<Integer> iterator = list.iterator();
+                Assertions.assertThrows(IllegalStateException.class,
+                        () -> {
+                            iterator.set(34);
+                        });
+            }
 
         }
 
@@ -352,6 +394,17 @@ public abstract class AbstractListTest {
                     iterator.insertBefore(7);
                 }
                 Assertions.assertArrayEquals(new Integer[]{7, 7, 7, 1, 2, 3, 5}, list.toArray());
+            }
+
+            @Test
+            public void shouldTrowExceptionWhenInsertElement() {
+                List<Integer> list = of(1, 2, 3, 5);
+                ListIterator<Integer> iterator = list.iterator();
+                Assertions.assertThrows(IllegalStateException.class,
+                        () -> {
+                            iterator.insertBefore(1);
+                        });
+
             }
 
 
@@ -373,6 +426,16 @@ public abstract class AbstractListTest {
                 iterator.next();
                 iterator.remove();
                 Assertions.assertArrayEquals(new Integer[]{2}, list.toArray());
+            }
+
+            @Test
+            public void shouldTrowExceptionWhenTryingRemoveElement() {
+                List<Integer> list = of(1, 2, 3, 5);
+                ListIterator<Integer> iterator = list.iterator();
+                Assertions.assertThrows(IllegalStateException.class,
+                        () -> {
+                            iterator.remove();
+                        });
             }
 
 
@@ -435,6 +498,13 @@ public abstract class AbstractListTest {
             List<Integer> listSecond = of(7, 5, 3, 1, 3, 3, 6, 1);
             Assertions.assertTrue(list.containsAll(listSecond));
         }
+
+        @Test
+        public void shouldTrowExceptionWhenTryingUseTheSameList() {
+            List<Integer> list = of(3, 2, 1, 3, 5, 6, 7);
+            List<Integer> listSecond = of(7, 5, 3, 1, 3, 3, 6, 1);
+            Assertions.assertTrue(list.containsAll(listSecond));
+        }
     }
 
     @Nested
@@ -453,6 +523,12 @@ public abstract class AbstractListTest {
             List<Integer> listSecond = of(9, 9, 9, 9, 9, 9, 9);
             list.removeAll(listSecond);
             Assertions.assertArrayEquals(new Integer[]{3, 2, 1, 3, 5, 6, 7}, list.toArray());
+        }
+
+        @Test
+        public void shouldTrowExceptionWhenUseTheSameCollection() {
+            List<Integer> list = of(3, 2, 1, 3, 5, 6, 7);
+            Assertions.assertThrows(IllegalArgumentException.class, () -> list.removeAll(list));
         }
 
     }
@@ -476,8 +552,19 @@ public abstract class AbstractListTest {
             } catch (NullPointerException ex) {
                 Assertions.assertEquals(ex.getMessage(), "Predicate is Null");
             }
+        }
 
+        @Test
+        public void shouldThrowExceptionWhenRemoveElement() {
+            List<Integer> list = of(1, 2, 3, 4, 5);
+            Assertions.assertThrows(ConcurrentModificationException.class, () -> cycle(list));
 
+        }
+
+        private <T> void cycle(List<T> list) {
+            for (T i : list) {
+                list.remove(1);
+            }
         }
     }
 

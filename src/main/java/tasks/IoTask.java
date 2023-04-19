@@ -10,37 +10,33 @@ import java.util.stream.Stream;
 
 public class IoTask {
     public static void main(String[] args) throws IOException {
-
         DecimalFormat dF = new DecimalFormat("#.00");
         for (String arg : args) {
-            double result = 0;
+            int loop = 0;
+            String c = null;
             try (BufferedReader inputStream = new BufferedReader(new FileReader(arg))) {
-                String c;
-                int loop = 0;
-                int brk = 0;
+
+                double max = Integer.MIN_VALUE;
+                double min = Integer.MAX_VALUE;
                 while ((c = inputStream.readLine()) != null) {
-                    ++loop;
-                    try {
-                        if (c.equals("")) {
-                            throw new Exception("Empty line,not found number");
-                        }
-                        try {
-                            double d = Double.parseDouble(c);
-                            result += d;
-                        } catch (Exception e) {
-                            throw new Exception("Incorrect number " + c);
-                        }
-                    } catch (Exception e) {
-                        System.out.print(arg + " - Error on line " + loop + "." + e.getMessage());
-                        brk++;
-                        break;
+                    loop++;
+                    double d = Double.parseDouble(c);
+                    if (max < d) {
+                        max = d;
+                    }
+                    if (min > d) {
+                        min = d;
                     }
                 }
-                if (brk == 0) {
-                    System.out.print(arg + " - " + dF.format((result / loop)));
-                }
-            } catch (Exception e) {
+                System.out.print(arg + " - " + dF.format(((min + max) / 2)));
+            } catch (FileNotFoundException e) {
                 System.out.print(arg + " - " + "Incorrect input path");
+            } catch (NumberFormatException e) {
+                String result = ".Incorrect number " + c;
+                if (Objects.equals(c, "")) {
+                    result = ".Empty line,not found number";
+                }
+                System.out.print(arg + " - Error on line " + loop + result);
             }
             if (!Objects.equals(arg, args[args.length - 1])) {
                 System.out.println();

@@ -19,7 +19,7 @@ public class IntArrayList {
      */
     public IntArrayList(IntArrayList that) {
         if (that == null) {
-            throw new NullPointerException(" ");
+            throw new NullPointerException("IntArrayList is Null");
         }
         logicalSize = that.logicalSize;
         int[] arraySecond = new int[that.logicalSize];
@@ -46,7 +46,7 @@ public class IntArrayList {
      */
     public IntArrayList(int capacity) {
         if (capacity < 0) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Capacity lower than 0");
         }
         elements = new int[capacity];
     }
@@ -98,7 +98,7 @@ public class IntArrayList {
      */
     public void set(int index, int element) {
         if (index < 0 || index >= elements.length) {
-            throw new IndexOutOfBoundsException(" ");
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
         }
         elements[index] = element;
     }
@@ -113,7 +113,7 @@ public class IntArrayList {
      */
     public int get(int index) {
         if (index < 0 || index >= elements.length) {
-            throw new IndexOutOfBoundsException(" ");
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
         }
         return elements[index];
     }
@@ -140,7 +140,7 @@ public class IntArrayList {
      */
     public int remove(int index) {
         if (index < 0 || index >= logicalSize) {
-            throw new IndexOutOfBoundsException(" ");
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
         }
         int remove = elements[index];
         for (int i = index + 1; i < elements.length; i++) {

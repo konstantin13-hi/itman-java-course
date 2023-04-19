@@ -2,6 +2,7 @@ package collections;
 
 
 import java.util.Comparator;
+import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
@@ -16,6 +17,10 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
         private Node currentObject = head;
         private Node previoustObject = null;
         private boolean removeAllowed = false;
+        private boolean commandsAllowed = false;
+        private int checkInsertBefore = 0;
+        private int checkRemove = 0;
+        private int previousLogicalSize = logicalSize;
 
 
         /**
@@ -26,6 +31,13 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
          */
         @Override
         public boolean hasNext() {
+            if (previousLogicalSize != logicalSize - checkInsertBefore + checkRemove) {
+                throw new ConcurrentModificationException("object is attempted to be " +
+                        "modified concurrently without permission");
+            }
+            checkInsertBefore = 0;
+            checkRemove = 0;
+            previousLogicalSize = logicalSize;
             return currentObject != null;
         }
 
@@ -44,6 +56,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
             previoustObject = currentObject;
             currentObject = currentObject.getNext();
             removeAllowed = true;
+            commandsAllowed = true;
             return result;
         }
 
@@ -55,7 +68,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
          */
         @Override
         public void set(T element) {
-            if (!removeAllowed) {
+            if (logicalSize == 0 || !commandsAllowed) {
                 throw new IllegalStateException("set() method can only be called after a call to next()");
             }
             previoustObject.setElement(element);
@@ -70,9 +83,10 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
          */
         @Override
         public void insertBefore(T element) {
-            if (!hasNext()) {
-                throw new IllegalStateException("The next has not been called");
+            if (logicalSize == 0 || !commandsAllowed) {
+                throw new IllegalStateException("insertBefore() method can only be called after a call to next()");
             }
+            checkInsertBefore++;
             Node node = new Node(element, currentObject.prev, currentObject.prev.prev);
             if (currentObject.prev.prev != null) {
                 currentObject.prev.prev.setNext(node);
@@ -111,6 +125,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
                     logicalSize--;
                 }
             }
+            checkRemove++;
             removeAllowed = false;
         }
     }
@@ -223,9 +238,6 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
         Node node = head;
         if (logicalSize == 1) {
             head = null;
-            prev = null;
-            node.setPrev(null);
-            node.setNext(null);
         } else {
             head = head.getNext();
             head.prev = null;
@@ -318,6 +330,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
         if (collection == null) {
             throw new NullPointerException("Collection is Null");
         }
+        if (this == collection) {
+            throw new IllegalArgumentException("Collection cannot be passed to itself");
+        }
         return super.addAll(collection);
     }
 
@@ -336,6 +351,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
     public boolean addAll(int index, Collection<? extends T> collection) {
         if (collection == null) {
             throw new NullPointerException("Collection is Null");
+        }
+        if (this == collection) {
+            throw new IllegalArgumentException("Collection cannot be passed to itself");
         }
         for (T i : collection) {
             add(index++, i);
@@ -454,6 +472,9 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
     public boolean containsAll(Collection<? extends T> collection) {
         if (collection == null) {
             throw new NullPointerException("Collection is Null");
+        }
+        if (this == collection) {
+            throw new IllegalArgumentException("Collection cannot be passed to itself");
         }
         return super.containsAll(collection);
     }

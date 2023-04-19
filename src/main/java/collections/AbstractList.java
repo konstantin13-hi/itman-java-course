@@ -21,6 +21,9 @@ public abstract class AbstractList<T> implements List<T> {
         if (collection == null) {
             throw new NullPointerException("Collection is Null");
         }
+        if (this == collection) {
+            throw new IllegalArgumentException("Collection cannot be passed to itself");
+        }
         return addAll(logicalSize, collection);
     }
 
@@ -50,6 +53,9 @@ public abstract class AbstractList<T> implements List<T> {
     public void removeAll(Collection<?> collection) {
         if (collection == null) {
             throw new NullPointerException("Collection is Null");
+        }
+        if (this == collection) {
+            throw new IllegalArgumentException("Collection cannot be passed to itself");
         }
         for (Object i : collection) {
             Iterator<T> iterator = this.iterator();
@@ -93,6 +99,9 @@ public abstract class AbstractList<T> implements List<T> {
         if (collection == null) {
             throw new NullPointerException("Collection is Null");
         }
+        if (this == collection) {
+            throw new IllegalArgumentException("Collection cannot be passed to itself");
+        }
         for (T i : collection) {
             if (!contains(i)) {
                 return false;
@@ -132,10 +141,12 @@ public abstract class AbstractList<T> implements List<T> {
             throw new NullPointerException("Predicate is Null");
         }
         T t;
-        for (T value : this) {
-            t = value;
+        ListIterator<T> iterator = this.iterator();
+        while (iterator.hasNext()) {
+            t = iterator.next();
             if (predicate.test(t)) {
-                remove(t);
+                iterator.remove();
+
             }
         }
     }

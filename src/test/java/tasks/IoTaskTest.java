@@ -20,7 +20,7 @@ class IoTaskTest {
                     "resources" + File.separator + "test.txt").getAbsolutePath();
             strings[0] = path;
             Assertions.assertEquals(returnsStrings(strings),
-                    path + " - 149.33");
+                    path + " - 3.00");
         }
 
 
@@ -30,7 +30,7 @@ class IoTaskTest {
             String path = new File("src" + File.separator + "test" + File.separator +
                     "resources" + File.separator + "testSecond.txt").getAbsolutePath();
             strings[0] = path;
-            Assertions.assertEquals(returnsStrings(strings), strings[0] + " - 27.77");
+            Assertions.assertEquals(returnsStrings(strings), strings[0] + " - 28.87");
         }
 
 
@@ -80,8 +80,8 @@ class IoTaskTest {
             strings[3] = pathFourth;
             strings[4] = "testNotExists.txt";
             Assertions.assertEquals(returnsStrings(strings),
-                    strings[0] + " - 149.33" + "\n" +
-                            strings[1] + " - 27.77" + "\n" +
+                    strings[0] + " - 3.00" + "\n" +
+                            strings[1] + " - 28.87" + "\n" +
                             strings[2] + " - Error on line 2.Empty line,not found number" + "\n" +
                             strings[3] + " - Error on line 1.Incorrect number ref" + "\n" +
                             strings[4] + " - Incorrect input path");

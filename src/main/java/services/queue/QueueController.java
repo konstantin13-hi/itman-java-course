@@ -99,7 +99,7 @@ public class QueueController {
     public Ticket callNext() {
         try {
             return queueManagementSystem.callNext();
-        } catch (Exception exc) {
+        } catch (NullPointerException exc) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "ticket not found", exc);
         }
