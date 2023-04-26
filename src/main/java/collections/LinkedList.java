@@ -382,9 +382,6 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      */
     @Override
     public void removeIf(Predicate<? super T> predicate) {
-        if (predicate == null) {
-            throw new NullPointerException("Predicate is Null");
-        }
         super.removeIf(predicate);
     }
 
@@ -411,9 +408,6 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      */
     @Override
     public void removeAll(Collection<?> collection) {
-        if (collection == null) {
-            throw new NullPointerException("Collection is Null");
-        }
         super.removeAll(collection);
     }
 
@@ -470,12 +464,6 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      */
     @Override
     public boolean containsAll(Collection<? extends T> collection) {
-        if (collection == null) {
-            throw new NullPointerException("Collection is Null");
-        }
-        if (this == collection) {
-            throw new IllegalArgumentException("Collection cannot be passed to itself");
-        }
         return super.containsAll(collection);
     }
 
@@ -514,9 +502,6 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      */
     @Override
     public void sort(Comparator<? super T> comparator) {
-        if (comparator == null) {
-            throw new NullPointerException("Comparator is Null");
-        }
         super.sort(comparator);
     }
 
@@ -542,9 +527,6 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
      */
     @Override
     public T[] toArray(IntFunction<T[]> factory) {
-        if (factory == null) {
-            throw new NullPointerException("IntFunction is Null");
-        }
         return super.toArray(factory);
     }
 

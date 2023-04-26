@@ -3,6 +3,7 @@ package services.queue;
 import collections.IntArrayList;
 import entities.Ticket;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import tasks.QueueManagementSystem;
@@ -97,11 +98,15 @@ public class QueueController {
      */
     @PostMapping("/api/queue/callNext")
     public Ticket callNext() {
-        try {
-            return queueManagementSystem.callNext();
-        } catch (NullPointerException exc) {
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "ticket not found", exc);
-        }
+        return queueManagementSystem.callNext();
     }
+
+
+    @ExceptionHandler(value = {NullPointerException.class})
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    private ResponseEntity<Object> handleNotFoundException(NullPointerException ex) {
+        return new ResponseEntity<>("Ticket not found", HttpStatus.NOT_FOUND);
+    }
+
+
 }

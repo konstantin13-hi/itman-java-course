@@ -438,6 +438,20 @@ public abstract class AbstractListTest {
                         });
             }
 
+            @Test
+            public void shouldTrowExceptionWhenTryingRemoveElementAfrerRemove() {
+                List<Integer> list = of(1, 2, 3, 5);
+                ListIterator<Integer> iterator = list.iterator();
+                iterator.next();
+                iterator.next();
+                iterator.next();
+                iterator.remove();
+                Assertions.assertThrows(IllegalStateException.class,
+                        () -> {
+                            iterator.remove();
+                        });
+            }
+
 
         }
     }

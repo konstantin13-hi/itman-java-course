@@ -160,7 +160,7 @@ public abstract class AbstractList<T> implements List<T> {
      */
     public boolean equals(Object obj) {
         if (obj == null) {
-            throw new NullPointerException("null");
+            throw new NullPointerException("Object is null");
         }
         if (obj instanceof List) {
             List<T> list = (List<T>) obj;
@@ -214,7 +214,7 @@ public abstract class AbstractList<T> implements List<T> {
     @Override
     public void sort(Comparator<? super T> comparator) {
         if (comparator == null) {
-            throw new NullPointerException("null");
+            throw new NullPointerException("Comparator is null");
         }
         T[] array = (T[]) toArray();
         ArrayUtils.mergeSort(array, comparator);
@@ -251,7 +251,7 @@ public abstract class AbstractList<T> implements List<T> {
     @Override
     public T[] toArray(IntFunction<T[]> factory) {
         if (factory == null) {
-            throw new NullPointerException("null");
+            throw new NullPointerException("IntFunction is null");
         }
         ListIterator<T> listIterator = iterator();
         T[] array = factory.apply(logicalSize);

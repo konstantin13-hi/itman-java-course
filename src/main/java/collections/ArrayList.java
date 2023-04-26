@@ -137,11 +137,15 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
 
     private class ArrayListIterator implements ListIterator<T> {
         private int currentIndex;
-        private boolean removeAllowed = false;
-        private boolean commandsAllowed = false;
-        private int checkInsertBefore = 0;
-        private int checkRemove = 0;
         private int previousLogicalSize = logicalSize;
+        private int previousIndex = currentIndex;
+
+        private void checkForComodification() {
+            if (previousLogicalSize != logicalSize) {
+                throw new ConcurrentModificationException("object is attempted " +
+                        "to be modified concurrently without permission");
+            }
+        }
 
         /**
          * {@inheritDoc}
@@ -150,13 +154,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          * @ram O(1)
          */
         public boolean hasNext() {
-            if (previousLogicalSize != logicalSize - checkInsertBefore + checkRemove) {
-                throw new ConcurrentModificationException("object is attempted to be " +
-                        "modified concurrently without permission");
-            }
-            checkInsertBefore = 0;
-            checkRemove = 0;
+            checkForComodification();
             previousLogicalSize = logicalSize;
+            previousIndex = currentIndex;
             return logicalSize > currentIndex;
         }
 
@@ -170,8 +170,6 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
             if (!hasNext()) {
                 throw new NoSuchElementException("No next element");
             }
-            removeAllowed = true;
-            commandsAllowed = true;
             return objects[currentIndex++];
         }
 
@@ -183,7 +181,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          */
         @Override
         public void set(T element) {
-            if (!commandsAllowed || logicalSize == 0) {
+            if (currentIndex == 0 || previousIndex + 1 != currentIndex) {
                 throw new IllegalStateException("set() method can only be called after a call to next()");
             }
             objects[currentIndex - 1] = element;
@@ -198,12 +196,15 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          */
         @Override
         public void insertBefore(T element) {
-            if (logicalSize == 0 || !commandsAllowed) {
-                throw new IllegalStateException("insertBefore() method can only be called after a call to next()");
+            checkForComodification();
+            if (currentIndex == 0 || previousIndex + 1 != currentIndex) {
+                throw new IllegalStateException("set() method can only be called after a call to next()");
             }
-            checkInsertBefore++;
+
             add(currentIndex - 1, element);
+            previousIndex = currentIndex;
             currentIndex++;
+            previousLogicalSize = logicalSize;
 
         }
 
@@ -216,13 +217,14 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          */
         @Override
         public void remove() {
-            if (!removeAllowed) {
+            checkForComodification();
+            if (currentIndex == 0 || previousIndex + 1 != currentIndex) {
                 throw new IllegalStateException("remove() method can only be called once after a call to next()");
             }
-            checkRemove++;
-            removeAllowed = false;
             ArrayList.this.remove(currentIndex - 1);
             currentIndex--;
+            previousIndex = currentIndex;
+            previousLogicalSize = logicalSize;
 
         }
     }
@@ -368,9 +370,6 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public void removeIf(Predicate<? super T> predicate) {
-        if (predicate == null) {
-            throw new NullPointerException("Predicate is Null");
-        }
         super.removeIf(predicate);
     }
 
@@ -421,9 +420,6 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public boolean containsAll(Collection<? extends T> collection) {
-        if (collection == null) {
-            throw new NullPointerException("Collection is Null");
-        }
         return super.containsAll(collection);
     }
 
@@ -462,9 +458,6 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public void sort(Comparator<? super T> comparator) {
-        if (comparator == null) {
-            throw new NullPointerException("Comparator is Null");
-        }
         super.sort(comparator);
     }
 
@@ -490,9 +483,6 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public T[] toArray(IntFunction<T[]> factory) {
-        if (factory == null) {
-            throw new NullPointerException("Factory is Null");
-        }
         return super.toArray(factory);
     }
 
