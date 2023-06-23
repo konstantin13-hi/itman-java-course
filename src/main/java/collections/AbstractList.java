@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 
 public abstract class AbstractList<T> implements List<T> {
     int logicalSize;
+    int modify;
 
     /**
      * Adds element into list.
@@ -24,6 +25,7 @@ public abstract class AbstractList<T> implements List<T> {
         if (this == collection) {
             throw new IllegalArgumentException("Collection cannot be passed to itself");
         }
+        modify++;
         return addAll(logicalSize, collection);
     }
 
@@ -65,6 +67,7 @@ public abstract class AbstractList<T> implements List<T> {
                 }
             }
         }
+        modify++;
     }
 
     /**
@@ -80,6 +83,7 @@ public abstract class AbstractList<T> implements List<T> {
             t = i.next();
             if (Objects.equals(t, element)) {
                 i.remove();
+                modify++;
                 return t;
             }
         }

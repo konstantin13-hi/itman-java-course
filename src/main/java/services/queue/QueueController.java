@@ -9,7 +9,6 @@ import org.springframework.web.server.ResponseStatusException;
 import tasks.QueueManagementSystem;
 
 
-
 @RestController
 public class QueueController {
     private QueueManagementSystem queueManagementSystem;
@@ -101,11 +100,11 @@ public class QueueController {
         return queueManagementSystem.callNext();
     }
 
-
-    @ExceptionHandler(value = {NullPointerException.class})
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    private ResponseEntity<Object> handleNotFoundException(NullPointerException ex) {
-        return new ResponseEntity<>("Ticket not found", HttpStatus.NOT_FOUND);
+    @ExceptionHandler(QueueManagementSystem.CustomException.class)
+    private ResponseEntity<String> handleCustomException(QueueManagementSystem.CustomException e) {
+        return
+                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An " +
+                        "error occurred while calling the next ticket.");
     }
 
 

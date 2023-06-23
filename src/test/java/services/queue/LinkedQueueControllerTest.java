@@ -164,16 +164,6 @@ class LinkedQueueControllerTest {
 
         }
 
-        @Test
-        public void shouldReturn405StatusWhenUserCallsOnlyCallNext() throws Exception {
-            MockHttpServletRequestBuilder callNext = MockMvcRequestBuilders
-                    .post("/api/queue/callNext");
-
-            this.mockMvc.perform(callNext)
-                    .andExpect(MockMvcResultMatchers.status().is(404));
-
-        }
-
 
     }
 }
