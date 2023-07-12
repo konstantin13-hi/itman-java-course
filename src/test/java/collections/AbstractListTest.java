@@ -309,6 +309,8 @@ public abstract class AbstractListTest {
         }
     }
 
+
+
     @Nested
     public class Size {
         @Test
@@ -589,6 +591,19 @@ public abstract class AbstractListTest {
 
     @Nested
     public class ListIteratorSet {
+
+        @Test
+        public void shouldReturnExceptionWhenTwoIterators() {
+            List<Integer> list = of(1, 2, 3);
+            ListIterator<Integer> iterator = list.iterator();
+            ListIterator<Integer> iteratorSecond = list.iterator();
+            iterator.next();
+            iterator.set(1);
+            assertThrows(ConcurrentModificationException.class, () -> iteratorSecond.next());
+        }
+
+
+
         @Test
         public void shouldReturnExceptionWhenWeDoNotSelectElement() {
             List<Integer> list = of(1, 2, 3);
@@ -665,6 +680,19 @@ public abstract class AbstractListTest {
 
     @Nested
     public class InsertBefore {
+
+        @Test
+        public void shouldReturnExceptionWhenTwoIterators() {
+            List<Integer> list = of(1, 2, 3);
+            ListIterator<Integer> iterator = list.iterator();
+            ListIterator<Integer> iteratorSecond = list.iterator();
+            iterator.next();
+            iterator.insertBefore(1);
+            assertThrows(ConcurrentModificationException.class, () -> iteratorSecond.next());
+        }
+
+
+
         @Test
         public void shouldAddElementInMiddlePositionToListWhenListHasSixElements() {
             List<String> list = of("aaa", "bbb", "ccc", "ddd", "eee", "fff");

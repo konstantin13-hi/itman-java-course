@@ -94,13 +94,13 @@ public class QueueManagementSystem {
     public Ticket callNext() {
 
         if (linkedQueue.isEmpty()) {
-            throw new CustomException("An error occurred while calling the next ticket.");
+            throw new NullPointerException("An error occurred while calling the next ticket.");
         }
         return (Ticket) linkedQueue.poll();
     }
 
-    public class CustomException extends RuntimeException {
-        private CustomException(String message) {
+    public static class TicketException extends RuntimeException {
+        private TicketException(String message) {
             super(message);
         }
     }

@@ -84,6 +84,8 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
                 throw new IllegalStateException("set() method can only be called after a call to next()");
             }
             priveosObject.setElement(element);
+            modify++;
+            countModify++;
 
         }
 
@@ -109,6 +111,8 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
             }
             priveosObject.setPrev(node);
             logicalSize++;
+            countModify++;
+            modify++;
         }
 
         /**
@@ -133,7 +137,7 @@ public class LinkedList<T> extends AbstractList<T> implements List<T>, Queue<T> 
                 logicalSize--;
                 modify++;
             }
-            modify--;
+            countModify++;
 
             removeAllowed = false;
         }

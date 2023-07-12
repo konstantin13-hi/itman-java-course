@@ -100,10 +100,10 @@ public class QueueController {
         return queueManagementSystem.callNext();
     }
 
-    @ExceptionHandler(QueueManagementSystem.CustomException.class)
-    private ResponseEntity<String> handleCustomException(QueueManagementSystem.CustomException e) {
+    @ExceptionHandler(QueueManagementSystem.TicketException.class)
+    private ResponseEntity<String> handleCustomException(QueueManagementSystem.TicketException e) {
         return
-                ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An " +
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).body("An " +
                         "error occurred while calling the next ticket.");
     }
 

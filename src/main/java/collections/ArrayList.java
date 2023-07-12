@@ -187,6 +187,8 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
                 throw new IllegalStateException("set() method can only be called after a call to next()");
             }
             objects[currentIndex - 1] = element;
+            modify++;
+            countModify++;
         }
 
         /**
@@ -203,7 +205,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
                 throw new IllegalStateException("set() method can only be called after a call to next()");
             }
             add(currentIndex - 1, element);
-            modify--;
+            countModify++;
             currentIndex++;
 
 
@@ -224,7 +226,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
             }
             allowed = false;
             ArrayList.this.remove(currentIndex - 1);
-            modify--;
+            countModify++;
             currentIndex--;
 
 

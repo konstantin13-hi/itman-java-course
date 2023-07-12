@@ -20,6 +20,9 @@ public class ArrayUtils {
      * @param <T> describes my type parameter
      */
     public static <T> void bubbleSort(T[] elements, Comparator<T> comparator) {
+        if (elements == null || comparator == null) {
+            throw new NullPointerException();
+        }
         for (int i = 0; i < elements.length; i++) {
             for (int j = 1; j < elements.length; j++) {
                 if (comparator.compare(elements[j - 1], elements[j]) > 0) {
@@ -40,6 +43,9 @@ public class ArrayUtils {
      * @ram O(1)
      */
     public static void bubbleSort(int[] array) {
+        if (array == null) {
+            throw new NullPointerException();
+        }
         for (int i = 0; i < array.length; i++) {
             for (int j = 1; j < array.length; j++) {
                 if (array[j] < array[j - 1]) {
@@ -62,6 +68,9 @@ public class ArrayUtils {
      * @ram O(m)
      */
     public static void countingSort(int[] array) {
+        if (array == null) {
+            throw new NullPointerException();
+        }
         if (array.length != 0) {
             int max = Integer.MIN_VALUE;
             int min = Integer.MAX_VALUE;
@@ -98,6 +107,9 @@ public class ArrayUtils {
      */
 
     public static void countingSort(Event[] events) {
+        if (events == null) {
+            throw new NullPointerException();
+        }
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < events.length; i++) {
@@ -138,6 +150,9 @@ public class ArrayUtils {
      * @ram O(m + n)
      */
     public static int[] distinct(int[] array) {
+        if (array == null) {
+            throw new NullPointerException();
+        }
         int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
         IntArrayList intArrayList = new IntArrayList();
@@ -172,6 +187,9 @@ public class ArrayUtils {
      * @ram O(m)
      */
     public static int mostFrequent(int[] array) {
+        if (array == null) {
+            throw new NullPointerException();
+        }
         int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < array.length; i++) {
@@ -214,6 +232,9 @@ public class ArrayUtils {
      * @ram 0(k + d)
      */
     public static int countEquals(int[] a, int[] b) {
+        if (a == null || b == null) {
+            throw new NullPointerException();
+        }
         int max = Integer.MIN_VALUE;
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < a.length; i++) {
@@ -265,6 +286,15 @@ public class ArrayUtils {
      * @ram O(n)
      */
     public static void mergeSort(int[] array, int fromIndex, int toIndex) {
+        if (array == null) {
+            throw new NullPointerException();
+        }
+        if (fromIndex < 0 || fromIndex > array.length) {
+            throw new IllegalArgumentException();
+        }
+        if (toIndex < 0 || toIndex > array.length) {
+            throw new IllegalArgumentException();
+        }
         int[] t = new int[array.length];
         int length = toIndex - fromIndex;
         for (int k = 1; k < length; k = k * 2) {
@@ -295,6 +325,17 @@ public class ArrayUtils {
      * @ram O(n)
      */
     public static <T> void mergeSort(T[] array, Comparator<? super T> comparator, int fromIndex, int toIndex) {
+        if (array == null || comparator == null) {
+            throw new NullPointerException();
+        }
+        if (fromIndex < 0 || fromIndex > array.length) {
+            throw new IndexOutOfBoundsException("Index " + fromIndex +
+                    " out of bounds for length " + array.length);
+        }
+        if (toIndex < 0 || toIndex > array.length) {
+            throw new IndexOutOfBoundsException("Index " + fromIndex +
+                    " out of bounds for length " + array.length);
+        }
         T[] t = (T[]) new Object[array.length];
         int length = toIndex - fromIndex;
         for (int k = 1; k < length; k = k * 2) {
@@ -348,6 +389,31 @@ public class ArrayUtils {
     public static <T> void merge(T[] a, int aFrom, int aTo,
                                  T[] b, int bFrom, int bTo, T[] r,
                                  int rFrom, Comparator<? super T> comparator) {
+
+        if (a == null || b == null || r == null || comparator == null) {
+            throw new NullPointerException();
+        }
+        if (rFrom < 0 || rFrom > r.length) {
+            throw new IndexOutOfBoundsException("Index " + rFrom +
+                    " out of bounds for length " + r.length);
+        }
+
+        if (aFrom < 0 || aFrom > a.length) {
+            throw new IndexOutOfBoundsException("Index " + aFrom +
+                    " out of bounds for length " + a.length);
+        }
+        if (aTo < 0 || aTo > a.length) {
+            throw new IndexOutOfBoundsException("Index " + aTo +
+                    " out of bounds for length " + a.length);
+        }
+        if (bFrom < 0 || bFrom > b.length) {
+            throw new IndexOutOfBoundsException("Index " + bFrom +
+                    " out of bounds for length " + b.length);
+        }
+        if (bTo < 0 || bTo > b.length) {
+            throw new IndexOutOfBoundsException("Index " + bTo +
+                    " out of bounds for length " + b.length);
+        }
         int limit = aTo - aFrom + bTo - bFrom;
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
             if (j < aTo && k < bTo) {
@@ -377,6 +443,30 @@ public class ArrayUtils {
      * @ram O(1)
      */
     public static void merge(int[] a, int aFrom, int aTo, int[] b, int bFrom, int bTo, int[] r, int rFrom) {
+        if (a == null || b == null || r == null) {
+            throw new NullPointerException();
+        }
+        if (rFrom < 0 || rFrom > r.length) {
+            throw new IndexOutOfBoundsException("Index " + rFrom +
+                    " out of bounds for length " + r.length);
+        }
+
+        if (aFrom < 0 || aFrom > a.length) {
+            throw new IndexOutOfBoundsException("Index " + aFrom +
+                    " out of bounds for length " + a.length);
+        }
+        if (aTo < 0 || aTo > a.length) {
+            throw new IndexOutOfBoundsException("Index " + aTo +
+                    " out of bounds for length " + a.length);
+        }
+        if (bFrom < 0 || bFrom > b.length) {
+            throw new IndexOutOfBoundsException("Index " + bFrom +
+                    " out of bounds for length " + b.length);
+        }
+        if (bTo < 0 || bTo > b.length) {
+            throw new IndexOutOfBoundsException("Index " + bTo +
+                    " out of bounds for length " + b.length);
+        }
         int limit = aTo - aFrom + bTo - bFrom;
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
             if (j < aTo && k < bTo) {
@@ -406,6 +496,30 @@ public class ArrayUtils {
      */
 
     public static void merge(Event[] a, int aFrom, int aTo, Event[] b, int bFrom, int bTo, Event[] r, int rFrom) {
+        if (a == null || b == null || r == null) {
+            throw new NullPointerException();
+        }
+        if (rFrom < 0 || rFrom > r.length) {
+            throw new IndexOutOfBoundsException("Index " + rFrom +
+                    " out of bounds for length " + r.length);
+        }
+
+        if (aFrom < 0 || aFrom > a.length) {
+            throw new IndexOutOfBoundsException("Index " + aFrom +
+                    " out of bounds for length " + a.length);
+        }
+        if (aTo < 0 || aTo > a.length) {
+            throw new IndexOutOfBoundsException("Index " + aTo +
+                    " out of bounds for length " + a.length);
+        }
+        if (bFrom < 0 || bFrom > b.length) {
+            throw new IndexOutOfBoundsException("Index " + bFrom +
+                    " out of bounds for length " + b.length);
+        }
+        if (bTo < 0 || bTo > b.length) {
+            throw new IndexOutOfBoundsException("Index " + bTo +
+                    " out of bounds for length " + b.length);
+        }
         int limit = aTo - aFrom + bTo - bFrom;
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
             if (j < aTo && k < bTo) {
