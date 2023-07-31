@@ -94,7 +94,7 @@ public class QueueManagementSystem {
     public Ticket callNext() {
 
         if (linkedQueue.isEmpty()) {
-            throw new NullPointerException("An error occurred while calling the next ticket.");
+            throw new TicketException("An error occurred while calling the next ticket.");
         }
         return (Ticket) linkedQueue.poll();
     }

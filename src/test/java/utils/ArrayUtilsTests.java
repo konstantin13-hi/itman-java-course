@@ -5,6 +5,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class ArrayUtilsTests {
 
 
@@ -65,8 +70,27 @@ public class ArrayUtilsTests {
             int[] elements = new int[]{0, 2, 12, -3, 55, 2, 0};
             int[] expected = new int[]{-3, 0, 0, 2, 2, 12, 55};
             ArrayUtils.bubbleSort(elements);
-            Assertions.assertArrayEquals(expected, elements);
+            assertArrayEquals(expected, elements);
         }
+
+
+        @Test
+        public void shouldThrowExceptionBubbleSortWithNullElements() {
+            assertThrows(NullPointerException.class, () -> ArrayUtils.bubbleSort(null, new Event.EventComparator()));
+        }
+
+        @Test
+        public void shouldThrowExceptionBubbleSortWithNullComparator() {
+            Integer[] elements = new Integer[]{0, 2, 12, -3, 55, 2, 0};
+            assertThrows(NullPointerException.class, () -> ArrayUtils.bubbleSort(elements, null));
+        }
+
+        @Test
+        public void shouldThrowExceptionBubbleSortWithNullComparatorAndNullElements() {
+            assertThrows(NullPointerException.class, () -> ArrayUtils.bubbleSort(null, null));
+        }
+
+
     }
 
     @Nested
@@ -76,7 +100,7 @@ public class ArrayUtilsTests {
             int[] elements = new int[]{0, 3, 12, 3, 55, 2, 0};
             ArrayUtils.countingSort(elements);
             int[] expected = new int[]{0, 0, 2, 3, 3, 12, 55};
-            Assertions.assertArrayEquals(expected, elements);
+            assertArrayEquals(expected, elements);
         }
 
         @Test
@@ -84,7 +108,7 @@ public class ArrayUtilsTests {
             int[] elements = new int[]{2147483647, 2146483648};
             ArrayUtils.countingSort(elements);
             int[] expected = new int[]{2146483648, 2147483647};
-            Assertions.assertArrayEquals(expected, elements);
+            assertArrayEquals(expected, elements);
         }
 
         @Test
@@ -92,7 +116,17 @@ public class ArrayUtilsTests {
             int[] elements = new int[]{-2146483649, -2147483648};
             ArrayUtils.countingSort(elements);
             int[] expected = new int[]{-2147483648, -2146483649};
-            Assertions.assertArrayEquals(expected, elements);
+            assertArrayEquals(expected, elements);
+        }
+
+        @Test
+        public void shouldThrowExceptionCountingSortWithNullElements() {
+            assertThrows(NullPointerException.class, () -> ArrayUtils.countingSort((int[]) null));
+        }
+
+        @Test
+        public void shouldCountingSortWithNullEvents() {
+            assertThrows(NullPointerException.class, () -> ArrayUtils.countingSort(null));
         }
     }
 
@@ -103,7 +137,12 @@ public class ArrayUtilsTests {
         public void shouldFindOlyUniqueElementsInArrayWhenArrayIsNotEmpty() {
             int[] element = new int[]{1, 2, 5, -10, 3, 2, 1, 4};
             int[] expected = new int[]{1, 2, 5, -10, 3, 4};
-            Assertions.assertArrayEquals(expected, ArrayUtils.distinct(element));
+            assertArrayEquals(expected, ArrayUtils.distinct(element));
+        }
+
+        @Test
+        public void shouldThrowExceptionDistinctWithNullElements() {
+            assertThrows(NullPointerException.class, () -> ArrayUtils.distinct(null));
         }
     }
 
@@ -114,6 +153,11 @@ public class ArrayUtilsTests {
             int[] element = new int[]{1, 2, 5, -10, 3, 2, 1, 4};
             int expected = 1;
             Assertions.assertEquals(expected, ArrayUtils.mostFrequent(element));
+        }
+
+        @Test
+        public void shouldThrowExceptionMostFrequentWithNullElements() {
+            assertThrows(NullPointerException.class, () -> ArrayUtils.mostFrequent(null));
         }
     }
 
@@ -152,6 +196,14 @@ public class ArrayUtilsTests {
             Assertions.assertEquals(expected, ArrayUtils.countEquals(elements, elementsSecond));
         }
 
+        @Test
+        public void shouldThrowExceptionCountEqualsWithNullElements() {
+            int[] elements = new int[]{2147483647, 2146483648, 2147483647};
+            assertThrows(NullPointerException.class, () -> ArrayUtils.countEquals(elements, null));
+            assertThrows(NullPointerException.class, () -> ArrayUtils.countEquals(null, null));
+            assertThrows(NullPointerException.class, () -> ArrayUtils.countEquals(null, elements));
+        }
+
     }
 
     @Nested
@@ -178,7 +230,7 @@ public class ArrayUtilsTests {
                     new Event(2020, 10, 25, "A"),
                     new Event(2021, 1, 1, "D")
             };
-            ArrayUtils.countingSort(actual);
+            ArrayUtils.countingSort(actual, event -> event.getYear() * 372 + event.getMonth() * 31 + event.getDay());
             checkingASortedArrayElements(actual, expected);
             checkingASortedArrayLinks(actual, expectedElement);
         }
@@ -186,6 +238,59 @@ public class ArrayUtilsTests {
 
     @Nested
     public class Merge {
+
+        @Test
+        public void shouldMergeWithNullArraysAndComparator() {
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.merge(null, 0, 0, null,
+                            0, 0, null, 0, Comparator.comparingInt(o -> (int) o)));
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.merge(new Integer[]{1}, 0, 0, null,
+                            0, 0, null, 0, Comparator.comparingInt(o -> o)));
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.merge(new Integer[]{1}, 0, 0, new Integer[]{1},
+                            0, 0, null, 0, Comparator.comparingInt(o -> o)));
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.merge(null, 0, 0, new Integer[]{1},
+                            0, 0, null, 0, Comparator.comparingInt(o -> o)));
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.merge(new Integer[]{1}, 0, 0, new Integer[]{1},
+                            0, 0, null, 0, null));
+        }
+
+        @Test
+        public void shouldMergeWithInvalidIndices() {
+            Integer[] a = {1, 3, 5};
+            Integer[] b = {2, 4, 6};
+            Integer[] r = new Integer[6];
+            Comparator<Integer> comparator = Comparator.naturalOrder();
+
+
+            assertThrows(IllegalArgumentException.class, () -> ArrayUtils.merge(a, 2, 1, b, 2, 1, r, 0, comparator));
+            assertThrows(IllegalArgumentException.class, () -> ArrayUtils.merge(a, 2, 1, b, 0, 2, r, 0, comparator));
+            assertThrows(IllegalArgumentException.class, () -> ArrayUtils.merge(a, 0, 2, b, 2, 1, r, 0, comparator));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.merge(a, 0, 3, b, 0, 3, r, -1, comparator));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.merge(a, 0, 3, b, -1, 3, r, -1, comparator));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.merge(a, -1, 3, b, 0, 3, r, 0, comparator));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.merge(a, 0, 3, b, 0, 4, r, 0, comparator));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.merge(a, 0, 4, b, 0, 3, r, 0, comparator));
+        }
+
+        @Test
+        public void shouldMergeWithValidInput() {
+            Integer[] a = {1, 3, 5};
+            Integer[] b = {2, 4, 6};
+            Integer[] r = new Integer[6];
+
+            ArrayUtils.merge(a, 0, 3, b, 0, 3, r, 0, Comparator.comparingInt(o -> (int) o));
+            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6}, r);
+        }
+
+
+    }
+
+    @Nested
+    public class MergeForIntArray {
 
         @Test
         public void shouldMergeWhenArraysAreNotEmpty() {
@@ -199,18 +304,64 @@ public class ArrayUtilsTests {
             int rFrom = 2;
             ArrayUtils.merge(a, aFrom, aTo, b, bFrom, bTo, r, rFrom);
             int[] expected = new int[]{1, 1, 2, 2, 3, 4, 5, 1};
-            Assertions.assertArrayEquals(expected, r);
+            assertArrayEquals(expected, r);
         }
+
+
+        @Test
+        public void shouldMergeWithNullArrays() {
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.merge(null, 0, 0, null,
+                            0, 0, null, 0));
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.merge(new int[]{1}, 0, 0, null,
+                            0, 0, null, 0));
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.merge(new int[]{1}, 0, 0, new int[]{1},
+                            0, 0, null, 0));
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.merge(null, 0, 0, new int[]{1},
+                            0, 0, null, 0));
+        }
+
+        @Test
+        public void shouldMergeWithInvalidIndices() {
+            int[] a = {1, 3, 5};
+            int[] b = {2, 4, 6};
+            int[] r = new int[6];
+
+
+            assertThrows(IllegalArgumentException.class, () -> ArrayUtils.merge(a, 2, 1, b, 2, 1, r, 0));
+            assertThrows(IllegalArgumentException.class, () -> ArrayUtils.merge(a, 2, 1, b, 0, 2, r, 0));
+            assertThrows(IllegalArgumentException.class, () -> ArrayUtils.merge(a, 0, 2, b, 2, 1, r, 0));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.merge(a, 0, 3, b, 0, 3, r, -1));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.merge(a, 0, 3, b, -1, 3, r, -1));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.merge(a, -1, 3, b, 0, 3, r, 0));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.merge(a, 0, 3, b, 0, 4, r, 0));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.merge(a, 0, 4, b, 0, 3, r, 0));
+        }
+
+        @Test
+        public void shouldMergeWithValidInput() {
+            int[] a = {1, 3, 5};
+            int[] b = {2, 4, 6};
+            int[] r = new int[6];
+
+            ArrayUtils.merge(a, 0, 3, b, 0, 3, r, 0);
+            assertArrayEquals(new int[]{1, 2, 3, 4, 5, 6}, r);
+        }
+
+
     }
 
     @Nested
-    public class MergeSort {
+    public class MergeSortWithIntegers {
         @Test
         public void shouldMergeSortWhenArrayIsNotEmpty() {
             int[] a = new int[]{4, 1, 3, 3, 1, 3, 4, 5, 1};
             ArrayUtils.mergeSort(a);
             int[] expected = new int[]{1, 1, 1, 3, 3, 3, 4, 4, 5};
-            Assertions.assertArrayEquals(expected, a);
+            assertArrayEquals(expected, a);
         }
 
         @Test
@@ -218,7 +369,7 @@ public class ArrayUtilsTests {
             int[] a = new int[]{2, 2, 1, 0, 10, 30, 15};
             ArrayUtils.mergeSort(a, 0, 7);
             int[] expected = new int[]{0, 1, 2, 2, 10, 15, 30};
-            Assertions.assertArrayEquals(expected, a);
+            assertArrayEquals(expected, a);
         }
 
         @Test
@@ -226,7 +377,7 @@ public class ArrayUtilsTests {
             int[] a = new int[]{2, 2, 1, 0, 40, 30, 15};
             ArrayUtils.mergeSort(a, 4, 6);
             int[] expected = new int[]{2, 2, 1, 0, 30, 40, 15};
-            Assertions.assertArrayEquals(expected, a);
+            assertArrayEquals(expected, a);
         }
 
         @Test
@@ -240,8 +391,32 @@ public class ArrayUtilsTests {
                 b[i] = i;
             }
             ArrayUtils.mergeSort(a);
-            Assertions.assertArrayEquals(b, a);
+            assertArrayEquals(b, a);
         }
+
+        @Test
+        public void shouldThrowExceptionMergeSortWithNullArray() {
+            assertThrows(NullPointerException.class, () -> ArrayUtils.mergeSort(null, 0, 5));
+        }
+
+        @Test
+        public void shouldThrowExceptionMergeSortWithInvalidFromIndex() {
+            int[] array = {1, 2, 3, 4, 5};
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.mergeSort(array, -1, 3));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.mergeSort(array, 5, 3));
+        }
+
+        @Test
+        public void shouldThrowExceptionMergeSortWithInvalidToIndex() {
+            int[] array = {1, 2, 3, 4, 5};
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.mergeSort(array, 0, 6));
+            assertThrows(IndexOutOfBoundsException.class, () -> ArrayUtils.mergeSort(array, 0, -1));
+        }
+    }
+
+    @Nested
+    public class MergeSort {
+
 
         @Test
         public void shouldMergeSortEventsWhenArrayIsNotEmpty() {
@@ -296,11 +471,54 @@ public class ArrayUtilsTests {
             checkingASortedArrayElements(actual, expected);
             checkingASortedArrayLinks(actual, expectedElement);
         }
+
+
+        @Test
+        public void shouldThrowExceptionMergeSortWithNullArray() {
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.mergeSort(null,
+                            Comparator.comparingInt(o -> (int) o), 0, 5));
+        }
+
+        @Test
+        public void shouldThrowExceptionMergeSortWithNullComparator() {
+            Integer[] array = new Integer[]{3, 2, 1};
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.mergeSort(array, null, 0, 5));
+        }
+
+        @Test
+        public void shouldThrowExceptionMergeSortWithNullComparatorAndNullElements() {
+            assertThrows(NullPointerException.class,
+                    () -> ArrayUtils.mergeSort(null, null, 0, 5));
+        }
+
+        @Test
+        public void shouldThrowExceptionMergeSortWithInvalidFromIndex() {
+            Integer[] array = {1, 2, 3, 4, 5};
+            assertThrows(IndexOutOfBoundsException.class,
+                    () -> ArrayUtils.mergeSort(array,
+                            Comparator.comparingInt(o -> o), -1, 3));
+            assertThrows(IndexOutOfBoundsException.class,
+                    () -> ArrayUtils.mergeSort(array,
+                            Comparator.comparingInt(o -> o), 6, 3));
+        }
+
+        @Test
+        public void shouldThrowExceptionMergeSortWithInvalidToIndex() {
+            Integer[] array = {1, 2, 3, 4, 5};
+            assertThrows(IndexOutOfBoundsException.class,
+                    () -> ArrayUtils.mergeSort(array,
+                            Comparator.comparingInt(o -> o), 0, 6));
+            assertThrows(IndexOutOfBoundsException.class,
+                    () -> ArrayUtils.mergeSort(array,
+                            Comparator.comparingInt(o -> o), 0, -1));
+        }
     }
 
     private static void checkingASortedArrayElements(Event[] actual, Event[] expected) {
         for (int i = 0; i < actual.length; i++) {
-            Assertions.assertTrue(actual[i].equals(expected[i]));
+            Assertions.assertEquals(actual[i], expected[i]);
         }
     }
 

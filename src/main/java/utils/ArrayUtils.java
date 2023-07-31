@@ -5,6 +5,7 @@ import collections.IntArrayList;
 import entities.Event;
 
 import java.util.Comparator;
+import java.util.function.ToIntFunction;
 
 public class ArrayUtils {
 
@@ -12,12 +13,11 @@ public class ArrayUtils {
      * Sort elements of array.
      * n=amount of elements in array
      *
+     * @param elements   the first term.
+     * @param comparator the second term.
+     * @param <T>        describes my type parameter
      * @cpu O(n ^ 2)
      * @ram O(1)
-     *
-     * @param elements the first term.
-     * @param comparator the second term.
-     * @param <T> describes my type parameter
      */
     public static <T> void bubbleSort(T[] elements, Comparator<T> comparator) {
         if (elements == null || comparator == null) {
@@ -95,49 +95,58 @@ public class ArrayUtils {
             }
         }
     }
+
     /**
      * Make a counting sort.
      * n=amount of elements in array
      * m=difference between the maximum minimum element in array
      * k= the largest repetition of events with the same index
      *
-     * @param events the first term
+     * @param array the first term
+     * @param functionToInt the second term
+     * @param <T> generic
      * @cpu O(n + m)
      * @ram O(n + m)
      */
-
-    public static void countingSort(Event[] events) {
-        if (events == null) {
+    public static <T> void countingSort(T[] array, ToIntFunction<T> functionToInt) {
+        if (array == null || functionToInt == null) {
             throw new NullPointerException();
         }
+
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
-        for (int i = 0; i < events.length; i++) {
-            int days = (events[i].getYear() * 372 + events[i].getMonth() * 31 + events[i].getDay());
-            if (max < days) {
-                max = days;
+        for (int i = 0; i < array.length; i++) {
+            int value = functionToInt.applyAsInt(array[i]);
+            if (max < value) {
+                max = value;
             }
-            if (min > days) {
-                min = days;
+            if (min > value) {
+                min = value;
             }
         }
+
         int dif = max - min;
-        ArrayList[] arrayLists = new ArrayList[dif + 1];
+        ArrayList<T>[] arrayLists = new ArrayList[dif + 1];
         for (int i = 0; i < arrayLists.length; i++) {
-            arrayLists[i] = new ArrayList();
+            arrayLists[i] = new ArrayList<>();
         }
-        for (int i = 0; i < events.length; i++) {
-            int days = (events[i].getYear() * 372 + events[i].getMonth() * 31 + events[i].getDay());
-            arrayLists[days - min].add(events[i]);
+
+        // Распределяем элементы в соответствующие списки в массиве arrayLists
+        for (int i = 0; i < array.length; i++) {
+            int value = functionToInt.applyAsInt(array[i]);
+            arrayLists[value - min].add(array[i]);
         }
+
+        // Собираем элементы обратно в исходный массив
         for (int i = 0, index = 0; i < arrayLists.length; i++) {
             int length = arrayLists[i].size();
             for (int j = 0; j < length; j++) {
-                events[index] = (Event) arrayLists[i].get(j);
+                array[index] = arrayLists[i].get(j);
                 index++;
             }
         }
     }
+
 
     /**
      * Find only unique elements in array.
@@ -289,11 +298,11 @@ public class ArrayUtils {
         if (array == null) {
             throw new NullPointerException();
         }
-        if (fromIndex < 0 || fromIndex > array.length) {
-            throw new IllegalArgumentException();
+        if (fromIndex < 0 || fromIndex > array.length - 1) {
+            throw new IndexOutOfBoundsException();
         }
         if (toIndex < 0 || toIndex > array.length) {
-            throw new IllegalArgumentException();
+            throw new IndexOutOfBoundsException();
         }
         int[] t = new int[array.length];
         int length = toIndex - fromIndex;
@@ -316,10 +325,10 @@ public class ArrayUtils {
      * Make merge sort.
      * n=index differences between start and end
      *
-     * @param array the first array variable
-     * @param fromIndex the index of the first array, indicating the start of the sort
-     * @param toIndex   the index of the first array indicating the end of the sort
-     * @param <T> describes my type parameter
+     * @param array      the first array variable
+     * @param fromIndex  the index of the first array, indicating the start of the sort
+     * @param toIndex    the index of the first array indicating the end of the sort
+     * @param <T>        describes my type parameter
      * @param comparator an interface for sorting
      * @cpu O(nlog ( n))
      * @ram O(n)
@@ -328,12 +337,12 @@ public class ArrayUtils {
         if (array == null || comparator == null) {
             throw new NullPointerException();
         }
-        if (fromIndex < 0 || fromIndex > array.length) {
+        if (fromIndex < 0 || fromIndex > array.length - 1) {
             throw new IndexOutOfBoundsException("Index " + fromIndex +
                     " out of bounds for length " + array.length);
         }
         if (toIndex < 0 || toIndex > array.length) {
-            throw new IndexOutOfBoundsException("Index " + fromIndex +
+            throw new IndexOutOfBoundsException("Index " + toIndex +
                     " out of bounds for length " + array.length);
         }
         T[] t = (T[]) new Object[array.length];
@@ -356,10 +365,10 @@ public class ArrayUtils {
     /**
      * Make merge sort.
      *
-     * @param events  the first term
+     * @param events     the first term
      * @param comparator an interface for sorting
-     * @param <T> describes my type parameter
-     * n=amount of elements in the array
+     * @param <T>        describes my type parameter
+     *                   n=amount of elements in the array
      * @cpu O(nlog ( n))
      * @ram O(n)
      */
@@ -372,19 +381,18 @@ public class ArrayUtils {
      * n=differences between start and end index of the first array
      * m=differences between start and end index of the second array
      *
-     * @cpu O(n+m)
-     * @ram O(1)
-     *
-     * @param a the first array variable
-     * @param aFrom the index of the first array, indicating the start of the sort
-     * @param aTo the index of the first array indicating the end of the sort
-     * @param b the second array variable
-     * @param bFrom the index of the second array, indicating the start of the sort
-     * @param bTo the index of the second array indicating the end of the sort
-     * @param r the third array variable,where the first two arrays are merged and the elements are sorted
-     * @param rFrom the index of the third array, indicating the start of the sort
+     * @param a          the first array variable
+     * @param aFrom      the index of the first array, indicating the start of the sort
+     * @param aTo        the index of the first array indicating the end of the sort
+     * @param b          the second array variable
+     * @param bFrom      the index of the second array, indicating the start of the sort
+     * @param bTo        the index of the second array indicating the end of the sort
+     * @param r          the third array variable,where the first two arrays are merged and the elements are sorted
+     * @param rFrom      the index of the third array, indicating the start of the sort
      * @param comparator an interface for sorting
-     * @param <T> describes my type parameter
+     * @param <T>        describes my type parameter
+     * @cpu O(n + m)
+     * @ram O(1)
      */
     public static <T> void merge(T[] a, int aFrom, int aTo,
                                  T[] b, int bFrom, int bTo, T[] r,
@@ -398,7 +406,7 @@ public class ArrayUtils {
                     " out of bounds for length " + r.length);
         }
 
-        if (aFrom < 0 || aFrom > a.length) {
+        if (aFrom < 0 || aFrom > a.length - 1) {
             throw new IndexOutOfBoundsException("Index " + aFrom +
                     " out of bounds for length " + a.length);
         }
@@ -406,13 +414,25 @@ public class ArrayUtils {
             throw new IndexOutOfBoundsException("Index " + aTo +
                     " out of bounds for length " + a.length);
         }
-        if (bFrom < 0 || bFrom > b.length) {
+        if (bFrom < 0 || bFrom > b.length - 1) {
             throw new IndexOutOfBoundsException("Index " + bFrom +
                     " out of bounds for length " + b.length);
         }
         if (bTo < 0 || bTo > b.length) {
             throw new IndexOutOfBoundsException("Index " + bTo +
                     " out of bounds for length " + b.length);
+        }
+
+        if (aFrom > aTo || bFrom > bTo) {
+            String string;
+            if (aFrom > aTo && bFrom > bTo) {
+                string = "Both 'aFrom' and 'bFrom' are greater than 'aTo' and 'bTo'.";
+            } else if (aFrom > aTo) {
+                string = "Invalid input parameter: 'aFrom' is greater than 'aTo'.";
+            } else {
+                string = "Invalid input parameter: 'bFrom' is greater than 'bTo'.";
+            }
+            throw new IllegalArgumentException(string);
         }
         int limit = aTo - aFrom + bTo - bFrom;
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
@@ -451,7 +471,7 @@ public class ArrayUtils {
                     " out of bounds for length " + r.length);
         }
 
-        if (aFrom < 0 || aFrom > a.length) {
+        if (aFrom < 0 || aFrom > a.length - 1) {
             throw new IndexOutOfBoundsException("Index " + aFrom +
                     " out of bounds for length " + a.length);
         }
@@ -459,13 +479,24 @@ public class ArrayUtils {
             throw new IndexOutOfBoundsException("Index " + aTo +
                     " out of bounds for length " + a.length);
         }
-        if (bFrom < 0 || bFrom > b.length) {
+        if (bFrom < 0 || bFrom > b.length - 1) {
             throw new IndexOutOfBoundsException("Index " + bFrom +
                     " out of bounds for length " + b.length);
         }
         if (bTo < 0 || bTo > b.length) {
             throw new IndexOutOfBoundsException("Index " + bTo +
                     " out of bounds for length " + b.length);
+        }
+        if (aFrom > aTo || bFrom > bTo) {
+            String string = null;
+            if (aFrom > aTo && bFrom > bTo) {
+                string = "Both 'aFrom' and 'bFrom' are greater than 'aTo' and 'bTo'.";
+            } else if (aFrom > aTo) {
+                string = "Invalid input parameter: 'aFrom' is greater than 'aTo'.";
+            } else {
+                string = "Invalid input parameter: 'bFrom' is greater than 'bTo'.";
+            }
+            throw new IllegalArgumentException(string);
         }
         int limit = aTo - aFrom + bTo - bFrom;
         for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
@@ -478,58 +509,6 @@ public class ArrayUtils {
             }
         }
     }
-    /**
-     * Merge two arrays with sorted elements.
-     * n=differences between start and end index of the first array
-     * m=differences between start and end index of the second array
-     *
-     * @param a     the first array variable
-     * @param aFrom the index of the first array, indicating the start of the sort
-     * @param aTo   the index of the first array indicating the end of the sort
-     * @param b     the second array variable
-     * @param bFrom the index of the second array, indicating the start of the sort
-     * @param bTo   the index of the second array indicating the end of the sort
-     * @param r     the third array variable,where the first two arrays are merged and the elements are sorted
-     * @param rFrom the index of the third array, indicating the start of the sort
-     * @cpu O(n + m)
-     * @ram O(1)
-     */
 
-    public static void merge(Event[] a, int aFrom, int aTo, Event[] b, int bFrom, int bTo, Event[] r, int rFrom) {
-        if (a == null || b == null || r == null) {
-            throw new NullPointerException();
-        }
-        if (rFrom < 0 || rFrom > r.length) {
-            throw new IndexOutOfBoundsException("Index " + rFrom +
-                    " out of bounds for length " + r.length);
-        }
-
-        if (aFrom < 0 || aFrom > a.length) {
-            throw new IndexOutOfBoundsException("Index " + aFrom +
-                    " out of bounds for length " + a.length);
-        }
-        if (aTo < 0 || aTo > a.length) {
-            throw new IndexOutOfBoundsException("Index " + aTo +
-                    " out of bounds for length " + a.length);
-        }
-        if (bFrom < 0 || bFrom > b.length) {
-            throw new IndexOutOfBoundsException("Index " + bFrom +
-                    " out of bounds for length " + b.length);
-        }
-        if (bTo < 0 || bTo > b.length) {
-            throw new IndexOutOfBoundsException("Index " + bTo +
-                    " out of bounds for length " + b.length);
-        }
-        int limit = aTo - aFrom + bTo - bFrom;
-        for (int i = 0, j = aFrom, k = bFrom; i < limit; i++) {
-            if (j < aTo && k < bTo) {
-                r[rFrom++] = a[j].compareTo(b[k]) < 1 ? a[j++] : b[k++];
-            } else if (j < aTo && k == bTo) {
-                r[rFrom++] = a[j++];
-            } else if (j == aTo && k < bTo) {
-                r[rFrom++] = b[k++];
-            }
-        }
-    }
 }
 
