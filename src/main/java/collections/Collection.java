@@ -69,7 +69,7 @@ public interface Collection<T> extends Iterable<T> {
      *
      * @param collection the first term
      */
-    void removeAll(Collection<?extends T> collection);
+    void removeAll(Collection<?> collection);
 
     /**
      * Returns array.

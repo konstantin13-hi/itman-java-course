@@ -91,10 +91,20 @@ public class QueueManagementSystem {
      * @cpu O(1)
      * @ram O(1)
      */
-
     public Ticket callNext() {
+
+        if (linkedQueue.isEmpty()) {
+            throw new TicketException("An error occurred while calling the next ticket.");
+        }
         return (Ticket) linkedQueue.poll();
     }
+
+    public static class TicketException extends RuntimeException {
+        private TicketException(String message) {
+            super(message);
+        }
+    }
+
 
     /**
      * Get visits day.

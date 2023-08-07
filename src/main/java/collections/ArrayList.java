@@ -1,10 +1,6 @@
 package collections;
 
-import utils.ArrayUtils;
-
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
 
@@ -32,6 +28,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * {@inheritDoc}
      */
     public ArrayList(int capacity) {
+        if (capacity < 0) {
+            throw new IllegalArgumentException("Capacity lower than 0");
+        }
         objects = (T[]) new Object[capacity];
     }
 
@@ -46,6 +45,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      * {@inheritDoc}
      */
     public static <T> ArrayList<T> of(T... elements) {
+        if (elements == null) {
+            throw new NullPointerException("Elements is Null");
+        }
         ArrayList<T> arrayList;
         if (elements.length == 0) {
             arrayList = new ArrayList<>();
@@ -71,6 +73,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public boolean add(int index, T element) {
+        if (index > logicalSize || index < 0) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
         if (logicalSize == 0) {
             add(element);
         } else {
@@ -82,7 +87,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
             objects = t;
 
         }
-
+        modify++;
         return true;
     }
 
@@ -103,6 +108,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
         }
         objects[logicalSize] = element;
         logicalSize++;
+        modify++;
         return false;
     }
 
@@ -129,7 +135,18 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
 
 
     private class ArrayListIterator implements ListIterator<T> {
-        private int current;
+        private int currentIndex;
+        private int countModify = modify;
+        private boolean allowed;
+
+
+        private void checkForComodification() {
+            if (countModify != modify) {
+                throw new ConcurrentModificationException("object is attempted " +
+                        "to be modified concurrently without permission");
+            }
+        }
+
 
         /**
          * {@inheritDoc}
@@ -138,7 +155,8 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          * @ram O(1)
          */
         public boolean hasNext() {
-            return logicalSize > current;
+            checkForComodification();
+            return logicalSize > currentIndex;
         }
 
         /**
@@ -148,17 +166,12 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          * @ram O(1)
          */
         public T next() {
-            return objects[current++];
-        }
-
-        /**
-         * {@inheritDoc}
-         *
-         * @cpu O(1)
-         * @ram O(1)
-         */
-        public T current() {
-            return objects[current];
+            checkForComodification();
+            if (!hasNext()) {
+                throw new NoSuchElementException("No next element");
+            }
+            allowed = true;
+            return objects[currentIndex++];
         }
 
         /**
@@ -169,7 +182,13 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          */
         @Override
         public void set(T element) {
-            objects[current] = element;
+            checkForComodification();
+            if (!allowed) {
+                throw new IllegalStateException("set() method can only be called after a call to next()");
+            }
+            objects[currentIndex - 1] = element;
+            modify++;
+            countModify++;
         }
 
         /**
@@ -181,7 +200,15 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          */
         @Override
         public void insertBefore(T element) {
-            add(current - 1, element);
+            checkForComodification();
+            if (currentIndex == 0) {
+                throw new IllegalStateException("set() method can only be called after a call to next()");
+            }
+            add(currentIndex - 1, element);
+            countModify++;
+            currentIndex++;
+
+
         }
 
         /**
@@ -193,8 +220,15 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
          */
         @Override
         public void remove() {
-            ArrayList.this.remove(current - 1);
-            current--;
+
+            if (!allowed) {
+                throw new IllegalStateException("remove() method can only be called once after a call to next()");
+            }
+            allowed = false;
+            ArrayList.this.remove(currentIndex - 1);
+            countModify++;
+            currentIndex--;
+
 
         }
     }
@@ -209,6 +243,15 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public boolean addAll(int index, Collection<? extends T> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
+        if (index < 0 || index > logicalSize) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
+        if (this == collection) {
+            throw new IllegalArgumentException("Collection cannot be passed to itself");
+        }
         if (logicalSize + collection.size() >= objects.length) {
             T[] t = (T[]) new Object[2 * (objects.length + collection.size())];
             System.arraycopy(objects, 0, t, 0, index);
@@ -226,6 +269,7 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
             logicalSize++;
             objects[indexSecond++] = i;
         }
+        modify++;
 
         return true;
     }
@@ -253,11 +297,15 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public T remove(int index) {
-        T object = get(index);
+        if (index < 0 || index >= logicalSize) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
+        final T object = get(index);
         for (int i = index + 1; i < objects.length; i++) {
             objects[i - 1] = objects[i];
         }
         logicalSize--;
+        modify++;
         return object;
     }
 
@@ -284,6 +332,10 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public void set(int index, T element) {
+        if (index < 0 || index >= logicalSize) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
+        modify++;
         objects[index] = element;
     }
 
@@ -298,6 +350,9 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
      */
     @Override
     public T get(int index) {
+        if (index < 0 || index >= logicalSize) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
         return objects[index];
     }
 
@@ -338,19 +393,24 @@ public class ArrayList<T> extends AbstractList<T> implements List<T> {
 
     /**
      * {@inheritDoc}
-     * n=logical size
      * m= collection's size
-     * k= method equal
      *
-     * @cpu O(n * m * k)
+     * @cpu O(m * method contain)
      * @ram O(1)
      */
     @Override
-    public void removeAll(Collection<? extends T> collection) {
+    public void removeAll(Collection<?> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
+        if (this == collection) {
+            throw new IllegalArgumentException("Collection cannot be passed to itself");
+        }
         int elementPosition = 0;
         for (int j = 0; j < logicalSize; j++) {
             if (!collection.contains(objects[j])) {
                 objects[elementPosition++] = objects[j];
+                modify++;
             }
         }
         logicalSize = elementPosition;

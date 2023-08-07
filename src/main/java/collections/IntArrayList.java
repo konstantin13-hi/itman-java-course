@@ -18,6 +18,9 @@ public class IntArrayList {
      * @ram 0(n)
      */
     public IntArrayList(IntArrayList that) {
+        if (that == null) {
+            throw new NullPointerException("IntArrayList is Null");
+        }
         logicalSize = that.logicalSize;
         int[] arraySecond = new int[that.logicalSize];
         System.arraycopy(that.elements, 0, arraySecond, 0, that.logicalSize);
@@ -42,6 +45,9 @@ public class IntArrayList {
      * @ram 0(n)
      */
     public IntArrayList(int capacity) {
+        if (capacity < 0) {
+            throw new IllegalArgumentException("Capacity lower than 0");
+        }
         elements = new int[capacity];
     }
 
@@ -54,6 +60,9 @@ public class IntArrayList {
      * @ram 0(n)
      */
     public static IntArrayList of(int... elements) {
+        if (elements == null) {
+            throw new NullPointerException("Elements is Null");
+        }
         IntArrayList intArrayList = new IntArrayList(elements.length);
         for (int element : elements) {
             intArrayList.add(element);
@@ -88,6 +97,9 @@ public class IntArrayList {
      * @ram 0(1)
      */
     public void set(int index, int element) {
+        if (index < 0 || index >= elements.length) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
         elements[index] = element;
     }
 
@@ -100,6 +112,9 @@ public class IntArrayList {
      * @ram 0(1)
      */
     public int get(int index) {
+        if (index < 0 || index >= elements.length) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
         return elements[index];
     }
 
@@ -124,6 +139,9 @@ public class IntArrayList {
      * @ram 0(1)
      */
     public int remove(int index) {
+        if (index < 0 || index >= logicalSize) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + logicalSize);
+        }
         int remove = elements[index];
         for (int i = index + 1; i < elements.length; i++) {
             elements[i - 1] = elements[i];

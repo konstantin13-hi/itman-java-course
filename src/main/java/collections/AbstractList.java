@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 
 public abstract class AbstractList<T> implements List<T> {
     int logicalSize;
+    int modify;
 
     /**
      * Adds element into list.
@@ -18,6 +19,13 @@ public abstract class AbstractList<T> implements List<T> {
      * @return boolean result. If change size then will return true
      */
     public boolean addAll(Collection<? extends T> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
+        if (this == collection) {
+            throw new IllegalArgumentException("Collection cannot be passed to itself");
+        }
+        modify++;
         return addAll(logicalSize, collection);
     }
 
@@ -44,8 +52,14 @@ public abstract class AbstractList<T> implements List<T> {
      *
      * @param collection the first term
      */
-    public void removeAll(Collection<? extends T> collection) {
-        for (T i : collection) {
+    public void removeAll(Collection<?> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
+        if (this == collection) {
+            throw new IllegalArgumentException("Collection cannot be passed to itself");
+        }
+        for (Object i : collection) {
             Iterator<T> iterator = this.iterator();
             while (iterator.hasNext()) {
                 if (Objects.equals(iterator.next(), i)) {
@@ -53,6 +67,7 @@ public abstract class AbstractList<T> implements List<T> {
                 }
             }
         }
+        modify++;
     }
 
     /**
@@ -68,6 +83,7 @@ public abstract class AbstractList<T> implements List<T> {
             t = i.next();
             if (Objects.equals(t, element)) {
                 i.remove();
+                modify++;
                 return t;
             }
         }
@@ -84,6 +100,12 @@ public abstract class AbstractList<T> implements List<T> {
      */
     @Override
     public boolean containsAll(Collection<? extends T> collection) {
+        if (collection == null) {
+            throw new NullPointerException("Collection is Null");
+        }
+        if (this == collection) {
+            throw new IllegalArgumentException("Collection cannot be passed to itself");
+        }
         for (T i : collection) {
             if (!contains(i)) {
                 return false;
@@ -119,11 +141,16 @@ public abstract class AbstractList<T> implements List<T> {
      */
     @Override
     public void removeIf(Predicate<? super T> predicate) {
+        if (predicate == null) {
+            throw new NullPointerException("Predicate is Null");
+        }
         T t;
-        for (T value : this) {
-            t = value;
+        ListIterator<T> iterator = this.iterator();
+        while (iterator.hasNext()) {
+            t = iterator.next();
             if (predicate.test(t)) {
-                remove(t);
+                iterator.remove();
+
             }
         }
     }
@@ -136,6 +163,9 @@ public abstract class AbstractList<T> implements List<T> {
      * @return result
      */
     public boolean equals(Object obj) {
+        if (obj == null) {
+            throw new NullPointerException("Object is null");
+        }
         if (obj instanceof List) {
             List<T> list = (List<T>) obj;
             ListIterator<T> listIterator = iterator();
@@ -187,12 +217,16 @@ public abstract class AbstractList<T> implements List<T> {
      */
     @Override
     public void sort(Comparator<? super T> comparator) {
+        if (comparator == null) {
+            throw new NullPointerException("Comparator is null");
+        }
         T[] array = (T[]) toArray();
         ArrayUtils.mergeSort(array, comparator);
         ListIterator<T> iterator = iterator();
         for (int i = 0; i < logicalSize; i++) {
-            iterator.set(array[i]);
             iterator.next();
+            iterator.set(array[i]);
+
         }
     }
 
@@ -220,6 +254,9 @@ public abstract class AbstractList<T> implements List<T> {
 
     @Override
     public T[] toArray(IntFunction<T[]> factory) {
+        if (factory == null) {
+            throw new NullPointerException("IntFunction is null");
+        }
         ListIterator<T> listIterator = iterator();
         T[] array = factory.apply(logicalSize);
         for (int i = 0; i < array.length; i++) {
@@ -227,5 +264,7 @@ public abstract class AbstractList<T> implements List<T> {
         }
         return array;
     }
+
+
 
 }

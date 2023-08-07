@@ -2,9 +2,11 @@ package services.queue;
 
 import collections.IntArrayList;
 import entities.Ticket;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import tasks.QueueManagementSystem;
-
 
 
 @RestController
@@ -97,4 +99,13 @@ public class QueueController {
     public Ticket callNext() {
         return queueManagementSystem.callNext();
     }
+
+    @ExceptionHandler(QueueManagementSystem.TicketException.class)
+    private ResponseEntity<String> handleCustomException(QueueManagementSystem.TicketException e) {
+        return
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).body("An " +
+                        "error occurred while calling the next ticket.");
+    }
+
+
 }
