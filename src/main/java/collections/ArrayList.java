@@ -5,7 +5,7 @@ import java.util.function.IntFunction;
 import java.util.function.Predicate;
 
 
-public class ArrayList<T> extends AbstractList<T> implements List<T> {
+public class    ArrayList<T> extends AbstractList<T> implements List<T> {
     private T[] objects;
 
 
