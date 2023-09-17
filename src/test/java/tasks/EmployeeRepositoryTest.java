@@ -56,15 +56,6 @@ class EmployeeRepositoryTest {
         insertInitialData();
     }
 
-//    @BeforeEach
-//    public void shouldCleanAndInitializedDatabaseWhenRunTest() throws SQLException {
-//        String truncateTableSql = "DELETE FROM employee;";
-//        Statement statement = connection.createStatement();
-//        statement.execute(truncateTableSql);
-//        shouldSetUpDatabaseWhenRunTests();
-//        insertInitialData();
-//    }
-
 
     private static void insertInitialData() throws SQLException {
 
