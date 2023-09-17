@@ -33,7 +33,7 @@ class EmployeeRepositoryTest {
 
     @BeforeEach
     public void shouldSetUpDatabaseWhenRunTests() throws SQLException {
-        final String dropTableSql = "DROP TABLE employee;";
+        final String dropTableSql = "DROP TABLE IF EXISTS;";
         final String createTableSql = "CREATE TABLE IF NOT EXISTS employee(id serial PRIMARY key,\n" +
                 "                      name VARCHAR (50) not null,\n" +
                 "                       surname VARCHAR (50) not null,\n" +
