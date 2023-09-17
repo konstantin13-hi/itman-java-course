@@ -14,14 +14,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 class EmployeeRepositoryTest {
+    private static Connection connection;
     private EmployeeRepository employeeRepository = new EmployeeRepository();
     private static final String DB_URL = "jdbc:postgresql://localhost/bbb";
     private static final String DB_USER = "postgres";
     private static final String DB_PASSWORD = "1111";
 
+
     @BeforeAll
-    public static void shouldSetUpDatabaseWhenRunTests() {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+    public static void openConnection() throws SQLException {
+        connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+    }
+
+    @AfterAll
+    public static void closeConnection() throws SQLException {
+        connection.close();
+    }
+
+    @BeforeEach
+    public void shouldSetUpDatabaseWhenRunTests() throws SQLException {
             String dropTableSql = "DROP TABLE employee;";
             String createTableSql = "CREATE TABLE IF NOT EXISTS employee(id serial PRIMARY key,\n" +
                     "                      name VARCHAR (50) not null,\n" +
@@ -32,38 +43,31 @@ class EmployeeRepositoryTest {
                     "                        date_of_dismissal DATE ,\n" +
                     "                       salary NUMERIC(10, 2));";
 
-            try (Statement statement = connection.createStatement()) {
+           Statement statement = connection.createStatement();
                 statement.execute(dropTableSql);
                 statement.execute(createTableSql);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
+
     }
 
 
     @BeforeAll
-    public static void shouldInitializeDatabaseWhenRunTests() {
+    public static void shouldInitializeDatabaseWhenRunTests() throws SQLException {
         insertInitialData();
     }
 
     @BeforeEach
-    public void shouldCleanAndInitializedDatabaseWhenRunTest() {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+    public void shouldCleanAndInitializedDatabaseWhenRunTest() throws SQLException {
             String truncateTableSql = "DELETE FROM employee;";
-            try (Statement statement = connection.createStatement()) {
+            Statement statement = connection.createStatement();
                 statement.execute(truncateTableSql);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         shouldSetUpDatabaseWhenRunTests();
         insertInitialData();
     }
     
 
-    private static void insertInitialData() {
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+    private static void insertInitialData() throws SQLException {
+
             String insertCommand = "INSERT INTO employee(name, surname,phone," +
                     "position_eml, date_of_employment, date_of_dismissal, salary) VALUES (?, ?, ?, ?, ?, ?, ?)";
             List<Employee> employeesData = returnsEmployeesData();
@@ -91,9 +95,7 @@ class EmployeeRepositoryTest {
                 }
                 statement.executeBatch();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Nested
