@@ -51,19 +51,19 @@ class EmployeeRepositoryTest {
     }
 
 
-    @BeforeAll
-    public static void shouldInitializeDatabaseWhenRunTests() throws SQLException {
+    @BeforeEach
+    private void shouldInitializeDatabaseWhenRunTests() throws SQLException {
         insertInitialData();
     }
 
-    @BeforeEach
-    public void shouldCleanAndInitializedDatabaseWhenRunTest() throws SQLException {
-        String truncateTableSql = "DELETE FROM employee;";
-        Statement statement = connection.createStatement();
-        statement.execute(truncateTableSql);
-        shouldSetUpDatabaseWhenRunTests();
-        insertInitialData();
-    }
+//    @BeforeEach
+//    public void shouldCleanAndInitializedDatabaseWhenRunTest() throws SQLException {
+//        String truncateTableSql = "DELETE FROM employee;";
+//        Statement statement = connection.createStatement();
+//        statement.execute(truncateTableSql);
+//        shouldSetUpDatabaseWhenRunTests();
+//        insertInitialData();
+//    }
 
 
     private static void insertInitialData() throws SQLException {
