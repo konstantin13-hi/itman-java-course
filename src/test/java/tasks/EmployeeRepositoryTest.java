@@ -22,30 +22,30 @@ class EmployeeRepositoryTest {
 
 
     @BeforeAll
-    public static void openConnection() throws SQLException {
+    private static void openConnection() throws SQLException {
         connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
     }
 
     @AfterAll
-    public static void closeConnection() throws SQLException {
+    private static void closeConnection() throws SQLException {
         connection.close();
     }
 
     @BeforeEach
     public void shouldSetUpDatabaseWhenRunTests() throws SQLException {
-            String dropTableSql = "DROP TABLE employee;";
-            String createTableSql = "CREATE TABLE IF NOT EXISTS employee(id serial PRIMARY key,\n" +
-                    "                      name VARCHAR (50) not null,\n" +
-                    "                       surname VARCHAR (50) not null,\n" +
-                    "                       phone VARCHAR (15),\n" +
-                    "                       position_eml VARCHAR (50) not null,\n" +
-                    "                        date_of_employment DATE NOT NULL DEFAULT CURRENT_DATE,\n" +
-                    "                        date_of_dismissal DATE ,\n" +
-                    "                       salary NUMERIC(10, 2));";
+        final String dropTableSql = "DROP TABLE employee;";
+        final String createTableSql = "CREATE TABLE IF NOT EXISTS employee(id serial PRIMARY key,\n" +
+                "                      name VARCHAR (50) not null,\n" +
+                "                       surname VARCHAR (50) not null,\n" +
+                "                       phone VARCHAR (15),\n" +
+                "                       position_eml VARCHAR (50) not null,\n" +
+                "                        date_of_employment DATE NOT NULL DEFAULT CURRENT_DATE,\n" +
+                "                        date_of_dismissal DATE ,\n" +
+                "                       salary NUMERIC(10, 2));";
 
-           Statement statement = connection.createStatement();
-                statement.execute(dropTableSql);
-                statement.execute(createTableSql);
+        Statement statement = connection.createStatement();
+        statement.execute(dropTableSql);
+        statement.execute(createTableSql);
 
 
     }
@@ -58,43 +58,43 @@ class EmployeeRepositoryTest {
 
     @BeforeEach
     public void shouldCleanAndInitializedDatabaseWhenRunTest() throws SQLException {
-            String truncateTableSql = "DELETE FROM employee;";
-            Statement statement = connection.createStatement();
-                statement.execute(truncateTableSql);
+        String truncateTableSql = "DELETE FROM employee;";
+        Statement statement = connection.createStatement();
+        statement.execute(truncateTableSql);
         shouldSetUpDatabaseWhenRunTests();
         insertInitialData();
     }
-    
+
 
     private static void insertInitialData() throws SQLException {
 
-            String insertCommand = "INSERT INTO employee(name, surname,phone," +
-                    "position_eml, date_of_employment, date_of_dismissal, salary) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            List<Employee> employeesData = returnsEmployeesData();
+        String insertCommand = "INSERT INTO employee(name, surname,phone," +
+                "position_eml, date_of_employment, date_of_dismissal, salary) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        List<Employee> employeesData = returnsEmployeesData();
 
 
-            try (PreparedStatement statement = connection.prepareStatement(insertCommand)) {
-                for (Employee employeeData : employeesData) {
-                    statement.setString(1, employeeData.getName()); // name
-                    statement.setString(2, employeeData.getSurname()); // surname
-                    statement.setString(3, employeeData.getPhone()); // phone
-                    statement.setString(4, employeeData.getPositionEml()); // position
-                    if (employeeData.getDateOfEmployment() != null) {
-                        statement.setDate(5, java.sql.Date.valueOf(employeeData.getDateOfEmployment()));
-                    } else {
-                        statement.setNull(5, Types.DATE);
-                    }
-                    if (employeeData.getDateOfDismissal() != null) {
-                        statement.setDate(6, java.sql.Date.valueOf(employeeData.getDateOfDismissal()));
-                    } else {
-                        statement.setNull(6, Types.DATE);
-                    }
-                    statement.setDouble(7, employeeData.getSalary()); // salary
-
-                    statement.addBatch();
+        try (PreparedStatement statement = connection.prepareStatement(insertCommand)) {
+            for (Employee employeeData : employeesData) {
+                statement.setString(1, employeeData.getName()); // name
+                statement.setString(2, employeeData.getSurname()); // surname
+                statement.setString(3, employeeData.getPhone()); // phone
+                statement.setString(4, employeeData.getPositionEml()); // position
+                if (employeeData.getDateOfEmployment() != null) {
+                    statement.setDate(5, java.sql.Date.valueOf(employeeData.getDateOfEmployment()));
+                } else {
+                    statement.setNull(5, Types.DATE);
                 }
-                statement.executeBatch();
+                if (employeeData.getDateOfDismissal() != null) {
+                    statement.setDate(6, java.sql.Date.valueOf(employeeData.getDateOfDismissal()));
+                } else {
+                    statement.setNull(6, Types.DATE);
+                }
+                statement.setDouble(7, employeeData.getSalary()); // salary
+
+                statement.addBatch();
             }
+            statement.executeBatch();
+        }
 
     }
 
