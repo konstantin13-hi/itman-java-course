@@ -9,6 +9,9 @@ import java.util.List;
 
 
 public class EmployeeRepository {
+    private static final String DB_URL = "jdbc:postgresql://localhost/bbb";
+    private static final String DB_USER = "postgres";
+    private static final String DB_PASSWORD = "1111";
 
 
     /**
@@ -25,7 +28,7 @@ public class EmployeeRepository {
             throw new IllegalArgumentException("Id should be more than 0");
         }
         Employee result = null;
-        try (Connection connection = DatabaseConnection.getConnection()) {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             String sql = "SELECT * FROM employee WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, id);
@@ -51,7 +54,7 @@ public class EmployeeRepository {
      */
     public List<Employee> findAll() throws SQLException {
         List<Employee> employeeList = null;
-        try (Connection connection = DatabaseConnection.getConnection()) {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             String sql = "SELECT * FROM employee";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 employeeList = getFilteredEmployees(preparedStatement);
@@ -77,7 +80,7 @@ public class EmployeeRepository {
             throw new IllegalArgumentException("Поле 'position' не должно быть пустым или равным null");
         }
         List<Employee> employeeList;
-        try (Connection connection = DatabaseConnection.getConnection()) {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             String sqlQuery = "SELECT * FROM employee WHERE position_eml = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
             preparedStatement.setString(1, position);

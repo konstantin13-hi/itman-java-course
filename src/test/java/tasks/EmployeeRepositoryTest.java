@@ -15,10 +15,13 @@ import java.util.stream.Collectors;
 
 class EmployeeRepositoryTest {
     private EmployeeRepository employeeRepository = new EmployeeRepository();
+    private static final String DB_URL = "jdbc:postgresql://localhost/bbb";
+    private static final String DB_USER = "postgres";
+    private static final String DB_PASSWORD = "1111";
 
     @BeforeAll
     public static void shouldSetUpDatabaseWhenRunTests() {
-        try (Connection connection = DatabaseConnection.getConnection()) {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             String dropTableSql = "DROP TABLE employee;";
             String createTableSql = "CREATE TABLE IF NOT EXISTS employee(id serial PRIMARY key,\n" +
                     "                      name VARCHAR (50) not null,\n" +
@@ -46,7 +49,7 @@ class EmployeeRepositoryTest {
 
     @BeforeEach
     public void shouldCleanAndInitializedDatabaseWhenRunTest() {
-        try (Connection connection = DatabaseConnection.getConnection()) {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             String truncateTableSql = "DELETE FROM employee;";
             try (Statement statement = connection.createStatement()) {
                 statement.execute(truncateTableSql);
@@ -57,9 +60,10 @@ class EmployeeRepositoryTest {
         shouldSetUpDatabaseWhenRunTests();
         insertInitialData();
     }
+    
 
     private static void insertInitialData() {
-        try (Connection connection = DatabaseConnection.getConnection()) {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             String insertCommand = "INSERT INTO employee(name, surname,phone," +
                     "position_eml, date_of_employment, date_of_dismissal, salary) VALUES (?, ?, ?, ?, ?, ?, ?)";
             List<Employee> employeesData = returnsEmployeesData();
