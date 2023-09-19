@@ -74,7 +74,7 @@ public class Employee {
         this.dateOfDismissal = dateOfDismissal;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 

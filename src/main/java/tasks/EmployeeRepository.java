@@ -102,9 +102,8 @@ public class EmployeeRepository {
             String position = resultSet.getString("position_eml");
             LocalDate dateOfEmployment = getDateFromResulSet(resultSet, "date_of_employment");
             LocalDate dateOfDismissal = getDateFromResulSet(resultSet, "date_of_dismissal");
-            double salary = resultSet.getDouble("salary");
-
-
+            Object salaryObject = resultSet.getObject("salary");
+            Double salary = (salaryObject == null) ? null : ((Number) salaryObject).doubleValue();
             Employee employee = new Employee(id, firstName, lastName, phone,
                     position, dateOfEmployment, dateOfDismissal, salary);
             employeesList.add(employee);
@@ -122,6 +121,43 @@ public class EmployeeRepository {
      * including the assigned ID (if it's a new record).
      */
     public Employee save(Employee employee) throws SQLException {
+
+        if (employee.getName() == null || employee.getName().isEmpty()) {
+            throw new IllegalArgumentException("Employee name cannot be empty.");
+        }
+
+        if (employee.getSurname() == null || employee.getSurname().isEmpty()) {
+            throw new IllegalArgumentException("Employee surname cannot be empty.");
+        }
+
+        if (employee.getPositionEml() == null || employee.getPositionEml().isEmpty()) {
+            throw new IllegalArgumentException("Employee position cannot be empty.");
+        }
+        if (employee.getSalary() != null && (employee.getSalary() < 0.0 || employee.getSalary() > 9999999.99)) {
+            throw new IllegalArgumentException("Employee's salary must be in the range from 0.00 to 9,999,999.99.");
+        }
+
+        if (employee.getDateOfEmployment() != null) {
+            LocalDate dateOfEmployment = employee.getDateOfEmployment();
+            LocalDate currentDate = LocalDate.now();
+
+            if (dateOfEmployment.isAfter(currentDate)) {
+                throw new IllegalArgumentException("Date of employment cannot be in the future.");
+            }
+        }
+        if (employee.getDateOfDismissal() != null) {
+            LocalDate dateOfDismissal = employee.getDateOfDismissal();
+            LocalDate currentDate = LocalDate.now();
+
+            if (dateOfDismissal.isAfter(currentDate)) {
+                throw new IllegalArgumentException("Date of dismissal cannot be in the future.");
+            }
+
+            if (employee.getDateOfEmployment() != null && dateOfDismissal.isBefore(employee.getDateOfEmployment())) {
+                throw new IllegalArgumentException("Date of dismissal cannot be earlier than date of employment.");
+            }
+        }
+
         int id = 0;
         try (Connection connection = DatabaseConnection.getConnection()) {
             if (employee.getId() == null) {
@@ -151,11 +187,17 @@ public class EmployeeRepository {
     }
 
     private int statement(Employee employee, Connection connection, String updateCommand) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement(updateCommand);
+        PreparedStatement preparedStatement;
+        if (employee.getId() == null) {
+            preparedStatement = connection.prepareStatement(updateCommand, Statement.RETURN_GENERATED_KEYS);
+        } else {
+            preparedStatement = connection.prepareStatement(updateCommand);
+        }
+
         int parameterIndex = 1;
         preparedStatement.setString(parameterIndex++, employee.getName()); // name
         preparedStatement.setString(parameterIndex++, employee.getSurname()); // surname
-        preparedStatement.setString(parameterIndex++, employee.getPhone()); // position
+        preparedStatement.setString(parameterIndex++, employee.getPhone()); // position_eml
         preparedStatement.setString(parameterIndex++, employee.getPositionEml()); // phone
         if (employee.getDateOfEmployment() != null) {
             preparedStatement.setDate(parameterIndex++, Date.valueOf(employee.getDateOfEmployment()));
@@ -166,25 +208,24 @@ public class EmployeeRepository {
         } else {
             preparedStatement.setNull(parameterIndex++, java.sql.Types.DATE);
         }
+
         if (employee.getSalary() != null) {
             preparedStatement.setDouble(parameterIndex++, employee.getSalary());
         } else {
             preparedStatement.setNull(parameterIndex++, java.sql.Types.DOUBLE);
-        } // salary
+        }
 
         if (employee.getId() != null) {
             preparedStatement.setInt(parameterIndex++, employee.getId());
         }
 
-
         int generatedId = -1;
         int updatedRows = preparedStatement.executeUpdate();
+
         if (employee.getId() == null) {
-            String getLastInsertIdQuery = "SELECT lastval()";
-            try (PreparedStatement lastIdStatement = connection.prepareStatement(getLastInsertIdQuery);
-                 ResultSet resultSet = lastIdStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    generatedId = resultSet.getInt(1);
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    generatedId = generatedKeys.getInt(1);
                 }
             }
         } else {

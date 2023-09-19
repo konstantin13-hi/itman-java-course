@@ -24,7 +24,7 @@ VALUES
 
 
 
-    SELECT name FROM employee ORDER BY name ASC;
+    SELECT name FROM employee ORDER BY name;
 
     SELECT * FROM employee WHERE date_of_dismissal IS NULL;
 
@@ -33,23 +33,7 @@ VALUES
     SELECT DISTINCT position_eml FROM employee;
 
     SELECT * FROM employee
-
     WHERE date_of_employment BETWEEN '2022-01-01' AND '2023-01-01';
 
-    DELETE from employee;
-
-CREATE TABLE IF NOT EXISTS employeeTest(id serial PRIMARY key,
-                      name VARCHAR (50) not null,
-                       surname VARCHAR (50) not null,
-                       phone VARCHAR (15),
-                       position_eml VARCHAR (50) not null,
-                        date_of_employment DATE NOT NULL DEFAULT CURRENT_DATE,
-                        date_of_dismissal DATE ,
-                       salary NUMERIC(10, 2));
 
 
-SELECT id,name  FROM employee where id = -19;
-
-INSERT INTO employee (name, surname, position_eml)
-VALUES
-    ('John', 'Doe', 'Manager' )
