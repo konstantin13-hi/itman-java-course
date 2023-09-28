@@ -12,6 +12,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      db:
+        image: postgres
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 1111
+          POSTGRES_DB: bbb
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -28,5 +38,5 @@ jobs:
         uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
-          name: reports
-          path: ./build/reports
+          name: tests-report
+          path: ./build/reports/tests

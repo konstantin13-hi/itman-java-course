@@ -23,7 +23,8 @@ checkstyle {
     maxWarnings(0)
 }
 
-dependencies {  
+dependencies {
+    implementation 'org.postgresql:postgresql:42.6.0'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
 }
