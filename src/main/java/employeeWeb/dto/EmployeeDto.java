@@ -1,66 +1,27 @@
-package entities;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.NotNull;
-import org.springframework.format.annotation.DateTimeFormat;
+package employeeWeb.dto;
+
+import entities.Employee;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Employee {
+public class EmployeeDto {
 
-    private Integer id;
-
-    @NotBlank
-    @Size(min = 2, max = 50)
     private String name;
-
-    @NotBlank
-    @Size(min = 2, max = 50)
     private String surname;
-
-    @Size(min = 10, max = 15)
     private String phone;
-
-    @NotBlank
-    @Size(min = 2, max = 50)
     private String positionEml;
-
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past
     private LocalDate dateOfEmployment;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past
     private LocalDate dateOfDismissal;
-
-    @NotNull
     private Double salary;
 
-    public Employee() {
-    }
-    public Employee(Integer id) {
-        this.id = id;
+    public EmployeeDto() {
     }
 
-    public Employee(Integer id, String name, String surname,
-                    String phone, String positionEml, LocalDate dateOfEmployment,
-                    LocalDate dateOfDismissal, Double salary) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.phone = phone;
-        this.positionEml = positionEml;
-        this.dateOfEmployment = dateOfEmployment;
-        this.dateOfDismissal = dateOfDismissal;
-        this.salary = salary;
-    }
 
-    public Employee(String name, String surname, String phone,
-                    String positionEml, LocalDate dateOfEmployment,
-                    LocalDate dateOfDismissal, Double salary) {
+    public EmployeeDto(String name, String surname, String phone,
+                       String positionEml, LocalDate dateOfEmployment,
+                       LocalDate dateOfDismissal, Double salary) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
@@ -76,10 +37,6 @@ public class Employee {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setName(String name) {
@@ -105,10 +62,6 @@ public class Employee {
 
     public void setSalary(Double salary) {
         this.salary = salary;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getName() {
@@ -138,8 +91,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phone='" + phone + '\'' +
                 ", positionEml='" + positionEml + '\'' +
@@ -149,20 +101,25 @@ public class Employee {
                 '}';
     }
 
+    public Employee toEmployee(){
+        return new Employee(getName(),
+                getSurname(),getPhone()
+                ,getPositionEml(),
+                getDateOfEmployment(),
+                getDateOfEmployment()
+                ,getSalary());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(id, employee.id) &&
-                Objects.equals(name, employee.name) &&
-                Objects.equals(surname, employee.surname) &&
-                Objects.equals(phone, employee.phone) &&
-                Objects.equals(positionEml, employee.positionEml) &&
-                Objects.equals(dateOfEmployment, employee.dateOfEmployment) &&
-                Objects.equals(dateOfDismissal, employee.dateOfDismissal) &&
-                Objects.equals(salary, employee.salary);
+        EmployeeDto that = (EmployeeDto) o;
+        return Objects.equals(name, that.name) && Objects.equals(surname, that.surname) && Objects.equals(phone, that.phone) && Objects.equals(positionEml, that.positionEml) && Objects.equals(dateOfEmployment, that.dateOfEmployment) && Objects.equals(dateOfDismissal, that.dateOfDismissal) && Objects.equals(salary, that.salary);
     }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, phone, positionEml, dateOfEmployment, dateOfDismissal, salary);
+    }
 }

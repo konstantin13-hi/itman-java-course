@@ -1,16 +1,14 @@
 package tasks;
 
 
+import employeeWeb.repositories.DbEmployeeRepository;
 import entities.Employee;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
-import utils.ArrayUtils;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EmployeeRepositoryTest {
     private static Connection connection;
-    private EmployeeRepository employeeRepository = new EmployeeRepository();
+    private DbEmployeeRepository employeeRepository = new DbEmployeeRepository();
     private int idForAdding = returnsEmployeesData().size() + 1;
 
     @BeforeAll

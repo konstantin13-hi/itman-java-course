@@ -1,14 +1,16 @@
-package tasks;
+package employeeWeb.repositories;
 
 import entities.Employee;
+import org.springframework.stereotype.Repository;
+import tasks.DatabaseConnection;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
-
-public class EmployeeRepository {
+@Repository
+public class DbEmployeeRepository implements EmployeeRepository{
     private static final String DB_URL = "jdbc:postgresql://localhost/bbb";
     private static final String DB_USER = "postgres";
     private static final String DB_PASSWORD = "1111";
@@ -238,5 +240,30 @@ public class EmployeeRepository {
     private LocalDate getDateFromResulSet(ResultSet resultSet, String columnName) throws SQLException {
         Date dateSql = resultSet.getDate(columnName);
         return dateSql != null ? dateSql.toLocalDate() : null;
+    }
+
+    @Override
+    public void add(Employee employee){
+
+    }
+
+    @Override
+    public void update(int id, Employee employee)  {
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
+
+    @Override
+    public Employee getEmployee(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Employee> getAll() throws SQLException {
+        return findAll();
     }
 }

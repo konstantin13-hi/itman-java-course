@@ -1,12 +1,11 @@
 package tasks;
 
+import employeeWeb.repositories.DbEmployeeRepository;
 import entities.Employee;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.Test;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +15,7 @@ public class UpdateTest {
 
 
     private static Connection connection;
-    private EmployeeRepository employeeRepository = new EmployeeRepository();
+    private DbEmployeeRepository employeeRepository = new DbEmployeeRepository();
 
     @BeforeAll
     private static void openConnection() throws SQLException {
