@@ -1,7 +1,7 @@
 package tasks;
 
 
-import employeeWeb.repositories.DbEmployeeRepository;
+import employeeweb.repositories.DbEmployeeRepository;
 import entities.Employee;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
@@ -10,6 +10,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EmployeeRepositoryTest {
     private static Connection connection;
-    private DbEmployeeRepository employeeRepository = new DbEmployeeRepository();
+    private final DbEmployeeRepository employeeRepository = new DbEmployeeRepository();
     private int idForAdding = returnsEmployeesData().size() + 1;
 
     @BeforeAll
@@ -85,8 +86,9 @@ class EmployeeRepositoryTest {
         public void shouldFindByIdWhenValidIdProvided() throws SQLException {
             Employee expected = new Employee(1, "John", "Doe",
                     "555-1234", "Manager", LocalDate.parse("2023-01-15"), null, 50000.00);
-            Employee employee = employeeRepository.findById(1);
-            assertEquals(expected.toString(), employee.toString());
+            Optional<Employee> employee = employeeRepository.findById(1);
+            Employee expectedEmployee = employee.orElse(null);
+            assertEquals(expected, expectedEmployee);
         }
 
         @Test
@@ -149,9 +151,11 @@ class EmployeeRepositoryTest {
             newEmployee.setPositionEml("Manager");
             newEmployee.setDateOfEmployment(LocalDate.parse("2023-01-15"));
             newEmployee.setSalary(50000.0);
-            Employee employee = employeeRepository.save(newEmployee);
+            Optional<Employee> employee = employeeRepository.save(newEmployee);
             newEmployee.setId(idForAdding);
-            assertEquals(newEmployee.toString(), employee.toString());
+            Employee expectedEmployee = employee.orElse(null);
+            assert expectedEmployee != null;
+            assertEquals(newEmployee.toString(), expectedEmployee.toString());
         }
 
         @Test
@@ -160,10 +164,12 @@ class EmployeeRepositoryTest {
             newEmployee.setName("Jane");
             newEmployee.setSurname("Smith");
             newEmployee.setPositionEml("Developer");
-            Employee employee = employeeRepository.save(newEmployee);
+            Optional<Employee> employee = employeeRepository.save(newEmployee);
             newEmployee.setId(idForAdding);
             newEmployee.setDateOfEmployment(LocalDate.now());
-            assertEquals(newEmployee.toString(), employee.toString());
+            Employee expectedEmployee = employee.orElse(null);
+            assert expectedEmployee != null;
+            assertEquals(newEmployee.toString(), expectedEmployee.toString());
         }
 
         @Test
@@ -175,9 +181,11 @@ class EmployeeRepositoryTest {
             newEmployee.setDateOfEmployment(LocalDate.parse("2023-03-10"));
             newEmployee.setDateOfDismissal(LocalDate.parse("2023-06-15"));
             newEmployee.setSalary(null);
-            Employee employee = employeeRepository.save(newEmployee);
+            Optional<Employee> employee = employeeRepository.save(newEmployee);
             newEmployee.setId(idForAdding);
-            assertEquals(newEmployee.toString(), employee.toString());
+            Employee expectedEmployee = employee.orElse(null);
+            assert expectedEmployee != null;
+            assertEquals(newEmployee.toString(), expectedEmployee.toString());
         }
 
 
@@ -245,8 +253,10 @@ class EmployeeRepositoryTest {
             Employee newEmployee = new Employee(1, "John",
                     "Doe", "6-54445-444", "Manager",
                     LocalDate.parse("2023-01-15"), null, 50000.0);
-            Employee employee = employeeRepository.save(newEmployee);
-            assertEquals(newEmployee.toString(), employee.toString());
+            Optional<Employee> employee = employeeRepository.save(newEmployee);
+            Employee expectedEmployee = employee.orElse(null);
+            assert expectedEmployee != null;
+            assertEquals(newEmployee.toString(), expectedEmployee.toString());
 
 
         }
@@ -256,8 +266,10 @@ class EmployeeRepositoryTest {
             Employee newEmployee = new Employee(1, "brad",
                     "Dav", "6-54445-444", "It-CON",
                     LocalDate.parse("2023-01-15"), LocalDate.now(), 150000.0);
-            Employee employee = employeeRepository.save(newEmployee);
-            assertEquals(newEmployee.toString(), employee.toString());
+            Optional<Employee> employee = employeeRepository.save(newEmployee);
+            Employee expectedEmployee = employee.orElse(null);
+            assert expectedEmployee != null;
+            assertEquals(newEmployee.toString(), expectedEmployee.toString());
 
 
         }
@@ -267,8 +279,10 @@ class EmployeeRepositoryTest {
             Employee newEmployee = new Employee(1, "John",
                     "Doe", null, "Manager",
                     LocalDate.parse("2023-01-15"), null, null);
-            Employee employee = employeeRepository.save(newEmployee);
-            assertEquals(newEmployee.toString(), employee.toString());
+            Optional<Employee> employee = employeeRepository.save(newEmployee);
+            Employee expectedEmployee = employee.orElse(null);
+            assert expectedEmployee != null;
+            assertEquals(newEmployee.toString(), expectedEmployee.toString());
 
         }
 

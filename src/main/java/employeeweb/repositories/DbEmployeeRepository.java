@@ -1,4 +1,4 @@
-package employeeWeb.repositories;
+package employeeweb.repositories;
 
 import entities.Employee;
 import org.springframework.stereotype.Repository;
@@ -8,12 +8,10 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public class DbEmployeeRepository implements EmployeeRepository{
-    private static final String DB_URL = "jdbc:postgresql://localhost/bbb";
-    private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "1111";
+public class DbEmployeeRepository implements EmployeeRepository {
 
 
     /**
@@ -25,18 +23,17 @@ public class DbEmployeeRepository implements EmployeeRepository{
      * @cpu O(n)  where n is the length of the employees list.
      * @ram O(1)
      */
-    public Employee findById(int id) throws SQLException {
+    public Optional<Employee> findById(int id) throws SQLException {
         if (id < 1) {
             throw new IllegalArgumentException("Id should be more than 0");
         }
-        Employee result = null;
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String sql = "SELECT * FROM employee WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, id);
                 List<Employee> filteredEmployees = getFilteredEmployees(statement);
                 if (!filteredEmployees.isEmpty()) {
-                    result = filteredEmployees.get(0);
+                    return Optional.of(filteredEmployees.get(0));
                 }
             } catch (SQLException e) {
                 throw new SQLException("Ошибка при выполнении SQL-запроса", e);
@@ -44,8 +41,55 @@ public class DbEmployeeRepository implements EmployeeRepository{
         } catch (SQLException e) {
             throw new SQLException("Ошибка при подключении к базе данных", e);
         }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Employee> add(Employee employee) throws SQLException {
+        return save(employee);
+    }
+
+    @Override
+    public Optional<Employee> update(Employee employee) throws SQLException {
+        return save(employee);
+    }
+
+    @Override
+    public Optional<Employee> getEmployee(int id) throws SQLException {
+        return findById(id);
+    }
+
+    /**
+     * Deletes an employee with the specified ID from the database.
+     *
+     * @param id The ID of the employee to be deleted.
+     * @return {@code true} if the employee was successfully deleted, or {@code false} if the employee was not found.
+     * @throws IllegalArgumentException If the provided ID is less than 1.
+     */
+    public boolean deleteEmployee(int id) throws SQLException {
+        if (id < 1) {
+            throw new IllegalArgumentException("Id should be more than 0");
+        }
+        boolean result = true;
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String sql = "DELETE FROM employee WHERE id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, id);
+                int deletedRows = statement.executeUpdate();
+
+                if (deletedRows == 0) {
+                    result = false;
+                }
+            } catch (SQLException e) {
+                throw new SQLException("Error executing SQL query", e);
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Error connecting to the database", e);
+        }
         return result;
     }
+
 
     /**
      * Retrieves a list of all employees.
@@ -56,7 +100,7 @@ public class DbEmployeeRepository implements EmployeeRepository{
      */
     public List<Employee> findAll() throws SQLException {
         List<Employee> employeeList = null;
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String sql = "SELECT * FROM employee";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 employeeList = getFilteredEmployees(preparedStatement);
@@ -82,7 +126,7 @@ public class DbEmployeeRepository implements EmployeeRepository{
             throw new IllegalArgumentException("Поле 'position' не должно быть пустым или равным null");
         }
         List<Employee> employeeList;
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String sqlQuery = "SELECT * FROM employee WHERE position_eml = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
             preparedStatement.setString(1, position);
@@ -122,8 +166,7 @@ public class DbEmployeeRepository implements EmployeeRepository{
      * @return The newly saved Employee object with its updated properties,
      * including the assigned ID (if it's a new record).
      */
-    public Employee save(Employee employee) throws SQLException {
-
+    public Optional<Employee> save(Employee employee) throws SQLException {
         if (employee.getName() == null || employee.getName().isEmpty()) {
             throw new IllegalArgumentException("Employee name cannot be empty.");
         }
@@ -242,28 +285,7 @@ public class DbEmployeeRepository implements EmployeeRepository{
         return dateSql != null ? dateSql.toLocalDate() : null;
     }
 
-    @Override
-    public void add(Employee employee){
 
-    }
 
-    @Override
-    public void update(int id, Employee employee)  {
 
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public Employee getEmployee(int id) {
-        return null;
-    }
-
-    @Override
-    public List<Employee> getAll() throws SQLException {
-        return findAll();
-    }
 }

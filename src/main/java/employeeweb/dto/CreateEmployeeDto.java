@@ -1,4 +1,4 @@
-package employeeWeb.dto;
+package employeeweb.dto;
 
 import entities.Employee;
 
@@ -13,6 +13,25 @@ public class CreateEmployeeDto {
     private LocalDate dateOfDismissal;
     private Double salary;
 
+    /**
+     * Constructs a new CreateEmployeeDto object.
+     */
+    public CreateEmployeeDto() {
+
+    }
+
+    /**
+     * Converts an Employee object into an EmployeeDto object.
+     *
+     * @param employee The Employee object to be converted.
+     * @return The corresponding EmployeeDto object.
+     */
+    public EmployeeDto employeeDto(Employee employee) {
+        return new EmployeeDto(employee.getName(), employee.getSurname(),
+                employee.getPhone(), employee.getPositionEml(),
+                employee.getDateOfEmployment(), employee.getDateOfDismissal(),
+                employee.getSalary());
+    }
 
     @Override
     public String toString() {
@@ -26,7 +45,6 @@ public class CreateEmployeeDto {
                 ", salary=" + salary +
                 '}';
     }
-
 
 
 }

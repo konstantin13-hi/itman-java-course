@@ -1,12 +1,13 @@
 package entities;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 public class Employee {
 
@@ -41,6 +42,7 @@ public class Employee {
 
     public Employee() {
     }
+
     public Employee(Integer id) {
         this.id = id;
     }
@@ -151,17 +153,21 @@ public class Employee {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Employee employee = (Employee) o;
-        return Objects.equals(id, employee.id) &&
-                Objects.equals(name, employee.name) &&
-                Objects.equals(surname, employee.surname) &&
-                Objects.equals(phone, employee.phone) &&
-                Objects.equals(positionEml, employee.positionEml) &&
-                Objects.equals(dateOfEmployment, employee.dateOfEmployment) &&
-                Objects.equals(dateOfDismissal, employee.dateOfDismissal) &&
-                Objects.equals(salary, employee.salary);
+        return Objects.equals(id, employee.id)
+                && Objects.equals(name, employee.name)
+                && Objects.equals(surname, employee.surname)
+                && Objects.equals(phone, employee.phone)
+                && Objects.equals(positionEml, employee.positionEml)
+                && Objects.equals(dateOfEmployment, employee.dateOfEmployment)
+                && Objects.equals(dateOfDismissal, employee.dateOfDismissal)
+                && Objects.equals(salary, employee.salary);
     }
 
 

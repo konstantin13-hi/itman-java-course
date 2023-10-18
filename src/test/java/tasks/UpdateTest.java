@@ -1,6 +1,6 @@
 package tasks;
 
-import employeeWeb.repositories.DbEmployeeRepository;
+import employeeweb.repositories.DbEmployeeRepository;
 import entities.Employee;
 import org.junit.jupiter.api.*;
 
@@ -9,7 +9,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 public class UpdateTest {
 
@@ -90,18 +94,18 @@ public class UpdateTest {
     public class Save {
         @org.junit.jupiter.api.Test
         void save2() throws SQLException {
-
             Employee newEmployee = new Employee();
             newEmployee.setName("Jon");
             newEmployee.setSurname("Bon");
             newEmployee.setPositionEml("DADSAD");
             newEmployee.setDateOfEmployment(LocalDate.now());
 
-
-            Employee employee = employeeRepository.save(newEmployee);
+            Optional<Employee> employeeOptional = employeeRepository.save(newEmployee);
             newEmployee.setId(11);
 
-            Assertions.assertEquals(newEmployee.toString(), employee.toString());
+            Employee expectedEmployee = employeeOptional.orElse(null);
+            assert expectedEmployee != null;
+            assertEquals(newEmployee.toString(), expectedEmployee.toString());
         }
 
     }
