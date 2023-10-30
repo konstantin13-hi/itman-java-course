@@ -2,9 +2,9 @@ package employeeweb.repositories;
 
 import entities.Employee;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+
 
 /**
  * This interface defines the contract for interacting with the repository of employee data.
@@ -12,43 +12,54 @@ import java.util.Optional;
 public interface EmployeeRepository {
 
     /**
-     * Adds a new employee to the repository.
-     *
-     * @param employee The employee to be added.
-     * @return An optional containing the added employee if successful, or an empty optional if the addition failed.
-     */
-    Optional<Employee> add(Employee employee) throws SQLException;
-
-    /**
-     * Updates an existing employee in the repository.
-     *
-     * @param employee The employee to be updated.
-     * @return An optional containing the updated employee if successful, or an empty optional if the update failed.
-     */
-    Optional<Employee> update(Employee employee) throws SQLException;
-
-    /**
-     * Deletes an employee with the specified ID from the repository.
+     * Deletes an employee with the specified ID from the database.
      *
      * @param id The ID of the employee to be deleted.
      * @return {@code true} if the employee was successfully deleted, or {@code false} if the employee was not found.
-     * @throws SQLException If an SQL error occurs during the database operation.
+     * @cpu O(n)  where n is the length of the employees list.
+     * @ram O(1)
      */
-    boolean deleteEmployee(int id) throws SQLException;
+    boolean deleteEmployee(int id);
 
     /**
-     * Retrieves an employee's information based on the provided ID.
+     * Retrieves a list of all employees.
      *
-     * @param id The ID of the employee to be retrieved.
-     * @return An EmployeeDto object containing the information of the requested employee.
+     * @return A List of Employee objects representing all employees in the database.
+     * @cpu O(n) where n is the number of employees in the list.
+     * @ram O(n) where n is the number of employees in the list.
      */
-    Optional<Employee> getEmployee(int id) throws SQLException;
+    List<Employee> findAll();
 
     /**
-     * Retrieves a list of all employees from the repository.
+     * Looks for an employee by the specified ID.
      *
-     * @return A list of Employee objects containing the information of all employees.
-     * @throws SQLException If an SQL error occurs during the database operation.
+     * @param id ID of the employee to be found.
+     * @return An object of type Employee that represents the employee with the specified ID.
+     * If the employee is not found, null is returned.
+     * @cpu O(n)  where n is the length of the employees list.
+     * @ram O(1)
      */
-    List<Employee> findAll() throws SQLException;
+    Optional<Employee> findById(int id);
+
+
+    /**
+     * Searches for employees with a specific position.
+     *
+     * @param position The position to search for.
+     * @return A List of Employee objects representing employees with the specified position.
+     * @cpu O(n), where n is the length of the employees list.
+     * @ram O(n). where n is the length of the employees list.
+     */
+    List<Employee> findByPosition(String position);
+
+    /**
+     * Saves or updates an Employee record in the database.
+     *
+     * @param employee The Employee object to be saved or updated.
+     * @return The newly saved Employee object with its updated properties,
+     * including the assigned ID (if it's a new record).
+     * @cpu O(n), where n is the length of the employees list.
+     * @ram O(1)
+     */
+    Optional<Employee> save(Employee employee);
 }

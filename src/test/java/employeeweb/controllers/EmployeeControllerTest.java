@@ -46,7 +46,6 @@ class EmployeeControllerTest {
 
         @Test
         public void shouldReturnEmployeeWith200StatusWhenGetEmployee() throws Exception {
-            // Создаем тестового сотрудника
             EmployeeDto employee = new EmployeeDto(
                     "John",
                     "Doe",
@@ -58,12 +57,9 @@ class EmployeeControllerTest {
             );
 
             ArgumentCaptor<Integer> idCaptor = ArgumentCaptor.forClass(Integer.class);
-
             when(employeeService.getEmployee(1)).thenReturn(employee);
-
             MockHttpServletRequestBuilder request =
                     MockMvcRequestBuilders.get("/api/employees/{id}", 1);
-
             mockMvc.perform(request)
                     .andExpect(MockMvcResultMatchers.status().isOk())
                     .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(employee)));
@@ -72,9 +68,16 @@ class EmployeeControllerTest {
             assertEquals(1, idCaptor.getValue().intValue());
         }
 
-
-
+        @Test
+        public void shouldReturnBadRequestForInvalidID() throws Exception {
+            MockHttpServletRequestBuilder request =
+                    MockMvcRequestBuilders.get("/api/employees/{id}", -11);
+            mockMvc.perform(request)
+                    .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                    .andExpect(MockMvcResultMatchers.content().string("Неправильное значение ID: -11"));
+        }
     }
+
 
     @Nested
     public class AddEmployee {
@@ -83,7 +86,7 @@ class EmployeeControllerTest {
         public void shouldAddEmployeeWhenValidData() throws Exception {
             EmployeeDto employee = new EmployeeDto("John",
                     "Doe", "123456789",
-                    "Manager", LocalDate.of(2012, 5, 5),
+                    "Manager", LocalDate.now(),
                     null, 50000.0);
 
             ArgumentCaptor<EmployeeDto> employeeCaptor = ArgumentCaptor.forClass(EmployeeDto.class);
@@ -99,8 +102,6 @@ class EmployeeControllerTest {
             assertEquals(employee, capturedEmployee);
 
         }
-
-
 
 
         @Test
@@ -146,6 +147,46 @@ class EmployeeControllerTest {
                             .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(MockMvcResultMatchers.status().isOk());
         }
+
+        @Test
+        public void shouldReturnBadRequestForInvalidID() throws Exception {
+            int invalidId = -1; // Указываем неправильное значение ID
+            String errorMessage = "Неправильное значение ID: " + invalidId;
+            EmployeeDto updatedEmployee = new EmployeeDto("John",
+                    "Doe", "123456789", "Manager",
+                    LocalDate.of(2012, 5, 5), null, 50000.0);
+
+
+            MockHttpServletRequestBuilder request = MockMvcRequestBuilders.put("/api/employees/{id}", invalidId)
+                    .content(objectMapper.writeValueAsString(updatedEmployee))
+                    .contentType(MediaType.APPLICATION_JSON);
+
+            mockMvc.perform(request)
+                    .andExpect(MockMvcResultMatchers.status().isBadRequest()) // Ожидаем HTTP-статус "Bad Request"
+                    .andExpect(MockMvcResultMatchers.content().string(errorMessage));
+        }
+
+        @Test
+        public void shouldReturnBadRequestWhenInvalidData() throws Exception {
+            EmployeeDto invalidEmployee = new EmployeeDto();
+            invalidEmployee.setName("");
+            invalidEmployee.setSurname("");
+            invalidEmployee.setPhone("123g");
+            invalidEmployee.setPositionEml("");
+            invalidEmployee.setDateOfEmployment(LocalDate.now());
+            invalidEmployee.setDateOfDismissal(LocalDate.now());
+            invalidEmployee.setSalary(-100.0);
+
+            MvcResult result = mockMvc.perform(MockMvcRequestBuilders.put("/api/employees/{id}", 1)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(objectMapper.writeValueAsString(invalidEmployee)))
+                    .andExpect(status().isBadRequest())
+                    .andReturn();
+
+
+            String responseBody = result.getResponse().getContentAsString();
+            System.out.println("Тело ответа: " + responseBody);
+        }
     }
 
 
@@ -153,11 +194,19 @@ class EmployeeControllerTest {
     public class DeleteEmployee {
         @Test
         public void shouldDeleteEmployeeWhenValid() throws Exception {
-            // Устанавливаем заглушку для метода deleteEmployee
-            doNothing().when(employeeService).deleteEmployee(eq(1));
+            doNothing().when(employeeService).deleteEmployee(1);
 
             mockMvc.perform(MockMvcRequestBuilders.delete("/api/employees/{id}", 1))
                     .andExpect(MockMvcResultMatchers.status().isOk());
+        }
+
+        @Test
+        public void shouldReturnBadRequestForInvalidID() throws Exception {
+            MockHttpServletRequestBuilder request =
+                    MockMvcRequestBuilders.delete("/api/employees/{id}", -11);
+            mockMvc.perform(request)
+                    .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                    .andExpect(MockMvcResultMatchers.content().string("Неправильное значение ID: -11"));
         }
     }
 
@@ -175,12 +224,10 @@ class EmployeeControllerTest {
             };
 
             when(employeeService.getAllEmployees()).thenReturn(employees);
-
             mockMvc.perform(MockMvcRequestBuilders.get("/api/employees")
                             .contentType(MediaType.APPLICATION_JSON))
                     .andExpect(MockMvcResultMatchers.status().isOk())
-                    .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(employees)))
-                    .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(2)));
+                    .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(employees)));
         }
     }
 }

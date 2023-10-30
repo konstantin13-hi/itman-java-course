@@ -13,41 +13,46 @@ public interface EmployeeService {
      * Adds a new employee with the provided information.
      *
      * @param employee The EmployeeDto object containing employee details to be added.
-     * @throws SQLException If there is an SQL-related error during the operation.
-     */
-    void add(EmployeeDto employee) throws SQLException;
+     * @cpu O(1)
+     * @ram O(1)
+      */
+    void add(EmployeeDto employee);
 
     /**
      * Updates an employee's information based on the provided ID.
      *
      * @param id      The ID of the employee to be updated.
      * @param employee The EmployeeDto object containing the updated employee information.
-     * @throws SQLException If there is an SQL-related error during the operation.
+     * @cpu O(n), where n is the length of the employees list.
+     * @ram O(1)
      */
-    void update(int id, EmployeeDto employee) throws SQLException;
+    void update(int id, EmployeeDto employee);
 
     /**
      * Deletes an employee with the specified ID.
      *
      * @param id The ID of the employee to be deleted.
-     * @throws SQLException If there is an SQL-related error during the operation.
+     * @cpu O(n), where n is the length of the employees list.
+     * @ram O(1)
      */
-    void deleteEmployee(int id) throws SQLException;
+    void deleteEmployee(int id);
 
     /**
      * Retrieves an employee's information based on the provided ID.
      *
      * @param id The ID of the employee to be retrieved.
      * @return An EmployeeDto object containing the information of the requested employee.
-     * @throws SQLException If there is an SQL-related error during the operation.
-     */
-    EmployeeDto getEmployee(int id) throws SQLException;
+     * @cpu O(n)  where n is the length of the employees list.
+     * @ram O(1)
+      */
+    EmployeeDto getEmployee(int id);
 
     /**
      * Retrieves information about all employees.
      *
      * @return An array of EmployeeDto objects representing the information of all employees.
-     * @throws SQLException If there is an SQL-related error during the operation.
+     * @cpu O(n), where n is the length of the employees list.
+     * @ram O(n). where n is the length of the employees list.
      */
-    EmployeeDto[] getAllEmployees() throws SQLException;
+    EmployeeDto[] getAllEmployees();
 }

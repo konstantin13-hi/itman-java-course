@@ -2,10 +2,13 @@ package employeeweb.dto;
 
 import entities.Employee;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.validation.GroupSequence;
 import javax.validation.constraints.*;
+
 
 public class EmployeeDto {
 
@@ -28,16 +31,17 @@ public class EmployeeDto {
 
     @NotNull(message = "Дата приема на работу не должна быть пустой")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past(message = "Дата приема на работу должна быть в прошлом")
+    @PastOrPresent(message = "Дата приема на работу должна быть в прошлом или текущей датой")
     private LocalDate dateOfEmployment;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past(message = "Дата увольнения должна быть в прошлом")
+    @PastOrPresent(message = "Дата увольнения должна быть в прошлом")
     private LocalDate dateOfDismissal;
 
     @NotNull(message = "Зарплата не должна быть пустой")
     @Min(value = 0, message = "Зарплата не может быть отрицательной")
     private Double salary;
+
 
     /**
      * Default constructor.
@@ -48,13 +52,13 @@ public class EmployeeDto {
     /**
      * Parameterized constructor to create an EmployeeDto.
      *
-     * @param name The name of the employee.
-     * @param surname The surname of the employee.
-     * @param phone The phone number of the employee.
-     * @param positionEml The job position or title of the employee.
+     * @param name             The name of the employee.
+     * @param surname          The surname of the employee.
+     * @param phone            The phone number of the employee.
+     * @param positionEml      The job position or title of the employee.
      * @param dateOfEmployment The date of employment of the employee.
-     * @param dateOfDismissal The date of dismissal (if any) of the employee.
-     * @param salary The salary of the employee.
+     * @param dateOfDismissal  The date of dismissal (if any) of the employee.
+     * @param salary           The salary of the employee.
      */
     public EmployeeDto(String name, String surname, String phone,
                        String positionEml, LocalDate dateOfEmployment,
@@ -219,6 +223,20 @@ public class EmployeeDto {
         return new Employee(getName(), getSurname(),
                 getPhone(), getPositionEml(), getDateOfEmployment(),
                 getDateOfDismissal(), getSalary());
+    }
+
+
+    /**
+     * Converts an Employee object into an EmployeeDto object.
+     *
+     * @param employee The Employee object to be converted.
+     * @return The corresponding EmployeeDto object.
+     */
+    public EmployeeDto toEmployeeDto(Employee employee) {
+        return new EmployeeDto(employee.getName(), employee.getSurname(),
+                employee.getPhone(), employee.getPositionEml(),
+                employee.getDateOfEmployment(), employee.getDateOfDismissal(),
+                employee.getSalary());
     }
 
     /**

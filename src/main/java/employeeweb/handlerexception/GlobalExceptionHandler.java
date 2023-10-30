@@ -1,6 +1,8 @@
 package employeeweb.handlerexception;
 
+import employeeweb.exceptions.DatabaseQueryException;
 import employeeweb.exceptions.EmployeeNotFoundException;
+import employeeweb.exceptions.IdException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -18,31 +20,60 @@ import java.util.List;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    private ResponseEntity<String> createErrorResponse(String message) {
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
     /**
-     * Handles exceptions related to validation errors.
+     * Exception handler for handling validation errors using the MethodArgumentNotValidException.
      *
-     * @param ex The MethodArgumentNotValidException to handle.
-     * @return A ResponseEntity containing error messages for validation issues.
+     * @param ex The MethodArgumentNotValidException instance.
+     * @return A ResponseEntity with a bad request status and an error message.
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> handleValidationException(MethodArgumentNotValidException ex) {
-        return getStringResponseEntity(ex);
+        return createErrorResponse(getStringResponseEntity(ex));
     }
 
     /**
-     * Handles exceptions related to employee not found.
+     * Exception handler for handling EmployeeNotFoundException.
      *
-     * @param ex The EmployeeNotFoundException to handle.
-     * @return A ResponseEntity containing the error message for an employee not found.
+     * @param ex The EmployeeNotFoundException instance.
+     * @return A ResponseEntity with a bad request status and an error message.
      */
     @ExceptionHandler(EmployeeNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> handleEmployeeNotFoundException(EmployeeNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+        return createErrorResponse(ex.getMessage());
     }
 
-    private static ResponseEntity<String> getStringResponseEntity(MethodArgumentNotValidException ex) {
+    /**
+     * Exception handler for handling custom IdException.
+     *
+     * @param e The IdException instance.
+     * @return A ResponseEntity with a bad request status and an error message.
+     */
+    @ExceptionHandler(IdException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<String> handleIdException(IdException e) {
+        return createErrorResponse(e.getMessage());
+    }
+
+    /**
+     * Exception handler for handling DatabaseQueryException.
+     *
+     * @param ex The DatabaseQueryException instance.
+     * @return A ResponseEntity with a bad request status and an error message.
+     */
+    @ExceptionHandler(DatabaseQueryException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<String> handleInvalidQueryException(DatabaseQueryException ex) {
+        return createErrorResponse("Ошибка в SQL-запросе: " + ex.getMessage());
+    }
+
+
+    private static String getStringResponseEntity(MethodArgumentNotValidException ex) {
         BindingResult bindingResult = ex.getBindingResult();
         List<ObjectError> errors = bindingResult.getAllErrors();
         List<String> errorMessages = new ArrayList<>();
@@ -54,6 +85,7 @@ public class GlobalExceptionHandler {
         String errorMessage = String.join(", ", errorMessages);
 
 
-        return ResponseEntity.badRequest().body(errorMessage);
+        return errorMessage;
     }
+
 }

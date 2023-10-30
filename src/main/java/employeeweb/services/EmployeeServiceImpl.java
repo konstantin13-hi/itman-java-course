@@ -1,10 +1,8 @@
 package employeeweb.services;
 
-import employeeweb.dto.CreateEmployeeDto;
 import employeeweb.dto.EmployeeDto;
 import employeeweb.exceptions.EmployeeNotFoundException;
 import employeeweb.repositories.DbEmployeeRepository;
-import employeeweb.repositories.EmployeeRepository;
 import entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,24 +24,30 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void add(EmployeeDto employeeDto) throws SQLException {
+    public void add(EmployeeDto employeeDto) {
         Employee employee = employeeDto.toEmployee();
         employeeRepository.save(employee);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public EmployeeDto getEmployee(int id) throws SQLException {
+    public EmployeeDto getEmployee(int id) {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException("Сотрудник с ID " + id + " не найден"));
-        return new CreateEmployeeDto().employeeDto(employee);
-
+        return new EmployeeDto().toEmployeeDto(employee);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void update(int id, EmployeeDto employeeDto) throws SQLException {
+    public void update(int id, EmployeeDto employeeDto) {
         Employee employee = employeeDto.toEmployee();
         employee.setId(id);
         employeeRepository.save(employee)
@@ -51,38 +55,32 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void deleteEmployee(int id) throws SQLException {
+    public void deleteEmployee(int id) {
         boolean deleted = employeeRepository.deleteEmployee(id);
         if (!deleted) {
             throw new EmployeeNotFoundException("Employee with ID " + id + " not found");
         }
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public EmployeeDto[] getAllEmployees() throws SQLException {
+    public EmployeeDto[] getAllEmployees() {
         List<Employee> employees = employeeRepository.findAll();
         EmployeeDto[] employeeDtos = new EmployeeDto[employees.size()];
 
         int index = 0;
         for (Employee employee : employees) {
-            employeeDtos[index] = convertToDto(employee);
+            employeeDtos[index] = new EmployeeDto().toEmployeeDto(employee);
             index++;
         }
 
         return employeeDtos;
     }
 
-    private EmployeeDto convertToDto(Employee employee) {
-        return new EmployeeDto(
-                employee.getName(),
-                employee.getSurname(),
-                employee.getPhone(),
-                employee.getPositionEml(),
-                employee.getDateOfEmployment(),
-                employee.getDateOfDismissal(),
-                employee.getSalary()
-        );
-    }
 }

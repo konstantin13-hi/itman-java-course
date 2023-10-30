@@ -1,10 +1,11 @@
-package tasks;
+package employeeweb.repositories;
 
 
 import employeeweb.repositories.DbEmployeeRepository;
 import entities.Employee;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
+import tasks.DatabaseConnection;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -89,11 +90,6 @@ class EmployeeRepositoryTest {
             Optional<Employee> employee = employeeRepository.findById(1);
             Employee expectedEmployee = employee.orElse(null);
             assertEquals(expected, expectedEmployee);
-        }
-
-        @Test
-        public void shouldThrowIllegalArgumentExceptionWhenInvalidIdProvided() {
-            assertThrows(IllegalArgumentException.class, () -> employeeRepository.findById(-1));
         }
 
     }

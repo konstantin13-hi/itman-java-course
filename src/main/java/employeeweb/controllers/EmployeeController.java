@@ -1,12 +1,13 @@
 package employeeweb.controllers;
 
-import employeeweb.dto.EmployeeDto;
+import employeeweb.dto.*;
+import employeeweb.exceptions.IdException;
 import employeeweb.services.EmployeeService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import javax.validation.Valid;
-
 
 @RestController
 public class EmployeeController {
@@ -26,9 +27,11 @@ public class EmployeeController {
      * Creates a new employee based on the provided information.
      *
      * @param employee Information about the employee to be added.
+     * @cpu O(1)
+     * @ram O(1)
      */
     @PostMapping("/api/employees")
-    public void addEmployee(@Valid @RequestBody final EmployeeDto employee) throws SQLException {
+    public void addEmployee(@Validated @RequestBody final EmployeeDto employee) {
         employeeService.add(employee);
     }
 
@@ -37,27 +40,31 @@ public class EmployeeController {
      *
      * @param id The unique identifier of the employee to be updated.
      * @param employee Information about the employee's updated details.
-     * @throws SQLException If an error occurs during the database interaction.
+     * @cpu O(n), where n is the length of the employees list.
+     * @ram O(1)
      */
     @PutMapping("/api/employees/{id}")
     public void updateEmployee(@PathVariable int id,
-                               @Valid @RequestBody EmployeeDto employee) throws SQLException {
-
+                               @Valid @RequestBody EmployeeDto employee) {
+        if (id <= 0) {
+            throw new IdException("Неправильное значение ID: " + id);
+        }
         employeeService.update(id, employee);
-
-
     }
 
     /**
      * Deletes an employee with the specified unique identifier.
      *
      * @param id The unique identifier of the employee to be deleted.
-     * @throws SQLException If an error occurs during the database interaction.
+     * @cpu O(n), where n is the length of the employees list.
+     * @ram O(1)
      */
     @DeleteMapping("/api/employees/{id}")
-    public void deleteEmployee(@PathVariable int id) throws SQLException {
+    public void deleteEmployee(@PathVariable int id) {
+        if (id <= 0) {
+            throw new IdException("Неправильное значение ID: " + id);
+        }
         employeeService.deleteEmployee(id);
-
     }
 
     /**
@@ -65,10 +72,14 @@ public class EmployeeController {
      *
      * @param id The unique identifier of the employee to be retrieved.
      * @return An EmployeeDto object representing the employee's information.
-     * @throws SQLException If an error occurs during the database interaction.
+     * @cpu O(n)  where n is the length of the employees list.
+     * @ram O(1)
      */
     @GetMapping("/api/employees/{id}")
-    public EmployeeDto getEmployee(@PathVariable int id) throws SQLException {
+    public EmployeeDto getEmployee(@PathVariable int id) {
+        if (id <= 0) {
+            throw new IdException("Неправильное значение ID: " + id);
+        }
         return employeeService.getEmployee(id);
     }
 
@@ -76,13 +87,11 @@ public class EmployeeController {
      * Retrieves a list of all employees in the database.
      *
      * @return An array of EmployeeDto objects representing the employee information.
-     * @throws SQLException If an error occurs during the database interaction.
+     * @cpu O(n), where n is the length of the employees list.
+     * @ram O(n). where n is the length of the employees list.
      */
     @GetMapping("/api/employees")
-    public EmployeeDto[] getAllEmployees() throws SQLException {
+    public EmployeeDto[] getAllEmployees() {
         return employeeService.getAllEmployees();
-
     }
-
-
 }
