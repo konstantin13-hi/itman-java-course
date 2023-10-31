@@ -16,8 +16,6 @@ public interface EmployeeRepository {
      *
      * @param id The ID of the employee to be deleted.
      * @return {@code true} if the employee was successfully deleted, or {@code false} if the employee was not found.
-     * @cpu O(n)  where n is the length of the employees list.
-     * @ram O(1)
      */
     boolean deleteEmployee(int id);
 
@@ -25,8 +23,6 @@ public interface EmployeeRepository {
      * Retrieves a list of all employees.
      *
      * @return A List of Employee objects representing all employees in the database.
-     * @cpu O(n) where n is the number of employees in the list.
-     * @ram O(n) where n is the number of employees in the list.
      */
     List<Employee> findAll();
 
@@ -36,8 +32,6 @@ public interface EmployeeRepository {
      * @param id ID of the employee to be found.
      * @return An object of type Employee that represents the employee with the specified ID.
      * If the employee is not found, null is returned.
-     * @cpu O(n)  where n is the length of the employees list.
-     * @ram O(1)
      */
     Optional<Employee> findById(int id);
 
@@ -47,8 +41,6 @@ public interface EmployeeRepository {
      *
      * @param position The position to search for.
      * @return A List of Employee objects representing employees with the specified position.
-     * @cpu O(n), where n is the length of the employees list.
-     * @ram O(n). where n is the length of the employees list.
      */
     List<Employee> findByPosition(String position);
 
@@ -58,8 +50,6 @@ public interface EmployeeRepository {
      * @param employee The Employee object to be saved or updated.
      * @return The newly saved Employee object with its updated properties,
      * including the assigned ID (if it's a new record).
-     * @cpu O(n), where n is the length of the employees list.
-     * @ram O(1)
      */
     Optional<Employee> save(Employee employee);
 }

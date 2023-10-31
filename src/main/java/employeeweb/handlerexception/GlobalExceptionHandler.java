@@ -1,6 +1,5 @@
 package employeeweb.handlerexception;
 
-import employeeweb.exceptions.DatabaseQueryException;
 import employeeweb.exceptions.EmployeeNotFoundException;
 import employeeweb.exceptions.IdException;
 import org.springframework.http.HttpStatus;
@@ -60,16 +59,17 @@ public class GlobalExceptionHandler {
         return createErrorResponse(e.getMessage());
     }
 
+
     /**
-     * Exception handler for handling DatabaseQueryException.
+     * Exception handler for RuntimeException.
      *
-     * @param ex The DatabaseQueryException instance.
+     * @param ex The RuntimeException to be handled.
      * @return A ResponseEntity with a bad request status and an error message.
      */
-    @ExceptionHandler(DatabaseQueryException.class)
+    @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<String> handleInvalidQueryException(DatabaseQueryException ex) {
-        return createErrorResponse("Ошибка в SQL-запросе: " + ex.getMessage());
+    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
+        return createErrorResponse("Runtime Error: " + ex.getMessage());
     }
 
 

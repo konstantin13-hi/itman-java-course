@@ -1,7 +1,5 @@
 package employeeweb.repositories;
 
-import employeeweb.exceptions.DatabaseConnectionException;
-import employeeweb.exceptions.DatabaseQueryException;
 import entities.Employee;
 import org.springframework.stereotype.Repository;
 import tasks.DatabaseConnection;
@@ -36,10 +34,10 @@ public class DbEmployeeRepository implements EmployeeRepository {
                     return Optional.empty();
                 }
             } catch (SQLException e) {
-                throw new DatabaseQueryException("Error executing SQL query");
+                throw new RuntimeException("Error executing SQL query");
             }
         } catch (SQLException e) {
-            throw new DatabaseConnectionException("Error connecting to the database");
+            throw new RuntimeException("Error connecting to the database");
         }
     }
 
@@ -60,10 +58,10 @@ public class DbEmployeeRepository implements EmployeeRepository {
                 int deletedRows = statement.executeUpdate();
                 return deletedRows != 0;
             } catch (SQLException e) {
-                throw new DatabaseQueryException("Error executing SQL query");
+                throw new RuntimeException("Error executing SQL query");
             }
         } catch (SQLException e) {
-            throw new DatabaseConnectionException("Error connecting to the database");
+            throw new RuntimeException("Error connecting to the database");
         }
     }
 
@@ -81,10 +79,10 @@ public class DbEmployeeRepository implements EmployeeRepository {
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 return getFilteredEmployees(preparedStatement);
             } catch (SQLException e) {
-                throw new DatabaseQueryException("Error executing SQL query");
+                throw new RuntimeException("Error executing SQL query");
             }
         } catch (SQLException e) {
-            throw new DatabaseConnectionException("Error connecting to the database");
+            throw new RuntimeException("Error connecting to the database");
         }
     }
 
@@ -107,10 +105,10 @@ public class DbEmployeeRepository implements EmployeeRepository {
                 preparedStatement.setString(1, position);
                 return getFilteredEmployees(preparedStatement);
             } catch (SQLException e) {
-                throw new DatabaseQueryException("Error executing SQL query");
+                throw new RuntimeException("Error executing SQL query");
             }
         } catch (SQLException e) {
-            throw new DatabaseConnectionException("Error connecting to the database");
+            throw new RuntimeException("Error connecting to the database");
         }
     }
 
@@ -205,7 +203,7 @@ public class DbEmployeeRepository implements EmployeeRepository {
 
             }
         } catch (SQLException e) {
-            throw new DatabaseConnectionException("Error connecting to the database");
+            throw new RuntimeException("Error connecting to the database");
         }
         if (employee.getId() == null) {
             employee.setId(id);
@@ -248,7 +246,7 @@ public class DbEmployeeRepository implements EmployeeRepository {
             }
             return generatedId;
         } catch (SQLException e) {
-            throw new DatabaseQueryException("Error executing SQL query in statement method");
+            throw new RuntimeException("Error executing SQL query in statement method");
         }
     }
 
