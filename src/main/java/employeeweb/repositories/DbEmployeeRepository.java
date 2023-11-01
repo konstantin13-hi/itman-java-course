@@ -1,18 +1,17 @@
-package tasks;
+package employeeweb.repositories;
 
 import entities.Employee;
+import org.springframework.stereotype.Repository;
+import tasks.DatabaseConnection;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
-
-public class EmployeeRepository {
-    private static final String DB_URL = "jdbc:postgresql://localhost/bbb";
-    private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "1111";
-
+@Repository
+public class DbEmployeeRepository implements EmployeeRepository {
 
     /**
      * Looks for an employee by the specified ID.
@@ -23,48 +22,68 @@ public class EmployeeRepository {
      * @cpu O(n)  where n is the length of the employees list.
      * @ram O(1)
      */
-    public Employee findById(int id) throws SQLException {
-        if (id < 1) {
-            throw new IllegalArgumentException("Id should be more than 0");
-        }
-        Employee result = null;
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+    public Optional<Employee> findById(int id) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String sql = "SELECT * FROM employee WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, id);
                 List<Employee> filteredEmployees = getFilteredEmployees(statement);
                 if (!filteredEmployees.isEmpty()) {
-                    result = filteredEmployees.get(0);
+                    return Optional.of(filteredEmployees.get(0));
+                } else {
+                    return Optional.empty();
                 }
             } catch (SQLException e) {
-                throw new SQLException("Ошибка при выполнении SQL-запроса", e);
+                throw new RuntimeException("Error executing SQL query");
             }
         } catch (SQLException e) {
-            throw new SQLException("Ошибка при подключении к базе данных", e);
+            throw new RuntimeException("Error connecting to the database");
         }
-        return result;
     }
+
+
+    /**
+     * Deletes an employee with the specified ID from the database.
+     *
+     * @param id The ID of the employee to be deleted.
+     * @return {@code true} if the employee was successfully deleted, or {@code false} if the employee was not found.
+     * @cpu O(n)  where n is the length of the employees list.
+     * @ram O(1)
+     */
+    public boolean deleteEmployee(int id) {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String sql = "DELETE FROM employee WHERE id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, id);
+                int deletedRows = statement.executeUpdate();
+                return deletedRows != 0;
+            } catch (SQLException e) {
+                throw new RuntimeException("Error executing SQL query");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error connecting to the database");
+        }
+    }
+
 
     /**
      * Retrieves a list of all employees.
      *
      * @return A List of Employee objects representing all employees in the database.
-     * @cpu O(1)
+     * @cpu O(n) where n is the number of employees in the list.
      * @ram O(n) where n is the number of employees in the list.
      */
-    public List<Employee> findAll() throws SQLException {
-        List<Employee> employeeList = null;
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+    public List<Employee> findAll() {
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String sql = "SELECT * FROM employee";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                employeeList = getFilteredEmployees(preparedStatement);
+                return getFilteredEmployees(preparedStatement);
             } catch (SQLException e) {
-                throw new SQLException("Ошибка при выполнении SQL-запроса", e);
+                throw new RuntimeException("Error executing SQL query");
             }
         } catch (SQLException e) {
-            throw new SQLException("Ошибка при подключении к базе данных", e);
+            throw new RuntimeException("Error connecting to the database");
         }
-        return employeeList;
     }
 
     /**
@@ -75,20 +94,22 @@ public class EmployeeRepository {
      * @cpu O(n), where n is the length of the employees list.
      * @ram O(n). where n is the length of the employees list.
      */
-    public List<Employee> findByPosition(String position) throws SQLException {
+    public List<Employee> findByPosition(String position) {
         if (position == null || position.isEmpty()) {
             throw new IllegalArgumentException("Поле 'position' не должно быть пустым или равным null");
         }
-        List<Employee> employeeList;
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+
+        try (Connection connection = DatabaseConnection.getConnection()) {
             String sqlQuery = "SELECT * FROM employee WHERE position_eml = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-            preparedStatement.setString(1, position);
-            employeeList = getFilteredEmployees(preparedStatement);
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+                preparedStatement.setString(1, position);
+                return getFilteredEmployees(preparedStatement);
+            } catch (SQLException e) {
+                throw new RuntimeException("Error executing SQL query");
+            }
         } catch (SQLException e) {
-            throw new SQLException("Ошибка при подключении к базе данных", e);
+            throw new RuntimeException("Error connecting to the database");
         }
-        return employeeList;
     }
 
     private List<Employee> getFilteredEmployees(PreparedStatement preparedStatement) throws SQLException {
@@ -119,9 +140,10 @@ public class EmployeeRepository {
      * @param employee The Employee object to be saved or updated.
      * @return The newly saved Employee object with its updated properties,
      * including the assigned ID (if it's a new record).
+     * @cpu O(n), where n is the length of the employees list.
+     * @ram O(1)
      */
-    public Employee save(Employee employee) throws SQLException {
-
+    public Optional<Employee> save(Employee employee) {
         if (employee.getName() == null || employee.getName().isEmpty()) {
             throw new IllegalArgumentException("Employee name cannot be empty.");
         }
@@ -181,58 +203,51 @@ public class EmployeeRepository {
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error connecting to the database");
         }
-        return findById(id);
+        if (employee.getId() == null) {
+            employee.setId(id);
+        }
+
+        return Optional.of(employee);
     }
 
-    private int statement(Employee employee, Connection connection, String updateCommand) throws SQLException {
-        PreparedStatement preparedStatement;
-        if (employee.getId() == null) {
-            preparedStatement = connection.prepareStatement(updateCommand, Statement.RETURN_GENERATED_KEYS);
-        } else {
-            preparedStatement = connection.prepareStatement(updateCommand);
-        }
+    private int statement(Employee employee, Connection connection, String updateCommand) {
+        try (PreparedStatement preparedStatement = (employee.getId() == null)
+                ? connection.prepareStatement(updateCommand, Statement.RETURN_GENERATED_KEYS) :
+                connection.prepareStatement(updateCommand)) {
 
-        int parameterIndex = 1;
-        preparedStatement.setString(parameterIndex++, employee.getName()); // name
-        preparedStatement.setString(parameterIndex++, employee.getSurname()); // surname
-        preparedStatement.setString(parameterIndex++, employee.getPhone()); // position_eml
-        preparedStatement.setString(parameterIndex++, employee.getPositionEml()); // phone
-        if (employee.getDateOfEmployment() != null) {
-            preparedStatement.setDate(parameterIndex++, Date.valueOf(employee.getDateOfEmployment()));
-        }
-
-        if (employee.getDateOfDismissal() != null) {
-            preparedStatement.setDate(parameterIndex++, Date.valueOf(employee.getDateOfDismissal()));
-        } else {
-            preparedStatement.setNull(parameterIndex++, java.sql.Types.DATE);
-        }
-
-        if (employee.getSalary() != null) {
-            preparedStatement.setDouble(parameterIndex++, employee.getSalary());
-        } else {
-            preparedStatement.setNull(parameterIndex++, java.sql.Types.DOUBLE);
-        }
-
-        if (employee.getId() != null) {
-            preparedStatement.setInt(parameterIndex++, employee.getId());
-        }
-
-        int generatedId = -1;
-        int updatedRows = preparedStatement.executeUpdate();
-
-        if (employee.getId() == null) {
-            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    generatedId = generatedKeys.getInt(1);
-                }
+            int parameterIndex = 1;
+            preparedStatement.setString(parameterIndex++, employee.getName());
+            preparedStatement.setString(parameterIndex++, employee.getSurname());
+            preparedStatement.setString(parameterIndex++, employee.getPhone());
+            preparedStatement.setString(parameterIndex++, employee.getPositionEml());
+            if (employee.getDateOfEmployment() != null) {
+                preparedStatement.setDate(parameterIndex++, Date.valueOf(employee.getDateOfEmployment()));
             }
-        } else {
-            generatedId = employee.getId();
-        }
+            preparedStatement.setObject(parameterIndex++, employee.getDateOfDismissal(), java.sql.Types.DATE);
+            preparedStatement.setObject(parameterIndex++, employee.getSalary(), java.sql.Types.DOUBLE);
 
-        return generatedId;
+            if (employee.getId() != null) {
+                preparedStatement.setInt(parameterIndex++, employee.getId());
+            }
+
+            int generatedId = -1;
+            int updatedRows = preparedStatement.executeUpdate();
+
+            if (employee.getId() == null) {
+                try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        generatedId = generatedKeys.getInt(1);
+                    }
+                }
+            } else {
+                generatedId = employee.getId();
+            }
+            return generatedId;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing SQL query in statement method");
+        }
     }
 
     private LocalDate getDateFromResulSet(ResultSet resultSet, String columnName) throws SQLException {

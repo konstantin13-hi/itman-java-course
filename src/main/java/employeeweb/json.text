@@ -1,0 +1,9 @@
+{
+  "name": "John",
+  "surname": "Doe",
+  "phone": "555-1234",
+  "positionEml": "Manager",
+  "dateOfEmployment": "null",
+  "dateOfDismissal": "null",
+  "salary": 50000.0
+}
