@@ -60,18 +60,6 @@ public class GlobalExceptionHandler {
     }
 
 
-    /**
-     * Exception handler for RuntimeException.
-     *
-     * @param ex The RuntimeException to be handled.
-     * @return A ResponseEntity with a bad request status and an error message.
-     */
-    @ExceptionHandler(RuntimeException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<String> handleRuntimeException(RuntimeException ex) {
-        return createErrorResponse("Runtime Error: " + ex.getMessage());
-    }
-
 
     private static String getStringResponseEntity(MethodArgumentNotValidException ex) {
         BindingResult bindingResult = ex.getBindingResult();
